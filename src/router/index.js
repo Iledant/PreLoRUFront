@@ -1,29 +1,108 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Router from 'vue-router'
+import Users from '@/components/Users.vue'
+import Housings from '@/components/Housings.vue'
+import Copros from '@/components/Copros.vue'
+import RenewProjects from '@/components/RenewProjects.vue'
+import Home from '@/components/Home.vue'
+import Beneficiaries from '@/components/Beneficiaries.vue'
+import Beneficiary from '@/components/Beneficiary.vue'
+import ForeCasts from '@/components/Forecasts.vue'
+import RenewProject from '@/components/RenewProject.vue'
+import Copro from '@/components/Copro.vue'
+import BudgetSector from '@/components/BudgetSector.vue'
+import BudgetAction from '@/components/BudgetAction.vue'
+import Commission from '@/components/Commission.vue'
+import Communities from '@/components/Communities.vue'
+import Cities from '@/components/Cities.vue'
+import Commitments from '@/components/Commitments.vue'
+import Payments from '@/components/Payments.vue'
+import Housing from '@/components/Housing.vue'
+import Summaries from '@/components/Summaries.vue'
+import Programmation from '@/components/Programmation.vue'
+import RPLS from '@/components/RPLS.vue'
+import Placement from '@/components/Placement.vue'
+import BeneficiaryGroups from '@/components/BeneficiaryGroups.vue'
+import BeneficiaryGroup from '@/components/BeneficiaryGroup.vue'
+import ReservationFees from '@/components/ReservationFees.vue'
+import ReservationFeeSettings from '@/components/ReservationFeeSettings.vue'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
-
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+export default new Router({
+  routes: [
+    { path: '/', component: Home, name: 'Home' },
+    {
+      path: '/users',
+      component: Users,
+      name: 'Users',
+      meta: { requiresAdmin: true }
+    },
+    { path: '/housings', component: Housings, name: 'Housings' },
+    { path: '/housing/:ID', component: Housing, name: 'Housing' },
+    { path: '/copros', component: Copros, name: 'Copros' },
+    {
+      path: '/renew_projects',
+      component: RenewProjects,
+      name: 'RenewProjects'
+    },
+    { path: '/beneficiaries', component: Beneficiaries, name: 'Beneficiaries' },
+    { path: '/beneficiary/:ID', component: Beneficiary, name: 'Beneficiary' },
+    { path: '/forecasts', component: ForeCasts, name: 'Forecasts' },
+    { path: '/renew_project/:ID', component: RenewProject, name: 'RenewProject' },
+    { path: '/copro/:ID', component: Copro, name: 'Copro' },
+    { path: '/sector', component: BudgetSector, name: 'BudgetSector' },
+    { path: '/action', component: BudgetAction, name: 'BudgetAction' },
+    {
+      path: '/commission',
+      component: Commission,
+      name: 'Commission',
+      meta: { requiresAdmin: true }
+    },
+    {
+      path: '/communities',
+      component: Communities,
+      name: 'Communities',
+      meta: { requiresAdmin: true }
+    },
+    {
+      path: '/cities',
+      component: Cities,
+      name: 'Cities',
+      meta: { requiresAdmin: true }
+    },
+    { path: '/commitments', component: Commitments, name: 'Commitments' },
+    { path: '/payments', component: Payments, name: 'Payments' },
+    { path: '/summaries', component: Summaries, name: 'Summaries' },
+    { path: '/programmation', component: Programmation, name: 'Programmation' },
+    {
+      path: '/rpls',
+      component: RPLS,
+      name: 'RPLS',
+      meta: { requiresAdmin: true }
+    },
+    { path: '/placement', component: Placement, name: 'Placement' },
+    {
+      path: '/beneficiary_groups',
+      component: BeneficiaryGroups,
+      name: 'BeneficiaryGroups'
+    },
+    {
+      path: '/beneficiary_group/:ID',
+      component: BeneficiaryGroup,
+      name: 'BeneficiaryGroup'
+    },
+    {
+      path: '/reservation_fees',
+      component: ReservationFees,
+      name: 'ReservationFees',
+      meta: { requiresReservation: true }
+    },
+    {
+      path: '/reservation_fee_settings',
+      component: ReservationFeeSettings,
+      name: 'ReservationFeeSettings',
+      meta: { requiresAdmin: true }
+    }
+  ]
 })
-
-export default router
