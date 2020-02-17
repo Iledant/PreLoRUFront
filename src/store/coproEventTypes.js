@@ -31,7 +31,7 @@ const actions = {
   async [types.UPDATE_COPRO_EVENT_TYPE] ({ commit }, { ID, Name }) {
     beginLoading(commit)
     try {
-      const { body } = await Vue.http.put(`copro_event_type`, { ID, Name })
+      const { body } = await Vue.http.put('copro_event_type', { ID, Name })
       commit(types.UPDATE_COPRO_EVENT_TYPE, body.CoproEventType)
       commit(types.END_LOADING)
     } catch (err) {
@@ -41,7 +41,7 @@ const actions = {
   async [types.CREATE_COPRO_EVENT_TYPE] ({ commit }, { Name }) {
     beginLoading(commit)
     try {
-      const { body } = await Vue.http.post(`copro_event_type`, { Name })
+      const { body } = await Vue.http.post('copro_event_type', { Name })
       commit(types.CREATE_COPRO_EVENT_TYPE, body.CoproEventType)
       commit(types.END_LOADING)
     } catch (err) {
@@ -51,7 +51,7 @@ const actions = {
   async [types.GET_COPRO_EVENT_TYPES] ({ commit }) {
     beginLoading(commit)
     try {
-      const { body } = await Vue.http.get(`copro_event_types`)
+      const { body } = await Vue.http.get('copro_event_types')
       commit(types.GET_COPRO_EVENT_TYPES, body.CoproEventType)
       commit(types.END_LOADING)
     } catch (err) {

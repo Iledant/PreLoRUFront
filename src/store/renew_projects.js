@@ -12,7 +12,7 @@ const actions = {
   async [types.GET_RENEW_PROJECTS] ({ commit }) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get('renew_projects')
+      const { body } = await Vue.http.get('renew_projects')
       commit(types.GET_RENEW_PROJECTS, body.RenewProject)
       commit(types.GET_CITIES, body.City)
       commit(types.GET_RP_EVENT_TYPES, body.RPEventType)
@@ -28,7 +28,7 @@ const actions = {
   async [types.CREATE_RENEW_PROJECT] ({ commit }, project) {
     beginLoading(commit)
     try {
-      let response = await Vue.http.post('renew_project', {
+      const response = await Vue.http.post('renew_project', {
         RenewProject: project
       })
       commit(types.CREATE_RENEW_PROJECT, response.body.RenewProject)
@@ -40,7 +40,7 @@ const actions = {
   async [types.UPDATE_RENEW_PROJECT] ({ commit }, project) {
     beginLoading(commit)
     try {
-      let response = await Vue.http.put('renew_project', {
+      const response = await Vue.http.put('renew_project', {
         RenewProject: project
       })
       commit(types.UPDATE_RENEW_PROJECT, response.body.RenewProject)
@@ -62,7 +62,7 @@ const actions = {
   async [types.UPLOAD_RENEW_PROJECTS] ({ commit }, file) {
     beginLoading(commit)
     try {
-      let parseFunc = d => ({
+      const parseFunc = d => ({
         Reference: d.Reference,
         Name: d.Name,
         PRIN: Boolean(d.PRIN),
@@ -105,11 +105,11 @@ const mutations = {
     state.renewProjectsList.push(item)
   },
   [types.UPDATE_RENEW_PROJECT] (state, item) {
-    let index = state.renewProjectsList.findIndex(i => i.ID === item.ID)
+    const index = state.renewProjectsList.findIndex(i => i.ID === item.ID)
     state.renewProjectsList.splice(index, 1, item)
   },
   [types.DEL_RENEW_PROJECT] (state, ID) {
-    let index = state.renewProjectsList.findIndex(i => i.ID === ID)
+    const index = state.renewProjectsList.findIndex(i => i.ID === ID)
     state.renewProjectsList.splice(index, 1)
   },
   [types.GET_RENEW_PROJECT_REPORT] (state, list) {

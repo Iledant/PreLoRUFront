@@ -39,7 +39,7 @@ const actions = {
   async [types.GET_BENEFICIARY_GROUPS] ({ commit }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get('beneficiary_groups')
+      const resp = await Vue.http.get('beneficiary_groups')
       commit(types.GET_BENEFICIARY_GROUPS, resp.body.BeneficiaryGroup)
       commit(types.END_LOADING)
     } catch (err) {
@@ -49,7 +49,7 @@ const actions = {
   async [types.GET_BENEFICIARY_GROUP_ITEMS] ({ commit }, ID) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get(`beneficiary_group/${ID}`)
+      const resp = await Vue.http.get(`beneficiary_group/${ID}`)
       commit(types.GET_BENEFICIARY_GROUP_ITEMS, resp.body.Beneficiary)
       commit(types.END_LOADING)
     } catch (err) {
@@ -59,7 +59,7 @@ const actions = {
   async [types.CREATE_BENEFICIARY_GROUP] ({ commit }, { BeneficiaryGroup }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.post(`beneficiary_group`, { BeneficiaryGroup })
+      const resp = await Vue.http.post('beneficiary_group', { BeneficiaryGroup })
       commit(types.CREATE_BENEFICIARY_GROUP, resp.body.BeneficiaryGroup)
       commit(types.END_LOADING)
     } catch (err) {
@@ -69,7 +69,7 @@ const actions = {
   async [types.UPDATE_BENEFICIARY_GROUP] ({ commit }, { BeneficiaryGroup }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.put(`beneficiary_group`, { BeneficiaryGroup })
+      const resp = await Vue.http.put('beneficiary_group', { BeneficiaryGroup })
       commit(types.UPDATE_BENEFICIARY_GROUP, resp.body.BeneficiaryGroup)
       commit(types.END_LOADING)
     } catch (err) {
@@ -89,7 +89,7 @@ const actions = {
   async [types.SET_BENEFICIARY_GROUP_ITEMS] ({ commit }, { ID, BeneficiaryIDs }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.post(`beneficiary_group/${ID}`, { BeneficiaryIDs })
+      const resp = await Vue.http.post(`beneficiary_group/${ID}`, { BeneficiaryIDs })
       commit(types.GET_BENEFICIARY_GROUP_ITEMS, resp.body.Beneficiary)
       commit(types.END_LOADING)
     } catch (err) {
@@ -100,7 +100,7 @@ const actions = {
     beginLoading(commit)
     try {
       commit(types.END_LOADING)
-      let resp = await Vue.http.get(`beneficiary_group/${ID}/datas`, {
+      const resp = await Vue.http.get(`beneficiary_group/${ID}/datas`, {
         params: { Page, Search, Year }
       })
       commit(types.GET_BENEFICIARY_GROUP_DATAS, resp.body)
@@ -112,7 +112,7 @@ const actions = {
     beginLoading(commit)
     try {
       commit(types.END_LOADING)
-      let resp = await Vue.http.get(`beneficiary_group/${ID}/placements`)
+      const resp = await Vue.http.get(`beneficiary_group/${ID}/placements`)
       commit(types.GET_PLACEMENTS, resp.body.Placement)
     } catch (err) {
       setErrorMessage(commit, err)
@@ -122,7 +122,7 @@ const actions = {
     beginLoading(commit)
     try {
       commit(types.END_LOADING)
-      let resp = await Vue.http.get(`beneficiary_group/${ID}/export`, {
+      const resp = await Vue.http.get(`beneficiary_group/${ID}/export`, {
         params: { Search, Year }
       })
       await exportBeneficiaryGroupDatas(resp.body.BeneficiaryGroupData)

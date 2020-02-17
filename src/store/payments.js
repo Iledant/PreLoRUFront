@@ -59,7 +59,7 @@ const actions = {
   async [types.GET_PAYMENTS] ({ commit }, { Year, Page, Search }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get('payments/paginated', {
+      const resp = await Vue.http.get('payments/paginated', {
         params: { Year, Page, Search }
       })
       commit(types.GET_PAYMENTS, resp.body)
@@ -71,7 +71,7 @@ const actions = {
   async [types.EXPORT_PAYMENTS] ({ commit }, { Year, Search }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get('payments/export', {
+      const resp = await Vue.http.get('payments/export', {
         params: { Year, Search }
       })
       exportPayments(resp.body.ExportedPayment)
@@ -83,8 +83,8 @@ const actions = {
   async [types.UPLOAD_PAYMENTS] ({ commit }, file) {
     beginLoading(commit)
     try {
-      let sendFunc = d => Vue.http.post('payments', { Payment: d })
-      let parseFunc = d => ({
+      const sendFunc = d => Vue.http.post('payments', { Payment: d })
+      const parseFunc = d => ({
         CommitmentYear: Number(d.CommitmentYear),
         CommitmentCode: d.CommitmentCode,
         CommitmentNumber: Number(d.CommitmentNumber),

@@ -15,7 +15,7 @@ const actions = {
   async [types.GET_COPRO_DATAS] ({ commit }, ID) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get(`copro/${ID}/datas`)
+      const { body } = await Vue.http.get(`copro/${ID}/datas`)
       commit(types.GET_COPRO_DATAS, body)
       commit(types.GET_COMMISSIONS, body.Commission)
       commit(types.GET_ACTIONS, body.BudgetAction)
@@ -29,7 +29,7 @@ const actions = {
   async [types.CREATE_COPRO_FORECAST] ({ commit }, { CoproForecast }) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.post(`copro_forecast`, {
+      const { body } = await Vue.http.post('copro_forecast', {
         CoproForecast
       })
       commit(types.CREATE_COPRO_FORECAST, body.CoproForecast)
@@ -41,7 +41,7 @@ const actions = {
   async [types.UPDATE_COPRO_FORECAST] ({ commit }, item) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.put(`copro_forecast`, item)
+      const { body } = await Vue.http.put('copro_forecast', item)
       commit(types.UPDATE_COPRO_FORECAST, body.CoproForecast)
       commit(types.END_LOADING)
     } catch (err) {
@@ -61,7 +61,7 @@ const actions = {
   async [types.CREATE_COPRO_EVENT] ({ commit }, item) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.post(`copro_event`, item)
+      const { body } = await Vue.http.post('copro_event', item)
       commit(types.CREATE_COPRO_EVENT, body.CoproEvent)
       commit(types.END_LOADING)
     } catch (err) {
@@ -71,7 +71,7 @@ const actions = {
   async [types.UPDATE_COPRO_EVENT] ({ commit }, item) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.put(`copro_event`, item)
+      const { body } = await Vue.http.put('copro_event', item)
       commit(types.UPDATE_COPRO_EVENT, body.CoproEvent)
       commit(types.END_LOADING)
     } catch (err) {
@@ -91,7 +91,7 @@ const actions = {
   async [types.CREATE_COPRO_DOC] ({ commit }, item) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.post(`copro/${item.CoproID}/copro_doc`,
+      const { body } = await Vue.http.post(`copro/${item.CoproID}/copro_doc`,
         { CoproDoc: item })
       commit(types.CREATE_COPRO_DOC, body.CoproDoc)
       commit(types.END_LOADING)
@@ -102,7 +102,7 @@ const actions = {
   async [types.UPDATE_COPRO_DOC] ({ commit }, item) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.put(`copro/${item.CoproID}/copro_doc`,
+      const { body } = await Vue.http.put(`copro/${item.CoproID}/copro_doc`,
         { CoproDoc: item })
       commit(types.UPDATE_COPRO_DOC, body.CoproDoc)
       commit(types.END_LOADING)

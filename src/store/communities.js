@@ -11,7 +11,7 @@ const actions = {
   async [types.CREATE_COMMUNITY] ({ commit }, { Code, Name }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.post('community', {
+      const resp = await Vue.http.post('community', {
         Community: { Code, Name }
       })
       commit(types.END_LOADING)
@@ -23,7 +23,7 @@ const actions = {
   async [types.UPDATE_COMMUNITY] ({ commit }, { ID, Code, Name }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.put('community', {
+      const resp = await Vue.http.put('community', {
         Community: { ID, Code, Name }
       })
       commit(types.END_LOADING)
@@ -45,9 +45,9 @@ const actions = {
   async [types.UPLOAD_COMMUNITIES] ({ commit }, file) {
     beginLoading(commit)
     try {
-      let sendFunc = d => Vue.http.post('communities', { Community: d })
-      let parseFunc = d => ({ Code: String(d.Code), Name: d.Name })
-      let resp = await excelReadFile(
+      const sendFunc = d => Vue.http.post('communities', { Community: d })
+      const parseFunc = d => ({ Code: String(d.Code), Name: d.Name })
+      const resp = await excelReadFile(
         file,
         ['Code', 'Name'],
         sendFunc,
@@ -72,11 +72,11 @@ const mutations = {
     state.communitiesList.push(community)
   },
   [types.UPDATE_COMMUNITY] (state, community) {
-    let index = state.communitiesList.findIndex(b => b.ID === community.ID)
+    const index = state.communitiesList.findIndex(b => b.ID === community.ID)
     state.communitiesList.splice(index, 1, community)
   },
   [types.DEL_COMMUNITY] (state, ID) {
-    let index = state.communitiesList.findIndex(b => b.ID === ID)
+    const index = state.communitiesList.findIndex(b => b.ID === ID)
     state.communitiesList.splice(index, 1)
   }
 }

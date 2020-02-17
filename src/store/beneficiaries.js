@@ -12,7 +12,7 @@ const actions = {
   async [types.GET_BENEFICIARIES] ({ commit }, { Page, Search }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get('beneficiaries/paginated', {
+      const resp = await Vue.http.get('beneficiaries/paginated', {
         params: { Page, Search }
       })
       commit(types.GET_BENEFICIARIES, resp.body)
@@ -24,7 +24,7 @@ const actions = {
   async [types.GET_ALL_BENEFICIARIES] ({ commit }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get('beneficiaries')
+      const resp = await Vue.http.get('beneficiaries')
       commit(types.GET_ALL_BENEFICIARIES, resp.body.Beneficiary)
       commit(types.END_LOADING)
     } catch (err) {

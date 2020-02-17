@@ -13,7 +13,7 @@ const actions = {
   async [types.GET_RPLS] ({ commit }) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get('rpls')
+      const { body } = await Vue.http.get('rpls')
       commit(types.GET_RPLS, body.RPLS)
       commit(types.END_LOADING)
     } catch (err) {
@@ -23,7 +23,7 @@ const actions = {
   async [types.GET_RPLS_DATAS] ({ commit }) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get('rpls/datas')
+      const { body } = await Vue.http.get('rpls/datas')
       commit(types.GET_RPLS, body.RPLS)
       commit(types.GET_CITIES, body.City)
       commit(types.END_LOADING)
@@ -34,7 +34,7 @@ const actions = {
   async [types.CREATE_RPLS] ({ commit }, payload) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.post('rpls', payload)
+      const { body } = await Vue.http.post('rpls', payload)
       commit(types.CREATE_RPLS, body.RPLS)
       commit(types.END_LOADING)
     } catch (err) {
@@ -44,7 +44,7 @@ const actions = {
   async [types.UPDATE_RPLS] ({ commit }, payload) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.put('rpls', payload)
+      const { body } = await Vue.http.put('rpls', payload)
       commit(types.UPDATE_RPLS, body.RPLS)
       commit(types.END_LOADING)
     } catch (err) {
@@ -64,8 +64,8 @@ const actions = {
   async [types.UPLOAD_RPLS] ({ commit }, file) {
     beginLoading(commit)
     try {
-      let sendFunc = d => Vue.http.post('rpls/batch', { RPLS: d })
-      let parseFunc = d => ({
+      const sendFunc = d => Vue.http.post('rpls/batch', { RPLS: d })
+      const parseFunc = d => ({
         InseeCode: parseInt(d.InseeCode),
         Year: parseInt(d.Year),
         Ratio: Number(d.Ratio)
@@ -85,7 +85,7 @@ const actions = {
   async [types.GET_RPLS_REPORT] ({ commit }, params) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get('rpls/report', { params })
+      const { body } = await Vue.http.get('rpls/report', { params })
       commit(types.GET_RPLS_REPORT, body.RPLSReport)
       commit(types.END_LOADING)
     } catch (err) {
@@ -95,7 +95,7 @@ const actions = {
   async [types.DOWNLOAD_DETAILED_RPLS_REPORT] ({ commit }, params) {
     beginLoading(commit)
     try {
-      let { body: { RPLSDetailedReport } } =
+      const { body: { RPLSDetailedReport } } =
         await Vue.http.get('rpls/detailed_report', { params })
       const formatted = RPLSDetailedReport.map(
         ({ CreationDate, Value, ...others }) =>
@@ -133,10 +133,10 @@ const actions = {
 
 const mutations = {
   [types.GET_RPLS] (state, list) {
-    state.rplsList = [ ...list ]
+    state.rplsList = [...list]
   },
   [types.GET_RPLS_YEARS] (state, list) {
-    state.rplsYears = [ ...list ]
+    state.rplsYears = [...list]
   },
   [types.DEL_RPLS] (state, ID) {
     const idx = state.rplsList.findIndex(r => r.ID === ID)

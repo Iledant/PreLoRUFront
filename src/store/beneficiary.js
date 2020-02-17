@@ -35,7 +35,7 @@ const actions = {
     beginLoading(commit)
     try {
       commit(types.END_LOADING)
-      let resp = await Vue.http.get(`beneficiary/${ID}/datas`, {
+      const resp = await Vue.http.get(`beneficiary/${ID}/datas`, {
         params: { Page, Search, Year }
       })
       commit(types.GET_BENEFICIARY_DATAS, resp.body)
@@ -47,7 +47,7 @@ const actions = {
     beginLoading(commit)
     try {
       commit(types.END_LOADING)
-      let resp = await Vue.http.get(`beneficiary/${ID}/export`, {
+      const resp = await Vue.http.get(`beneficiary/${ID}/export`, {
         params: { Search, Year }
       })
       await exportBeneficiaryDatas(resp.body.BeneficiaryData)
@@ -59,7 +59,7 @@ const actions = {
     beginLoading(commit)
     try {
       commit(types.END_LOADING)
-      let { body } = await Vue.http.get(`beneficiary/${ID}/payments`)
+      const { body } = await Vue.http.get(`beneficiary/${ID}/payments`)
       commit(types.GET_BENEFICIARY_PAYMENTS, body.BeneficiaryPayment)
     } catch (err) {
       setErrorMessage(commit, err)

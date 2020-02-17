@@ -180,7 +180,7 @@ export const GET_PROG_AND_DATAS = 'GET_PROG_AND_DATAS'
 export const SET_PROG = 'SET_PROG'
 
 // Kind
-export const explicitKind = [ 'LLS', 'Copro', 'RU' ]
+export const explicitKind = ['LLS', 'Copro', 'RU']
 
 // RPLS
 export const GET_RPLS = 'GET_RPLS'

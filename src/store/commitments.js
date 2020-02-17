@@ -53,7 +53,7 @@ const actions = {
   async [types.GET_COMMITMENTS] ({ commit }, { Year, Page, Search }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get('commitments/paginated', {
+      const resp = await Vue.http.get('commitments/paginated', {
         params: { Year, Page, Search }
       })
       commit(types.GET_COMMITMENTS, resp.body)
@@ -65,7 +65,7 @@ const actions = {
   async [types.GET_UNLINKED_COMMITMENTS] ({ commit }, { Year, Page, Search }) {
     try {
       beginLoading(commit)
-      let { body } = await Vue.http.get('commitments/unlinked', {
+      const { body } = await Vue.http.get('commitments/unlinked', {
         params: { Year, Page, Search }
       })
       commit(types.GET_UNLINKED_COMMITMENTS, body)
@@ -77,7 +77,7 @@ const actions = {
   async [types.EXPORT_COMMITMENTS] ({ commit }, { Year, Search }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get('commitments/export', {
+      const resp = await Vue.http.get('commitments/export', {
         params: { Year, Search }
       })
       exportCommitments(resp.body.ExportedCommitment)
@@ -89,8 +89,8 @@ const actions = {
   async [types.UPLOAD_COMMITMENTS] ({ commit }, file) {
     beginLoading(commit)
     try {
-      let sendFunc = d => Vue.http.post('commitments', { Commitment: d })
-      let parseFunc = d => ({
+      const sendFunc = d => Vue.http.post('commitments', { Commitment: d })
+      const parseFunc = d => ({
         Year: Number(d.Year),
         Code: d.Code,
         Number: Number(d.Number),
@@ -141,7 +141,7 @@ const actions = {
   async [types.UNLINK_COMMITMENTS] ({ commit }, IDs) {
     beginLoading(commit)
     try {
-      await Vue.http.post(`commitments/unlink`, { IDs })
+      await Vue.http.post('commitments/unlink', { IDs })
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)
@@ -150,7 +150,7 @@ const actions = {
   async [types.LINK_COMMITMENTS] ({ commit }, payload) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.post(`commitments/link`, payload)
+      const { body } = await Vue.http.post('commitments/link', payload)
       switch (payload.Type) {
         case 'Copro':
           commit(types.GET_COPRO_COMMITMENTS, body.Commitment)

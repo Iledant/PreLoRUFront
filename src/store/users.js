@@ -10,7 +10,7 @@ const actions = {
   async [types.GET_USERS] ({ commit }) {
     beginLoading(commit)
     try {
-      let response = await Vue.http.get('users')
+      const response = await Vue.http.get('users')
       commit(types.GET_USERS, response.body.User)
       commit(types.END_LOADING)
     } catch (response) {
@@ -20,7 +20,7 @@ const actions = {
   async [types.UPDATE_USER] ({ commit }, { ID, Name, Email, Password, Rights }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.put(`user/${ID}`, {
+      const resp = await Vue.http.put(`user/${ID}`, {
         Name,
         Email,
         Password,
@@ -45,7 +45,7 @@ const actions = {
   async [types.CREATE_USER] ({ commit }, { Name, Email, Password, Rights }) {
     beginLoading(commit)
     try {
-      let response = await Vue.http.post(`user`, {
+      const response = await Vue.http.post('user', {
         Name,
         Email,
         Password,
@@ -73,11 +73,11 @@ const mutations = {
     state.usersList = [...usersList]
   },
   [types.UPDATE_USER] (state, user) {
-    let index = state.usersList.findIndex(i => i.ID === user.ID)
+    const index = state.usersList.findIndex(i => i.ID === user.ID)
     state.usersList.splice(index, 1, user)
   },
   [types.DEL_USER] (state, ID) {
-    let index = state.usersList.findIndex(i => i.ID === ID)
+    const index = state.usersList.findIndex(i => i.ID === ID)
     state.usersList.splice(index, 1)
   },
   [types.CREATE_USER] (state, user) {

@@ -10,7 +10,7 @@ const actions = {
   async [types.GET_PROG] ({ commit }, { Year }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.get(`prog`, { params: { Year } })
+      const resp = await Vue.http.get('prog', { params: { Year } })
       commit(types.GET_PROG, resp.body.Prog)
       commit(types.END_LOADING)
     } catch (err) {
@@ -20,7 +20,7 @@ const actions = {
   async [types.GET_PROG_AND_DATAS] ({ commit }, { Year }) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get(`prog/datas`, { params: { Year } })
+      const { body } = await Vue.http.get('prog/datas', { params: { Year } })
       commit(types.GET_PROG, body.Prog)
       commit(types.GET_ACTIONS, body.BudgetAction)
       commit(types.GET_COMMISSIONS, body.Commission)

@@ -57,7 +57,8 @@ const parseFunc = ({
   PMR,
   RPLS,
   AddressNumber,
-  ...others }) => ({
+  ...others
+}) => ({
   CurrentBeneficiary: CurrentBeneficiary.trim(),
   CityCode: CityCode ? parseInt(CityCode) : null,
   Count: Count ? parseInt(Count) : null,
@@ -82,7 +83,7 @@ const requiredColumns = [
   'AddressStreet',
   'RPLS',
   'Convention',
-  `Typology`,
+  'Typology',
   'ConventionType',
   'Count',
   'Transfer',
@@ -100,7 +101,7 @@ const actions = {
   async [types.GET_RESERVATION_FEES] ({ commit }, { Page, Search }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get('reservation_fees',
+      const resp = await Vue.http.get('reservation_fees',
         { params: { Page, Search } })
       commit(types.GET_RESERVATION_FEES, resp.body)
       commit(types.END_LOADING)
@@ -111,7 +112,7 @@ const actions = {
   async [types.GET_INITIAL_RESERVATION_FEES] ({ commit }, { Page, Search }) {
     try {
       beginLoading(commit)
-      let { body } = await Vue.http.get('reservation_fees/initial',
+      const { body } = await Vue.http.get('reservation_fees/initial',
         { params: { Page, Search } })
       commit(types.GET_RESERVATION_FEES, body)
       commit(types.GET_CITIES, body.City)
@@ -128,7 +129,7 @@ const actions = {
   async [types.GET_RESERVATION_FEES_SETTINGS] ({ commit }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get('reservation_fees/settings')
+      const resp = await Vue.http.get('reservation_fees/settings')
       commit(types.GET_HOUSING_COMMENTS, resp.body.HousingComment)
       commit(types.GET_HOUSING_TYPOLOGIES, resp.body.HousingTypology)
       commit(types.GET_HOUSING_TRANSFERS, resp.body.HousingTransfer)
@@ -168,7 +169,7 @@ const actions = {
   async [types.EXPORT_RESERVATION_FEES] ({ commit }, { Year, Search }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get('reservation_fees/export',
+      const resp = await Vue.http.get('reservation_fees/export',
         { params: { Search } })
       exportReservationFees(resp.body.ExportedReservationFee)
       commit(types.END_LOADING)
@@ -179,7 +180,7 @@ const actions = {
   async [types.UPLOAD_RESERVATION_FEES] ({ commit }, file) {
     beginLoading(commit)
     try {
-      let sendFunc = d => Vue.http.post('reservation_fee/batch',
+      const sendFunc = d => Vue.http.post('reservation_fee/batch',
         { ReservationFee: d })
       await excelReadFile(
         file,
@@ -196,9 +197,9 @@ const actions = {
   async [types.TEST_UPLOAD_RESERVATION_FEES] ({ commit }, file) {
     beginLoading(commit)
     try {
-      let sendFunc = d => Vue.http.post('reservation_fee/batch/test',
+      const sendFunc = d => Vue.http.post('reservation_fee/batch/test',
         { ReservationFee: d })
-      let resp = await excelReadFile(
+      const resp = await excelReadFile(
         file,
         requiredColumns,
         sendFunc,
@@ -214,7 +215,7 @@ const actions = {
   async [types.GET_HOUSING_TYPOLOGIES] ({ commit }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get('housing_typologies')
+      const resp = await Vue.http.get('housing_typologies')
       commit(types.GET_HOUSING_TYPOLOGIES, resp.body.HousingTypology)
       commit(types.END_LOADING)
     } catch (err) {
@@ -224,7 +225,7 @@ const actions = {
   async [types.GET_HOUSING_COMMENTS] ({ commit }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get('housing_comments')
+      const resp = await Vue.http.get('housing_comments')
       commit(types.GET_HOUSING_COMMENTS, resp.body.HousingComment)
       commit(types.END_LOADING)
     } catch (err) {
@@ -234,7 +235,7 @@ const actions = {
   async [types.GET_CONVENTION_TYPES] ({ commit }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get('convention_types')
+      const resp = await Vue.http.get('convention_types')
       commit(types.GET_CONVENTION_TYPES, resp.body.ConventionType)
       commit(types.END_LOADING)
     } catch (err) {
@@ -244,7 +245,7 @@ const actions = {
   async [types.GET_HOUSING_TRANSFERS] ({ commit }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get('housing_transfers')
+      const resp = await Vue.http.get('housing_transfers')
       commit(types.GET_HOUSING_TRANSFERS, resp.body.HousingTransfer)
       commit(types.END_LOADING)
     } catch (err) {
@@ -254,7 +255,7 @@ const actions = {
   async [types.CREATE_HOUSING_TYPOLOGY] ({ commit }, payload) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.post('housing_typology', { HousingTypology: { ...payload } })
+      const resp = await Vue.http.post('housing_typology', { HousingTypology: { ...payload } })
       commit(types.CREATE_HOUSING_TYPOLOGY, resp.body.HousingTypology)
       commit(types.END_LOADING)
     } catch (err) {
@@ -264,7 +265,7 @@ const actions = {
   async [types.UPDATE_HOUSING_TYPOLOGY] ({ commit }, payload) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.put('housing_typology', { HousingTypology: { ...payload } })
+      const resp = await Vue.http.put('housing_typology', { HousingTypology: { ...payload } })
       commit(types.UPDATE_HOUSING_TYPOLOGY, resp.body.HousingTypology)
       commit(types.END_LOADING)
     } catch (err) {
@@ -284,7 +285,7 @@ const actions = {
   async [types.CREATE_HOUSING_COMMENT] ({ commit }, payload) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.post('housing_comment', { HousingComment: { ...payload } })
+      const resp = await Vue.http.post('housing_comment', { HousingComment: { ...payload } })
       commit(types.CREATE_HOUSING_COMMENT, resp.body.HousingComment)
       commit(types.END_LOADING)
     } catch (err) {
@@ -294,7 +295,7 @@ const actions = {
   async [types.UPDATE_HOUSING_COMMENT] ({ commit }, payload) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.put('housing_comment', { HousingComment: { ...payload } })
+      const resp = await Vue.http.put('housing_comment', { HousingComment: { ...payload } })
       commit(types.UPDATE_HOUSING_COMMENT, resp.body.HousingComment)
       commit(types.END_LOADING)
     } catch (err) {
@@ -314,7 +315,7 @@ const actions = {
   async [types.CREATE_HOUSING_TRANSFER] ({ commit }, payload) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.post('housing_transfer', { HousingTransfer: { ...payload } })
+      const resp = await Vue.http.post('housing_transfer', { HousingTransfer: { ...payload } })
       commit(types.CREATE_HOUSING_TRANSFER, resp.body.HousingTransfer)
       commit(types.END_LOADING)
     } catch (err) {
@@ -324,7 +325,7 @@ const actions = {
   async [types.UPDATE_HOUSING_TRANSFER] ({ commit }, payload) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.put('housing_transfer', { HousingTransfer: { ...payload } })
+      const resp = await Vue.http.put('housing_transfer', { HousingTransfer: { ...payload } })
       commit(types.UPDATE_HOUSING_TRANSFER, resp.body.HousingTransfer)
       commit(types.END_LOADING)
     } catch (err) {
@@ -344,7 +345,7 @@ const actions = {
   async [types.CREATE_CONVENTION_TYPE] ({ commit }, payload) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.post('convention_type', { ConventionType: { ...payload } })
+      const resp = await Vue.http.post('convention_type', { ConventionType: { ...payload } })
       commit(types.CREATE_CONVENTION_TYPE, resp.body.ConventionType)
       commit(types.END_LOADING)
     } catch (err) {
@@ -354,7 +355,7 @@ const actions = {
   async [types.UPDATE_CONVENTION_TYPE] ({ commit }, payload) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.put('convention_type', { ConventionType: { ...payload } })
+      const resp = await Vue.http.put('convention_type', { ConventionType: { ...payload } })
       commit(types.UPDATE_CONVENTION_TYPE, resp.body.ConventionType)
       commit(types.END_LOADING)
     } catch (err) {

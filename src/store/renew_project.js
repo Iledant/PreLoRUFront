@@ -125,7 +125,7 @@ const actions = {
   async [types.GET_RENEW_PROJECT_DATAS] ({ commit }, ID) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get(`renew_project/${ID}/datas`)
+      const { body } = await Vue.http.get(`renew_project/${ID}/datas`)
       commit(types.GET_RENEW_PROJECT_DATAS, body)
       commit(types.GET_COMMISSIONS, body.Commission)
       commit(types.GET_ACTIONS, body.BudgetAction)
@@ -141,7 +141,7 @@ const actions = {
   ) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.post(`renew_project_forecast`, {
+      const { body } = await Vue.http.post('renew_project_forecast', {
         RenewProjectForecast
       })
       commit(types.CREATE_RENEW_PROJECT_FORECAST, body.RenewProjectForecast)
@@ -153,7 +153,7 @@ const actions = {
   async [types.UPDATE_RENEW_PROJECT_FORECAST] ({ commit }, item) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.put(`renew_project_forecast`, item)
+      const { body } = await Vue.http.put('renew_project_forecast', item)
       commit(types.UPDATE_RENEW_PROJECT_FORECAST, body.RenewProjectForecast)
       commit(types.END_LOADING)
     } catch (err) {
@@ -173,7 +173,7 @@ const actions = {
   async [types.CREATE_RENEW_PROJECT_EVENT] ({ commit }, item) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.post(`rp_event`, item)
+      const { body } = await Vue.http.post('rp_event', item)
       commit(types.CREATE_RENEW_PROJECT_EVENT, body.RPEvent)
       commit(types.END_LOADING)
     } catch (err) {
@@ -183,7 +183,7 @@ const actions = {
   async [types.UPDATE_RENEW_PROJECT_EVENT] ({ commit }, item) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.put(`rp_event`, item)
+      const { body } = await Vue.http.put('rp_event', item)
       commit(types.UPDATE_RENEW_PROJECT_EVENT, body.RPEvent)
       commit(types.END_LOADING)
     } catch (err) {
@@ -203,7 +203,7 @@ const actions = {
   async [types.DOWNLOAD_RP_REPORT] ({ commit }, ID) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get(`renew_project/report`)
+      const { body } = await Vue.http.get('renew_project/report')
       downloadReport(body.RenewProjectReport)
       commit(types.END_LOADING)
     } catch (err) {
@@ -213,7 +213,7 @@ const actions = {
   async [types.CREATE_CMT_CITY_JOIN] ({ commit }, payload) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.post(`rp_cmt_city_join`, payload)
+      const { body } = await Vue.http.post('rp_cmt_city_join', payload)
       commit(types.CREATE_CMT_CITY_JOIN, body.RPCmtCityJoin)
       commit(types.END_LOADING)
     } catch (err) {
@@ -223,7 +223,7 @@ const actions = {
   async [types.UPDATE_CMT_CITY_JOIN] ({ commit }, payload) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.put(`rp_cmt_city_join`, payload)
+      const { body } = await Vue.http.put('rp_cmt_city_join', payload)
       commit(types.UPDATE_CMT_CITY_JOIN, body.RPCmtCityJoin)
       commit(types.END_LOADING)
     } catch (err) {
@@ -286,11 +286,11 @@ const mutations = {
     state.rpCmtCityJoins.push(payload)
   },
   [types.UPDATE_CMT_CITY_JOIN] (state, payload) {
-    let index = state.rpCmtCityJoins.findIndex(r => r.ID === payload.ID)
+    const index = state.rpCmtCityJoins.findIndex(r => r.ID === payload.ID)
     state.rpCmtCityJoins.splice(index, 1, payload)
   },
   [types.DEL_CMT_CITY_JOIN] (state, ID) {
-    let index = state.rpCmtCityJoins.findIndex(r => r.ID === ID)
+    const index = state.rpCmtCityJoins.findIndex(r => r.ID === ID)
     state.rpCmtCityJoins.splice(index, 1)
   }
 }

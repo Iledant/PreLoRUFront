@@ -17,7 +17,7 @@ const actions = {
   async [types.GET_HOUSINGS] ({ commit }) {
     beginLoading(commit)
     try {
-      let response = await Vue.http.get('housings')
+      const response = await Vue.http.get('housings')
       commit(types.GET_HOUSINGS, response.body.Housing)
       commit(types.END_LOADING)
     } catch (response) {
@@ -27,7 +27,7 @@ const actions = {
   async [types.GET_HOUSINGS_DATAS] ({ commit }) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get('housings/datas')
+      const { body } = await Vue.http.get('housings/datas')
       commit(types.GET_PAGINATED_HOUSINGS, body)
       commit(types.GET_CITIES, body.City)
       commit(types.GET_COMMISSIONS, body.Commission)
@@ -42,7 +42,7 @@ const actions = {
   async [types.GET_HOUSING_DATAS] ({ commit }, ID) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get(`housing/${ID}/datas`)
+      const { body } = await Vue.http.get(`housing/${ID}/datas`)
       commit(types.GET_HOUSING_DATAS, body)
       commit(types.END_LOADING)
     } catch (response) {
@@ -52,7 +52,7 @@ const actions = {
   async [types.GET_PAGINATED_HOUSINGS] ({ commit }, { Page, Search }) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get('housings/paginated', {
+      const { body } = await Vue.http.get('housings/paginated', {
         params: { Page, Search }
       })
       commit(types.GET_PAGINATED_HOUSINGS, body)
@@ -67,7 +67,7 @@ const actions = {
   ) {
     beginLoading(commit)
     try {
-      let response = await Vue.http.post('housing', {
+      const response = await Vue.http.post('housing', {
         Housing: { Reference, Address, ZipCode, PLUS, PLAI, PLS, ANRU }
       })
       commit(types.CREATE_HOUSING, response.body.Housing)
@@ -82,7 +82,7 @@ const actions = {
   ) {
     beginLoading(commit)
     try {
-      let response = await Vue.http.put('housing', {
+      const response = await Vue.http.put('housing', {
         Housing: { ID, Reference, Address, ZipCode, PLUS, PLAI, PLS, ANRU }
       })
       commit(types.UPDATE_HOUSING, response.body.Housing)
@@ -104,8 +104,8 @@ const actions = {
   async [types.UPLOAD_HOUSINGS] ({ commit }, file) {
     beginLoading(commit)
     try {
-      let sendFunc = d => Vue.http.post('housings', { Housing: d })
-      let parseFunc = d => ({
+      const sendFunc = d => Vue.http.post('housings', { Housing: d })
+      const parseFunc = d => ({
         Reference: d.Reference,
         Address: d.Address,
         ZipCode: d.ZipCode ? parseInt(d.ZipCode) : null,
@@ -131,7 +131,7 @@ const actions = {
   async [types.UPLOAD_HOUSING_COMMITMENT_LINK] ({ commit }, file) {
     beginLoading(commit)
     try {
-      let sendFunc = d =>
+      const sendFunc = d =>
         Vue.http.post('housing/commitments', { HousingCommitmentBach: d })
       await excelReadFile(
         file,
@@ -153,7 +153,7 @@ const actions = {
   async [types.UPLOAD_HOUSING_SUMMARY] ({ commit }, file) {
     beginLoading(commit)
     try {
-      let sendFunc = d =>
+      const sendFunc = d =>
         Vue.http.post('housing_summary', { HousingSummary: d })
       await summaryReadFile(file, sendFunc, err => { setErrorMessage(commit, err) })
       commit(types.END_LOADING)
@@ -164,7 +164,7 @@ const actions = {
   async [types.GET_HOUSING_FORECASTS] ({ commit }) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get('housing_forecasts')
+      const { body } = await Vue.http.get('housing_forecasts')
       commit(types.GET_HOUSING_FORECASTS, body.HousingForecast)
       commit(types.END_LOADING)
     } catch (err) {
@@ -174,7 +174,7 @@ const actions = {
   async [types.CREATE_HOUSING_FORECAST] ({ commit }, HousingForecast) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.post('housing_forecast', {
+      const { body } = await Vue.http.post('housing_forecast', {
         HousingForecast
       })
       commit(types.CREATE_HOUSING_FORECAST, body.HousingForecast)
@@ -186,7 +186,7 @@ const actions = {
   async [types.UPDATE_HOUSING_FORECAST] ({ commit }, HousingForecast) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.put(`housing_forecast`, { HousingForecast })
+      const { body } = await Vue.http.put('housing_forecast', { HousingForecast })
       commit(types.UPDATE_HOUSING_FORECAST, body.HousingForecast)
       commit(types.END_LOADING)
     } catch (err) {
@@ -218,11 +218,11 @@ const mutations = {
     state.housingsList.push(item)
   },
   [types.UPDATE_HOUSING] (state, item) {
-    let index = state.housingsList.findIndex(i => i.ID === item.ID)
+    const index = state.housingsList.findIndex(i => i.ID === item.ID)
     state.housingsList.splice(index, 1, item)
   },
   [types.DEL_HOUSING] (state, ID) {
-    let index = state.housingsList.findIndex(i => i.ID === ID)
+    const index = state.housingsList.findIndex(i => i.ID === ID)
     state.housingsList.splice(index, 1)
   },
   [types.GET_HOUSING_FORECASTS] (state, list) {
@@ -232,11 +232,11 @@ const mutations = {
     state.housingForecastsList.push(item)
   },
   [types.UPDATE_HOUSING_FORECAST] (state, item) {
-    let index = state.housingForecastsList.findIndex(i => i.ID === item.ID)
+    const index = state.housingForecastsList.findIndex(i => i.ID === item.ID)
     state.housingForecastsList.splice(index, 1, item)
   },
   [types.DELETE_HOUSING_FORECAST] (state, item) {
-    let index = state.housingForecastsList.findIndex(i => i.ID === item.ID)
+    const index = state.housingForecastsList.findIndex(i => i.ID === item.ID)
     state.housingForecastsList.splice(index, 1)
   },
   [types.GET_HOUSING_DATAS] (state, payload) {

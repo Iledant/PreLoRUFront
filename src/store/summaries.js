@@ -11,7 +11,7 @@ const actions = {
   async [types.GET_DPT_REPORT] ({ commit }, { firstYear, lastYear }) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get('department_report', {
+      const { body } = await Vue.http.get('department_report', {
         params: { firstYear, lastYear }
       })
       commit(types.GET_DPT_REPORT, body.DptReport)
@@ -26,7 +26,7 @@ const actions = {
   ) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get('city_report', {
+      const { body } = await Vue.http.get('city_report', {
         params: { firstYear, lastYear, inseeCode }
       })
       commit(types.GET_CITY_REPORT, body.CityReport)
@@ -38,7 +38,7 @@ const actions = {
   async [types.GET_SUMMARIES_DATAS] ({ commit }) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get('summaries/datas')
+      const { body } = await Vue.http.get('summaries/datas')
       commit(types.GET_CITIES, body.City)
       commit(types.GET_RPLS_YEARS, body.RPLSYear)
       commit(types.END_LOADING)

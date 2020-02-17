@@ -19,7 +19,7 @@ const actions = {
   async [types.GET_HOME_DATAS] ({ commit }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.get('home')
+      const resp = await Vue.http.get('home')
       commit(types.GET_HOME_DATAS, resp.body)
       commit(types.SET_HOME_MESSAGE, resp.body.HomeMessage)
       commit(types.END_LOADING)
@@ -102,7 +102,7 @@ const mutations = {
         state.currentYearPVPayments[pvMonth] = pvAcc
       }
     }
-    state.importLogs = [ ...payload.ImportLog ]
+    state.importLogs = [...payload.ImportLog]
     state.paymentCreditSum = payload.PaymentCreditSum * 0.000001
   },
   [types.SET_HOME_MESSAGE] (state, payload) {

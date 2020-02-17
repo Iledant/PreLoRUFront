@@ -10,7 +10,7 @@ const actions = {
   async [types.GET_KIND_PRE_PROG] ({ commit }, { Year, Kind }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.get(`pre_prog/${Kind}`, { params: { Year } })
+      const resp = await Vue.http.get(`pre_prog/${Kind}`, { params: { Year } })
       commit(types.GET_PRE_PROG, resp.body.FcPreProg)
       commit(types.END_LOADING)
     } catch (err) {
@@ -20,7 +20,7 @@ const actions = {
   async [types.GET_ALL_PRE_PROG] ({ commit }, { Year }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.get(`pre_prog`, { params: { Year } })
+      const resp = await Vue.http.get('pre_prog', { params: { Year } })
       commit(types.GET_PRE_PROG, resp.body.PreProg)
       commit(types.END_LOADING)
     } catch (err) {

@@ -12,7 +12,7 @@ const actions = {
   async [types.GET_COPROS] ({ commit }) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get('copro')
+      const { body } = await Vue.http.get('copro')
       commit(types.GET_COPROS, body.Copro)
       commit(types.GET_CITIES, body.City)
       commit(types.GET_COMMISSIONS, body.Commission)
@@ -31,7 +31,7 @@ const actions = {
   ) {
     beginLoading(commit)
     try {
-      let response = await Vue.http.post('copro', {
+      const response = await Vue.http.post('copro', {
         Copro: { Reference, Name, Address, ZipCode, LabelDate, Budget }
       })
       commit(types.CREATE_COPRO, response.body.Copro)
@@ -46,7 +46,7 @@ const actions = {
   ) {
     beginLoading(commit)
     try {
-      let response = await Vue.http.put('copro', {
+      const response = await Vue.http.put('copro', {
         Copro: { ID, Reference, Name, Address, ZipCode, LabelDate, Budget }
       })
       commit(types.UPDATE_COPRO, response.body.Copro)
@@ -115,11 +115,11 @@ const mutations = {
     state.coprosList.push(item)
   },
   [types.UPDATE_COPRO] (state, item) {
-    let index = state.coprosList.findIndex(i => i.ID === item.ID)
+    const index = state.coprosList.findIndex(i => i.ID === item.ID)
     state.coprosList.splice(index, 1, item)
   },
   [types.DEL_COPRO] (state, ID) {
-    let index = state.coprosList.findIndex(i => i.ID === ID)
+    const index = state.coprosList.findIndex(i => i.ID === ID)
     state.coprosList.splice(index, 1)
   },
   [types.GET_COPRO_REPORT] (state, list) {

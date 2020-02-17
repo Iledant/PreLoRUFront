@@ -10,7 +10,7 @@ const actions = {
   async [types.GET_PMT_FORECASTS] ({ commit }, { Year }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.get('payments/forecasts', { params: { Year } })
+      const resp = await Vue.http.get('payments/forecasts', { params: { Year } })
       commit(types.GET_PMT_FORECASTS, resp.body.PmtForecast)
       commit(types.END_LOADING)
     } catch (err) {

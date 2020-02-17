@@ -12,7 +12,7 @@ const actions = {
   async [types.GET_ALL_PAYMENT_CREDITS] ({ commit }, Year) {
     beginLoading(commit)
     try {
-      let { body } = await Vue.http.get('payment_credits_and_journal', { params: { Year } })
+      const { body } = await Vue.http.get('payment_credits_and_journal', { params: { Year } })
       commit(types.GET_PAYMENT_CREDIT_JOURNAL, body.PaymentCreditJournal)
       commit(types.GET_PAYMENT_CREDITS, body.PaymentCredit)
       commit(types.END_LOADING)
@@ -23,8 +23,8 @@ const actions = {
   async [types.UPLOAD_PAYMENT_CREDITS] ({ commit }, file) {
     beginLoading(commit)
     try {
-      let sendFunc = d => Vue.http.post('payment_credits', { PaymentCredit: d })
-      let parseFunc = o => ({
+      const sendFunc = d => Vue.http.post('payment_credits', { PaymentCredit: d })
+      const parseFunc = o => ({
         Chapter: Number(o.Chapter),
         Function: Number(o.Function),
         Primitive: parseInt(100 * o.Primitive),
@@ -58,8 +58,8 @@ const actions = {
   async [types.UPLOAD_PAYMENT_CREDIT_JOURNAL] ({ commit }, file) {
     beginLoading(commit)
     try {
-      let sendFunc = d => Vue.http.post('payment_credit_journal', { PaymentCreditJournal: d })
-      let parseFunc = o => ({
+      const sendFunc = d => Vue.http.post('payment_credit_journal', { PaymentCreditJournal: d })
+      const parseFunc = o => ({
         Chapter: Number(o.Chapter),
         Function: Number(o.Function),
         CreationDate: parseInt(o.CreationDate),
@@ -92,10 +92,10 @@ const actions = {
 
 const mutations = {
   [types.GET_PAYMENT_CREDIT_JOURNAL] (state, payload) {
-    state.paymentCreditJournal = [ ...payload ]
+    state.paymentCreditJournal = [...payload]
   },
   [types.GET_PAYMENT_CREDITS] (state, payload) {
-    state.paymentCredits = [ ...payload ]
+    state.paymentCredits = [...payload]
   }
 }
 

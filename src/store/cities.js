@@ -13,7 +13,7 @@ const actions = {
   async [types.GET_CITIES] ({ commit }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.get('cities')
+      const resp = await Vue.http.get('cities')
       commit(types.END_LOADING)
       commit(types.GET_CITIES, resp.body.City)
     } catch (err) {
@@ -23,7 +23,7 @@ const actions = {
   async [types.CREATE_CITY] ({ commit }, { InseeCode, Name, CommunityID, QPV }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.post('city', {
+      const resp = await Vue.http.post('city', {
         City: { InseeCode, Name, CommunityID, QPV }
       })
       commit(types.END_LOADING)
@@ -35,7 +35,7 @@ const actions = {
   async [types.UPDATE_CITY] ({ commit }, { InseeCode, Name, CommunityID, QPV }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.put('city', {
+      const resp = await Vue.http.put('city', {
         City: { InseeCode, Name, CommunityID, QPV }
       })
       commit(types.END_LOADING)
@@ -47,7 +47,7 @@ const actions = {
   async [types.GET_PAGINATED_CITIES] ({ commit }, { Page, Search }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get('cities/paginated', {
+      const resp = await Vue.http.get('cities/paginated', {
         params: { Page, Search }
       })
       commit(types.GET_PAGINATED_CITIES, resp.body)
@@ -69,8 +69,8 @@ const actions = {
   async [types.UPLOAD_CITIES] ({ commit }, file) {
     beginLoading(commit)
     try {
-      let sendFunc = d => Vue.http.post('cities', { City: d })
-      let parseFunc = d => ({
+      const sendFunc = d => Vue.http.post('cities', { City: d })
+      const parseFunc = d => ({
         InseeCode: d.InseeCode,
         Name: d.Name,
         CommunityCode: d.CommunityCode
@@ -80,7 +80,7 @@ const actions = {
           : null,
         QPV: d.QPV
       })
-      let resp = await excelReadFile(
+      const resp = await excelReadFile(
         file,
         ['InseeCode', 'Name', 'CommunityCode', 'QPV'],
         sendFunc,
@@ -110,11 +110,11 @@ const mutations = {
     state.citiesList.push(city)
   },
   [types.UPDATE_CITY] (state, city) {
-    let index = state.citiesList.findIndex(b => b.InseeCode === city.InseeCode)
+    const index = state.citiesList.findIndex(b => b.InseeCode === city.InseeCode)
     state.citiesList.splice(index, 1, city)
   },
   [types.DEL_CITY] (state, InseeCode) {
-    let index = state.citiesList.findIndex(b => b.InseeCode === InseeCode)
+    const index = state.citiesList.findIndex(b => b.InseeCode === InseeCode)
     state.citiesList.splice(index, 1)
   }
 }

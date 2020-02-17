@@ -12,7 +12,7 @@ const actions = {
   async [types.GET_SETTINGS] ({ commit }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.get('settings')
+      const resp = await Vue.http.get('settings')
       commit(types.END_LOADING)
       commit(types.GET_SECTORS, resp.body.BudgetSector)
       commit(types.GET_ACTIONS, resp.body.BudgetAction)
@@ -28,7 +28,7 @@ const actions = {
   async [types.GET_SECTORS] ({ commit }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.get('budget_sectors')
+      const resp = await Vue.http.get('budget_sectors')
       commit(types.END_LOADING)
       commit(types.GET_SECTORS, resp.body.BudgetSector)
     } catch (resp) {
@@ -38,7 +38,7 @@ const actions = {
   async [types.GET_ACTIONS] ({ commit }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.get('budget_actions')
+      const resp = await Vue.http.get('budget_actions')
       commit(types.END_LOADING)
       commit(types.GET_SECTORS, resp.body.BudgetSector)
       commit(types.GET_ACTIONS, resp.body.BudgetAction)
@@ -49,7 +49,7 @@ const actions = {
   async [types.GET_COMMISSIONS] ({ commit }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.get('commissions')
+      const resp = await Vue.http.get('commissions')
       commit(types.END_LOADING)
       commit(types.GET_COMMISSIONS, resp.body.Commission)
     } catch (resp) {
@@ -59,7 +59,7 @@ const actions = {
   async [types.GET_COMMUNITIES] ({ commit }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.get('communities')
+      const resp = await Vue.http.get('communities')
       commit(types.END_LOADING)
       commit(types.GET_COMMUNITIES, resp.body.Community)
     } catch (resp) {
@@ -69,7 +69,7 @@ const actions = {
   async [types.CREATE_SECTOR] ({ commit }, { Name, FullName }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.post('budget_sector', {
+      const resp = await Vue.http.post('budget_sector', {
         BudgetSector: { Name, FullName }
       })
       commit(types.END_LOADING)
@@ -81,7 +81,7 @@ const actions = {
   async [types.UPDATE_SECTOR] ({ commit }, { ID, Name, FullName }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.put('budget_sector', {
+      const resp = await Vue.http.put('budget_sector', {
         BudgetSector: { ID, Name, FullName }
       })
       commit(types.END_LOADING)
@@ -103,7 +103,7 @@ const actions = {
   async [types.CREATE_ACTION] ({ commit }, { Code, Name, SectorID }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.post('budget_action', {
+      const resp = await Vue.http.post('budget_action', {
         BudgetAction: { Code, Name, SectorID }
       })
       commit(types.END_LOADING)
@@ -115,7 +115,7 @@ const actions = {
   async [types.UPDATE_ACTION] ({ commit }, { ID, Code, Name, SectorID }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.put('budget_action', {
+      const resp = await Vue.http.put('budget_action', {
         BudgetAction: { ID, Code, Name, SectorID }
       })
       commit(types.END_LOADING)
@@ -137,7 +137,7 @@ const actions = {
   async [types.CREATE_COMMISSION] ({ commit }, { Name, Date }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.post('commission', {
+      const resp = await Vue.http.post('commission', {
         Commission: { Name, Date }
       })
       commit(types.END_LOADING)
@@ -149,7 +149,7 @@ const actions = {
   async [types.UPDATE_COMMISSION] ({ commit }, { ID, Name, Date }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.put('commission', {
+      const resp = await Vue.http.put('commission', {
         Commission: { ID, Name, Date }
       })
       commit(types.END_LOADING)
@@ -178,11 +178,11 @@ const mutations = {
     state.budgetSectorsList.push(sector)
   },
   [types.UPDATE_SECTOR] (state, sector) {
-    let index = state.budgetSectorsList.findIndex(b => b.ID === sector.ID)
+    const index = state.budgetSectorsList.findIndex(b => b.ID === sector.ID)
     state.budgetSectorsList.splice(index, 1, sector)
   },
   [types.DEL_SECTOR] (state, ID) {
-    let index = state.budgetSectorsList.find(b => b.ID === ID)
+    const index = state.budgetSectorsList.find(b => b.ID === ID)
     state.budgetSectorsList.splice(index, 1)
   },
   [types.GET_ACTIONS] (state, actions) {
@@ -192,11 +192,11 @@ const mutations = {
     state.budgetActionsList.push(action)
   },
   [types.UPDATE_ACTION] (state, action) {
-    let index = state.budgetActionsList.findIndex(b => b.ID === action.ID)
+    const index = state.budgetActionsList.findIndex(b => b.ID === action.ID)
     state.budgetActionsList.splice(index, 1, action)
   },
   [types.DEL_ACTION] (state, ID) {
-    let index = state.budgetActionsList.find(b => b.ID === ID)
+    const index = state.budgetActionsList.find(b => b.ID === ID)
     state.budgetActionsList.splice(index, 1)
   },
   [types.GET_COMMISSIONS] (state, commissions) {
@@ -206,11 +206,11 @@ const mutations = {
     state.commissionsList.push(commission)
   },
   [types.UPDATE_COMMISSION] (state, commission) {
-    let index = state.commissionsList.findIndex(b => b.ID === commission.ID)
+    const index = state.commissionsList.findIndex(b => b.ID === commission.ID)
     state.commissionsList.splice(index, 1, commission)
   },
   [types.DEL_COMMISSION] (state, ID) {
-    let index = state.commissionsList.find(b => b.ID === ID)
+    const index = state.commissionsList.find(b => b.ID === ID)
     state.commissionsList.splice(index, 1)
   }
 }

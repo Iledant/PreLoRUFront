@@ -144,7 +144,8 @@ const state = {
       icon: 'account_balance',
       routerLink: { name: 'Cities' }
     },
-    { id: 7,
+    {
+      id: 7,
       title: 'RPLS',
       icon: 'equalizer',
       routerLink: { name: 'RPLS' }
@@ -241,7 +242,7 @@ const actions = {
   async [types.LOG_IN] ({ commit }, { email, password }) {
     beginLoading(commit)
     try {
-      let response = await Vue.http.post('user/login', { email, password })
+      const response = await Vue.http.post('user/login', { email, password })
       commit(types.SET_TOKEN, response.body)
       commit(types.END_LOADING)
     } catch (response) {
@@ -264,17 +265,17 @@ const actions = {
 const mutations = {
   [types.RETRIEVE_TOKEN] (state) {
     state.token = window.localStorage.getItem('PreloruToken')
-    Vue.http.headers.common['Authorization'] = 'Bearer ' + state.token
+    Vue.http.headers.common.Authorization = 'Bearer ' + state.token
     const name = window.localStorage.getItem('PreloruUserName')
     state.user = name ? { Name: name } : null
-    let sRights = window.localStorage.getItem('PreloruRights')
+    const sRights = window.localStorage.getItem('PreloruRights')
     state.rights = sRights ? Number(sRights) : 0
   },
   [types.SET_TOKEN] (state, payload) {
     state.token = payload.Token
     state.user = payload.User
     state.rights = payload.User.Rights
-    Vue.http.headers.common['Authorization'] = 'Bearer ' + payload.Token
+    Vue.http.headers.common.Authorization = 'Bearer ' + payload.Token
     window.localStorage.setItem('PreloruToken', payload.Token)
     window.localStorage.setItem('PreloruUserName', payload.User.Name)
     window.localStorage.setItem('PreloruRights', state.rights)
@@ -286,11 +287,11 @@ const mutations = {
     state.token = null
     state.user = null
     state.rights = 0
-    Vue.http.headers.common['Authorization'] = ''
+    Vue.http.headers.common.Authorization = ''
   },
   [types.REFRESH_TOKEN] (state, { token }) {
     state.token = token
-    Vue.http.headers.common['Authorization'] = 'Bearer ' + token
+    Vue.http.headers.common.Authorization = 'Bearer ' + token
     window.localStorage.setItem('PreloruToken', token)
   }
 }

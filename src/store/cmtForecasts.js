@@ -10,7 +10,7 @@ const actions = {
   async [types.GET_CMT_FORECASTS] ({ commit }) {
     beginLoading(commit)
     try {
-      let resp = await Vue.http.get('commitments/forecasts')
+      const resp = await Vue.http.get('commitments/forecasts')
       commit(types.GET_CMT_FORECASTS, resp.body.CmtForecast)
       commit(types.END_LOADING)
     } catch (err) {

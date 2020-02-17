@@ -23,10 +23,10 @@ export const dateStyle = {
 }
 
 function parseData (datas, keys) {
-  let lineNumber = datas.length
-  let parsed = []
+  const lineNumber = datas.length
+  const parsed = []
   for (let i = 1; i < lineNumber && datas[i][0]._value; i++) {
-    let item = {}
+    const item = {}
     keys.forEach((k, j) => {
       item[k] = datas[i][j]._value
     })
@@ -53,7 +53,7 @@ export async function excelReadFile (
   parseCallback = null
 ) {
   try {
-    let workbook = await XlsxPopulate.fromDataAsync(file)
+    const workbook = await XlsxPopulate.fromDataAsync(file)
     const datas = workbook
       .sheet(0)
       .usedRange()
@@ -76,8 +76,8 @@ export async function excelReadFile (
 }
 
 function summaryParseData (datas, year) {
-  let lineNumber = datas.length
-  let housings = []
+  const lineNumber = datas.length
+  const housings = []
   for (let i = 1; i < lineNumber; i++) {
     const row = datas[i]
     if (row[27].value() === year && row[4].value() !== 'REAF' && row[4].value() !== 'F') {
@@ -104,7 +104,7 @@ export async function summaryReadFile (file, successCallback, errorCallback) {
     const workbook = await XlsxPopulate.fromDataAsync(file)
     const datas = workbook.sheet(0).usedRange().cells()
     const year = new Date().getFullYear()
-    let housings = summaryParseData(datas, year)
+    const housings = summaryParseData(datas, year)
     if (typeof successCallback === 'function') {
       return successCallback(housings)
     }
@@ -118,8 +118,8 @@ export async function summaryReadFile (file, successCallback, errorCallback) {
 }
 
 function fileSave (blob, name) {
-  let url = window.URL.createObjectURL(blob)
-  let a = document.createElement('a')
+  const url = window.URL.createObjectURL(blob)
+  const a = document.createElement('a')
   document.body.appendChild(a)
   a.href = url
   a.download = name
@@ -166,6 +166,7 @@ function fillCells (jsonObject, workbook, firstRowNumber, columns) {
   jsonObject.forEach((o, i) => {
     const row = workbook.sheet(0).row(i + firstRowNumber)
     columns.forEach((c, j) => {
+      // eslint-disable-next-line no-prototype-builtins
       if (c.hasOwnProperty('formula')) {
         const formula = c.formula.replace(/£/g, i + firstRowNumber)
         row.cell(j + 1).formula(formula)
@@ -181,7 +182,7 @@ function setTotalCells (workbook, filterLastRow, columns) {
   const firstRow = workbook.sheet(0).row(1)
   const lastRow = workbook.sheet(0).row(filterLastRow + 1)
 
-  if (!columns[0].hasOwnProperty('addTotal')) {
+  if (Object.prototype.hasOwnProperty.call(!columns[0], 'addTotal')) {
     firstRow.cell(1).value('Total')
     lastRow.cell(1).value('Total')
   }
@@ -189,7 +190,7 @@ function setTotalCells (workbook, filterLastRow, columns) {
   columns.forEach((c, i) => {
     firstRow.cell(i + 1).style(blueStyle)
     lastRow.cell(i + 1).style(blueStyle)
-    if (c.hasOwnProperty('addTotal')) {
+    if (Object.prototype.hasOwnProperty.call(c, 'addTotal')) {
       const column = getExcelColumnName(i)
       const formula = `SUBTOTAL(9,${column}3:${column}${filterLastRow})`
       firstRow.cell(i + 1).formula(formula)
@@ -200,7 +201,7 @@ function setTotalCells (workbook, filterLastRow, columns) {
 
 export async function excelExport (jsonObject, columns, name) {
   await XlsxPopulate.fromBlankAsync().then(workbook => {
-    const addTotal = columns.some(c => c.hasOwnProperty('addTotal'))
+    const addTotal = columns.some(c => Object.prototype.hasOwnProperty.call(c, 'addTotal'))
     const firstRowNumber = addTotal ? 3 : 2
     const firstRow = addTotal
       ? workbook.sheet(0).row(2)

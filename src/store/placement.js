@@ -11,7 +11,7 @@ const actions = {
   async [types.GET_PLACEMENTS] ({ commit }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.get('placements')
+      const resp = await Vue.http.get('placements')
       commit(types.GET_PLACEMENTS, resp.body.Placement)
       commit(types.END_LOADING)
     } catch (err) {
@@ -21,7 +21,7 @@ const actions = {
   async [types.UPDATE_PLACEMENT] ({ commit }, { ID, Comment }) {
     try {
       beginLoading(commit)
-      let resp = await Vue.http.put(`placement/${ID}`, { Placement: { Comment } })
+      const resp = await Vue.http.put(`placement/${ID}`, { Placement: { Comment } })
       commit(types.UPDATE_PLACEMENT, resp.body.Placement)
       commit(types.END_LOADING)
     } catch (err) {
@@ -31,8 +31,8 @@ const actions = {
   async [types.UPLOAD_PLACEMENTS] ({ commit }, file) {
     beginLoading(commit)
     try {
-      let sendFunc = d => Vue.http.post('placements', { Placement: d })
-      let parseFunc = o => ({
+      const sendFunc = d => Vue.http.post('placements', { Placement: d })
+      const parseFunc = o => ({
         IrisCode: String(o.IrisCode),
         Count: o.Count ? parseInt(o.Count) : 0,
         ContractYear: o.ContractYear ? parseInt(o.ContractYear) : null

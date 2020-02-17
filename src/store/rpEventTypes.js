@@ -31,7 +31,7 @@ const actions = {
   async [types.UPDATE_RP_EVENT_TYPE] ({ commit }, { ID, Name }) {
     beginLoading(commit)
     try {
-      const { body } = await Vue.http.put(`rp_event_type`, { ID, Name })
+      const { body } = await Vue.http.put('rp_event_type', { ID, Name })
       commit(types.UPDATE_RP_EVENT_TYPE, body.RPEventType)
       commit(types.END_LOADING)
     } catch (err) {
@@ -41,7 +41,7 @@ const actions = {
   async [types.CREATE_RP_EVENT_TYPE] ({ commit }, { Name }) {
     beginLoading(commit)
     try {
-      const { body } = await Vue.http.post(`rp_event_type`, { Name })
+      const { body } = await Vue.http.post('rp_event_type', { Name })
       commit(types.CREATE_RP_EVENT_TYPE, body.RPEventType)
       commit(types.END_LOADING)
     } catch (err) {
@@ -51,7 +51,7 @@ const actions = {
   async [types.GET_RP_EVENT_TYPES] ({ commit }) {
     beginLoading(commit)
     try {
-      const { body } = await Vue.http.get(`rp_event_types`)
+      const { body } = await Vue.http.get('rp_event_types')
       commit(types.GET_RP_EVENT_TYPES, body.RPEventType)
       commit(types.END_LOADING)
     } catch (err) {
