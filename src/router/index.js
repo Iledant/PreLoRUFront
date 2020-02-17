@@ -7,7 +7,7 @@ import RenewProjects from '@/components/RenewProjects.vue'
 import Home from '@/components/Home.vue'
 import Beneficiaries from '@/components/Beneficiaries.vue'
 import Beneficiary from '@/components/Beneficiary.vue'
-import ForeCasts from '@/components/Forecasts.vue'
+import Forecasts from '@/components/Forecasts.vue'
 import RenewProject from '@/components/RenewProject.vue'
 import Copro from '@/components/Copro.vue'
 import BudgetSector from '@/components/BudgetSector.vue'
@@ -26,6 +26,7 @@ import BeneficiaryGroups from '@/components/BeneficiaryGroups.vue'
 import BeneficiaryGroup from '@/components/BeneficiaryGroup.vue'
 import ReservationFees from '@/components/ReservationFees.vue'
 import ReservationFeeSettings from '@/components/ReservationFeeSettings.vue'
+import PaymentForecast from '@/components/PaymentForecast.vue'
 
 Vue.use(Router)
 
@@ -48,7 +49,12 @@ export default new Router({
     },
     { path: '/beneficiaries', component: Beneficiaries, name: 'Beneficiaries' },
     { path: '/beneficiary/:ID', component: Beneficiary, name: 'Beneficiary' },
-    { path: '/forecasts', component: ForeCasts, name: 'Forecasts' },
+    { path: '/forecasts', component: Forecasts, name: 'Forecasts' },
+    {
+      path: '/payment_forecast',
+      component: PaymentForecast,
+      name: 'PaymentForecast'
+    },
     { path: '/renew_project/:ID', component: RenewProject, name: 'RenewProject' },
     { path: '/copro/:ID', component: Copro, name: 'Copro' },
     { path: '/sector', component: BudgetSector, name: 'BudgetSector' },

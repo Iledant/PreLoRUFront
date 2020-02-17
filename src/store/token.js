@@ -90,7 +90,7 @@ const state = {
     },
     {
       id: 10,
-      title: 'Prévisions pluriannuelles',
+      title: 'Prévisions d\'AP',
       icon: 'trending_up',
       routerLink: { name: 'Forecasts' },
       allowUser: true,
@@ -99,6 +99,15 @@ const state = {
     },
     {
       id: 11,
+      title: 'Prévisions de CP',
+      icon: 'timeline',
+      routerLink: { name: 'PaymentForecast' },
+      allowUser: true,
+      allowObserver: true,
+      needReservationRight: false
+    },
+    {
+      id: 12,
       title: 'Synthèses territoriales',
       icon: 'map',
       routerLink: { name: 'Summaries' },
@@ -246,7 +255,11 @@ const actions = {
       commit(types.SET_TOKEN, response.body)
       commit(types.END_LOADING)
     } catch (response) {
-      if (response.status === 401) { setErrorMessage(commit, 'Erreur de login ou de mot de passe') } else if (response.status === 403) { setErrorMessage(commit, 'Compte non activé par un administrateur') } else setErrorMessage(commit, 'Erreur de connexion')
+      if (response.status === 401) {
+        setErrorMessage(commit, 'Erreur de login ou de mot de passe')
+      } else if (response.status === 403) {
+        setErrorMessage(commit, 'Compte non activé par un administrateur')
+      } else setErrorMessage(commit, 'Erreur de connexion')
     }
   },
   async [types.LOG_OUT] ({ commit }) {
