@@ -27,6 +27,7 @@ import BeneficiaryGroup from '@/components/BeneficiaryGroup.vue'
 import ReservationFees from '@/components/ReservationFees.vue'
 import ReservationFeeSettings from '@/components/ReservationFeeSettings.vue'
 import PaymentForecast from '@/components/PaymentForecast.vue'
+import HousingSettings from '@/components/HousingSettings.vue'
 
 Vue.use(Router)
 
@@ -108,6 +109,12 @@ export default new Router({
       path: '/reservation_fee_settings',
       component: ReservationFeeSettings,
       name: 'ReservationFeeSettings',
+      meta: { requiresAdmin: true }
+    },
+    {
+      path: '/housing_settings',
+      component: HousingSettings,
+      name: 'HousingSettings',
       meta: { requiresAdmin: true }
     }
   ]

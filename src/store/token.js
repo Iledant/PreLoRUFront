@@ -161,21 +161,27 @@ const state = {
     },
     {
       id: 8,
+      title: 'Logement social',
+      icon: 'location_city',
+      routerLink: { name: 'HousingSettings' }
+    },
+    {
+      id: 9,
+      title: 'Contingent régional',
+      icon: 'folder_shared',
+      routerLink: { name: 'ReservationFeeSettings' }
+    },
+    {
+      id: 10,
       title: 'Engagements',
       icon: 'assignment_turned_in',
       routerLink: { name: 'Commitments' }
     },
     {
-      id: 9,
+      id: 11,
       title: 'Paiements',
       icon: 'credit_card',
       routerLink: { name: 'Payments' }
-    },
-    {
-      id: 10,
-      title: 'Contingent régional',
-      icon: 'folder_shared',
-      routerLink: { name: 'ReservationFeeSettings' }
     }
   ]
 }

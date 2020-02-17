@@ -30,6 +30,7 @@ import paymentCredit from './paymentCredit'
 import placement from './placement'
 import beneficiaryGroup from './beneficiaryGroup'
 import reservationFees from './reservationFees'
+import housingTypes from './housingTypes'
 
 Vue.use(Vuex)
 
@@ -63,6 +64,7 @@ export default new Vuex.Store({
     paymentCredit,
     placement,
     beneficiaryGroup,
-    reservationFees
+    reservationFees,
+    housingTypes
   }
 })
