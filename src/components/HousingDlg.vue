@@ -37,6 +37,15 @@
           <v-flex xs6>
             <v-checkbox label="ANRU" v-model="item.ANRU" />
           </v-flex>
+          <v-flex xs6>
+            <v-select
+              :items="housingTypes"
+              v-model="item.HousingTypeID"
+              item-text="LongName"
+              item-value="ID"
+              label="Type de programme"
+            />
+          </v-flex>
         </v-layout>
       </v-container>
 
@@ -60,6 +69,7 @@
 
 <script>
 import { uintRule } from './mixins'
+import { mapState } from 'vuex'
 export default {
   name: 'HousingDlg',
   mixins: [uintRule],
@@ -78,21 +88,30 @@ export default {
         !this.uintCheck(this.item.PLUS) ||
         !this.uintCheck(this.item.PLS)
       )
-    }
+    },
+    ...mapState({
+      housingTypes: state => [
+        { ID: null, LongName: '<Non connu>' },
+        ...state.housingTypes.housingTypesList
+      ]
+    })
   },
   methods: {
     confirm () {
       if (!this.disabled) {
         this.$emit('input', false)
-        const zipCode = this.item.ZipCode ? parseInt(this.item.ZipCode) : null
-        const PLAI = parseInt(this.item.PLAI)
-        const PLUS = parseInt(this.item.PLUS)
-        const PLS = parseInt(this.item.PLS)
-        this.item.ZipCode = zipCode
-        this.item.PLAI = PLAI
-        this.item.PLUS = PLUS
-        this.item.PLS = PLS
-        this.$emit('confirm', this.item)
+        const item = {
+          ZipCode: this.item.ZipCode ? parseInt(this.item.ZipCode) : null,
+          PLAI: parseInt(this.item.PLAI),
+          PLUS: parseInt(this.item.PLUS),
+          PLS: parseInt(this.item.PLS),
+          ANRU: this.item.ANRU,
+          Address: this.item.Address,
+          Reference: this.item.Reference,
+          HousingTypeID: this.item.HousingTypeID,
+          ID: this.item.ID
+        }
+        this.$emit('confirm', item)
       }
     }
   }

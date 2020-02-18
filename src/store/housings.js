@@ -34,6 +34,7 @@ const actions = {
       commit(types.GET_ACTIONS, body.BudgetAction)
       commit(types.GET_HOUSING_FORECASTS, body.HousingForecast)
       commit(types.GET_PRE_PROG, body.FcPreProg)
+      commit(types.GET_HOUSING_TYPES, body.HousingType)
       commit(types.END_LOADING)
     } catch (response) {
       setErrorMessage(commit, response)
@@ -61,30 +62,20 @@ const actions = {
       setErrorMessage(commit, response)
     }
   },
-  async [types.CREATE_HOUSING] (
-    { commit },
-    { Reference, Address, ZipCode, PLUS, PLAI, PLS, ANRU }
-  ) {
+  async [types.CREATE_HOUSING] ({ commit }, payload) {
     beginLoading(commit)
     try {
-      const response = await Vue.http.post('housing', {
-        Housing: { Reference, Address, ZipCode, PLUS, PLAI, PLS, ANRU }
-      })
+      const response = await Vue.http.post('housing', { Housing: payload })
       commit(types.CREATE_HOUSING, response.body.Housing)
       commit(types.END_LOADING)
     } catch (response) {
       setErrorMessage(commit, response)
     }
   },
-  async [types.UPDATE_HOUSING] (
-    { commit },
-    { ID, Reference, Address, ZipCode, PLUS, PLAI, PLS, ANRU }
-  ) {
+  async [types.UPDATE_HOUSING] ({ commit }, payload) {
     beginLoading(commit)
     try {
-      const response = await Vue.http.put('housing', {
-        Housing: { ID, Reference, Address, ZipCode, PLUS, PLAI, PLS, ANRU }
-      })
+      const response = await Vue.http.put('housing', { Housing: payload })
       commit(types.UPDATE_HOUSING, response.body.Housing)
       commit(types.END_LOADING)
     } catch (response) {

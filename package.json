@@ -1,9 +1,9 @@
 {
   "name": "prelorufront",
-  "version": "1.16.6",
+  "version": "1.16.7",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --port 8081 --open",
     "build": "vue-cli-service build",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
