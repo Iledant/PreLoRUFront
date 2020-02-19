@@ -71,7 +71,7 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-card-actions>
+    <v-card-actions class="tertiary">
       <v-spacer />
       <v-file-input
         accept="*.xlsx"
