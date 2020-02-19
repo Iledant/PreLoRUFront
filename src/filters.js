@@ -16,7 +16,13 @@ const currencyFormatter = new Intl.NumberFormat('fr-FR', {
 const percentageFormatter = new Intl.NumberFormat('fr-FR', {
   style: 'percent',
   minimumFractionDigits: 2,
-  maximumFractionDigit: 2
+  maximumFractionDigits: 2
+})
+
+const mEuroFormatter = new Intl.NumberFormat('fr-FR', {
+  style: 'decimal',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
 })
 
 const numberFormatter = new Intl.NumberFormat('fr-FR')
@@ -46,6 +52,12 @@ export function currency (c) {
  * @param {Number} v value to convert
  */
 export const float2Euros = v => (v ? currencyFormatter.format(v) : '-')
+
+/**
+ * Convert a float calculated to a M€ formatted string
+ * @param {Number} v value to convert
+ */
+export const float2MEuros = v => (v ? mEuroFormatter.format(v) + ' M€' : '-')
 
 /**
  * displayBool returns the icon name to graphically represent a boolean value

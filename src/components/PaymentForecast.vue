@@ -2,9 +2,13 @@
   <v-card>
     <v-card-title class="white--text primary headline">Prévisions de CP</v-card-title>
     <v-tabs v-model="active" slider-color="tertiary" background-color="primary" dark centered>
-      <v-tab ripple>Prévisions pluriannuelles</v-tab>
+      <v-tab ripple>Prévisions par ratios</v-tab>
       <v-tab-item>
         <PaymentForecasts />
+      </v-tab-item>
+      <v-tab ripple>Prévisions par RAM</v-tab>
+      <v-tab-item>
+        <DifPaymentForecasts />
       </v-tab-item>
       <v-tab ripple>Enveloppes de CP</v-tab>
       <v-tab-item>
@@ -21,10 +25,11 @@
 <script>
 import Ratios from './Ratios.vue'
 import PaymentForecasts from './PaymentForecasts.vue'
+import DifPaymentForecasts from './DifPaymentForecasts.vue'
 import PaymentCredit from './PaymentCredit.vue'
 export default {
   name: 'PaymentForecast',
-  components: { PaymentForecasts, PaymentCredit, Ratios },
+  components: { PaymentForecasts, PaymentCredit, Ratios, DifPaymentForecasts },
   data () {
     return {
       active: null

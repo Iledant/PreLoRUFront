@@ -17,7 +17,8 @@ import {
   displayBool,
   float2Euros,
   trim50,
-  shortDate
+  shortDate,
+  float2MEuros
 } from './filters.js'
 import vueDebounce from 'vue-debounce'
 
@@ -79,6 +80,7 @@ Vue.filter('displayBool', displayBool)
 Vue.filter('float2Euros', float2Euros)
 Vue.filter('trim50', trim50)
 Vue.filter('shortDate', shortDate)
+Vue.filter('float2MEuros', float2MEuros)
 
 Vue.config.productionTip = false
 
