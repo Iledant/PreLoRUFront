@@ -29,6 +29,7 @@
                 <td class="table-link" @click="goTo(item)">{{ item.Reference }}</td>
                 <td class="table-link" @click="goTo(item)">{{ item.CityName }}</td>
                 <td class="table-link" @click="goTo(item)">{{ item.Address | nullable }}</td>
+                <td class="text-right">{{ item.HousingTypeShortName || 'nc' }}</td>
                 <td class="text-right">{{ item.PLAI }}</td>
                 <td class="text-right">{{ item.PLUS }}</td>
                 <td class="text-right">{{ item.PLS }}</td>
@@ -150,6 +151,7 @@ export default {
         { text: 'Référence', value: 'Reference', sortable: false },
         { text: 'Commune', value: 'CityName', sortable: false },
         { text: 'Adresse', value: 'Address', sortable: false },
+        { text: 'Type', value: 'HousingTypeShortName', sortable: false },
         { text: 'PLAI', value: 'PLAI', align: 'right', sortable: false },
         { text: 'PLUS', value: 'PLUS', align: 'right', sortable: false },
         { text: 'PLS', value: 'PLS', align: 'right', sortable: false },

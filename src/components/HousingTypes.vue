@@ -17,8 +17,8 @@
           >
             <template v-slot:item="{ item }">
               <tr>
-                <td class="text-left">{{ item.ShortName }}</td>
-                <td class="text-left">{{ item.LongName }}</td>
+                <td>{{ item.ShortName }}</td>
+                <td>{{ item.LongName }}</td>
                 <td class="px-0">
                   <v-tooltip left color="primary">
                     <template v-slot:activator="{ on }">
@@ -71,6 +71,16 @@
         </v-flex>
       </v-layout>
     </v-container>
+    <v-card-actions>
+      <v-spacer />
+      <v-file-input
+        accept="*.xlsx"
+        label="Importer les liens IRIS/programmes"
+        :loading="loading"
+        show-size
+        @change="chkAndUpload($event,upload)"
+      />
+    </v-card-actions>
 
     <v-dialog persistent :overlay="false" v-model="dialog" max-width="500px">
       <v-card>
@@ -115,9 +125,12 @@
 
 <script>
 import DeleteDialog from './DeleteDialog'
+import { mapGetters, mapState } from 'vuex'
+import { chkAndUpload } from './mixins'
 import * as types from '../store/types'
 export default {
   name: 'HousingTypes',
+  mixins: [chkAndUpload],
   components: { DeleteDialog },
   data () {
     return {
@@ -166,16 +179,18 @@ export default {
       this.dialog = false
     },
     notNull (text) {
-      return text !== null || text !== '' || 'Le nom ne peut pas être vide'
+      return !!text || 'Le nom ne peut pas être vide'
+    },
+    async upload (file) {
+      await this.$store.dispatch(types.UPLOAD_IRIS_HOUSING_TYPES, file)
+      this.$store.dispatch(types.GET_HOUSING_TYPES)
     }
   },
   computed: {
-    items () {
-      return this.$store.state.housingTypes.housingTypesList
-    },
-    loading () {
-      return this.$store.state.loading.loading !== 0
-    }
+    ...mapGetters(['loading']),
+    ...mapState({
+      items: state => state.housingTypes.housingTypesList
+    })
   }
 }
 </script>
