@@ -25,7 +25,7 @@
             no-results-text="Recherche infructueuse"
             :footer-props="{ disableItemsPerPage: true }"
           >
-            <template #item.modify>
+            <template #item.modify="{ item }">
               <v-tooltip left color="primary">
                 <template v-slot:activator="{ on }">
                   <v-btn
@@ -43,7 +43,7 @@
                 Modifier
               </v-tooltip>
             </template>
-            <template #item.remove>
+            <template #item.remove="{ item }">
               <v-tooltip left color="primary">
                 <template v-slot:activator="{ on }">
                   <v-btn
@@ -63,13 +63,17 @@
             </template>
             <template #expanded-item="{ headers, item }">
               <td :colspan="headers.length">
-                Bailleur initial: {{ item.FirstBeneficiary || 'inchangé' }},
+                Bailleur initial: {{ item.FirstBeneficiary || 'inchangé' }}
+                <br />
                 Loyer : {{item.Loan || '-' }},
                 Charges : {{item.Charges || '-' }},
-                Surface : {{ item.Area || '-'}},
+                Surface : {{ item.Area || '-'}}
+                <br />
                 RPLS : {{ item.RPLS || '-'}},
-                Convention : {{item.Convention || '-' }},
-                Type : {{item.Typology ||'-' }},
+                Convention : {{item.Convention || '-' }}
+                <br />
+                Type : {{item.Typology ||'-' }}
+                <br />
                 Date de cession : {{ item.TransferDate | date }},
                 Cédé à : {{ item.Transfer || '-'}}
               </td>

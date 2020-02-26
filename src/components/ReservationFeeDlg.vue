@@ -104,22 +104,6 @@
           <v-flex xs6>
             <v-text-field v-model="item.EliseRef" label="Numéro ELISE convention" />
           </v-flex>
-          <v-flex xs4>
-            <v-text-field
-              v-model="item.EndYear"
-              label="Année de commercialisation"
-              :rules="[emptyOrYearRule]"
-            />
-          </v-flex>
-          <v-flex xs8>
-            <v-autocomplete
-              :items="comments"
-              v-model="item.CommentID"
-              item-text="Name"
-              item-value="ID"
-              label="Commentaire"
-            />
-          </v-flex>
           <v-flex xs6>
             <v-menu
               ref="transferMenu"
@@ -134,7 +118,7 @@
               <template v-slot:activator="{ on }">
                 <v-text-field
                   v-model="formattedTransferDate"
-                  label="Date du transfert"
+                  label="Date de la dernière cession"
                   prepend-icon="event"
                   readonly
                   v-on="on"
@@ -153,7 +137,23 @@
               v-model="item.TransferID"
               item-text="Name"
               item-value="ID"
-              label="Transfer"
+              label="Cession vers"
+            />
+          </v-flex>
+          <v-flex xs4>
+            <v-text-field
+              v-model="item.EndYear"
+              label="Année de commercialisation"
+              :rules="[emptyOrYearRule]"
+            />
+          </v-flex>
+          <v-flex xs8>
+            <v-autocomplete
+              :items="comments"
+              v-model="item.CommentID"
+              item-text="Name"
+              item-value="ID"
+              label="Commentaire sur la cession"
             />
           </v-flex>
           <v-flex xs3>
@@ -227,7 +227,6 @@ export default {
         this.item.AddressNumber === '' ||
         this.item.AddressStreet === '' ||
         this.item.CityCode === null ||
-        this.nullUintCheck(this.item.Count) !== true ||
         this.emptyOrYearRule(this.item.EndYear) !== true ||
         this.nullOrFloat(this.item.Area) !== true ||
         this.nullOrFloat(this.item.Loan) !== true ||
