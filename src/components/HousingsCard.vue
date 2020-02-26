@@ -225,8 +225,9 @@ export default {
       await this.$store.dispatch(types.UPLOAD_HOUSING_COMMITMENT_LINK, file)
       this.getHousings(this.page)
     },
-    summaryUpload (file) {
-      this.$store.dispatch(types.UPLOAD_HOUSING_SUMMARY, file)
+    async summaryUpload (file) {
+      await this.$store.dispatch(types.UPLOAD_HOUSING_SUMMARY, file)
+      this.getHousings(this.page)
     },
     async delConfirm () {
       await this.$store.dispatch(types.DEL_HOUSING, this.item.ID)
