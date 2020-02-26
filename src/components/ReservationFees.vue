@@ -18,55 +18,61 @@
             :server-items-length="itemsCount"
             :page.sync="page"
             dense
+            :single-expand="true"
+            show-expand
             class="elevation-1"
             no-data-text="Aucune réservation trouvée"
             no-results-text="Recherche infructueuse"
             :footer-props="{ disableItemsPerPage: true }"
           >
-            <template v-slot:item="{ item }">
-              <tr>
-                <td class="text-left">{{ item.City }}</td>
-                <td class="text-left">{{ item.AddressNumber }}</td>
-                <td class="text-left">{{ item.AddressStreet }}</td>
-                <td class="text-left">{{ item.CurrentBeneficiary }}</td>
-                <td class="text-left">{{ item.ConventionType }}</td>
-                <td class="px-0">
-                  <v-tooltip left color="primary">
-                    <template v-slot:activator="{ on }">
-                      <v-btn
-                        color="primary"
-                        small
-                        text
-                        icon
-                        class="pa-0"
-                        @click="modify(item)"
-                        v-on="on"
-                      >
-                        <v-icon>create</v-icon>
-                      </v-btn>
-                    </template>
-                    Modifier
-                  </v-tooltip>
-                </td>
-                <td class="px-0">
-                  <v-tooltip left color="primary">
-                    <template v-slot:activator="{ on }">
-                      <v-btn
-                        color="primary"
-                        small
-                        icon
-                        text
-                        class="pa-0"
-                        v-on="on"
-                        @click="remove(item)"
-                      >
-                        <v-icon>delete</v-icon>
-                      </v-btn>
-                    </template>
-                    Supprimer
-                  </v-tooltip>
-                </td>
-              </tr>
+            <template #item.modify>
+              <v-tooltip left color="primary">
+                <template v-slot:activator="{ on }">
+                  <v-btn
+                    color="primary"
+                    small
+                    text
+                    icon
+                    class="pa-0"
+                    @click="modify(item)"
+                    v-on="on"
+                  >
+                    <v-icon>create</v-icon>
+                  </v-btn>
+                </template>
+                Modifier
+              </v-tooltip>
+            </template>
+            <template #item.remove>
+              <v-tooltip left color="primary">
+                <template v-slot:activator="{ on }">
+                  <v-btn
+                    color="primary"
+                    small
+                    icon
+                    text
+                    class="pa-0"
+                    v-on="on"
+                    @click="remove(item)"
+                  >
+                    <v-icon>delete</v-icon>
+                  </v-btn>
+                </template>
+                Supprimer
+              </v-tooltip>
+            </template>
+            <template #expanded-item="{ headers, item }">
+              <td :colspan="headers.length">
+                Bailleur initial: {{ item.FirstBeneficiary || 'inchangé' }},
+                Loyer : {{item.Loan || '-' }},
+                Charges : {{item.Charges || '-' }},
+                Surface : {{ item.Area || '-'}},
+                RPLS : {{ item.RPLS || '-'}},
+                Convention : {{item.Convention || '-' }},
+                Type : {{item.Typology ||'-' }},
+                Date de cession : {{ item.TransferDate | date }},
+                Cédé à : {{ item.Transfer || '-'}}
+              </td>
             </template>
           </v-data-table>
         </v-flex>
@@ -169,8 +175,9 @@ export default {
         { text: 'Adresse', value: 'AddressStreet', sortable: false },
         { text: 'Bailleur', value: 'CurrentBeneficiary', sortable: false },
         { text: 'Convention', value: 'ConventionType', sortable: false },
-        { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: 'modify', sortable: false, width: '1%' },
+        { text: '', value: 'remove', sortable: false, width: '1%' },
+        { text: '', value: 'data-table-expand' }
       ],
       page: 1,
       item: {},

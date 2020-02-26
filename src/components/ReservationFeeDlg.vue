@@ -39,7 +39,7 @@
               :rules="[notNull]"
             />
           </v-flex>
-          <v-flex xs6>
+          <v-flex xs3>
             <v-autocomplete
               :items="conventionTypes"
               v-model="item.ConventionTypeID"
@@ -49,17 +49,23 @@
               :rules="[notNull]"
             />
           </v-flex>
+          <v-flex xs3>
+            <v-autocomplete
+              :items="typologies"
+              v-model="item.TypologyID"
+              item-text="Name"
+              item-value="ID"
+              label="Type"
+            />
+          </v-flex>
           <v-flex xs4>
             <v-text-field v-model="item.AddressNumber" label="Numéro" :rules="[notNull]" />
           </v-flex>
           <v-flex xs8>
             <v-text-field v-model="item.AddressStreet" label="Rue" :rules="[notNull]" />
           </v-flex>
-          <v-flex xs4>
+          <v-flex xs6>
             <v-text-field v-model="item.RPLS" label="RPLS" />
-          </v-flex>
-          <v-flex xs2>
-            <v-text-field v-model="item.Count" label="Nb logements" :rules="[nullUintRule]" />
           </v-flex>
           <v-flex xs6>
             <v-text-field v-model="item.Convention" label="Convention de financement" />
@@ -176,6 +182,7 @@
 <script>
 import { formatNullDate } from '../date.js'
 import { yearRule, nullUintRule } from './mixins'
+import { mapState } from 'vuex'
 export default {
   name: 'ReservationFeeDlg',
   mixins: [yearRule, nullUintRule],
@@ -195,6 +202,14 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      cities: state => state.cities.citiesList,
+      typologies: state => state.reservationFees.housingTypologiesList,
+      beneficiaries: state => state.beneficiaries.beneficiariesList,
+      comments: state => state.reservationFees.housingCommentsList,
+      transfers: state => state.reservationFees.housingTransfersList,
+      conventionTypes: state => state.reservationFees.conventionTypesList
+    }),
     title () {
       return this.action === 'create'
         ? 'Ajouter une nouvelle réservation'
@@ -203,26 +218,8 @@ export default {
     button () {
       return this.action === 'create' ? 'Créer' : 'Modifier'
     },
-    cities () {
-      return this.$store.state.cities.citiesList
-    },
-    typologies () {
-      return this.$store.state.reservationFees.housingTypologiesList
-    },
-    beneficiaries () {
-      return this.$store.state.beneficiaries.beneficiariesList
-    },
     nullBeneficiaries () {
       return [{ ID: null, Name: '<Identique>' }, ...this.beneficiaries]
-    },
-    comments () {
-      return this.$store.state.reservationFees.housingCommentsList
-    },
-    transfers () {
-      return this.$store.state.reservationFees.housingTransfersList
-    },
-    conventionTypes () {
-      return this.$store.state.reservationFees.conventionTypesList
     },
     disabled () {
       return (

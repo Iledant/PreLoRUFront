@@ -24,6 +24,7 @@ async function exportReservationFees (reservationFees) {
     { header: 'Bailleur initial', key: 'FirstBeneficiary', width: 20 },
     { header: 'Code INSEE', key: 'CityCode', width: 10 },
     { header: 'Ville', key: 'City', width: 14 },
+    { header: 'Type', key: 'Typology', width: 10 },
     { header: 'Num', key: 'AddressNumber', width: 10 },
     { header: 'Adresse', key: 'AddressStreet', width: 20 },
     { header: 'RPLS', key: 'RPLS', width: 10 },
