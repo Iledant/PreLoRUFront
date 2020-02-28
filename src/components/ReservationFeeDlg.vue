@@ -270,7 +270,7 @@ export default {
       }
     },
     notNull (item) {
-      return item !== null || item !== '' || 'Ne doit pas être vide'
+      return !!item || 'Ne doit pas être vide'
     },
     nullOrFloat (item) {
       return item === null || /^\d+([,.]\d+)?$/.test(item) || 'Vide ou nombre positif'

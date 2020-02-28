@@ -2,8 +2,9 @@
   <v-card>
     <v-container fluid grid-list-md>
       <v-layout wrap>
-        <v-flex xs12 sm6>
+        <v-flex xs12 sm6 offset-sm3>
           <v-text-field
+            prepend-icon="search"
             label="Rechercher (commune, bailleur,adresse...)"
             v-debounce:500ms="newSearch"
           />
