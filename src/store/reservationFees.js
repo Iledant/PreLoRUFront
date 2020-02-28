@@ -10,7 +10,8 @@ const state = {
   conventionTypesList: [],
   housingCommentsList: [],
   housingTypologiesList: [],
-  housingTransfersList: []
+  housingTransfersList: [],
+  reservationReportList: []
 }
 
 async function exportReservationFees (reservationFees) {
@@ -122,6 +123,7 @@ const actions = {
       commit(types.GET_HOUSING_TYPOLOGIES, body.HousingTypology)
       commit(types.GET_HOUSING_TRANSFERS, body.HousingTransfer)
       commit(types.GET_CONVENTION_TYPES, body.ConventionType)
+      commit(types.GET_RESERVATION_REPORTS, body.ReservationReport)
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)
@@ -372,6 +374,38 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
+  },
+  async [types.CREATE_RESERVATION_REPORT] ({ commit }, payload) {
+    try {
+      beginLoading(commit)
+      const resp = await Vue.http.post('reservation_report',
+        { ReservationReport: { ...payload } })
+      commit(types.CREATE_RESERVATION_REPORT, resp.body.ReservationReport)
+      commit(types.END_LOADING)
+    } catch (err) {
+      setErrorMessage(commit, err)
+    }
+  },
+  async [types.UPDATE_RESERVATION_REPORT] ({ commit }, payload) {
+    try {
+      beginLoading(commit)
+      const resp = await Vue.http.put('reservation_report',
+        { ReservationReport: { ...payload } })
+      commit(types.UPDATE_RESERVATION_REPORT, resp.body.ReservationReport)
+      commit(types.END_LOADING)
+    } catch (err) {
+      setErrorMessage(commit, err)
+    }
+  },
+  async [types.DELETE_RESERVATION_REPORT] ({ commit }, ID) {
+    try {
+      beginLoading(commit)
+      await Vue.http.delete(`reservation_report/${ID}`)
+      commit(types.DELETE_RESERVATION_REPORT, ID)
+      commit(types.END_LOADING)
+    } catch (err) {
+      setErrorMessage(commit, err)
+    }
   }
 }
 
@@ -436,6 +470,20 @@ const mutations = {
   [types.DELETE_CONVENTION_TYPE] (state, ID) {
     const index = state.conventionTypesList.findIndex(h => h.ID === ID)
     state.conventionTypesList.splice(index, 1)
+  },
+  [types.GET_RESERVATION_REPORTS] (state, list) {
+    state.reservationReportList = [...list]
+  },
+  [types.CREATE_RESERVATION_REPORT] (state, payload) {
+    state.reservationReportList.push(payload)
+  },
+  [types.UPDATE_RESERVATION_REPORT] (state, payload) {
+    const index = state.reservationReportList.findIndex(r => r.ID === payload.ID)
+    state.reservationReportList.splice(index, 1, payload)
+  },
+  [types.DELETE_RESERVATION_REPORT] (state, ID) {
+    const index = state.reservationReportList.findIndex(r => r.ID === ID)
+    state.reservationReportList.splice(index, 1)
   }
 }
 
