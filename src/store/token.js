@@ -261,7 +261,7 @@ const actions = {
       commit(types.SET_TOKEN, response.body)
       commit(types.END_LOADING)
     } catch (response) {
-      if (response.status === 401) {
+      if (response.status === 404) {
         setErrorMessage(commit, 'Erreur de login ou de mot de passe')
       } else if (response.status === 403) {
         setErrorMessage(commit, 'Compte non activé par un administrateur')
