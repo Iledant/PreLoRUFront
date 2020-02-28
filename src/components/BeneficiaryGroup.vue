@@ -1,19 +1,13 @@
 <template>
   <v-card>
-    <v-card-title class="white--text primary headline">
-      Groupe de bénéficiaires «{{ name }}»
-    </v-card-title>
+    <v-card-title class="white--text primary headline">Groupe de bénéficiaires «{{ name }}»</v-card-title>
     <v-tabs background-color="primary" slider-color="tertiary" v-model="tab" centered dark>
       <v-tab>Liste des bénéficiaires</v-tab>
       <v-tab-item>
         <v-container grid-list-md fluid>
           <v-layout wrap>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field
-                label="Rechercher (code, nom)"
-                v-model="search"
-                prepend-icon="search"
-              />
+              <v-text-field label="Rechercher (code, nom)" v-model="search" prepend-icon="search" />
             </v-flex>
             <v-flex sm3 />
             <v-flex xs12>
@@ -133,14 +127,14 @@ export default {
       this.delDlg = true
     },
     async delConfirm () {
-      const IDs = this.items.filter(b => b.ID !== this.item.ID).map(b => b.ID)
+      const BeneficiaryIDs = this.items.filter(b => b.ID !== this.item.ID).map(b => b.ID)
       await this.$store.dispatch(types.SET_BENEFICIARY_GROUP_ITEMS,
-        { ID: this.ID, IDs })
+        { ID: this.ID, BeneficiaryIDs })
     },
-    async add (item) {
-      const IDs = [...this.items.map(p => p.ID), this.beneficiaryID]
+    async add () {
+      const BeneficiaryIDs = [...this.items.map(p => p.ID), this.beneficiaryID]
       await this.$store.dispatch(types.SET_BENEFICIARY_GROUP_ITEMS,
-        { ID: this.ID, IDs })
+        { ID: this.ID, BeneficiaryIDs })
     }
   },
   created () {
