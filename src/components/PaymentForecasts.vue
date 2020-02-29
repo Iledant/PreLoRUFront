@@ -14,7 +14,7 @@
             :loading="loading"
             dense
           >
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td>{{ item.ActionName }}</td>
                 <td class="text-right">{{ item.Y0 | float2Euros }}</td>
@@ -24,7 +24,7 @@
                 <td class="text-right">{{ item.Y4 | float2Euros }}</td>
               </tr>
             </template>
-            <template v-slot:body.append="">
+            <template #body.append="">
               <tr class="font-weight-medium">
                 <td>Total</td>
                 <td class="text-right">{{ TY0 | float2Euros }}</td>

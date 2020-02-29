@@ -8,7 +8,7 @@
         item-key="ID"
         :loading="loading"
       >
-        <template v-slot:item="{ item }">
+        <template #item="{ item }">
           <tr>
             <td>{{ item.CreationDate | date }}</td>
             <td>{{ item.Name }}</td>
@@ -16,7 +16,7 @@
             <td>{{ item.CityName | nullable }}</td>
             <td class="pl-0 pr-0">
               <v-tooltip left v-if="hasRenewProjectRight" color="primary">
-                <template v-slot:activator="{ on }">
+                <template #activator="{ on }">
                   <v-btn small text icon color="primary" class="pa-0" @click="link(item)">
                     <v-icon v-on="on">link</v-icon>
                   </v-btn>
@@ -26,7 +26,7 @@
             </td>
             <td class="pl-0 pr-0">
               <v-tooltip left v-if="hasRenewProjectRight" color="primary">
-                <template v-slot:activator="{ on }">
+                <template #activator="{ on }">
                   <v-btn small text icon color="primary" class="pa-0" @click="remove(item)">
                     <v-icon v-on="on">delete</v-icon>
                   </v-btn>

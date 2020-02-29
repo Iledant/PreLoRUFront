@@ -13,7 +13,7 @@
             :search="search"
             dense
           >
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td class="text-left">{{ item.Name }}</td>
                 <td class="text-center">
@@ -42,7 +42,7 @@
                 </td>
                 <td class="px-0">
                   <v-tooltip left color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <v-btn
                         color="primary"
                         small
@@ -60,7 +60,7 @@
                 </td>
                 <td class="px-0">
                   <v-tooltip left color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <v-btn
                         color="primary"
                         small
@@ -82,7 +82,7 @@
         </v-flex>
         <v-flex xs12 class="text-right">
           <v-tooltip left color="primary">
-            <template v-slot:activator="{ on }">
+            <template #activator="{ on }">
               <v-btn color="primary" fab dark x-small @click="showCreateDlg" v-on="on">
                 <v-icon>add</v-icon>
               </v-btn>

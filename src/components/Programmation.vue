@@ -32,7 +32,7 @@
             class="elevation-1"
             dense
           >
-            <template v-slot:body.prepend="">
+            <template #body.prepend="">
               <tr class="font-weight-medium">
                 <td colspan="5" class="text-center">Total</td>
                 <td class="text-no-wrap text-right">{{ sumForecast | currency }}</td>
@@ -43,7 +43,7 @@
                 <td />
               </tr>
             </template>
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td class="text-no-wrap">{{ item.CommissionDate | shortDate }}</td>
                 <td>{{ item.CommissionName }}</td>
@@ -52,7 +52,7 @@
                 <td>{{ item.KindName | trim50 }}</td>
                 <td class="text-right text-no-wrap">
                   <v-tooltip left color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <div v-on="on">{{ item.ForecastValue | currency }}</div>
                     </template>
                     <span>Commentaire : {{item.ForecastComment}}</span>
@@ -60,7 +60,7 @@
                 </td>
                 <td class="text-right text-no-wrap">
                   <v-tooltip left color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <div v-on="on">{{ item.PreProgValue | currency }}</div>
                     </template>
                     <span>Commentaire : {{item.PreProgComment}}</span>
@@ -68,7 +68,7 @@
                 </td>
                 <td class="px-0">
                   <v-tooltip left v-if="isAdmin" color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <v-btn
                         color="primary"
                         icon
@@ -86,7 +86,7 @@
                 </td>
                 <td class="text-right text-no-wrap">
                   <v-tooltip left color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <div v-on="on">{{ item.Value | currency }}</div>
                     </template>
                     <span>Commentaire : {{item.Comment}}</span>
@@ -94,7 +94,7 @@
                 </td>
                 <td class="px-0">
                   <v-tooltip left v-if="isAdmin" color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <v-btn
                         color="primary"
                         icon
@@ -112,7 +112,7 @@
                 </td>
                 <td class="px-0">
                   <v-tooltip left v-if="isAdmin" color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <v-btn
                         color="primary"
                         icon
@@ -131,7 +131,7 @@
                 </td>
               </tr>
             </template>
-            <template v-slot:body.append="">
+            <template #body.append="">
               <tr class="font-weight-medium">
                 <td colspan="5" class="text-center">Total</td>
                 <td class="text-no-wrap text-right">{{ sumForecast | currency }}</td>
@@ -147,7 +147,7 @@
         <v-flex xs12 class="text-right">
           <v-btn small text @click="download" color="primary">Exporter en Excel</v-btn>
           <v-tooltip left color="primary" v-if="isAdmin">
-            <template v-slot:activator="{ on }">
+            <template #activator="{ on }">
               <v-btn color="primary" fab dark x-small @click="progAdd" v-on="on">
                 <v-icon>add</v-icon>
               </v-btn>

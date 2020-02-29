@@ -81,7 +81,7 @@
               offset-y
               min-width="290px"
             >
-              <template v-slot:activator="{ on }">
+              <template #activator="{ on }">
                 <v-text-field
                   v-model="formattedConventionDate"
                   label="Date de réception de la convention"
@@ -115,7 +115,7 @@
               offset-y
               min-width="290px"
             >
-              <template v-slot:activator="{ on }">
+              <template #activator="{ on }">
                 <v-text-field
                   v-model="formattedTransferDate"
                   label="Date de la dernière cession"

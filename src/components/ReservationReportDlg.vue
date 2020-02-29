@@ -35,7 +35,7 @@
               offset-y
               min-width="290px"
             >
-              <template v-slot:activator="{ on }">
+              <template #activator="{ on }">
                 <v-text-field
                   v-model="formattedDestDate"
                   label="Date de décision du report"

@@ -39,7 +39,7 @@
               offset-y
               min-width="290px"
             >
-              <template v-slot:activator="{ on }">
+              <template #activator="{ on }">
                 <v-text-field
                   v-model="formattedDate"
                   label="Date du label"

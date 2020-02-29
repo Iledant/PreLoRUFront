@@ -36,7 +36,7 @@
             <v-card-actions v-if="isAdmin">
               <v-spacer />
               <v-tooltip left color="primary">
-                <template v-slot:activator="{ on }">
+                <template #activator="{ on }">
                   <v-btn
                     color="primary"
                     icon

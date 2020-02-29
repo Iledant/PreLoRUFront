@@ -42,19 +42,19 @@
         </v-flex>
         <v-flex xs12>
           <v-data-table :headers="headers" :items="items" class="elevation-1" dense>
-            <template v-slot:body.prepend="">
+            <template #body.prepend="">
               <tr class="font-weight-medium">
                 <td class="text-center">Total</td>
                 <td class="text-right">{{ totalValue | currency }}</td>
               </tr>
             </template>
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td>{{ item.Dpt }}</td>
                 <td class="text-right">{{ item.Value | currency }}</td>
               </tr>
             </template>
-            <template v-slot:body.append="">
+            <template #body.append="">
               <tr class="font-weight-medium">
                 <td class="text-center">Total</td>
                 <td class="text-right">{{ totalValue | currency }}</td>

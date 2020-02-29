@@ -8,7 +8,7 @@
         item-key="ID"
         :loading="loading"
       >
-        <template v-slot:item="{ item }">
+        <template #item="{ item }">
           <tr>
             <td class="text-left text-no-wrap">{{ item.CreationDate | date }}</td>
             <td class="text-left text-no-wrap">{{ item.CaducityDate | date }}</td>

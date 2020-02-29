@@ -19,7 +19,7 @@
             :loading="loading"
             dense
           >
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td class="text-right">{{ item.Index }}</td>
                 <td class="text-right">{{ item.SectorName }}</td>

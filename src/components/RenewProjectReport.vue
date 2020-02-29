@@ -19,7 +19,7 @@
             class="elevation-1"
             dense
           >
-            <template v-slot:body.prepend="">
+            <template #body.prepend="">
               <tr class="font-weight-medium grey-lighten-4">
                 <td colspan="3" class="text-center">Total</td>
                 <td class="text-right">{{ totalBudget | currency }}</td>
@@ -32,7 +32,7 @@
                 <td class="text-right">{{ totalY5 | currency }}</td>
               </tr>
             </template>
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td>{{ item.InseeCode }}</td>
                 <td>{{ item.CityName }}</td>
@@ -47,7 +47,7 @@
                 <td class="text-right">{{ item.Y5 | currency }}</td>
               </tr>
             </template>
-            <template v-slot:body.append="">
+            <template #body.append="">
               <tr class="grey lighten-4 font-weight-medium">
                 <td colspan="3" class="text-center">Total</td>
                 <td class="text-right">{{ totalBudget | currency }}</td>

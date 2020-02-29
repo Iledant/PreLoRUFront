@@ -14,7 +14,7 @@
             :loading="loading"
             :search="search"
           >
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td class="text-left"><a :href="item.Link" target="_blank">{{ item.Name }}</a></td>
                 <td class="text-center px-0">

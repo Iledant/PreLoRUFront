@@ -15,7 +15,7 @@
             class="elevation-1"
             dense
           >
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td class="text-no-wrap table-link" @click="goTo(item.ID)">{{ item.Reference }}</td>
                 <td class="table-link" @click="goTo(item.ID)">{{ item.Name }}</td>
@@ -24,7 +24,7 @@
                 <td class="text-right">{{ item.Budget | currency }}</td>
                 <td class="px-0">
                   <v-tooltip left v-if="hasCoproRight" color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <v-btn color="primary" icon small text class="pa-0" @click="modify(item)">
                         <v-icon class="pa-0" v-on="on">create</v-icon>
                       </v-btn>
@@ -34,7 +34,7 @@
                 </td>
                 <td class="px-0">
                   <v-tooltip left v-if="hasCoproRight" color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <v-btn
                         color="primary"
                         icon
@@ -56,7 +56,7 @@
         </v-flex>
         <v-flex xs12 class="text-right">
           <v-tooltip left color="primary" v-if="hasCoproRight">
-            <template v-slot:activator="{ on }">
+            <template #activator="{ on }">
               <v-btn color="primary" fab dark x-small @click="add" v-on="on">
                 <v-icon>add</v-icon>
               </v-btn>

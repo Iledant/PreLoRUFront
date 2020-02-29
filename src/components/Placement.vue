@@ -18,7 +18,7 @@
             no-data-text="Aucun engagement stagiaire trouvé"
             no-results-text="Recherche infructueuse"
           >
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td class="text-right">{{ item.CreationDate | date }}</td>
                 <td>{{ item.IrisCode }}</td>
@@ -28,7 +28,7 @@
                 <td>{{ item.Comment }}</td>
                 <td class="px-0">
                   <v-tooltip left color="primary" v-if="isAdmin">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <v-btn
                         color="primary"
                         small

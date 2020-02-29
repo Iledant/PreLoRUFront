@@ -15,7 +15,7 @@
             class="elevation-1"
             dense
           >
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td
                   class="text-left table-link text-no-wrap"
@@ -31,7 +31,7 @@
                 <td class="text-right">{{ item.CompositeIndex | nullable }}</td>
                 <td class="px-0">
                   <v-tooltip left v-if="hasRenewProjectRight" color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <v-btn
                         color="primary"
                         small
@@ -49,7 +49,7 @@
                 </td>
                 <td class="px-0">
                   <v-tooltip left v-if="hasRenewProjectRight" color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <v-btn
                         color="primary"
                         small
@@ -71,7 +71,7 @@
         </v-flex>
         <v-flex xs12 class="text-right" v-if="hasRenewProjectRight">
           <v-tooltip left color="primary">
-            <template v-slot:activator="{ on }">
+            <template #activator="{ on }">
               <v-btn color="primary" fab dark x-small @click="add" v-on="on">
                 <v-icon>add</v-icon>
               </v-btn>

@@ -14,7 +14,7 @@
             :search="search"
             class="elevation-1"
           >
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td class="text-left">{{ item.CommitmentYear }}</td>
                 <td class="text-left">{{ item.CommitmentCode }}</td>

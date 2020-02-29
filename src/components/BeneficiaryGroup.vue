@@ -25,7 +25,7 @@
                 no-data-text="Aucun bénéficiaire trouvé"
                 no-results-text="Recherche infructueuse"
               >
-                <template v-slot:item="{ item }">
+                <template #item="{ item }">
                   <tr>
                     <td>{{ item.Code }}</td>
                     <td>{{ item.Name }}</td>

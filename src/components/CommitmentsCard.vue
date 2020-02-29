@@ -15,7 +15,7 @@
             :search="search"
             dense
           >
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td class="text-left text-no-wrap">{{ item.CreationDate | date }}</td>
                 <td class="text-left text-no-wrap">{{ item.CaducityDate | date }}</td>
@@ -28,7 +28,7 @@
                 </td>
               </tr>
             </template>
-            <template v-slot:body.append="">
+            <template #body.append="">
               <tr class="font-weight-medium">
                 <td class="text-left">Total</td>
                 <td></td>

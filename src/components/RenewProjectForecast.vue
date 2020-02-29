@@ -14,7 +14,7 @@
             :loading="loading"
             :search="search"
           >
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td class="text-left">{{ item.CommissionName }}</td>
                 <td class="text-left">{{ item.ActionName }}</td>
@@ -22,7 +22,7 @@
                 <td class="text-left">{{ item.Project }}</td>
                 <td class="text-left">
                   <v-tooltip left color="secondary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <div v-on="on">{{ item.Comment | trim50 }}</div>
                     </template>
                     <span> {{ item.Comment }}</span>
@@ -58,7 +58,7 @@
         </v-flex>
         <v-flex xs12 class="text-right" v-if="hasRenewProjectRight">
           <v-tooltip left color="primary">
-            <template v-slot:activator="{ on }">
+            <template #activator="{ on }">
               <v-btn color="primary" fab dark x-small @click="addForecast" v-on="on">
                 <v-icon>add</v-icon>
               </v-btn>

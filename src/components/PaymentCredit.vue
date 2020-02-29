@@ -81,13 +81,13 @@
             no-data-text="Aucune ligne à afficher"
             no-results-text="Recherche infructueuse"
           >
-            <template v-slot:body.prepend="">
+            <template #body.prepend="">
               <tr class="font-weight-medium grey lighten-3">
                 <td colspan="4" class="text-center">Total</td>
                 <td class="text-right">{{ journalTotal | currency }}</td>
               </tr>
             </template>
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td>{{ item.Chapter }}</td>
                 <td>{{ item.Function }}</td>
@@ -96,7 +96,7 @@
                 <td class="text-right">{{ item.Value | currency }}</td>
               </tr>
             </template>
-            <template v-slot:body.append="">
+            <template #body.append="">
               <tr class="font-weight-medium grey lighten-3">
                 <td colspan="4" class="text-center">Total</td>
                 <td class="text-right">{{ journalTotal | currency }}</td>

@@ -15,7 +15,7 @@
             class="elevation-1"
             dense
           >
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td class="text-left">{{ item.CommissionDate | date }}</td>
                 <td class="text-left">{{ item.CommissionName }}</td>
@@ -23,7 +23,7 @@
                 <td class="text-right">{{ item.Value | currency }}</td>
                 <td class="px-0">
                   <v-tooltip left v-if="hasHousingRight" color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <v-btn
                         color="primary"
                         icon
@@ -40,7 +40,7 @@
                 </td>
                 <td class="px-0">
                   <v-tooltip left v-if="hasHousingRight" color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <v-btn
                         color="primary"
                         icon
@@ -62,7 +62,7 @@
         </v-flex>
         <v-flex xs12 class="text-right">
           <v-tooltip left color="primary" v-if="hasHousingRight">
-            <template v-slot:activator="{ on }">
+            <template #activator="{ on }">
               <v-btn color="primary" fab dark x-small @click="forecastAdd" v-on="on">
                 <v-icon>add</v-icon>
               </v-btn>

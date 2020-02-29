@@ -14,7 +14,7 @@
             :loading="loading"
             :search="search"
           >
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td class="text-left">{{ item.Date | date }}</td>
                 <td class="text-left">{{ item.Name }}</td>

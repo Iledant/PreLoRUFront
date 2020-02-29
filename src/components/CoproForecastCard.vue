@@ -15,7 +15,7 @@
             :search="search"
             dense
           >
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td class="text-left">{{ item.CommissionDate | date }}</td>
                 <td class="text-left">{{ item.CommissionName }}</td>
@@ -23,7 +23,7 @@
                 <td class="text-right text-no-wrap">{{ item.Value | currency }}</td>
                 <td class="text-left">
                   <v-tooltip left color="secondary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <div v-on="on">{{ item.Comment | trim50 }}</div>
                     </template>
                     <span>{{ item.Comment }}</span>
@@ -59,7 +59,7 @@
         </v-flex>
         <v-flex xs12 class="text-right" v-if="hasCoproRight">
           <v-tooltip left color="primary">
-            <template v-slot:activator="{ on }">
+            <template #activator="{ on }">
               <v-btn color="primary" fab dark x-small @click="addForecast" v-on="on">
                 <v-icon>add</v-icon>
               </v-btn>

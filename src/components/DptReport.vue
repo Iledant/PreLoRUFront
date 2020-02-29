@@ -20,7 +20,7 @@
         </v-flex>
         <v-flex xs12>
           <v-data-table :headers="headers" :items="items" class="elevation-1" dense>
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td>{{ item.Code }}</td>
                 <td>{{ item.Name }}</td>

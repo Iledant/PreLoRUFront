@@ -40,7 +40,7 @@
         </v-flex>
         <v-flex xs12 class="text-right">
           <v-tooltip left color="primary">
-            <template v-slot:activator="{ on }">
+            <template #activator="{ on }">
               <v-btn color="primary" fab dark x-small @click="addReport" v-on="on">
                 <v-icon>add</v-icon>
               </v-btn>

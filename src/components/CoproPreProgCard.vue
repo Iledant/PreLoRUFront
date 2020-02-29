@@ -29,7 +29,7 @@
             class="elevation-1"
             dense
           >
-            <template v-slot:body.prepend="">
+            <template #body.prepend="">
               <tr class="font-weight-medium grey-lighten-4">
                 <td colspan="2" class="text-center">Total</td>
                 <td class="text-right text-no-wrap">{{ sumForecast | currency }}</td>
@@ -41,11 +41,11 @@
                 <td />
               </tr>
             </template>
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td class="text-left">
                   <v-tooltip right color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <span v-on="on">{{ item.CommissionName }}</span>
                     </template>
                     <span>Action budgétaire : {{ item.ActionName }}</span>
@@ -54,7 +54,7 @@
                 <td class="text-left">{{ item.KindName }}</td>
                 <td class="text-right text-no-wrap">
                   <v-tooltip left color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <span v-on="on">{{ item.ForecastValue | currency }}</span>
                     </template>
                     <span>Commentaire : {{ item.ForecastComment }}</span>
@@ -63,7 +63,7 @@
                 <td>{{ item.ForecastProject }}</td>
                 <td class="px-0">
                   <v-tooltip left v-if="hasCoproPreProgRight" color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <v-btn
                         color="primary"
                         icon
@@ -81,7 +81,7 @@
                 </td>
                 <td class="text-right text-no-wrap">
                   <v-tooltip left color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <span v-on="on">{{ item.PreProgValue | currency }}</span>
                     </template>
                     <span>Commentaire : {{ item.PreProgComment }}</span>
@@ -90,7 +90,7 @@
                 <td>{{ item.PreProgProject }}</td>
                 <td class="px-0">
                   <v-tooltip left v-if="hasCoproPreProgRight" color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <v-btn
                         color="primary"
                         icon
@@ -107,7 +107,7 @@
                 </td>
                 <td class="px-0">
                   <v-tooltip left v-if="hasCoproPreProgRight" color="primary">
-                    <template v-slot:activator="{ on }">
+                    <template #activator="{ on }">
                       <v-btn
                         color="primary"
                         icon
@@ -126,7 +126,7 @@
                 </td>
               </tr>
             </template>
-            <template v-slot:body.append="">
+            <template #body.append="">
               <tr class="grey lighten-4 font-weight-medium">
                 <td colspan="2" class="text-center">Total</td>
                 <td class="text-right text-no-wrap">{{ sumForecast | currency }}</td>
@@ -143,7 +143,7 @@
         <v-flex xs12 class="text-right">
           <v-btn small text color="primary" @click="download">Exporter en Excel</v-btn>
           <v-tooltip left color="primary" v-if="hasCoproRight">
-            <template v-slot:activator="{ on }">
+            <template #activator="{ on }">
               <v-btn color="primary" fab dark x-small @click="preProgAdd" v-on="on">
                 <v-icon>add</v-icon>
               </v-btn>

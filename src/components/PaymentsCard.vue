@@ -15,7 +15,7 @@
             :search="search"
             dense
           >
-            <template v-slot:item="{ item }">
+            <template #item="{ item }">
               <tr>
                 <td class="text-left">{{ item.CreationDate | date }}</td>
                 <td class="text-left">{{ item.ModificationDate | date }}</td>
@@ -23,7 +23,7 @@
                 <td class="text-right">{{ item.Value | currency }}</td>
               </tr>
             </template>
-            <template v-slot:body.append="">
+            <template #body.append="">
               <tr class="font-weight-medium">
                 <td colspan="3" class="text-center">Total</td>
                 <td class="text-right">{{ total | currency }}</td>

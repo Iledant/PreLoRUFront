@@ -32,7 +32,7 @@
           no-results-text="Recherche infructueuse"
           :footer-props="{ disableItemsPerPage: true }"
         >
-          <template v-slot:item="{ item }">
+          <template #item="{ item }">
             <tr>
               <td class="text-right">{{ item.Date | date }}</td>
               <td>{{ item.Name }}</td>

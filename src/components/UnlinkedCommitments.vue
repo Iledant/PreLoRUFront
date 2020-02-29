@@ -32,13 +32,13 @@
             no-results-text="Recherche infructueuse"
             :footer-props="{ disableItemsPerPage: true }"
           >
-            <template v-slot:item.CreationDate="{ item }">
+            <template #item.CreationDate="{ item }">
               <div class="text-no-wrap">{{ item.CreationDate | date }}</div>
             </template>
-            <template v-slot:item.Value="{ item }">
+            <template #item.Value="{ item }">
               <div class="text-no-wrap">{{ item.Value | currency }}</div>
             </template>
-            <template v-slot:item.SoldOut="{ item }">
+            <template #item.SoldOut="{ item }">
               <div class="text-center">
                 <v-icon>{{ item.SoldOut | displayBool }}</v-icon>
               </div>
