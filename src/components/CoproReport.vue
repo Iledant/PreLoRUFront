@@ -3,7 +3,11 @@
     <v-container grid-list-md fluid>
       <v-layout wrap>
         <v-flex xs12 md6 offset-md3>
-          <v-text-field label="Recherche dans la synthèse" v-model="search" />
+          <v-text-field
+            label="Recherche dans la synthèse"
+            v-model="search"
+            prepend-icon="search"
+          />
         </v-flex>
         <v-flex xs12>
           <v-data-table

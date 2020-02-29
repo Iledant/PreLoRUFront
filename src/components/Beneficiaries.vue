@@ -2,7 +2,11 @@
   <v-container grid-list-md fluid>
     <v-layout wrap>
       <v-flex xs12 sm6 offset-sm3>
-        <v-text-field label="Rechercher (code, nom)" v-debounce:500ms="newSearch" />
+        <v-text-field
+          label="Rechercher (code, nom)"
+          v-debounce:500ms="newSearch"
+          prepend-icon="search"
+        />
       </v-flex>
       <v-flex sm3 />
       <v-flex xs12>
@@ -107,10 +111,8 @@ export default {
       this.getBeneficiaries(this.page)
     },
     async getBeneficiaries (p) {
-      await this.$store.dispatch(types.GET_BENEFICIARIES, {
-        Search: this.search,
-        Page: p
-      })
+      await this.$store.dispatch(types.GET_BENEFICIARIES,
+        { Search: this.search, Page: p })
       if (this.page !== this.currentPage) {
         this.page = this.currentPage
       }

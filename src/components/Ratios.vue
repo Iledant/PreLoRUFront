@@ -3,7 +3,12 @@
     <v-card-text>
       <v-layout wrap>
         <v-flex xs12 pa-2 sm6 offset-sm3>
-          <v-text-field label="Année" v-debounce:500ms="yearChanged" :rules="[yearRule]" />
+          <v-text-field
+            label="Année"
+            v-debounce:500ms="yearChanged"
+            :rules="[yearRule]"
+            prepend-icon="calendar_today"
+          />
         </v-flex>
         <v-flex xs12 pr-2 pl-2>
           <v-data-table

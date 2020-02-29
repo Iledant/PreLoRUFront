@@ -11,7 +11,12 @@
       <v-container grid-list-md>
         <v-layout wrap>
           <v-flex xs12>
-            <v-text-field label="Nom" v-model="item.Name" :rules="[notEmpty]" />
+            <v-text-field
+              label="Nom"
+              v-model="item.Name"
+              :rules="[notEmpty]"
+              prepend-icon="search"
+            />
           </v-flex>
         </v-layout>
       </v-container>

@@ -33,7 +33,7 @@
                     prepend-icon="event"
                     readonly
                     v-on="on"
-                  ></v-text-field>
+                  />
                 </template>
                 <v-date-picker v-model="item.Date" no-title scrollable locale="fr-FR">
                   <v-spacer />

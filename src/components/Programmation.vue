@@ -10,11 +10,16 @@
             :rules="[yearRule]"
             v-debounce:500ms="changeYear"
             :disabled="modified"
+            prepend-icon="calendar_icon"
           />
         </v-flex>
         <v-flex md3 />
         <v-flex xs12 md6 offset-md3>
-          <v-text-field label="Recherche dans la programmation" v-model="search" />
+          <v-text-field
+            label="Recherche dans la programmation"
+            v-model="search"
+            prepend-icon="search"
+          />
         </v-flex>
         <v-flex md3 />
         <v-flex xs12>

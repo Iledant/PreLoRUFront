@@ -7,10 +7,16 @@
           <v-text-field
             label="Rechercher (engagement, bénéficiaire, action)"
             v-debounce:500ms="newSearch"
+            prepend-icon="search"
           />
         </v-flex>
         <v-flex xs12 sm6>
-          <v-text-field label="À partir de l'année" v-debounce:500ms="newYear" :rules="[yearRule]" />
+          <v-text-field
+            label="À partir de l'année"
+            v-debounce:500ms="newYear"
+            :rules="[yearRule]"
+            prepend-icon="calendar_today"
+          />
         </v-flex>
         <v-flex xs12>
           <v-data-table

@@ -3,10 +3,19 @@
     <v-container fluid grid-list-md>
       <v-layout wrap>
         <v-flex xs12 sm6 pa-2>
-          <v-text-field label="Rechercher (nom, code, bénéficiaire)" v-debounce:500ms="newSearch" />
+          <v-text-field
+            label="Rechercher (nom, code, bénéficiaire)"
+            v-debounce:500ms="newSearch"
+            prepend-icon="search"
+          />
         </v-flex>
         <v-flex xs12 sm6 pa-2>
-          <v-text-field label="À partir de l'année" v-debounce:500ms="newYear" :rules="[yearRule]" />
+          <v-text-field
+            label="À partir de l'année"
+            v-debounce:500ms="newYear"
+            :rules="[yearRule]"
+            prepend-icon="calendar_today"
+          />
         </v-flex>
         <v-flex xs12>
           <v-data-table

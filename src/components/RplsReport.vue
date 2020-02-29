@@ -11,6 +11,7 @@
             label="Première année egt"
             v-debounce:500ms="firstYear"
             :rules="[yearRule]"
+            prepend-icon="calendar_today"
           />
         </v-flex>
         <v-flex xs6 md3>
@@ -18,6 +19,7 @@
             label="Dernière année egt"
             v-debounce:500ms="lastYear"
             :rules="[yearRule, lastRule]"
+            prepend-icon="calendar_today"
           />
         </v-flex>
         <v-flex xs6 md3>

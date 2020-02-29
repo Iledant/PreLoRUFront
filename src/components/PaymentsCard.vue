@@ -3,7 +3,7 @@
     <v-container grid-list-md fluid>
       <v-layout wrap>
         <v-flex xs12 sm6 offset-sm3>
-          <v-text-field v-model="search" label="Rechercher" />
+          <v-text-field v-model="search" label="Rechercher" prepend-icon="search"/>
         </v-flex>
         <v-flex xs12>
           <v-data-table

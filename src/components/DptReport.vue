@@ -3,10 +3,20 @@
     <v-container fluid grid-list-md>
       <v-layout wrap>
         <v-flex xs6>
-          <v-text-field label="Première année" v-debounce:500ms="firstYear" :rules="[yearRule]" />
+          <v-text-field
+            label="Première année"
+            v-debounce:500ms="firstYear"
+            :rules="[yearRule]"
+            prepend-icon="calendar_today"
+          />
         </v-flex>
         <v-flex xs6>
-          <v-text-field label="Dernière année" v-debounce:500ms="lastYear" :rules="[yearRule]" />
+          <v-text-field
+            label="Dernière année"
+            v-debounce:500ms="lastYear"
+            :rules="[yearRule]"
+            prepend-icon="calendar_today"
+          />
         </v-flex>
         <v-flex xs12>
           <v-data-table :headers="headers" :items="items" class="elevation-1" dense>

@@ -7,6 +7,7 @@
             label="Rechercher (référence, adresse, code INSEE)"
             v-model="search"
             v-debounce:500ms="newSearch"
+            prepend-icon="search"
           />
         </v-flex>
         <v-flex md3 />
