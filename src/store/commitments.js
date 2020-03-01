@@ -1,7 +1,7 @@
 import * as types from './types'
 import { beginLoading, setErrorMessage } from './loading'
 import Vue from 'vue'
-import { excelReadFile, excelExport } from '../excel.js'
+import { excelReadFile, excelExport, valStyle, dateStyle } from '../excel.js'
 
 const state = {
   commitmentsList: [],
@@ -16,35 +16,39 @@ async function exportCommitments (commitments) {
   const columns = [
     { header: 'Année', key: 'Year', width: 6 },
     { header: 'Secteur', key: 'Sector', width: 6 },
-    { header: 'Action', key: 'ActionName', width: 6 },
-    {
-      header: 'Création',
-      key: 'CreationDate',
-      width: 10,
-      style: { numberFormat: 'dd/mm/yy' }
-    },
-    {
-      header: 'Modification',
-      key: 'ModificationDate',
-      width: 10,
-      style: { numberFormat: 'dd/mm/yy' }
-    },
+    { header: 'Action', key: 'ActionName', width: 30 },
+    { header: 'Création', key: 'CreationDate', ...dateStyle },
+    { header: 'Modification', key: 'ModificationDate', ...dateStyle },
     { header: 'Code', key: 'Code', width: 10 },
     { header: 'Numéro', key: 'Number', width: 10 },
     { header: 'Ligne', key: 'Line', width: 6 },
-    { header: 'Libellé', key: 'Name', width: 20 },
-    {
-      header: 'Montant',
-      key: 'Value',
-      width: 14,
-      style: { numberFormat: '#,##0.00' },
-      addTotal: true
-    },
-    { header: 'Bénéficiaire', key: 'BeneficiaryName', width: 20 },
+    { header: 'Libellé', key: 'Name', width: 30 },
+    { header: 'Montant', key: 'Value', ...valStyle },
+    { header: 'Bénéficiaire', key: 'BeneficiaryName', width: 30 },
     { header: 'Code IRIS', key: 'IrisCode', width: 10 },
     { header: 'Logement', key: 'HousingName', width: 14 },
     { header: 'Copro', key: 'CoproName', width: 14 },
     { header: 'Projet RU', key: 'RenewProjectName', width: 14 }
+  ]
+  await excelExport(commitments, columns, 'Engagements')
+}
+
+async function exportSoldCommitments (commitments) {
+  const columns = [
+    { header: 'Année', key: 'Year', width: 6 },
+    { header: 'Secteur', key: 'Sector', width: 6 },
+    { header: 'Action', key: 'ActionCode', width: 12 },
+    { header: 'Action', key: 'ActionName', width: 30 },
+    { header: 'Création', key: 'CreationDate', ...dateStyle },
+    { header: 'Modification', key: 'ModificationDate', ...dateStyle },
+    { header: 'Code', key: 'Code', width: 10 },
+    { header: 'Numéro', key: 'Number', width: 10 },
+    { header: 'Ligne', key: 'Line', width: 6 },
+    { header: 'Libellé', key: 'Name', width: 20 },
+    { header: 'Montant', key: 'Value', ...valStyle },
+    { header: 'Soldé', key: 'SoldOut', ...valStyle },
+    { header: 'Bénéficiaire', key: 'Beneficiary', width: 30 },
+    { header: 'Code IRIS', key: 'IrisCode', width: 10 }
   ]
   await excelExport(commitments, columns, 'Engagements')
 }
@@ -165,6 +169,40 @@ const actions = {
           commit(types.GET_HOUSING_PAYMENTS, body.Payment)
           break
       }
+      commit(types.END_LOADING)
+    } catch (err) {
+      setErrorMessage(commit, err)
+    }
+  },
+  async [types.EXPORT_ELDEST_COMMITMENTS] ({ commit }) {
+    try {
+      beginLoading(commit)
+      const resp = await Vue.http.get('commitments/eldest')
+      const parsed = resp.body.SoldCommitment.map(
+        ({ CreationDate, ModificationDate, Value, ...others }) => ({
+          CreationDate: new Date(CreationDate),
+          ModificationDate: new Date(ModificationDate),
+          Value: 0.01 * Value,
+          ...others
+        }))
+      exportSoldCommitments(parsed)
+      commit(types.END_LOADING)
+    } catch (err) {
+      setErrorMessage(commit, err)
+    }
+  },
+  async [types.EXPORT_UNPAID_COMMITMENTS] ({ commit }) {
+    try {
+      beginLoading(commit)
+      const resp = await Vue.http.get('commitments/unpaid')
+      const parsed = resp.body.SoldCommitment.map(
+        ({ CreationDate, ModificationDate, Value, ...others }) => ({
+          CreationDate: new Date(CreationDate),
+          ModificationDate: new Date(ModificationDate),
+          Value: 0.01 * Value,
+          ...others
+        }))
+      exportSoldCommitments(parsed)
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)

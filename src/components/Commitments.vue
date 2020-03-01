@@ -56,7 +56,9 @@
         :disabled="selected.length === 0"
       >Supprimer le lien</v-btn>
       <v-spacer />
-      <v-btn text small @click="excelExport()" color="primary">Export Excel</v-btn>
+      <v-btn text @click="eldestExport()" color="primary">Export Excel RAM</v-btn>
+      <v-btn text @click="unpaidExport()" color="primary">Export Excel caducité</v-btn>
+      <v-btn text @click="excelExport()" color="primary">Export Excel</v-btn>
       <v-file-input
         accept="*.xlsx"
         label="Importer des engagements"
@@ -125,6 +127,12 @@ export default {
         Year: this.year,
         Search: this.search
       })
+    },
+    async unpaidExport () {
+      await this.$store.dispatch(types.EXPORT_UNPAID_COMMITMENTS)
+    },
+    async eldestExport () {
+      await this.$store.dispatch(types.EXPORT_ELDEST_COMMITMENTS)
     },
     async unlink () {
       const IDs = this.selected.map(i => i.ID)
