@@ -264,7 +264,8 @@ export default {
           Area: this.item.Area ? parseFloat(String(this.item.Area).replace(',', '.')) : null,
           EndYear: this.item.EndYear ? parseInt(this.item.EndYear) : null,
           Loan: this.item.Loan ? parseFloat(String(this.item.Loan).replace(',', '.')) : null,
-          Charges: this.item.Charges ? parseFloat(String(this.item.Charges).replace(',', '.')) : null
+          Charges: this.item.Charges ? parseFloat(String(this.item.Charges).replace(',', '.')) : null,
+          TypologyID: this.item.TypologyID
         }
         this.$emit('confirm', ReservationFee)
       }
