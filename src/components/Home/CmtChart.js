@@ -1,11 +1,14 @@
 import { Line } from 'vue-chartjs'
+import { mapState } from 'vuex'
 
 export default {
   extends: Line,
-  props: {
-    currentValues: { type: Array, default: _ => [] },
-    previousValues: { type: Array, default: _ => [] },
-    programmation: { type: Array, default: _ => [] }
+  computed: {
+    ...mapState({
+      currentValues: state => state.home.currentYearCommitments,
+      previousValues: state => state.home.previousYearCommitments,
+      programmation: state => state.home.currentProgrammation
+    })
   },
   data: () => ({
     currentYear: new Date().getFullYear(),
@@ -29,7 +32,7 @@ export default {
           borderColor: '#9C27B0',
           pointBackgroundColor: '#9C27B0',
           fill: false,
-          borderWidth: 2,
+          borderWidth: 1,
           cubicInterpolationMode: 'monotone',
           data: []
         },
@@ -50,6 +53,33 @@ export default {
           data: []
         }
       ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      legend: { display: false },
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              fontFamily: 'Roboto',
+              callback: (val, idx, vals) => `${val} M€`
+            }
+          }
+        ],
+        xAxes: [{ ticks: { fontFamily: 'Roboto' } }]
+      },
+      tooltips: {
+        titleFontFamily: 'Roboto',
+        bodyFontFamily: 'Roboto',
+        backgroundColor: 'rgba(74,20,140,0.8)',
+        callbacks: {
+          label: (item, data) =>
+            ` ${data.datasets[item.datasetIndex].label} : ${item.yLabel.toFixed(
+              2
+            )} M€`
+        }
+      }
     }
   }),
   watch: {
@@ -60,33 +90,7 @@ export default {
       this.cmtDatas.datasets[1].label = 'Prog'
       this.cmtDatas.datasets[0].data = this.previousValues
       this.cmtDatas.datasets[0].label = this.currentYear - 1
-      this.renderChart(this.cmtDatas, {
-        responsive: true,
-        maintainAspectRatio: false,
-        legend: { display: false },
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                fontFamily: 'Roboto',
-                callback: (val, idx, vals) => `${val} M€`
-              }
-            }
-          ],
-          xAxes: [{ ticks: { fontFamily: 'Roboto' } }]
-        },
-        tooltips: {
-          titleFontFamily: 'Roboto',
-          bodyFontFamily: 'Roboto',
-          backgroundColor: 'rgba(74,20,140,0.8)',
-          callbacks: {
-            label: (item, data) =>
-              ` ${data.datasets[item.datasetIndex].label} : ${item.yLabel.toFixed(
-                2
-              )} M€`
-          }
-        }
-      })
+      this.renderChart(this.cmtDatas, this.options)
     }
   }
 }
