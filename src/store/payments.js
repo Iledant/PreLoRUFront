@@ -93,7 +93,8 @@ const actions = {
         CreationDate: Number(d.CreationDate),
         ModificationDate: Number(d.ModificationDate),
         Value: Number(d.Value),
-        Number: Number(d.Number)
+        Number: Number(d.Number),
+        ReceiptDate: d.ReceiptDate ? Number(d.ReceiptDate) : 0
       })
       await excelReadFile(
         file,
