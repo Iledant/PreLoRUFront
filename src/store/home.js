@@ -12,7 +12,8 @@ const state = {
   currentProgrammation: [],
   importLogs: [],
   homeMessage: null,
-  paymentCreditSum: null
+  paymentCreditSum: null,
+  averagePaymentTime: []
 }
 
 const actions = {
@@ -104,6 +105,7 @@ const mutations = {
     }
     state.importLogs = [...payload.ImportLog]
     state.paymentCreditSum = payload.PaymentCreditSum * 0.000001
+    state.averagePaymentTime = [...payload.AveragePaymentTime]
   },
   [types.SET_HOME_MESSAGE] (state, payload) {
     state.homeMessage = { ...payload }
