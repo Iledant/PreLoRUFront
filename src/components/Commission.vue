@@ -18,8 +18,8 @@
           >
             <template #item="{ item }">
               <tr>
-                <td class="text-left">{{ item.Name }}</td>
-                <td class="text-left">{{ item.Date | date }}</td>
+                <td>{{ item.Name }}</td>
+                <td>{{ item.Date | date }}</td>
                 <td class="px-0">
                   <v-tooltip left color="primary">
                     <template #activator="{ on }">
@@ -85,15 +85,14 @@
                   v-model="item.Name"
                   @keyup.esc="dialog = false"
                   @keyup.enter="save"
+                  :rules="[t => !!t || 'Nom obligatoire']"
                 />
               </v-flex>
               <v-flex xs12>
                 <v-menu
-                  ref="menu"
                   v-model="menu"
                   :close-on-content-click="false"
                   :nudge-right="40"
-                  :return-value.sync="item.Date"
                   transition="scale-transition"
                   offset-y
                   min-width="290px"
@@ -105,13 +104,16 @@
                       prepend-icon="event"
                       readonly
                       v-on="on"
-                    ></v-text-field>
+                      :rules="[d => !!d || 'Date obligatoire']"
+                    />
                   </template>
-                  <v-date-picker v-model="item.Date" no-title scrollable locale="fr-FR">
-                    <v-spacer />
-                    <v-btn text color="primary" @click="menu = false">Annuler</v-btn>
-                    <v-btn text color="primary" @click="$refs.menu.save(item.Date)">OK</v-btn>
-                  </v-date-picker>
+                  <v-date-picker
+                    v-model="item.Date"
+                    no-title
+                    scrollable
+                    locale="fr-FR"
+                    @input="menu = false"
+                  />
                 </v-menu>
               </v-flex>
             </v-layout>
@@ -137,6 +139,7 @@
 import * as types from '../store/types.js'
 import { formatNullDate } from '../date.js'
 import DeleteDialog from './DeleteDialog'
+const nullCommission = { ID: null, Name: '', Date: null }
 export default {
   name: 'Commission',
   components: { DeleteDialog },
@@ -144,17 +147,17 @@ export default {
     return {
       search: '',
       headers: [
-        { text: 'Nom', value: 'Name', align: 'center' },
-        { text: 'Date', value: 'Date', align: 'center' },
+        { text: 'Nom', value: 'Name' },
+        { text: 'Date', value: 'Date' },
         { text: '', value: '', sortable: false, width: '1%' },
         { text: '', value: '', sortable: false, width: '1%' }
       ],
       dialog: false,
       delDlg: false,
-      item: { ID: null, Name: '', Date: null },
+      item: { ...nullCommission },
       dlgTitle: 'Nouvelle commission',
       dlgBtn: 'Créer',
-      menu: null
+      menu: false
     }
   },
   methods: {
@@ -169,28 +172,20 @@ export default {
       this.dialog = true
     },
     add (item) {
-      this.item.ID = null
-      this.item.Name = ''
-      this.item.Date = null
+      this.item = { ...nullCommission }
       this.dlgTitle = 'Nouvelle commission'
       this.dlgBtn = 'Créer'
       this.dialog = true
     },
     async save () {
       if (!this.disabled) {
-        let date = null
-        if (this.item.Date) {
-          const d = new Date(this.item.Date)
-          date = d.toISOString()
-        }
-        const dispatch =
-          this.dlgBtn === 'Créer'
-            ? types.CREATE_COMMISSION
-            : types.UPDATE_COMMISSION
+        const dispatch = this.dlgBtn === 'Créer'
+          ? types.CREATE_COMMISSION
+          : types.UPDATE_COMMISSION
         await this.$store.dispatch(dispatch, {
           ID: this.item.ID,
           Name: this.item.Name,
-          Date: date
+          Date: new Date(this.item.Date).toISOString()
         })
         this.dialog = false
       }
@@ -207,7 +202,7 @@ export default {
       return this.$store.state.loading.loading !== 0
     },
     disabled () {
-      return this.item.Name === null || this.item.Name === ''
+      return !this.item.Name || !this.item.Date
     },
     formattedDate () {
       return formatNullDate(this.item.Date)
