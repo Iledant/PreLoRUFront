@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import ReservationFeesCard from './ReservationFeesCard.vue'
-import ReservationReportCard from './ReservationReportCard.vue'
+import ReservationFeesCard from './ReservationFees/ReservationFeesCard.vue'
+import ReservationReportCard from './ReservationFees/ReservationReportCard.vue'
 export default {
   name: 'ReservationFees',
   components: { ReservationFeesCard, ReservationReportCard },

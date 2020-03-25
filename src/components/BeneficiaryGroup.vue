@@ -99,11 +99,11 @@
 </template>
 
 <script>
-import * as types from '../store/types.js'
-import DeleteDialog from './DeleteDialog.vue'
+import * as types from '@/store/types.js'
+import DeleteDialog from '@/components/DeleteDialog.vue'
 import { mapGetters, mapState } from 'vuex'
-import BeneficiaryGroupPlacements from './BeneficiaryGroupPlacements.vue'
-import BeneficiaryGroupCommitments from './BeneficiaryGroupCommitments.vue'
+import BeneficiaryGroupPlacements from './BeneficiaryGroup/BeneficiaryGroupPlacements.vue'
+import BeneficiaryGroupCommitments from './BeneficiaryGroup/BeneficiaryGroupCommitments.vue'
 export default {
   name: 'BeneficiaryGroup',
   components: {

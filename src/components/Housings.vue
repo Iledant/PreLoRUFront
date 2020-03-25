@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import HousingsCard from './HousingsCard.vue'
-import HousingForecastCard from './HousingForecastCard.vue'
-import HousingPreProgCard from './HousingPreProgCard.vue'
-import * as types from '../store/types.js'
+import HousingsCard from './Housings/HousingsCard.vue'
+import HousingForecastCard from './Housings/HousingForecastCard.vue'
+import HousingPreProgCard from './Housings/HousingPreProgCard.vue'
+import * as types from '@/store/types.js'
 export default {
   name: 'Housings',
   components: { HousingsCard, HousingForecastCard, HousingPreProgCard },

@@ -55,8 +55,8 @@
 </template>
 
 <script>
-import * as types from '../store/types'
-import { yearRule } from './mixins'
+import * as types from '@/store/types'
+import { yearRule } from '@/components/mixins'
 export default {
   name: 'UnlinkedCommitments',
   mixins: [yearRule],

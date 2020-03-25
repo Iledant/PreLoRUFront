@@ -107,9 +107,9 @@
 </template>
 
 <script>
-import * as types from '../store/types.js'
-import { chkAndUpload } from './mixins'
-import { excelExport, dateStyle, valStyle } from '../excel'
+import * as types from '@/store/types.js'
+import { chkAndUpload } from '@/components/mixins'
+import { excelExport, dateStyle, valStyle } from '@/excel'
 export default {
   name: 'Placement',
   mixins: [chkAndUpload],

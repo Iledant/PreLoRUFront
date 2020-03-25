@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import CommitmentForecasts from './CommitmentForecasts.vue'
+import CommitmentForecasts from './Forecasts/CommitmentForecasts.vue'
 export default {
   name: 'Forecasts',
   components: { CommitmentForecasts },

@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import * as types from '../store/types'
-import DptReport from './DptReport'
-import CityReport from './CityReport'
-import RplsReport from './RplsReport'
+import * as types from '@/store/types'
+import DptReport from './Summaries/DptReport'
+import CityReport from './Summaries/CityReport'
+import RplsReport from './Summaries/RplsReport'
 export default {
   name: 'Summaries',
   components: { DptReport, CityReport, RplsReport },

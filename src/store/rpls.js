@@ -1,6 +1,6 @@
 import * as types from './types'
 import { beginLoading, setErrorMessage } from './loading'
-import { excelReadFile, excelExport } from '../excel'
+import { excelReadFile, excelExport } from '@/excel'
 import Vue from 'vue'
 
 const state = {

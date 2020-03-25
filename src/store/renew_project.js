@@ -1,7 +1,7 @@
 import * as types from './types.js'
 import Vue from 'vue'
 import { beginLoading, setErrorMessage } from './loading.js'
-import { excelExport } from '../excel'
+import { excelExport } from '@/excel'
 
 const state = {
   renewProject: null,

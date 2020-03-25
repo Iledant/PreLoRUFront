@@ -55,14 +55,14 @@
   </v-card>
 </template>
 <script>
-import * as types from '../store/types'
+import * as types from '@/store/types'
 import UnlinkedCommitment from './UnlinkedCommitments.vue'
-import CommitmentsCard from './CommitmentsCard.vue'
-import CoproCard from './CoproCard.vue'
-import PaymentsCard from './PaymentsCard.vue'
-import CoproEvents from './CoproEvents.vue'
-import CoproDocs from './CoproDocs.vue'
-import CoproForecastCard from './CoproForecastCard'
+import CommitmentsCard from '@/components/Settings/CommitmentsCard.vue'
+import CoproCard from './Copro/CoproCard.vue'
+import PaymentsCard from '@/components/Settings/PaymentsCard.vue'
+import CoproEvents from './Copro/CoproEvents.vue'
+import CoproDocs from './Copro/CoproDocs.vue'
+import CoproForecastCard from './Copro/CoproForecastCard'
 export default {
   name: 'Copro',
   components: {

@@ -49,14 +49,14 @@
   </v-card>
 </template>
 <script>
-import * as types from '../store/types'
+import * as types from '@/store/types'
 import UnlinkedCommitment from './UnlinkedCommitments.vue'
-import CommitmentsCard from './CommitmentsCard.vue'
-import PaymentsCard from './PaymentsCard'
-import RenewProjectForecast from './RenewProjectForecast'
-import RenewProjectEvents from './RenewProjectEvents'
-import RenewProjectCmtCityJoin from './RenewProjectCmtCityJoin'
-import RenewProjectCard from './RenewProjectCard'
+import CommitmentsCard from '@/components/Settings/CommitmentsCard.vue'
+import PaymentsCard from '@/components/Settings/PaymentsCard'
+import RenewProjectForecast from './RenewProject/RenewProjectForecast'
+import RenewProjectEvents from './RenewProject/RenewProjectEvents'
+import RenewProjectCmtCityJoin from './RenewProject/RenewProjectCmtCityJoin'
+import RenewProjectCard from './RenewProject/RenewProjectCard'
 export default {
   name: 'RenewProject',
   components: {
