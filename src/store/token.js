@@ -182,6 +182,18 @@ const state = {
       title: 'Paiements',
       icon: 'credit_card',
       routerLink: { name: 'Payments' }
+    },
+    {
+      id: 12,
+      title: 'Demandes de paiement',
+      icon: 'receipt',
+      routerLink: { name: 'PaymentDemands' }
+    },
+    {
+      id: 13,
+      title: 'Imports',
+      icon: 'cloud_upload',
+      routerLink: { name: 'Uploads' }
     }
   ]
 }

@@ -72,6 +72,28 @@
           <avg-pmt-time-chart :height="400" class="pt-1" />
           </v-card>
         </v-flex>
+        <v-flex xs12 md6>
+          <v-card>
+          <v-card-title class="tertiary align-start">Traitement à 30 jours des DVS
+            <v-tooltip bottom color="primary">
+              <template #activator="{ on }">
+                <v-icon small v-on="on" class="pl-1">info</v-icon>
+              </template>
+            <span>
+              Ce graphique représente l'évolution quotidienne sur les 30
+              derniers jours du stock de DVS arrivés à la région.<br />
+              Il diminue lorsqu'il y a moins de CSF (ou de proposition de
+              mandatement ou de rejets) que de nouvelles arrivées.<br />
+              La requête utilise les tableaux de bord d'IRIS importés.<br />
+              Le calcul n'est donc fiable que si l'import de ces
+              tableaux de bord est effectué tous les jours pendant plus de 30
+              jours.
+            </span>
+            </v-tooltip>
+          </v-card-title>
+          <payment-demand-count-chart :height="400" class="pt-1" />
+          </v-card>
+        </v-flex>
       </v-layout>
     </v-container>
     <home-message-dlg v-model="dlg" :msg="homeMsg" @confirm="confirm" />
@@ -84,11 +106,18 @@ import PmtChart from './Home/PmtChart'
 import CmtChart from './Home/CmtChart'
 import HomeMessageDlg from './Home/HomeMessageDlg.vue'
 import AvgPmtTimeChart from './Home/AvgPmtTimeChart'
+import PaymentDemandCountChart from './Home/PaymentDemandCountChart'
 import { mapGetters, mapState } from 'vuex'
 
 export default {
   name: 'Home',
-  components: { PmtChart, CmtChart, HomeMessageDlg, AvgPmtTimeChart },
+  components: {
+    PmtChart,
+    CmtChart,
+    HomeMessageDlg,
+    AvgPmtTimeChart,
+    PaymentDemandCountChart
+  },
   data () {
     return {
       dlg: false,

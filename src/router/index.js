@@ -28,6 +28,8 @@ import ReservationFees from '@/components/ReservationFees.vue'
 import ReservationFeeSettings from '@/components/Settings/ReservationFeeSettings.vue'
 import PaymentForecast from '@/components/PaymentForecast.vue'
 import HousingSettings from '@/components/Settings/HousingSettings.vue'
+import PaymentDemands from '@/components/Settings/PaymentDemands.vue'
+import Uploads from '@/components/Settings/Uploads.vue'
 
 Vue.use(Router)
 
@@ -115,6 +117,18 @@ export default new Router({
       path: '/housing_settings',
       component: HousingSettings,
       name: 'HousingSettings',
+      meta: { requiresAdmin: true }
+    },
+    {
+      path: '/payment_demands',
+      component: PaymentDemands,
+      name: 'PaymentDemands',
+      meta: { requiresAdmin: true }
+    },
+    {
+      path: '/uploads',
+      component: Uploads,
+      name: 'Uploads',
       meta: { requiresAdmin: true }
     }
   ]

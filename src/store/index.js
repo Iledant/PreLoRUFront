@@ -32,6 +32,7 @@ import beneficiaryGroup from './beneficiaryGroup'
 import reservationFees from './reservationFees'
 import housingTypes from './housingTypes'
 import difPmtForecasts from './difPmtForecasts'
+import paymentDemands from './paymentDemands'
 
 Vue.use(Vuex)
 
@@ -67,6 +68,7 @@ export default new Vuex.Store({
     beneficiaryGroup,
     reservationFees,
     housingTypes,
-    difPmtForecasts
+    difPmtForecasts,
+    paymentDemands
   }
 })
