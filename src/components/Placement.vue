@@ -51,21 +51,15 @@
       </v-layout>
     </v-container>
     <v-card-actions class="tertiary">
-      <v-btn color="primary" small text @click="download">Export Excel</v-btn>
       <v-spacer v-if="isAdmin" />
-      <v-file-input
-        accept="*.xlsx"
-        label="Importer les stagiaires"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,upload)"
-        v-if="isAdmin"
-      />
+      <v-btn color="primary" small text @click="download">Export Excel</v-btn>
     </v-card-actions>
 
     <v-dialog v-model="dialog" persistent :overlay="false" max-width="500px">
       <v-card>
-        <v-card-title class="primary white--text headline">Modifier le commentaire</v-card-title>
+        <v-card-title class="primary white--text headline">
+          Modifier le commentaire
+        </v-card-title>
         <v-card-text>
           <v-container grid-list-md>
             <v-layout wrap>
@@ -140,9 +134,6 @@ export default {
         { ID: this.item.ID, Comment: this.item.Comment })
       this.dialog = false
     },
-    upload (file) {
-      this.$store.dispatch(types.UPLOAD_PLACEMENTS, file)
-    },
     download () {
       if (this.items.length === 0) {
         return
@@ -150,7 +141,8 @@ export default {
       const filtered = this.items.filter(item => {
         const search = this.search.toString().toLocaleUpperCase()
         for (const key in item) {
-          if (item[key] && item[key].toString().toLocaleUpperCase().indexOf(search) !== -1) return true
+          if (item[key] &&
+          item[key].toString().toLocaleUpperCase().indexOf(search) !== -1) return true
         }
         return false
       })

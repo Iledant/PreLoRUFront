@@ -21,6 +21,7 @@
 
 <script>
 import PmtDemandUpload from './Uploads/PmtDemandUpload.vue'
+import PlacementUpload from './Uploads/PlacementUpload.vue'
 
 export default {
   name: 'Uploads',
@@ -28,7 +29,8 @@ export default {
     return {
       selected: null,
       items: [
-        { text: 'Demandes de paiement (DVS)', value: PmtDemandUpload }
+        { text: 'Demandes de paiement (DVS)', value: PmtDemandUpload },
+        { text: 'Stagiaires', value: PlacementUpload }
       ]
     }
   }

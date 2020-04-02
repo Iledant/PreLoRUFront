@@ -5,18 +5,19 @@ export default {
     fileError () {
       this.$store.commit(
         types.SET_ERROR_MESSAGE,
-        'Erreur de chargement de fichier, vérifier si les colonnes requises sont présentes'
+        'Erreur de fichier, vérifier si les colonnes requises sont présentes'
       )
     },
-    checkFile (file, callback) {
-      if (!file) {
+    async checkFile (file, callback) {
+      if (!file || typeof callback !== 'function') {
         return
       }
       if (!file.name.endsWith('.xlsx')) {
-        this.$store.commit(types.SET_ERROR_MESSAGE, 'Fichier XLSX attendu')
+        this.$store.commit(types.SET_ERROR_MESSAGE,
+          'Un fichier Excel XLSX est attendu')
         return
       }
-      callback(file)
+      await callback(file)
     }
   }
 }
