@@ -81,30 +81,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-card-actions v-if="hasHousingRight" class="tertiary">
-      <v-spacer />
-      <v-file-input
-        accept="*.xlsx"
-        label="Importer des liens dossiers IRIS/programmes"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,commitentLinkUpload)"
-      />
-      <v-file-input
-        accept="*.xlsx"
-        label="Importer des programmes"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,operationUpload)"
-      />
-      <v-file-input
-        accept="*.xlsx"
-        label="Importer le bilan détaillé"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,summaryUpload)"
-      />
-    </v-card-actions>
 
     <housing-dlg
       v-model="opDlg"
@@ -218,17 +194,6 @@ export default {
     remove (item) {
       this.item.ID = item.ID
       this.delDlg = true
-    },
-    operationUpload (file) {
-      this.$store.dispatch(types.UPLOAD_HOUSINGS, file)
-    },
-    async commitentLinkUpload (file) {
-      await this.$store.dispatch(types.UPLOAD_HOUSING_COMMITMENT_LINK, file)
-      this.getHousings(this.page)
-    },
-    async summaryUpload (file) {
-      await this.$store.dispatch(types.UPLOAD_HOUSING_SUMMARY, file)
-      this.getHousings(this.page)
     },
     async delConfirm () {
       await this.$store.dispatch(types.DEL_HOUSING, this.item.ID)

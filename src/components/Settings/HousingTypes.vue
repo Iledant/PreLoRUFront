@@ -71,16 +71,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-card-actions class="tertiary">
-      <v-spacer />
-      <v-file-input
-        accept="*.xlsx"
-        label="Importer les liens IRIS/programmes"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,upload)"
-      />
-    </v-card-actions>
 
     <v-dialog persistent :overlay="false" v-model="dialog" max-width="500px">
       <v-card>
@@ -126,11 +116,9 @@
 <script>
 import DeleteDialog from '@/components/DeleteDialog.vue'
 import { mapGetters, mapState } from 'vuex'
-import { chkAndUpload } from '@/components/mixins'
 import * as types from '@/store/types'
 export default {
   name: 'HousingTypes',
-  mixins: [chkAndUpload],
   components: { DeleteDialog },
   data () {
     return {
@@ -180,10 +168,6 @@ export default {
     },
     notNull (text) {
       return !!text || 'Le nom ne peut pas être vide'
-    },
-    async upload (file) {
-      await this.$store.dispatch(types.UPLOAD_IRIS_HOUSING_TYPES, file)
-      this.$store.dispatch(types.GET_HOUSING_TYPES)
     }
   },
   computed: {

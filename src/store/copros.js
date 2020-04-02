@@ -1,7 +1,6 @@
 import * as types from './types.js'
 import Vue from 'vue'
 import { beginLoading, setErrorMessage } from './loading.js'
-import { excelReadFile } from '../excel.js'
 
 const state = {
   coprosList: [],
@@ -65,41 +64,19 @@ const actions = {
       setErrorMessage(commit, response)
     }
   },
-  async [types.UPLOAD_COPROS] ({ commit }, file) {
+  async [types.UPLOAD_COPROS] ({ commit }, { Copro }) {
     beginLoading(commit)
     try {
-      await excelReadFile(
-        file,
-        ['Reference', 'Name', 'Address', 'ZipCode'],
-        d => Vue.http.post('copros', { Copro: d }),
-        err => setErrorMessage(commit, err),
-        d => ({
-          Reference: d.Reference,
-          Name: d.Name ? (d.Name.length > 0 ? d.Name : d.Address) : d.Address,
-          Address: d.Address,
-          ZipCode: parseInt(d.ZipCode),
-          LabelDate: d.LabelDate,
-          Budget: d.Budget ? parseInt(d.Budget) * 100 : null
-        })
-      )
+      await Vue.http.post('copros', { Copro })
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)
     }
   },
-  async [types.UPLOAD_COPRO_COMMITMENT_LINK] ({ commit }, file) {
+  async [types.UPLOAD_COPRO_COMMITMENT_LINK] ({ commit }, { CoproCommitmentBatch }) {
     beginLoading(commit)
     try {
-      await excelReadFile(
-        file,
-        ['Reference', 'IRISCode'],
-        d => Vue.http.post('copro/commitments', { CoproCommitmentBatch: d }),
-        err => setErrorMessage(commit, err),
-        d => ({
-          Reference: String(d.Reference),
-          IRISCode: String(d.IRISCode)
-        })
-      )
+      await Vue.http.post('copro/commitments', { CoproCommitmentBatch })
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)

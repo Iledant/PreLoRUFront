@@ -1,7 +1,7 @@
 import * as types from './types'
 import { beginLoading, setErrorMessage } from './loading'
 import Vue from 'vue'
-import { excelReadFile, excelExport, valStyle, dateStyle } from '../excel.js'
+import { excelExport, valStyle, dateStyle } from '../excel.js'
 
 const state = {
   commitmentsList: [],
@@ -90,53 +90,10 @@ const actions = {
       setErrorMessage(commit, err)
     }
   },
-  async [types.UPLOAD_COMMITMENTS] ({ commit }, file) {
+  async [types.UPLOAD_COMMITMENTS] ({ commit }, { Commitment }) {
     beginLoading(commit)
     try {
-      const sendFunc = d => Vue.http.post('commitments', { Commitment: d })
-      const parseFunc = d => ({
-        Year: Number(d.Year),
-        Code: d.Code,
-        Number: Number(d.Number),
-        Line: Number(d.Line),
-        CreationDate: Number(d.CreationDate),
-        ModificationDate: Number(d.ModificationDate),
-        CaducityDate: d.CaducityDate ? Number(d.CaducityDate) : null,
-        Name: d.Name,
-        Value: Number(d.Value),
-        BeneficiaryCode: Number(d.BeneficiaryCode),
-        BeneficiaryName: d.BeneficiaryName,
-        IrisCode: d.IrisCode ? String(d.IrisCode) : null,
-        Sector: d.Sector,
-        ActionCode: d.ActionCode ? Number(d.ActionCode) : null,
-        ActionName: d.ActionName,
-        SoldOut: d.SoldOut
-      })
-      await excelReadFile(
-        file,
-        [
-          'Year',
-          'Code',
-          'Number',
-          'Line',
-          'CreationDate',
-          'ModificationDate',
-          'Name',
-          'Value',
-          'BeneficiaryCode',
-          'BeneficiaryName',
-          'IrisCode',
-          'Sector',
-          'ActionCode',
-          'ActionName',
-          'SoldOut'
-        ],
-        sendFunc,
-        err => {
-          setErrorMessage(commit, err)
-        },
-        parseFunc
-      )
+      await Vue.http.post('commitments', { Commitment })
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)

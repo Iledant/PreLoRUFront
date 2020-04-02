@@ -17,7 +17,9 @@
           >
             <template #item="{ item }">
               <tr>
-                <td class="text-no-wrap table-link" @click="goTo(item.ID)">{{ item.Reference }}</td>
+                <td class="text-no-wrap table-link" @click="goTo(item.ID)">
+                  {{ item.Reference }}
+                </td>
                 <td class="table-link" @click="goTo(item.ID)">{{ item.Name }}</td>
                 <td class="table-link" @click="goTo(item.ID)">{{ item.FullAddress }}</td>
                 <td class="text-no-wrap text-right">{{ item.LabelDate | date }}</td>
@@ -66,23 +68,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-card-actions class="tertiary" v-if="hasCoproRight">
-      <v-spacer />
-      <v-file-input
-        accept="*.xlsx"
-        label="Importer des liens dossiers IRIS/labels"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,commitentLinkUpload)"
-      />
-      <v-file-input
-        accept="*.xlsx"
-        label="Importer des labels"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,operationUpload)"
-      />
-    </v-card-actions>
 
     <delete-dialog
       v-model="delDlg"
@@ -187,12 +172,6 @@ export default {
         this.dlgBtn === 'Créer' ? types.CREATE_COPRO : types.UPDATE_COPRO
       this.$store.dispatch(dispatch, c)
       this.dialog = false
-    },
-    operationUpload (file) {
-      this.$store.dispatch(types.UPLOAD_COPROS, file)
-    },
-    commitentLinkUpload (file) {
-      this.$store.dispatch(types.UPLOAD_COPRO_COMMITMENT_LINK, file)
     },
     goTo (ID) {
       this.$router.push({ name: 'Copro', params: { ID } })

@@ -92,51 +92,14 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-card-actions class="tertiary">
-      <v-spacer />
-      <v-btn text small @click="excelExport()" color="primary">Export Excel</v-btn>
-      <v-file-input
-        accept="*.xlsx"
-        label="Tester l'import d'un contingent"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,testUpload)"
-        v-if="isAdmin"
-      />
-      <v-file-input
-        accept="*.xlsx"
-        label="Importer un contingent"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,upload)"
-        v-if="isAdmin"
-      />
-    </v-card-actions>
     <reservation-fee-dlg v-model="dlg" :item="item" :action="action" @confirm="confirm" />
     <delete-dlg v-model="delDlg" :sentence="delMsg" @confirm="delConfirm()" />
-    <v-dialog max-width="500px" v-model="testDlg">
-      <v-card>
-        <v-card-title class="title primary white--text">Résultat du test</v-card-title>
-        <v-container grid-list-md>
-          <v-layout wrap>
-            <v-flex xs12>Nombre de lignes lues : {{batchSize}}</v-flex>
-            <v-flex xs12>Bénéficiaires manquants : {{missingBeneficiaries.toString()}}</v-flex>
-            <v-flex xs12>Villes manquantes : {{missingCities.toString()}}</v-flex>
-          </v-layout>
-        </v-container>
-        <v-card-actions class="tertiary">
-          <v-spacer />
-          <v-btn text color="primary" @click="testDlg = false">Ok</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </v-card>
 </template>
 
 <script>
 import { mapGetters, mapState } from 'vuex'
 import * as types from '@/store/types.js'
-import { chkAndUpload } from '@/components/mixins'
 import ReservationFeeDlg from './ReservationFeeDlg.vue'
 import DeleteDlg from '@/components/DeleteDialog.vue'
 const nullItem = {
@@ -169,7 +132,6 @@ const nullItem = {
 export default {
   name: 'ReservationFeesCard',
   components: { ReservationFeeDlg, DeleteDlg },
-  mixins: [chkAndUpload],
   data () {
     return {
       search: '',
@@ -187,27 +149,10 @@ export default {
       item: {},
       dlg: false,
       action: 'create',
-      delDlg: false,
-      batchSize: 0,
-      missingCities: [],
-      missingBeneficiaries: [],
-      testDlg: false
+      delDlg: false
     }
   },
   methods: {
-    async upload (file) {
-      await this.$store.dispatch(types.UPLOAD_RESERVATION_FEES, file)
-      this.getReservationFees(this.page)
-    },
-    async testUpload (file) {
-      const resp = await this.$store.dispatch(types.TEST_UPLOAD_RESERVATION_FEES, file)
-      if (resp !== null) {
-        this.batchSize = resp.BatchSize
-        this.missingCities = [...resp.MissingCities]
-        this.missingBeneficiaries = [...resp.MissingBeneficiaries]
-        this.testDlg = true
-      }
-    },
     newSearch (val) {
       this.search = val
       this.getReservationFees(this.page)

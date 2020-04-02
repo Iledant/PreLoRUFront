@@ -1,7 +1,6 @@
 import * as types from './types.js'
 import Vue from 'vue'
 import { beginLoading, setErrorMessage } from './loading.js'
-import { excelReadFile } from '../excel.js'
 
 const state = {
   renewProjectsList: [],
@@ -59,37 +58,10 @@ const actions = {
       setErrorMessage(commit, response)
     }
   },
-  async [types.UPLOAD_RENEW_PROJECTS] ({ commit }, file) {
+  async [types.UPLOAD_RENEW_PROJECTS] ({ commit }, { RenewProject }) {
     beginLoading(commit)
     try {
-      const parseFunc = d => ({
-        Reference: d.Reference,
-        Name: d.Name,
-        PRIN: Boolean(d.PRIN),
-        CityCode1: parseInt(d.CityCode1),
-        CityCode2: parseInt(d.CityCode2),
-        CityCode3: parseInt(d.CityCode3),
-        Budget: parseInt(100 * d.Budget),
-        Population: d.Population ? parseInt(d.Population) : null,
-        CompositeIndex: d.CompositeIndex ? parseInt(d.CompositeIndex) : null
-      })
-      await excelReadFile(
-        file,
-        [
-          'Reference',
-          'Name',
-          'Budget',
-          'PRIN',
-          'CityCode1',
-          'CityCode2',
-          'CityCode3',
-          'Population',
-          'CompositeIndex'
-        ],
-        d => Vue.http.post('renew_projects', { RenewProject: d }),
-        err => setErrorMessage(commit, err),
-        parseFunc
-      )
+      await Vue.http.post('renew_projects', { RenewProject })
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)

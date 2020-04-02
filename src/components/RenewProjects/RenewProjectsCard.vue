@@ -84,14 +84,6 @@
     <v-card-actions class="tertiary">
       <v-spacer />
       <v-btn color="primary" small text @click="download">Télécharger le rapport</v-btn>
-      <v-file-input
-        accept="*.xlsx"
-        label="Importer des PRIR PRIN"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,upload)"
-        v-if="hasRenewProjectRight"
-      />
     </v-card-actions>
 
     <renew-project-dlg
@@ -230,9 +222,6 @@ export default {
           ? types.CREATE_RENEW_PROJECT
           : types.UPDATE_RENEW_PROJECT
       this.$store.dispatch(dispatch, r)
-    },
-    upload (file) {
-      this.$store.dispatch(types.UPLOAD_RENEW_PROJECTS, file)
     },
     download () {
       this.$store.dispatch(types.DOWNLOAD_RP_REPORT)

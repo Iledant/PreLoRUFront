@@ -50,24 +50,17 @@
     </v-container>
     <v-card-actions class="tertiary">
       <v-spacer />
-      <v-btn text small @click="excelExport()" color="primary">Export Excel</v-btn>
-      <v-file-input
-        accept="*.xlsx"
-        label="Importer des paiements"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,upload)"
-      />
+      <v-btn text @click="excelExport()" color="primary">Export Excel</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
 import * as types from '@/store/types.js'
-import { yearRule, chkAndUpload } from '@/components/mixins'
+import { yearRule } from '@/components/mixins'
 export default {
   name: 'Payments',
-  mixins: [yearRule, chkAndUpload],
+  mixins: [yearRule],
   data () {
     return {
       search: '',
@@ -86,9 +79,6 @@ export default {
     }
   },
   methods: {
-    upload (file) {
-      this.$store.dispatch(types.UPLOAD_PAYMENTS, file)
-    },
     newSearch (val) {
       this.search = val
       this.getPayments(this.page)

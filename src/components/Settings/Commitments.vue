@@ -59,13 +59,6 @@
       <v-btn text @click="eldestExport()" color="primary">Export Excel RAM</v-btn>
       <v-btn text @click="unpaidExport()" color="primary">Export Excel caducité</v-btn>
       <v-btn text @click="excelExport()" color="primary">Export Excel</v-btn>
-      <v-file-input
-        accept="*.xlsx"
-        label="Importer des engagements"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,upload)"
-      />
     </v-card-actions>
   </v-card>
 </template>
@@ -95,9 +88,6 @@ export default {
     }
   },
   methods: {
-    async upload (file) {
-      await this.$store.dispatch(types.UPLOAD_COMMITMENTS, file)
-    },
     newSearch (val) {
       this.search = val
       this.getCommitments(this.page)

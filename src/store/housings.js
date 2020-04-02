@@ -1,7 +1,6 @@
 import * as types from './types.js'
 import Vue from 'vue'
 import { beginLoading, setErrorMessage } from './loading.js'
-import { excelReadFile, summaryReadFile } from '../excel.js'
 
 const state = {
   housingsList: [],
@@ -92,61 +91,29 @@ const actions = {
       setErrorMessage(commit, response)
     }
   },
-  async [types.UPLOAD_HOUSINGS] ({ commit }, file) {
+  async [types.UPLOAD_HOUSINGS] ({ commit }, { Housing }) {
     beginLoading(commit)
     try {
-      const sendFunc = d => Vue.http.post('housings', { Housing: d })
-      const parseFunc = d => ({
-        Reference: d.Reference,
-        Address: d.Address,
-        ZipCode: d.ZipCode ? parseInt(d.ZipCode) : null,
-        PLAI: parseInt(d.PLAI),
-        PLUS: parseInt(d.PLUS),
-        PLS: parseInt(d.PLS),
-        ANRU: Boolean(d.ANRU)
-      })
-      await excelReadFile(
-        file,
-        ['Reference', 'Address', 'PLAI', 'PLUS', 'PLS', 'ANRU'],
-        sendFunc,
-        err => {
-          setErrorMessage(commit, err)
-        },
-        parseFunc
-      )
+      await Vue.http.post('housings', { Housing })
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)
     }
   },
-  async [types.UPLOAD_HOUSING_COMMITMENT_LINK] ({ commit }, file) {
+  async [types.UPLOAD_HOUSING_COMMITMENT_LINK] ({ commit },
+    { HousingCommitmentBach }) {
     beginLoading(commit)
     try {
-      const sendFunc = d =>
-        Vue.http.post('housing/commitments', { HousingCommitmentBach: d })
-      await excelReadFile(
-        file,
-        ['Reference', 'IRISCode'],
-        sendFunc,
-        err => {
-          setErrorMessage(commit, err)
-        },
-        d => ({
-          Reference: String(d.Reference),
-          IRISCode: String(d.IRISCode)
-        })
-      )
+      await Vue.http.post('housing/commitments', { HousingCommitmentBach })
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)
     }
   },
-  async [types.UPLOAD_HOUSING_SUMMARY] ({ commit }, file) {
+  async [types.UPLOAD_HOUSING_SUMMARY] ({ commit }, { HousingSummary }) {
     beginLoading(commit)
     try {
-      const sendFunc = d =>
-        Vue.http.post('housing_summary', { HousingSummary: d })
-      await summaryReadFile(file, sendFunc, err => { setErrorMessage(commit, err) })
+      await Vue.http.post('housing_summary', { HousingSummary })
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)

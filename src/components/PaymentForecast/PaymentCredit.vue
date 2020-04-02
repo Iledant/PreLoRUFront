@@ -115,52 +115,33 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-card-actions class="tertiary" v-if="isAdmin">
-      <v-spacer />
-      <v-file-input
-        accept="*.xlsx"
-        label="Importer la situation de crédits"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,creditsUpload)"
-      />
-      <v-file-input
-        accept="*.xlsx"
-        label="Importer les mouvements de crédits"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,journalUpload)"
-      />
-    </v-card-actions>
   </v-card>
 </template>
 
 <script>
 import { excelExport, valStyle, dateStyle } from '@/excel.js'
-import { chkAndUpload } from '@/components/mixins'
 import * as types from '@/store/types.js'
 import { mapGetters } from 'vuex'
 const actualYear = new Date().getFullYear()
 export default {
   name: 'PaymentCredit',
-  mixins: [chkAndUpload],
   data: () => ({
     journalHeaders: [
-      { text: 'Chapitre', value: 'Chapter', sortable: true },
-      { text: 'Fonction', value: 'Function', sortable: true },
-      { text: 'Date', value: 'CreationDate', sortable: true },
-      { text: 'Libellé du mouvement', value: 'Name', sortable: true },
-      { text: 'Montant', value: 'Value', align: 'right', sortable: true }
+      { text: 'Chapitre', value: 'Chapter' },
+      { text: 'Fonction', value: 'Function' },
+      { text: 'Date', value: 'CreationDate' },
+      { text: 'Libellé du mouvement', value: 'Name' },
+      { text: 'Montant', value: 'Value', align: 'right' }
     ],
     creditsHeaders: [
-      { text: 'Chapitre', value: 'Chapter', sortable: true },
-      { text: 'Fonction', value: 'Function', sortable: true },
-      { text: 'Budget primitif', value: 'Primitive', sortable: true },
-      { text: 'Report', value: 'Reported', sortable: true },
-      { text: 'Budget suppl.', value: 'Added', align: 'right', sortable: true },
-      { text: 'DM', value: 'Modified', align: 'right', sortable: true },
-      { text: 'Mouvements', value: 'Movement', align: 'right', sortable: true },
-      { text: 'Total', value: 'Total', align: 'right', sortable: true }
+      { text: 'Chapitre', value: 'Chapter' },
+      { text: 'Fonction', value: 'Function' },
+      { text: 'Budget primitif', value: 'Primitive' },
+      { text: 'Report', value: 'Reported' },
+      { text: 'Budget suppl.', value: 'Added', align: 'right' },
+      { text: 'DM', value: 'Modified', align: 'right' },
+      { text: 'Mouvements', value: 'Movement', align: 'right' },
+      { text: 'Total', value: 'Total', align: 'right' }
     ],
     journalSearch: '',
     creditsSearch: ''
@@ -195,19 +176,8 @@ export default {
     fileError () {
       this.$store.commit(
         types.SET_ERROR_MESSAGE,
-        'Erreur de chargement de fichier, vérifier si les colonnes requises sont présentes'
+        'Erreur de fichier, vérifier si les colonnes requises sont présentes'
       )
-    },
-    loadDatas () {
-      this.$store.dispatch(types.GET_ALL_PAYMENT_CREDITS, actualYear)
-    },
-    async creditsUpload (file) {
-      await this.$store.dispatch(types.UPLOAD_PAYMENT_CREDITS, file)
-      this.loadDatas()
-    },
-    async journalUpload (file) {
-      await this.$store.dispatch(types.UPLOAD_PAYMENT_CREDIT_JOURNAL, file)
-      this.loadDatas()
     },
     journalDownload () {
       const lines = this.journal.map(
@@ -253,7 +223,7 @@ export default {
     }
   },
   created () {
-    this.loadDatas()
+    this.$store.dispatch(types.GET_ALL_PAYMENT_CREDITS, actualYear)
   }
 }
 </script>

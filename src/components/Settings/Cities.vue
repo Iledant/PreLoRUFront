@@ -26,9 +26,9 @@
           >
             <template #item="{ item }">
               <tr>
-                <td class="text-left">{{ item.InseeCode }}</td>
-                <td class="text-left">{{ item.Name }}</td>
-                <td class="text-left">{{ item.CommunityName | nullable }}</td>
+                <td>{{ item.InseeCode }}</td>
+                <td>{{ item.Name }}</td>
+                <td>{{ item.CommunityName | nullable }}</td>
                 <td>
                   <v-icon>{{ item.QPV | displayBool }}</v-icon>
                 </td>
@@ -84,16 +84,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-card-actions class="tertiary">
-      <v-spacer />
-      <v-file-input
-        accept="*.xlsx"
-        label="Importer des communes"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,upload)"
-      />
-    </v-card-actions>
 
     <v-dialog v-model="dialog" persistent :overlay="false" max-width="500px">
       <v-card>
@@ -161,10 +151,10 @@ export default {
     return {
       search: '',
       headers: [
-        { text: 'Code', value: 'InseeCode', align: 'center' },
-        { text: 'Nom', value: 'Name', align: 'center' },
-        { text: 'Interco', value: 'Community', align: 'center' },
-        { text: 'QPV', value: 'QPV', align: 'center' },
+        { text: 'Code', value: 'InseeCode' },
+        { text: 'Nom', value: 'Name' },
+        { text: 'Interco', value: 'Community' },
+        { text: 'QPV', value: 'QPV' },
         { text: '', value: '', sortable: false, width: '1%' },
         { text: '', value: '', sortable: false, width: '1%' }
       ],
@@ -216,9 +206,6 @@ export default {
     },
     async delConfirm () {
       await this.$store.dispatch(types.DEL_CITY, this.item.InseeCode)
-    },
-    upload (file) {
-      this.$store.dispatch(types.UPLOAD_CITIES, file)
     },
     async getCities (p) {
       await this.$store.dispatch(types.GET_PAGINATED_CITIES, {

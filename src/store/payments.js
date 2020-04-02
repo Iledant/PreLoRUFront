@@ -1,7 +1,7 @@
 import * as types from './types'
 import { beginLoading, setErrorMessage } from './loading'
 import Vue from 'vue'
-import { excelReadFile, excelExport } from '../excel.js'
+import { excelExport } from '../excel.js'
 
 const state = {
   paymentsList: [],
@@ -80,41 +80,10 @@ const actions = {
       setErrorMessage(commit, err)
     }
   },
-  async [types.UPLOAD_PAYMENTS] ({ commit }, file) {
+  async [types.UPLOAD_PAYMENTS] ({ commit }, { Payment }) {
     beginLoading(commit)
     try {
-      const sendFunc = d => Vue.http.post('payments', { Payment: d })
-      const parseFunc = d => ({
-        CommitmentYear: Number(d.CommitmentYear),
-        CommitmentCode: d.CommitmentCode,
-        CommitmentNumber: Number(d.CommitmentNumber),
-        CommitmentLine: Number(d.CommitmentLine),
-        Year: Number(d.Year),
-        CreationDate: Number(d.CreationDate),
-        ModificationDate: Number(d.ModificationDate),
-        Value: Number(d.Value),
-        Number: Number(d.Number),
-        ReceiptDate: d.ReceiptDate ? Number(d.ReceiptDate) : 0
-      })
-      await excelReadFile(
-        file,
-        [
-          'CommitmentYear',
-          'CommitmentCode',
-          'CommitmentNumber',
-          'CommitmentLine',
-          'Year',
-          'CreationDate',
-          'ModificationDate',
-          'Value',
-          'Number'
-        ],
-        sendFunc,
-        err => {
-          setErrorMessage(commit, err)
-        },
-        parseFunc
-      )
+      await Vue.http.post('payments', { Payment })
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)

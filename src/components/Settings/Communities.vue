@@ -72,16 +72,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-card-actions class="tertiary">
-      <v-spacer />
-      <v-file-input
-        accept="*.xlsx"
-        label="Importer des intercos"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,upload)"
-      />
-    </v-card-actions>
 
     <v-dialog v-model="dialog" persistent :overlay="false" max-width="500px">
       <v-card>
@@ -127,12 +117,10 @@
 
 <script>
 import * as types from '@/store/types.js'
-import { chkAndUpload } from '@/components/mixins'
 import DeleteDialog from '@/components/DeleteDialog.vue'
 const communityCodeTest = v => /^\d{9}(\.\d{2})?$/.test(v)
 export default {
   name: 'Communities',
-  mixins: [chkAndUpload],
   components: { DeleteDialog },
   data () {
     return {
@@ -182,9 +170,6 @@ export default {
     },
     async delConfirm () {
       await this.$store.dispatch(types.DEL_COMMUNITY, this.item.ID)
-    },
-    upload (file) {
-      this.$store.dispatch(types.UPLOAD_COMMUNITIES, file)
     },
     checkCommunityCode (c) {
       return communityCodeTest(c) || 'Code INSEE attendu'

@@ -67,16 +67,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-card-actions class="tertiary">
-      <v-spacer />
-      <v-file-input
-        accept="*.xlsx"
-        label="Importer des RPLS"
-        :loading="loading"
-        show-size
-        @change="chkAndUpload($event,upload)"
-      />
-    </v-card-actions>
     <rpls-dlg v-model="dlg" :title="title" :button="button" :item="item" @confirm="confirm" />
     <delete-dialog
       v-model="delDlg"
@@ -89,12 +79,10 @@
 <script>
 import * as types from '@/store/types.js'
 import DeleteDialog from '@/components/DeleteDialog.vue'
-import { chkAndUpload } from '@/components/mixins'
 import RPLSDlg from './RPLSDlg.vue'
 const nullItem = { ID: null, Year: null, InseeCode: null }
 export default {
   name: 'RPLS',
-  mixins: [chkAndUpload],
   components: { DeleteDialog, 'rpls-dlg': RPLSDlg },
   data () {
     return {
@@ -115,10 +103,6 @@ export default {
     }
   },
   methods: {
-    async upload (file) {
-      await this.$store.dispatch(types.UPLOAD_RPLS, file)
-      this.$store.dispatch(types.GET_RPLS)
-    },
     async delConfirm () {
       await this.$store.dispatch(types.DEL_RPLS, this.item.ID)
     },
