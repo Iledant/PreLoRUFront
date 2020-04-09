@@ -104,6 +104,17 @@ const mutations = {
         state.currentYearPVPayments[pvMonth] = pvAcc
       }
     }
+    if (loMonth < pvMonth) {
+      for (;loMonth <= pvMonth; loMonth++) {
+        state.currentYearLOPayments[loMonth] = loAcc
+      }
+    }
+    if (pvMonth < loMonth) {
+      console.log('Complément sur PV avec ', pvAcc)
+      for (;pvMonth <= loMonth; pvMonth++) {
+        state.currentYearPVPayments[pvMonth] = pvAcc
+      }
+    }
     state.importLogs = [...payload.ImportLog]
     state.paymentCreditSum = payload.PaymentCreditSum * 0.000001
     state.averagePaymentTime = [...payload.AveragePaymentTime]
