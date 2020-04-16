@@ -114,6 +114,15 @@ const state = {
       allowUser: true,
       allowObserver: true,
       needReservationRight: false
+    },
+    {
+      id: 13,
+      title: 'Délais de mandatement',
+      icon: 'speed',
+      routerLink: { name: 'PaymentDelays' },
+      allowUser: true,
+      allowObserver: true,
+      needReservationRight: false
     }
   ],
   settingsMenuItems: [

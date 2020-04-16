@@ -33,6 +33,7 @@ import reservationFees from './reservationFees'
 import housingTypes from './housingTypes'
 import difPmtForecasts from './difPmtForecasts'
 import paymentDemands from './paymentDemands'
+import paymentDelays from './paymentDelays'
 
 Vue.use(Vuex)
 
@@ -69,6 +70,7 @@ export default new Vuex.Store({
     reservationFees,
     housingTypes,
     difPmtForecasts,
-    paymentDemands
+    paymentDemands,
+    paymentDelays
   }
 })

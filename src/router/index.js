@@ -30,6 +30,7 @@ import PaymentForecast from '@/components/PaymentForecast.vue'
 import HousingSettings from '@/components/Settings/HousingSettings.vue'
 import PaymentDemands from '@/components/Settings/PaymentDemands.vue'
 import Uploads from '@/components/Settings/Uploads.vue'
+import PaymentDelays from '@/components/PaymentDelays.vue'
 
 Vue.use(Router)
 
@@ -129,6 +130,12 @@ export default new Router({
       path: '/uploads',
       component: Uploads,
       name: 'Uploads',
+      meta: { requiresAdmin: true }
+    },
+    {
+      path: '/payment_delays',
+      component: PaymentDelays,
+      name: 'PaymentDelays',
       meta: { requiresAdmin: true }
     }
   ]
