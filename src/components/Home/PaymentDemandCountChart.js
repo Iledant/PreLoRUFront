@@ -71,8 +71,8 @@ export default {
       this.datas.datasets[1].data = list.map(a => -a.Unprocessed)
       let minScale = Math.min(0, ...this.datas.datasets[1].data, ...this.datas.datasets[0].data)
       let maxScale = Math.max(0, ...this.datas.datasets[1].data, ...this.datas.datasets[0].data)
-      minScale -= 5 + (minScale) % 5
-      maxScale += 5 + maxScale % 5
+      minScale -= 5 + minScale % 5
+      maxScale += 5 - maxScale % 5
       this.options.scales.yAxes[0].ticks.min = minScale
       this.options.scales.yAxes[0].ticks.max = maxScale
       this.datas.datasets[2].data = (new Array(31)).fill(minScale)
