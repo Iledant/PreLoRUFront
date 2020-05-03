@@ -23,7 +23,7 @@ const actions = {
       const resp = await Vue.http.get('home')
       commit(types.GET_HOME_DATAS, resp.body)
       commit(types.SET_HOME_MESSAGE, resp.body.HomeMessage)
-      commit(types.GET_PAYMENT_DEMAND_COUNTS, resp.body.PaymentDemandCount)
+      commit(types.GET_PAYMENTS_DEMANDS_STOCKS, resp.body.PaymentDemandsStock)
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)

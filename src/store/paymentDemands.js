@@ -4,7 +4,8 @@ import { beginLoading, setErrorMessage } from './loading'
 
 const state = {
   paymentDemands: [],
-  paymentDemandCount: []
+  paymentDemandCount: [],
+  paymentDemandsStock: []
 }
 
 const actions = {
@@ -51,6 +52,9 @@ const mutations = {
   },
   [types.GET_PAYMENT_DEMAND_COUNTS] (state, list) {
     state.paymentDemandCount = [...list]
+  },
+  [types.GET_PAYMENTS_DEMANDS_STOCKS] (state, list) {
+    state.paymentDemandsStock = [...list]
   }
 }
 
