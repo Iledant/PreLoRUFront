@@ -6,8 +6,8 @@ export default {
     datas: {
       datasets: [
         {
-          borderColor: '#3F51B5',
-          pointBackgroundColor: '#3F51B5',
+          borderColor: '#4527A0',
+          pointBackgroundColor: '#4527A0',
           fill: false,
           borderWidth: 2,
           cubicInterpolationMode: 'monotone',

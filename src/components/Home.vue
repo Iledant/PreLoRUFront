@@ -5,19 +5,12 @@
       <v-layout wrap>
         <v-flex xs12>
           <v-card>
-            <v-card-title class='tertiary'>
+            <v-card-title class="tertiary">
               {{ homeMsg ? homeMsg.Title : ''}}
               <v-spacer v-if="isAdmin" />
               <v-tooltip v-if="isAdmin" left color="primary">
                 <template #activator="{ on }">
-                  <v-btn
-                    color="primary"
-                    icon
-                    small
-                    text
-                    @click="dlg = true"
-                    v-on="on"
-                  >
+                  <v-btn color="primary" icon small text @click="dlg = true" v-on="on">
                     <v-icon v-on="on">create</v-icon>
                   </v-btn>
                 </template>
@@ -25,71 +18,68 @@
               </v-tooltip>
             </v-card-title>
             <v-card-text>
-              <div
-                class="body-2 pt-3"
-                v-show="homeMsg" v-html="homeMsg ? homeMsg.Html : ''"
-              />
+              <div class="body-2 pt-3" v-show="homeMsg" v-html="homeMsg ? homeMsg.Html : ''" />
             </v-card-text>
           </v-card>
         </v-flex>
         <v-flex xs12 md6>
           <v-card>
-            <v-card-title class='tertiary'>
-              Paiements
-            </v-card-title>
+            <v-card-title class="tertiary">Paiements</v-card-title>
             <pmt-chart :height="400" class="pt-1" />
-            <div class="caption text-right">
-              Dernier import : {{ pmtImportDate | date }}
-            </div>
+            <div class="caption text-right">Dernier import : {{ pmtImportDate | date }}</div>
           </v-card>
         </v-flex>
         <v-flex xs12 md6>
           <v-card>
-            <v-card-title class='tertiary'>
-              Engagements
+            <v-card-title class="tertiary">Engagements</v-card-title>
+            <cmt-chart :height="400" class="pt-1" />
+            <div class="caption text-right">Dernier import : {{ cmtImportDate | date }}</div>
+          </v-card>
+        </v-flex>
+        <v-flex xs12 md6>
+          <v-card>
+            <v-card-title class="tertiary align-start">
+              Délai moyen de mandatement
+              <v-tooltip bottom color="primary">
+                <template #activator="{ on }">
+                  <v-icon small v-on="on" class="pl-1">info</v-icon>
+                </template>
+                <span>
+                  Ce graphique représente la moyenne mobile sur les 12 derniers mois
+                  du délai entre
+                  <ul>
+                    <li>
+                      les dates inscrites dans CORIOLIS de réception des
+                      factures
+                    </li>
+                    <li>les dates inscrites dans CORIOLIS de proposition de mandatement</li>
+                  </ul>
+                </span>
+              </v-tooltip>
             </v-card-title>
-          <cmt-chart :height="400" class="pt-1" />
-          <div class="caption text-right">
-            Dernier import : {{ cmtImportDate | date }}
-          </div>
+            <avg-pmt-time-chart :height="400" class="pt-1" />
           </v-card>
         </v-flex>
         <v-flex xs12 md6>
           <v-card>
-          <v-card-title class="tertiary align-start">Délai moyen de mandatement
-            <v-tooltip bottom color="primary">
-              <template #activator="{ on }">
-                <v-icon small v-on="on" class="pl-1">info</v-icon>
-              </template>
-            <span>
-              Ce graphique représente la moyenne mobile sur les 12 derniers mois
-              du délai entre<ul><li> les dates inscrites dans CORIOLIS de réception des
-              factures </li> <li> les dates inscrites dans CORIOLIS de proposition de mandatement</li>
-                </ul>
-            </span>
-            </v-tooltip>
-          </v-card-title>
-          <avg-pmt-time-chart :height="400" class="pt-1" />
-          </v-card>
-        </v-flex>
-        <v-flex xs12 md6>
-          <v-card>
-          <v-card-title class="tertiary align-start">Traitement des DVS
-            <v-tooltip bottom color="primary">
-              <template #activator="{ on }">
-                <v-icon small v-on="on" class="pl-1">info</v-icon>
-              </template>
-            <span>
-              Ce graphique représente l'évolution quotidienne sur les 30
-              derniers jours du stock de DVS arrivés à la région.<br />
-              Il mesure le nombre de DVS qui n'ont pas reçu de CSF de la direction
-              et le nombre de DVS non encore mandatés ou rejetés par la direction
-              de la comptabilité. <br />
-              Seules les DVS non exclues sont prises en compte.
-            </span>
-            </v-tooltip>
-          </v-card-title>
-          <payment-demands-stock-chart :height="400" class="pt-1" />
+            <v-card-title class="tertiary align-start">
+              Stock de DVS
+              <v-tooltip bottom color="primary">
+                <template #activator="{ on }">
+                  <v-icon small v-on="on" class="pl-1">info</v-icon>
+                </template>
+                <span>
+                  Ce graphique représente l'évolution quotidienne sur les
+                  <br />30
+                  derniers jours du stock de DVS arrivés à la région.
+                  <br />Il mesure le nombre de DVS qui n'ont pas reçu de CSF de la direction
+                  <br />et le nombre de DVS non encore mandatés ou rejetés par la direction
+                  de la comptabilité.
+                  <br />Seules les DVS non exclues sont prises en compte.
+                </span>
+              </v-tooltip>
+            </v-card-title>
+            <payment-demands-stock-chart :height="400" class="pt-1" />
           </v-card>
         </v-flex>
       </v-layout>
