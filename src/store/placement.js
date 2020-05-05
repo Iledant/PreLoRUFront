@@ -1,6 +1,5 @@
 import * as types from './types'
 import { beginLoading, setErrorMessage } from './loading'
-import { excelReadFile } from '../excel.js'
 import Vue from 'vue'
 
 const state = {
@@ -28,28 +27,10 @@ const actions = {
       setErrorMessage(commit, err)
     }
   },
-  async [types.UPLOAD_PLACEMENTS] ({ commit }, file) {
+  async [types.UPLOAD_PLACEMENTS] ({ commit }, { Placement }) {
     beginLoading(commit)
     try {
-      const sendFunc = d => Vue.http.post('placements', { Placement: d })
-      const parseFunc = o => ({
-        IrisCode: String(o.IrisCode),
-        Count: o.Count ? parseInt(o.Count) : 0,
-        ContractYear: o.ContractYear ? parseInt(o.ContractYear) : null
-      })
-      await excelReadFile(
-        file,
-        [
-          'IrisCode',
-          'Count',
-          'ContractYear'
-        ],
-        sendFunc,
-        err => {
-          setErrorMessage(commit, err)
-        },
-        parseFunc
-      )
+      await Vue.http.post('placements', { Placement })
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)

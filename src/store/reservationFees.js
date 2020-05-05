@@ -1,7 +1,7 @@
 import * as types from './types'
 import { beginLoading, setErrorMessage } from './loading'
 import Vue from 'vue'
-import { excelReadFile, excelExport, dateStyle, valStyle } from '../excel.js'
+import { excelExport, dateStyle, valStyle } from '../excel.js'
 
 const state = {
   reservationFeesList: [],
@@ -44,60 +44,6 @@ async function exportReservationFees (reservationFees) {
   ]
   await excelExport(items, columns, 'Paiements')
 }
-
-const parseFunc = ({
-  CurrentBeneficiary,
-  CityCode,
-  Count,
-  TransferDate,
-  ConventionDate,
-  Convention,
-  Area,
-  EndYear,
-  Loan,
-  Charges,
-  PMR,
-  RPLS,
-  AddressNumber,
-  ...others
-}) => ({
-  CurrentBeneficiary: CurrentBeneficiary.trim(),
-  CityCode: CityCode ? parseInt(CityCode) : null,
-  Count: Count ? parseInt(Count) : null,
-  TransferDate: TransferDate ? parseInt(TransferDate) : null,
-  ConventionDate: ConventionDate ? parseInt(ConventionDate) : null,
-  Area: Area ? parseFloat(Area) : null,
-  Loan: Loan ? parseFloat(Loan) : null,
-  Charges: Charges ? parseFloat(Charges) : null,
-  EndYear: EndYear ? parseInt(EndYear) : null,
-  PMR: !!PMR,
-  Convention: Convention ? String(Convention) : null,
-  RPLS: RPLS ? String(RPLS) : null,
-  AddressNumber: AddressNumber ? String(AddressNumber) : null,
-  ...others
-})
-
-const requiredColumns = [
-  'CurrentBeneficiary',
-  'FirstBeneficiary',
-  'City',
-  'AddressNumber',
-  'AddressStreet',
-  'RPLS',
-  'Convention',
-  'Typology',
-  'ConventionType',
-  'Count',
-  'Transfer',
-  'TransferDate',
-  'PMR',
-  'Comment',
-  'ConventionDate',
-  'Area',
-  'EndYear',
-  'Loan',
-  'Charges'
-]
 
 const actions = {
   async [types.GET_RESERVATION_FEES] ({ commit }, { Page, Search }) {
@@ -180,37 +126,22 @@ const actions = {
       setErrorMessage(commit, err)
     }
   },
-  async [types.UPLOAD_RESERVATION_FEES] ({ commit }, file) {
+  async [types.UPLOAD_RESERVATION_FEES] ({ commit }, { ReservationFee }) {
     beginLoading(commit)
     try {
-      const sendFunc = d => Vue.http.post('reservation_fee/batch',
-        { ReservationFee: d })
-      await excelReadFile(
-        file,
-        requiredColumns,
-        sendFunc,
-        err => { setErrorMessage(commit, err) },
-        parseFunc
-      )
+      await Vue.http.post('reservation_fee/batch', { ReservationFee })
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)
     }
   },
-  async [types.TEST_UPLOAD_RESERVATION_FEES] ({ commit }, file) {
+  async [types.TEST_UPLOAD_RESERVATION_FEES] ({ commit }, { ReservationFee }) {
     beginLoading(commit)
     try {
-      const sendFunc = d => Vue.http.post('reservation_fee/batch/test',
-        { ReservationFee: d })
-      const resp = await excelReadFile(
-        file,
-        requiredColumns,
-        sendFunc,
-        err => { setErrorMessage(commit, err) },
-        parseFunc
-      )
+      const { body } = await Vue.http.post('reservation_fee/batch/test',
+        { ReservationFee })
       commit(types.END_LOADING)
-      return resp.body
+      return body
     } catch (err) {
       setErrorMessage(commit, err)
     }

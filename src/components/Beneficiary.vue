@@ -68,9 +68,9 @@
 </template>
 
 <script>
-import * as types from '../store/types.js'
+import * as types from '@/store/types.js'
 import BeneficiaryPmtChart from './BeneficiaryPmtChart'
-import { yearRule } from './mixins'
+import { yearRule } from '@/components/mixins'
 import { mapGetters, mapState } from 'vuex'
 export default {
   name: 'Beneficiary',

@@ -111,8 +111,8 @@
 </template>
 
 <script>
-import * as types from '../store/types.js'
-import DeleteDialog from './DeleteDialog'
+import * as types from '@/store/types.js'
+import DeleteDialog from '@/components/DeleteDialog'
 export default {
   name: 'BeneficiaryGroups',
   components: { DeleteDialog },

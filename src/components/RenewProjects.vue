@@ -23,11 +23,11 @@
 </template>
 
 <script>
-import * as types from '../store/types.js'
-import RPEventTypes from './RPEventTypes.vue'
-import RenewProjectsCard from './RenewProjectsCard.vue'
-import RenewProjectsPreProgCard from './RenewProjectsPreProgCard.vue'
-import RenewProjectReport from './RenewProjectReport.vue'
+import * as types from '@/store/types.js'
+import RPEventTypes from './RenewProjects/RPEventTypes.vue'
+import RenewProjectsCard from './RenewProjects/RenewProjectsCard.vue'
+import RenewProjectsPreProgCard from './RenewProjects/RenewProjectsPreProgCard.vue'
+import RenewProjectReport from './RenewProjects/RenewProjectReport.vue'
 export default {
   name: 'RenewProjects',
   components: { RenewProjectsCard, RPEventTypes, RenewProjectsPreProgCard, RenewProjectReport },

@@ -1,7 +1,6 @@
 import * as types from './types'
 import Vue from 'vue'
 import { beginLoading, setErrorMessage } from './loading.js'
-import { excelReadFile } from '../excel.js'
 
 const state = {
   communitiesList: []
@@ -42,20 +41,10 @@ const actions = {
       setErrorMessage(commit, resp)
     }
   },
-  async [types.UPLOAD_COMMUNITIES] ({ commit }, file) {
+  async [types.UPLOAD_COMMUNITIES] ({ commit }, { Community }) {
     beginLoading(commit)
     try {
-      const sendFunc = d => Vue.http.post('communities', { Community: d })
-      const parseFunc = d => ({ Code: String(d.Code), Name: d.Name })
-      const resp = await excelReadFile(
-        file,
-        ['Code', 'Name'],
-        sendFunc,
-        err => {
-          setErrorMessage(commit, err)
-        },
-        parseFunc
-      )
+      const resp = await Vue.http.post('communities', { Community })
       commit(types.GET_COMMUNITIES, resp.body.Community)
       commit(types.END_LOADING)
     } catch (err) {

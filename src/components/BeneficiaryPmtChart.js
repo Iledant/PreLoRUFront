@@ -1,5 +1,5 @@
 import { Line } from 'vue-chartjs'
-import * as types from '../store/types'
+import * as types from '@/store/types'
 
 export default {
   extends: Line,

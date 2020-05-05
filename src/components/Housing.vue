@@ -26,10 +26,10 @@
 </template>
 
 <script>
-import * as types from '../store/types'
-import HousingCommitments from './HousingCommitments.vue'
-import HousingPayments from './HousingPayments.vue'
-import HousingDescription from './HousingDescription'
+import * as types from '@/store/types'
+import HousingCommitments from './Housing/HousingCommitments.vue'
+import HousingPayments from './Housing/HousingPayments.vue'
+import HousingDescription from './Housing/HousingDescription'
 import UnlinkedCommitments from './UnlinkedCommitments'
 export default {
   name: 'Housing',

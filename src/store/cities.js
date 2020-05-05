@@ -1,7 +1,6 @@
 import * as types from './types'
 import Vue from 'vue'
 import { beginLoading, setErrorMessage } from './loading.js'
-import { excelReadFile } from '../excel.js'
 
 const state = {
   citiesList: [],
@@ -66,29 +65,10 @@ const actions = {
       setErrorMessage(commit, resp)
     }
   },
-  async [types.UPLOAD_CITIES] ({ commit }, file) {
+  async [types.UPLOAD_CITIES] ({ commit }, { City }) {
     beginLoading(commit)
     try {
-      const sendFunc = d => Vue.http.post('cities', { City: d })
-      const parseFunc = d => ({
-        InseeCode: d.InseeCode,
-        Name: d.Name,
-        CommunityCode: d.CommunityCode
-          ? d.CommunityCode !== ''
-            ? String(d.CommunityCode)
-            : null
-          : null,
-        QPV: d.QPV
-      })
-      const resp = await excelReadFile(
-        file,
-        ['InseeCode', 'Name', 'CommunityCode', 'QPV'],
-        sendFunc,
-        err => {
-          setErrorMessage(commit, err)
-        },
-        parseFunc
-      )
+      const resp = await Vue.http.post('cities', { City })
       commit(types.GET_CITIES, resp.body.City)
       commit(types.END_LOADING)
     } catch (err) {

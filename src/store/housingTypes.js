@@ -1,7 +1,6 @@
 import * as types from './types'
 import { beginLoading, setErrorMessage } from './loading'
 import Vue from 'vue'
-import { excelReadFile } from '../excel.js'
 
 const state = {
   housingTypesList: []
@@ -48,20 +47,10 @@ const actions = {
       setErrorMessage(commit, err)
     }
   },
-  async [types.UPLOAD_IRIS_HOUSING_TYPES] ({ commit }, file) {
+  async [types.UPLOAD_IRIS_HOUSING_TYPES] ({ commit }, { IRISHousingType }) {
     beginLoading(commit)
     try {
-      const parseFunc = d => ({
-        IRISCode: String(d.IRISCode),
-        HousingTypeShortName: d.HousingTypeShortName
-      })
-      await excelReadFile(
-        file,
-        ['IRISCode', 'HousingTypeShortName'],
-        d => Vue.http.post('iris_housing_type', { IRISHousingType: d }),
-        err => { setErrorMessage(commit, err) },
-        parseFunc
-      )
+      await Vue.http.post('iris_housing_type', { IRISHousingType })
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)

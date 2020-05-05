@@ -12,7 +12,8 @@ const state = {
   currentProgrammation: [],
   importLogs: [],
   homeMessage: null,
-  paymentCreditSum: null
+  paymentCreditSum: null,
+  averagePaymentTime: []
 }
 
 const actions = {
@@ -22,6 +23,7 @@ const actions = {
       const resp = await Vue.http.get('home')
       commit(types.GET_HOME_DATAS, resp.body)
       commit(types.SET_HOME_MESSAGE, resp.body.HomeMessage)
+      commit(types.GET_PAYMENTS_DEMANDS_STOCKS, resp.body.PaymentDemandsStock)
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)
@@ -102,8 +104,20 @@ const mutations = {
         state.currentYearPVPayments[pvMonth] = pvAcc
       }
     }
+    if (loMonth < pvMonth) {
+      for (;loMonth <= pvMonth; loMonth++) {
+        state.currentYearLOPayments[loMonth] = loAcc
+      }
+    }
+    if (pvMonth < loMonth) {
+      console.log('Complément sur PV avec ', pvAcc)
+      for (;pvMonth <= loMonth; pvMonth++) {
+        state.currentYearPVPayments[pvMonth] = pvAcc
+      }
+    }
     state.importLogs = [...payload.ImportLog]
     state.paymentCreditSum = payload.PaymentCreditSum * 0.000001
+    state.averagePaymentTime = [...payload.AveragePaymentTime]
   },
   [types.SET_HOME_MESSAGE] (state, payload) {
     state.homeMessage = { ...payload }

@@ -1,4 +1,4 @@
-import { SET_ERROR_MESSAGE } from '../store/types'
+import { SET_ERROR_MESSAGE } from '@/store/types'
 
 export const yearRule = {
   methods: {

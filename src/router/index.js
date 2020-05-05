@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Users from '@/components/Users.vue'
+import Users from '@/components/Settings/Users.vue'
 import Housings from '@/components/Housings.vue'
 import Copros from '@/components/Copros.vue'
 import RenewProjects from '@/components/RenewProjects.vue'
@@ -10,24 +10,27 @@ import Beneficiary from '@/components/Beneficiary.vue'
 import Forecasts from '@/components/Forecasts.vue'
 import RenewProject from '@/components/RenewProject.vue'
 import Copro from '@/components/Copro.vue'
-import BudgetSector from '@/components/BudgetSector.vue'
-import BudgetAction from '@/components/BudgetAction.vue'
-import Commission from '@/components/Commission.vue'
-import Communities from '@/components/Communities.vue'
-import Cities from '@/components/Cities.vue'
-import Commitments from '@/components/Commitments.vue'
-import Payments from '@/components/Payments.vue'
+import BudgetSector from '@/components/Settings/BudgetSector.vue'
+import BudgetAction from '@/components/Settings/BudgetAction.vue'
+import Commission from '@/components/Settings/Commission.vue'
+import Communities from '@/components/Settings/Communities.vue'
+import Cities from '@/components/Settings/Cities.vue'
+import Commitments from '@/components/Settings/Commitments.vue'
+import Payments from '@/components/Settings/Payments.vue'
 import Housing from '@/components/Housing.vue'
 import Summaries from '@/components/Summaries.vue'
 import Programmation from '@/components/Programmation.vue'
-import RPLS from '@/components/RPLS.vue'
+import RPLS from '@/components/Settings/RPLS.vue'
 import Placement from '@/components/Placement.vue'
 import BeneficiaryGroups from '@/components/BeneficiaryGroups.vue'
 import BeneficiaryGroup from '@/components/BeneficiaryGroup.vue'
 import ReservationFees from '@/components/ReservationFees.vue'
-import ReservationFeeSettings from '@/components/ReservationFeeSettings.vue'
+import ReservationFeeSettings from '@/components/Settings/ReservationFeeSettings.vue'
 import PaymentForecast from '@/components/PaymentForecast.vue'
-import HousingSettings from '@/components/HousingSettings.vue'
+import HousingSettings from '@/components/Settings/HousingSettings.vue'
+import PaymentDemands from '@/components/Settings/PaymentDemands.vue'
+import Uploads from '@/components/Settings/Uploads.vue'
+import PaymentDelays from '@/components/PaymentDelays.vue'
 
 Vue.use(Router)
 
@@ -115,6 +118,24 @@ export default new Router({
       path: '/housing_settings',
       component: HousingSettings,
       name: 'HousingSettings',
+      meta: { requiresAdmin: true }
+    },
+    {
+      path: '/payment_demands',
+      component: PaymentDemands,
+      name: 'PaymentDemands',
+      meta: { requiresAdmin: true }
+    },
+    {
+      path: '/uploads',
+      component: Uploads,
+      name: 'Uploads',
+      meta: { requiresAdmin: true }
+    },
+    {
+      path: '/payment_delays',
+      component: PaymentDelays,
+      name: 'PaymentDelays',
       meta: { requiresAdmin: true }
     }
   ]

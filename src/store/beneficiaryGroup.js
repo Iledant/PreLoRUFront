@@ -1,7 +1,7 @@
 import * as types from './types'
 import { beginLoading, setErrorMessage } from './loading'
 import Vue from 'vue'
-import { excelExport, dateStyle, valStyle } from '../excel'
+import { excelExport, dateStyle, valStyle } from '@/excel'
 
 async function exportBeneficiaryGroupDatas (datas) {
   const formattedDatas = datas.map(d => ({

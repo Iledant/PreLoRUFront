@@ -188,11 +188,11 @@
 </template>
 
 <script>
-import * as types from '../store/types.js'
-import DeleteDialog from './DeleteDialog.vue'
-import ProgDlg from './ProgDlg.vue'
-import { yearRule } from './mixins'
-import { excelExport } from '../excel'
+import * as types from '@/store/types.js'
+import DeleteDialog from '@/components/DeleteDialog.vue'
+import ProgDlg from './Programmation/ProgDlg.vue'
+import { yearRule } from '@/components/mixins'
+import { excelExport } from '@/excel'
 export default {
   name: 'Programmation',
   mixins: [yearRule],

@@ -1,6 +1,6 @@
 import * as types from './types'
 import { beginLoading, setErrorMessage } from './loading'
-import { excelReadFile, excelExport } from '../excel'
+import { excelExport } from '@/excel'
 import Vue from 'vue'
 
 const state = {
@@ -61,22 +61,10 @@ const actions = {
       setErrorMessage(commit, err)
     }
   },
-  async [types.UPLOAD_RPLS] ({ commit }, file) {
+  async [types.UPLOAD_RPLS] ({ commit }, { RPLS }) {
     beginLoading(commit)
     try {
-      const sendFunc = d => Vue.http.post('rpls/batch', { RPLS: d })
-      const parseFunc = d => ({
-        InseeCode: parseInt(d.InseeCode),
-        Year: parseInt(d.Year),
-        Ratio: Number(d.Ratio)
-      })
-      await excelReadFile(
-        file,
-        ['InseeCode', 'Year', 'Ratio'],
-        sendFunc,
-        err => { setErrorMessage(commit, err) },
-        parseFunc
-      )
+      await Vue.http.post('rpls/batch', { RPLS })
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)

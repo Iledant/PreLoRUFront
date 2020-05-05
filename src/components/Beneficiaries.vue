@@ -81,9 +81,9 @@
 </template>
 
 <script>
-import * as types from '../store/types.js'
-import BeneficiaryDlg from './BeneficiaryDlg.vue'
-import DeleteDlg from './DeleteDialog.vue'
+import * as types from '@/store/types.js'
+import BeneficiaryDlg from './Beneficiaries/BeneficiaryDlg.vue'
+import DeleteDlg from '@/components/DeleteDialog.vue'
 import { mapState, mapGetters } from 'vuex'
 const nullItem = { Code: null, Name: '' }
 export default {

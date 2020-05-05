@@ -3,39 +3,12 @@
     <v-card-title class="white--text primary headline">Accueil</v-card-title>
     <v-container grid-list-md fluid>
       <v-layout wrap>
-        <v-flex xs12 md6>
-          <div class="subtitle-1 font-weight-medium text-center">Engagements</div>
-          <cmt-chart
-            :height="400"
-            :currentValues="curCmts"
-            :previousValues="prevCmts"
-            :programmation="prog"
-          />
-          <div class="caption text-right">Dernier import : {{ cmtImportDate | date }}</div>
-        </v-flex>
-        <v-flex xs12 md6>
-          <div class="subtitle-1 font-weight-medium text-center">Paiements</div>
-          <pmt-chart
-            :height="400"
-            :currentLOValues="curLOPmts"
-            :previousLOValues="prevLOPmts"
-            :currentPVValues="curPVPmts"
-            :previousPVValues="prevPVPmts"
-            :availableValues="available"
-          />
-          <div class="caption text-right">Dernier import : {{ pmtImportDate | date }}</div>
-        </v-flex>
         <v-flex xs12>
           <v-card>
-            <v-card-title class='tertiary subtitle-1 font-weight-medium'>
+            <v-card-title class='tertiary'>
               {{ homeMsg ? homeMsg.Title : ''}}
-            </v-card-title>
-            <v-card-text>
-              <div class="body-2 pt-3" v-show="homeMsg" v-html="homeMsg ? homeMsg.Html : ''"/>
-            </v-card-text>
-            <v-card-actions v-if="isAdmin">
-              <v-spacer />
-              <v-tooltip left color="primary">
+              <v-spacer v-if="isAdmin" />
+              <v-tooltip v-if="isAdmin" left color="primary">
                 <template #activator="{ on }">
                   <v-btn
                     color="primary"
@@ -50,7 +23,73 @@
                 </template>
                 <span>Changer le message d'accueil</span>
               </v-tooltip>
-            </v-card-actions>
+            </v-card-title>
+            <v-card-text>
+              <div
+                class="body-2 pt-3"
+                v-show="homeMsg" v-html="homeMsg ? homeMsg.Html : ''"
+              />
+            </v-card-text>
+          </v-card>
+        </v-flex>
+        <v-flex xs12 md6>
+          <v-card>
+            <v-card-title class='tertiary'>
+              Paiements
+            </v-card-title>
+            <pmt-chart :height="400" class="pt-1" />
+            <div class="caption text-right">
+              Dernier import : {{ pmtImportDate | date }}
+            </div>
+          </v-card>
+        </v-flex>
+        <v-flex xs12 md6>
+          <v-card>
+            <v-card-title class='tertiary'>
+              Engagements
+            </v-card-title>
+          <cmt-chart :height="400" class="pt-1" />
+          <div class="caption text-right">
+            Dernier import : {{ cmtImportDate | date }}
+          </div>
+          </v-card>
+        </v-flex>
+        <v-flex xs12 md6>
+          <v-card>
+          <v-card-title class="tertiary align-start">Délai moyen de mandatement
+            <v-tooltip bottom color="primary">
+              <template #activator="{ on }">
+                <v-icon small v-on="on" class="pl-1">info</v-icon>
+              </template>
+            <span>
+              Ce graphique représente la moyenne mobile sur les 12 derniers mois
+              du délai entre<ul><li> les dates inscrites dans CORIOLIS de réception des
+              factures </li> <li> les dates inscrites dans CORIOLIS de proposition de mandatement</li>
+                </ul>
+            </span>
+            </v-tooltip>
+          </v-card-title>
+          <avg-pmt-time-chart :height="400" class="pt-1" />
+          </v-card>
+        </v-flex>
+        <v-flex xs12 md6>
+          <v-card>
+          <v-card-title class="tertiary align-start">Traitement des DVS
+            <v-tooltip bottom color="primary">
+              <template #activator="{ on }">
+                <v-icon small v-on="on" class="pl-1">info</v-icon>
+              </template>
+            <span>
+              Ce graphique représente l'évolution quotidienne sur les 30
+              derniers jours du stock de DVS arrivés à la région.<br />
+              Il mesure le nombre de DVS qui n'ont pas reçu de CSF de la direction
+              et le nombre de DVS non encore mandatés ou rejetés par la direction
+              de la comptabilité. <br />
+              Seules les DVS non exclues sont prises en compte.
+            </span>
+            </v-tooltip>
+          </v-card-title>
+          <payment-demands-stock-chart :height="400" class="pt-1" />
           </v-card>
         </v-flex>
       </v-layout>
@@ -60,76 +99,53 @@
 </template>
 
 <script>
-import * as types from '../store/types.js'
-import PmtChart from './PmtChart'
-import CmtChart from './CmtChart'
-import HomeMessageDlg from './HomeMessageDlg.vue'
+import * as types from '@/store/types.js'
+import PmtChart from './Home/PmtChart'
+import CmtChart from './Home/CmtChart'
+import HomeMessageDlg from './Home/HomeMessageDlg.vue'
+import AvgPmtTimeChart from './Home/AvgPmtTimeChart'
+import PaymentDemandsStockChart from './Home/PaymentDemandsStockChart'
+import { mapGetters, mapState } from 'vuex'
+
 export default {
   name: 'Home',
-  components: { PmtChart, CmtChart, HomeMessageDlg },
+  components: {
+    PmtChart,
+    CmtChart,
+    HomeMessageDlg,
+    AvgPmtTimeChart,
+    PaymentDemandsStockChart
+  },
   data () {
     return {
-      dlg: false
+      dlg: false,
+      cmtImportDate: '',
+      pmtImportDate: ''
     }
   },
   computed: {
-    curCmts () {
-      return this.$store.state.home.currentYearCommitments
-    },
-    prevCmts () {
-      return this.$store.state.home.previousYearCommitments
-    },
-    curLOPmts () {
-      return this.$store.state.home.currentYearLOPayments
-    },
-    curPVPmts () {
-      return this.$store.state.home.currentYearPVPayments
-    },
-    prevLOPmts () {
-      return this.$store.state.home.previousYearLOPayments
-    },
-    prevPVPmts () {
-      return this.$store.state.home.previousYearPVPayments
-    },
-    available () {
-      return new Array(12).fill(this.$store.state.home.paymentCreditSum)
-    },
-    prog () {
-      return this.$store.state.home.currentProgrammation
-    },
-    homeMsg () {
-      return this.$store.state.home.homeMessage
-    },
-    importLogs () {
-      return this.$store.state.home.importLogs
-    },
-    isAdmin () {
-      return this.$store.getters.isAdmin
-    },
-    cmtImportDate () {
-      if (this.importLogs.length === 0) {
-        return ''
-      }
-      const i = this.importLogs.filter(i => parseInt(i.Kind) === 1)
-      if (i.length === 0) {
-        return ''
-      }
-      return new Date(i[0].Date)
-    },
-    pmtImportDate () {
-      if (this.importLogs.length === 0) {
-        return ''
-      }
-      const i = this.importLogs.filter(i => parseInt(i.Kind) === 2)
-      if (i.length === 0) {
-        return ''
-      }
-      return new Date(i[0].Date)
-    }
+    ...mapGetters(['isAdmin']),
+    ...mapState({
+      homeMsg: state => state.home.homeMessage,
+      importLogs: state => state.home.importLogs
+    })
   },
   methods: {
     confirm (msg) {
       this.$store.dispatch(types.SET_HOME_MESSAGE, msg)
+    }
+  },
+  watch: {
+    importLogs (list) {
+      if (this.importLogs.length === 0) {
+        this.cmtImportDate = ''
+        this.pmtImportDate = ''
+        return
+      }
+      const cmt = this.importLogs.filter(i => parseInt(i.Kind) === 1)
+      const pmt = this.importLogs.filter(i => parseInt(i.Kind) === 2)
+      this.cmtImportDate = cmt.length > 0 ? new Date(cmt[0].Date) : ''
+      this.pmtImportDate = pmt.length > 0 ? new Date(pmt[0].Date) : ''
     }
   },
   created () {

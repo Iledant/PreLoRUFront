@@ -23,11 +23,11 @@
 </template>
 
 <script>
-import * as types from '../store/types.js'
-import CoprosCard from './CoprosCard'
-import CoproPreProgCard from './CoproPreProgCard.vue'
-import CoproEventTypes from './CoproEventTypes.vue'
-import CoproReport from './CoproReport.vue'
+import * as types from '@/store/types.js'
+import CoprosCard from './Copros/CoprosCard'
+import CoproPreProgCard from './Copros/CoproPreProgCard.vue'
+import CoproEventTypes from './Copros/CoproEventTypes.vue'
+import CoproReport from './Copros/CoproReport.vue'
 export default {
   name: 'Copros',
   components: { CoprosCard, CoproPreProgCard, CoproEventTypes, CoproReport },

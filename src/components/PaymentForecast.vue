@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import Ratios from './Ratios.vue'
-import PaymentForecasts from './PaymentForecasts.vue'
-import DifPaymentForecasts from './DifPaymentForecasts.vue'
-import PaymentCredit from './PaymentCredit.vue'
+import Ratios from './PaymentForecast/Ratios.vue'
+import PaymentForecasts from './PaymentForecast/PaymentForecasts.vue'
+import DifPaymentForecasts from './PaymentForecast/DifPaymentForecasts.vue'
+import PaymentCredit from './PaymentForecast/PaymentCredit.vue'
 export default {
   name: 'PaymentForecast',
   components: { PaymentForecasts, PaymentCredit, Ratios, DifPaymentForecasts },
