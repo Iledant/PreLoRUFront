@@ -92,6 +92,10 @@
         </v-flex>
       </v-layout>
     </v-container>
+    <v-card-actions class="tertiary">
+      <v-spacer />
+      <v-btn color="primary" text @click="download">Export Excel</v-btn>
+    </v-card-actions>
     <reservation-fee-dlg v-model="dlg" :item="item" :action="action" @confirm="confirm" />
     <delete-dlg v-model="delDlg" :sentence="delMsg" @confirm="delConfirm()" />
   </v-card>
@@ -164,7 +168,7 @@ export default {
         this.page = this.currentPage
       }
     },
-    async excelExport () {
+    async download () {
       await this.$store.dispatch(types.EXPORT_RESERVATION_FEES,
         { Search: this.search })
     },
