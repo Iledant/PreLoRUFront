@@ -113,7 +113,6 @@ export default {
       this.loading = true
       const body = await excelReadFile(file, requiredColumns, save, this.fileError, this.parse)
       this.loading = false
-      console.log(body)
       if (body) {
         this.test = {
           batchSize: body.BatchSize,

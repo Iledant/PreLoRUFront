@@ -110,7 +110,6 @@ const mutations = {
       }
     }
     if (pvMonth < loMonth) {
-      console.log('Complément sur PV avec ', pvAcc)
       for (;pvMonth <= loMonth; pvMonth++) {
         state.currentYearPVPayments[pvMonth] = pvAcc
       }
