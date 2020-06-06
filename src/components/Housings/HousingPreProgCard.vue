@@ -164,19 +164,6 @@ import * as types from '@/store/types.js'
 import { yearRule, preProgMethods } from '@/components/mixins'
 import { excelExport, dateStyle, valStyle } from '@/excel'
 import { mapGetters } from 'vuex'
-const nullItem = {
-  ID: null,
-  CommissionID: null,
-  CommissionDate: null,
-  CommissionName: '',
-  ForecastValue: null,
-  ForecastComment: null,
-  PreProgValue: 0,
-  PreProgComment: null,
-  ActionID: null,
-  ActionCode: null,
-  ActionName: ''
-}
 
 export default {
   name: 'HousingPreProgCard',
@@ -196,7 +183,20 @@ export default {
         { text: '', value: '', sortable: false, width: '1%' }
       ],
       items: [],
-      item: { ...nullItem },
+      nullItem: {
+        ID: null,
+        CommissionID: null,
+        CommissionDate: null,
+        CommissionName: '',
+        ForecastValue: null,
+        ForecastComment: null,
+        PreProgValue: 0,
+        PreProgComment: null,
+        ActionID: null,
+        ActionCode: null,
+        ActionName: ''
+      },
+      item: { ...this.nullItem },
       opDlg: false,
       dlgAction: 'create',
       delDlg: false,
