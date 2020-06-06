@@ -116,7 +116,7 @@ export const preProgMethods = {
       this.item = { ...item }
       this.delDlg = true
     },
-    preProgRemoveConfirm () {
+    async preProgRemoveConfirm () {
       const idx = this.items.findIndex(i => i.ID === this.item.ID)
       if (this.item.ForecastValue !== null) {
         this.item.PreProgValue = null
@@ -126,16 +126,16 @@ export const preProgMethods = {
       } else {
         this.items.splice(idx, 1)
       }
-      this.modified = true
+      await this.preProgSave()
     },
-    preProgAddConfirm () {
+    async preProgAddConfirm () {
       if (this.dlgAction === 'create') {
         this.items.push(this.item)
       } else {
         const idx = this.items.findIndex(i => i.ID === this.item.ID)
         this.items.splice(idx, 1, this.item)
       }
-      this.modified = true
+      await this.preProgSave()
     },
     forecastCopy (item) {
       const i = this.items.find(i => i.ID === item.ID)

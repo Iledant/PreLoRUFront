@@ -8,7 +8,6 @@
             v-model="yearText"
             :rules="[yearRule]"
             v-debounce:500ms="changeYear"
-            :disabled="modified"
             prepend-icon="search"
           />
         </v-flex>
@@ -48,7 +47,9 @@
                 <td class="text-left">{{ item.ActionName }}</td>
                 <td class="text-right text-no-wrap">
                   <v-tooltip left color="primary">
-                    <template #activator="{on}"><span v-on="on" >{{ item.ForecastValue | currency }}</span></template>
+                    <template #activator="{on}">
+                      <span v-on="on" >{{ item.ForecastValue | currency }}</span>
+                    </template>
                     <span>{{ item.ForecastComment }}</span>
                   </v-tooltip>
                 </td>
@@ -72,7 +73,9 @@
                 </td>
                 <td class="text-right text-no-wrap">
                   <v-tooltip left color="primary">
-                    <template #activator="{ on }"><span v-on="on">{{ item.PreProgValue | currency }}</span></template>
+                    <template #activator="{ on }">
+                      <span v-on="on">{{ item.PreProgValue | currency }}</span>
+                      </template>
                     <span>{{ item.PreProgComment }}</span>
                   </v-tooltip>
                 </td>
@@ -139,11 +142,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-card-actions class="tertiary">
-      <v-spacer />
-      <v-btn color="primary" text @click="preProgCancel" :disabled="!modified">Annuler</v-btn>
-      <v-btn color="primary" text @click="preProgSave" :disabled="!modified">Sauver</v-btn>
-    </v-card-actions>
     <housing-pre-prog-dlg
       v-model="opDlg"
       :action="dlgAction"
@@ -164,7 +162,22 @@ import HousingPreProgDlg from './HousingPreProgDlg'
 import DeleteDialog from '@/components/DeleteDialog'
 import * as types from '@/store/types.js'
 import { yearRule, preProgMethods } from '@/components/mixins'
-import { excelExport } from '@/excel'
+import { excelExport, dateStyle, valStyle } from '@/excel'
+import { mapGetters } from 'vuex'
+const nullItem = {
+  ID: null,
+  CommissionID: null,
+  CommissionDate: null,
+  CommissionName: '',
+  ForecastValue: null,
+  ForecastComment: null,
+  PreProgValue: 0,
+  PreProgComment: null,
+  ActionID: null,
+  ActionCode: null,
+  ActionName: ''
+}
+
 export default {
   name: 'HousingPreProgCard',
   components: { HousingPreProgDlg, DeleteDialog },
@@ -183,36 +196,17 @@ export default {
         { text: '', value: '', sortable: false, width: '1%' }
       ],
       items: [],
-      nullItem: {
-        ID: null,
-        CommissionID: null,
-        CommissionDate: null,
-        CommissionName: '',
-        ForecastValue: null,
-        ForecastComment: null,
-        PreProgValue: 0,
-        PreProgComment: null,
-        ActionID: null,
-        ActionCode: null,
-        ActionName: ''
-      },
-      item: { ...this.nullItem },
+      item: { ...nullItem },
       opDlg: false,
       dlgAction: 'create',
       delDlg: false,
-      modified: false,
       maxID: 0,
       year: new Date().getFullYear(),
       yearText: String(new Date().getFullYear())
     }
   },
   computed: {
-    loading () {
-      return this.$store.state.loading.loading !== 0
-    },
-    hasHousingPreProgRight () {
-      return this.$store.getters.hasHousingPreProgRight
-    },
+    ...mapGetters(['loading', 'hasHousingPreProgRight']),
     housingPreProg () {
       return this.$store.state.preProg.preProgList
     },
@@ -238,13 +232,10 @@ export default {
           }))
       await this.$store.dispatch(types.SET_PRE_PROG,
         { PreProg, Kind: 'housing', Year: this.year })
-      this.modified = false
     },
     async getPreProg () {
-      return this.$store.dispatch(types.GET_KIND_PRE_PROG, {
-        Year: this.year,
-        Kind: 'housing'
-      })
+      return this.$store.dispatch(types.GET_KIND_PRE_PROG,
+        { Year: this.year, Kind: 'housing' })
     },
     download () {
       if (this.items.length === 0) {
@@ -260,30 +251,13 @@ export default {
           })
       )
       const columns = [
-        {
-          header: 'Date com',
-          key: 'CommissionDate',
-          width: 10,
-          style: { numberFormat: 'dd/mm/yy' }
-        },
+        { header: 'Date com', key: 'CommissionDate', ...dateStyle },
         { header: 'Commission', key: 'CommissionName', width: 10 },
         { header: 'Code action', key: 'ActionCode', width: 10 },
         { header: 'Nom action', key: 'ActionName', width: 20 },
-        {
-          header: 'Besoin',
-          key: 'ForecastValue',
-          width: 14,
-          style: { numberFormat: '#,##0.00' },
-          addTotal: true
-        },
+        { header: 'Besoin', key: 'ForecastValue', ...valStyle },
         { header: 'Commentaire', key: 'ForecastComment', width: 30 },
-        {
-          header: 'Préprog.',
-          key: 'PreProgValue',
-          width: 14,
-          style: { numberFormat: '#,##0.00' },
-          addTotal: true
-        },
+        { header: 'Préprog.', key: 'PreProgValue', ...valStyle },
         { header: 'Commentaire', key: 'Comment', width: 30 }
       ]
       excelExport(formattedProg, columns, 'PreProg LLS')
