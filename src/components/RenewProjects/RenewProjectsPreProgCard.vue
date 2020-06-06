@@ -8,7 +8,6 @@
             v-model="yearText"
             :rules="[yearRule]"
             v-debounce:500ms="changeYear"
-            :disabled="modified"
             prepend-icon="calendar_today"
           />
         </v-flex>
@@ -153,11 +152,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-card-actions class="tertiary">
-      <v-spacer />
-      <v-btn color="primary" text @click="preProgCancel" :disabled="!modified">Annuler</v-btn>
-      <v-btn color="primary" text @click="preProgSave" :disabled="!modified">Sauver</v-btn>
-    </v-card-actions>
     <renew-projects-pre-prog-dlg
       v-model="opDlg"
       :action="dlgAction"
@@ -179,7 +173,8 @@ import RenewProjectsPreProgDlg from './RenewProjectsPreProgDlg'
 import DeleteDialog from '@/components/DeleteDialog'
 import * as types from '@/store/types.js'
 import { yearRule, preProgMethods } from '@/components/mixins'
-import { excelExport } from '@/excel'
+import { excelExport, dateStyle, valStyle } from '@/excel'
+import { mapGetters } from 'vuex'
 export default {
   name: 'RenewProjectsPreProgCard',
   components: { RenewProjectsPreProgDlg, DeleteDialog },
@@ -220,19 +215,13 @@ export default {
       opDlg: false,
       dlgAction: 'create',
       delDlg: false,
-      modified: false,
       maxID: 0,
       year: new Date().getFullYear(),
       yearText: String(new Date().getFullYear())
     }
   },
   computed: {
-    loading () {
-      return this.$store.state.loading.loading !== 0
-    },
-    hasRenewProjectPreProgRight () {
-      return this.$store.getters.hasRenewProjectPreProgRight
-    },
+    ...mapGetters(['loading', 'hasRenewProjectPreProgRight', 'hasRenewProjectRight']),
     commissions () {
       return this.$store.state.settings.commissionsList
     },
@@ -247,9 +236,6 @@ export default {
     },
     sumPreProg () {
       return this.items.reduce((a, c) => a + c.PreProgValue, 0)
-    },
-    hasRenewProjectRight () {
-      return this.$store.getters.hasRenewProjectRight
     }
   },
   methods: {
@@ -267,13 +253,10 @@ export default {
         }))
       await this.$store.dispatch(types.SET_PRE_PROG,
         { PreProg, Kind: 'renew_project', Year: this.year })
-      this.modified = false
     },
     async getPreProg () {
-      return this.$store.dispatch(types.GET_KIND_PRE_PROG, {
-        Year: this.year,
-        Kind: 'renew_project'
-      })
+      return this.$store.dispatch(types.GET_KIND_PRE_PROG,
+        { Year: this.year, Kind: 'renew_project' })
     },
     download () {
       if (this.items.length === 0) {
@@ -288,32 +271,15 @@ export default {
             ...others
           }))
       const columns = [
-        {
-          header: 'Date com',
-          key: 'CommissionDate',
-          width: 10,
-          style: { numberFormat: 'dd/mm/yy' }
-        },
+        { header: 'Date com', key: 'CommissionDate', ...dateStyle },
         { header: 'Commission', key: 'CommissionName', width: 10 },
         { header: 'Code action', key: 'ActionCode', width: 10 },
         { header: 'Nom action', key: 'ActionName', width: 20 },
         { header: 'Opération', key: 'KindName', width: 30 },
-        {
-          header: 'Besoin',
-          key: 'ForecastValue',
-          width: 14,
-          style: { numberFormat: '#,##0.00' },
-          addTotal: true
-        },
+        { header: 'Besoin', key: 'ForecastValue', ...valStyle },
         { header: 'Projet', key: 'ForecastProject', width: 30 },
         { header: 'Commentaire', key: 'ForecastComment', width: 30 },
-        {
-          header: 'Préprog.',
-          key: 'PreProgValue',
-          width: 14,
-          style: { numberFormat: '#,##0.00' },
-          addTotal: true
-        },
+        { header: 'Préprog.', key: 'PreProgValue', ...valStyle },
         { header: 'Projet', key: 'PreProgProject', width: 30 },
         { header: 'Commentaire', key: 'PreProgComment', width: 30 }
       ]
