@@ -9,7 +9,6 @@
             v-model="yearText"
             :rules="[yearRule]"
             v-debounce:500ms="changeYear"
-            :disabled="modified"
             prepend-icon="calendar_icon"
           />
         </v-flex>
@@ -165,11 +164,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-card-actions class="tertiary">
-      <v-spacer />
-      <v-btn color="primary" text @click="progCancel" :disabled="!modified">Annuler</v-btn>
-      <v-btn color="primary" text @click="progSave" :disabled="!modified">Sauver</v-btn>
-    </v-card-actions>
 
     <prog-dlg
       v-model="opDlg"
@@ -192,7 +186,8 @@ import * as types from '@/store/types.js'
 import DeleteDialog from '@/components/DeleteDialog.vue'
 import ProgDlg from './Programmation/ProgDlg.vue'
 import { yearRule } from '@/components/mixins'
-import { excelExport } from '@/excel'
+import { excelExport, dateStyle, valStyle } from '@/excel'
+import { mapGetters } from 'vuex'
 export default {
   name: 'Programmation',
   mixins: [yearRule],
@@ -235,18 +230,12 @@ export default {
       opDlg: false,
       dlgAction: 'create',
       delDlg: false,
-      modified: false,
       maxI: 0
     }
   },
   components: { DeleteDialog, ProgDlg },
   computed: {
-    loading () {
-      return this.$store.state.loading.loading !== 0
-    },
-    isAdmin () {
-      return this.$store.getters.isAdmin
-    },
+    ...mapGetters(['loading', 'isAdmin']),
     prog () {
       return this.$store.state.prog.progList
     },
@@ -285,7 +274,7 @@ export default {
       this.item = { ...item }
       this.delDlg = true
     },
-    progRemoveConfirm () {
+    async progRemoveConfirm () {
       const idx = this.items.findIndex(i => i.i === this.item.i)
       if (this.item.PreProgValue === null && this.item.ForecastValue === null) {
         this.items.splice(idx, 1)
@@ -293,25 +282,28 @@ export default {
         this.item.Value = null
         this.items.splice(idx, 1, this.item)
       }
-      this.modified = true
+      await this.progSave()
     },
-    progAddConfirm () {
+    async progAddConfirm () {
       if (this.dlgAction === 'create') {
         this.items.push(this.item)
       } else {
         const idx = this.items.findIndex(i => i.i === this.item.i)
         this.items.splice(idx, 1, this.item)
       }
-      this.modified = true
+      await this.progSave()
     },
     async progSave () {
-      const Prog = this.items.filter(l => l.Value !== null)
+      const Prog = this.items.filter(l => l.Value !== null).map(l =>
+        ({
+          CommissionID: l.CommissionID,
+          Value: l.Value,
+          Kind: l.Kind,
+          KindID: l.KindID,
+          Comment: l.Comment,
+          ActionID: l.ActionID
+        }))
       await this.$store.dispatch(types.SET_PROG, { Prog, Year: this.year })
-      this.modified = false
-    },
-    async progCancel () {
-      await this.getProg()
-      this.modified = false
     },
     async getProg () {
       return this.$store.dispatch(types.GET_PROG, { Year: this.year })
@@ -337,40 +329,17 @@ export default {
             ...others
           }))
       const columns = [
-        {
-          header: 'Date com',
-          key: 'CommissionDate',
-          width: 10,
-          style: { numberFormat: 'dd/mm/yy' }
-        },
+        { header: 'Date com', key: 'CommissionDate', ...dateStyle },
         { header: 'Commission', key: 'CommissionName', width: 10 },
         { header: 'Code action', key: 'ActionCode', width: 10 },
         { header: 'Nom action', key: 'ActionName', width: 20 },
         { header: 'Type', key: 'ExplicitKind', width: 10 },
         { header: 'Opération', key: 'KindName', width: 30 },
-        {
-          header: 'Besoin',
-          key: 'ForecastValue',
-          width: 14,
-          style: { numberFormat: '#,##0.00' },
-          addTotal: true
-        },
+        { header: 'Besoin', key: 'ForecastValue', width: 14, ...valStyle },
         { header: 'Commentaire', key: 'ForecastComment', width: 30 },
-        {
-          header: 'Préprog.',
-          key: 'PreProgValue',
-          width: 14,
-          style: { numberFormat: '#,##0.00' },
-          addTotal: true
-        },
+        { header: 'Préprog.', key: 'PreProgValue', ...valStyle },
         { header: 'Commentaire', key: 'PreProgComment', width: 30 },
-        {
-          header: 'Prog.',
-          key: 'Value',
-          width: 14,
-          style: { numberFormat: '#,##0.00' },
-          addTotal: true
-        },
+        { header: 'Prog.', key: 'Value', ...valStyle },
         { header: 'Commentaire', key: 'Comment', width: 30 }
       ]
       excelExport(formattedProg, columns, 'Programmation')

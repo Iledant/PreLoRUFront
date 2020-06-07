@@ -34,7 +34,8 @@ const actions = {
   async [types.SET_PROG] ({ commit }, { Prog, Kind, Year }) {
     beginLoading(commit)
     try {
-      await Vue.http.post(`prog?Year=${Year}`, { Prog })
+      const { body } = await Vue.http.post(`prog?Year=${Year}`, { Prog })
+      commit(types.GET_PROG, body.Prog)
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)
