@@ -29,7 +29,7 @@ Vue.use(VueCurrencyInput, {
 })
 
 // API route is defined in .env
-Vue.http.options.root = process.env.VUE_APP_API_PATH
+Vue.http.options.root = '/api'
 
 // Check token and root to a safe place and renew token if necessary
 Vue.http.interceptors.push((request, next) => {
@@ -37,7 +37,7 @@ Vue.http.interceptors.push((request, next) => {
     const error = response.body.error
     if (types.TOKEN_ERROR_MESSAGES.includes(error)) {
       store.commit(types.DEL_TOKEN)
-      router.push({ name: 'Home' })
+      store.commit(types.SET_ERROR_MESSAGE, 'Erreur de connexion, merci de vous identifier')
     }
     const Authorization = response.headers.get('Authorization')
     if (Authorization) {
