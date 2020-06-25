@@ -38,7 +38,7 @@
             />
           </v-flex>
           <v-flex xs12>
-            <v-textarea label="Commentaire" v-model="item.Comment" />
+            <v-textarea label="Commentaire" v-model="item.PreProgComment" />
           </v-flex>
         </v-layout>
       </v-container>
