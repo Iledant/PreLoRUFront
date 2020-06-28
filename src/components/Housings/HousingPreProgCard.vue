@@ -8,7 +8,7 @@
             v-model="yearText"
             :rules="[yearRule]"
             v-debounce:500ms="changeYear"
-            prepend-icon="search"
+            prepend-icon="calendar_today"
           />
         </v-flex>
         <v-flex md3 />
@@ -36,8 +36,16 @@
                 <td class="text-right text-no-wrap">{{ sumForecast | currency }}</td>
                 <td />
                 <td class="text-right text-no-wrap">{{ sumPreProg | currency }}</td>
-                <td />
-                <td />
+                <td colspan="2">
+                  <v-tooltip left color="primary" v-if="hasHousingPreProgRight" >
+                    <template #activator="{ on }">
+                      <v-btn color="primary" small icon text @click="preProgAdd" v-on="on">
+                        <v-icon>add_circle</v-icon>
+                      </v-btn>
+                    </template>
+                    <span>Ajouter une nouvelle ligne</span>
+                  </v-tooltip>
+                </td>
               </tr>
             </template>
             <template #item="{ item }">
@@ -50,7 +58,7 @@
                     <template #activator="{on}">
                       <span v-on="on" >{{ item.ForecastValue | currency }}</span>
                     </template>
-                    <span>{{ item.ForecastComment }}</span>
+                    <span>{{ item.ForecastComment ||'-' }}</span>
                   </v-tooltip>
                 </td>
                 <td class="px-0">
@@ -76,7 +84,7 @@
                     <template #activator="{ on }">
                       <span v-on="on">{{ item.PreProgValue | currency }}</span>
                       </template>
-                    <span>{{ item.PreProgComment }}</span>
+                    <span>{{ item.PreProgComment || '-' }}</span>
                   </v-tooltip>
                 </td>
                 <td class="px-0">
@@ -123,29 +131,47 @@
                 <td class="text-right text-no-wrap">{{ sumForecast | currency }}</td>
                 <td />
                 <td class="text-right text-no-wrap">{{ sumPreProg | currency }}</td>
-                <td />
-                <td />
+                <td colspan="2">
+                  <v-tooltip left color="primary" v-if="hasHousingPreProgRight" >
+                    <template #activator="{ on }">
+                      <v-btn color="primary" small icon text @click="preProgAdd" v-on="on">
+                        <v-icon>add_circle</v-icon>
+                      </v-btn>
+                    </template>
+                    <span>Ajouter une nouvelle ligne</span>
+                  </v-tooltip>
+                </td>
               </tr>
             </template>
           </v-data-table>
-        </v-flex>
-        <v-flex xs12 class="text-right">
-          <v-btn small text color="primary" @click="download">Exporter en Excel</v-btn>
-          <v-tooltip left color="primary" v-if="hasHousingPreProgRight" >
-            <template #activator="{ on }">
-              <v-btn color="primary" fab dark x-small @click="preProgAdd" v-on="on">
-                <v-icon>add</v-icon>
-              </v-btn>
-            </template>
-            <span>Ajouter une nouvelle ligne</span>
-          </v-tooltip>
+          <v-flex xs12>
+            <v-expansion-panels flat hover>
+              <v-expansion-panel>
+                <v-expansion-panel-header expand-icon="info">
+                </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                La préprogrammation permet à un chef de service de proposer à la
+                programmation des opérations en tenant compte d'un premier niveau
+                de contraintes, par exemple le montant du budget pour les dispositifs
+                concernés. Elle permet également de réduire les montants indiqués
+                dans les besoins en tenant compte du caractère souvent trop optimiste
+                des maîtres d'ouvrage.
+              </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
+          </v-flex>
         </v-flex>
       </v-layout>
     </v-container>
+    <v-card-actions class="tertiary">
+      <v-spacer />
+          <v-btn small text color="primary" @click="download">Exporter en Excel</v-btn>
+    </v-card-actions>
     <housing-pre-prog-dlg
       v-model="opDlg"
       :action="dlgAction"
       :item="item"
+      :year="year"
       @confirm="preProgAddConfirm"
     />
 

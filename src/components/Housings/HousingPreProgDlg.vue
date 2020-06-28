@@ -1,7 +1,6 @@
 <template>
   <v-dialog
     :value="value"
-    @input="this.$emit('input', $event.target.value)"
     persistent
     :overlay="false"
     max-width="500px"
@@ -60,6 +59,7 @@ export default {
   mixins: [currencyFormat, prevRequired],
   props: {
     value: { type: Boolean, default: false },
+    year: { type: Number, default: new Date().getFullYear() },
     action: {
       type: String,
       default: 'create',
@@ -69,21 +69,22 @@ export default {
   },
   data () {
     return {
-      val: ''
+      val: '0'
     }
   },
   computed: {
+    budgetActions () {
+      return this.$store.state.settings.budgetActionsList
+    },
+    commissions () {
+      return this.$store.state.settings.commissionsList.filter(
+        c => new Date(c.Date).getFullYear() === this.year)
+    },
     title () {
       return this.action === 'create' ? 'Ajouter une nouvelle ligne' : 'Modifier la ligne'
     },
     button () {
       return this.action === 'create' ? 'Créer' : 'Modifier'
-    },
-    commissions () {
-      return this.$store.state.settings.commissionsList
-    },
-    budgetActions () {
-      return this.$store.state.settings.budgetActionsList
     },
     disabled () {
       return (
@@ -95,22 +96,26 @@ export default {
   },
   methods: {
     confirm () {
-      if (!this.disabled) {
-        this.$emit('input', false)
-        this.item.PreProgValue = this.parseCurrency(this.val)
-        const action = this.budgetActions.find(b => b.ID === this.item.ActionID)
-        this.item.ActionName = action.Name
-        this.item.ActionCode = action.Code
-        const com = this.commissions.find(c => c.ID === this.item.CommissionID)
-        this.item.CommissionDate = com.Date
-        this.item.CommissionName = com.Name
-        this.$emit('confirm', this.item)
+      if (this.disabled) {
+        return
       }
+      this.item.PreProgValue = this.parseCurrency(this.val)
+      const action = this.budgetActions.find(b => b.ID === this.item.ActionID)
+      this.item.ActionName = action.Name
+      this.item.ActionCode = action.Code
+      const com = this.commissions.find(c => c.ID === this.item.CommissionID)
+      this.item.CommissionDate = com.Date
+      this.item.CommissionName = com.Name
+      this.$emit('input', false)
+      this.$emit('confirm', this.item)
     }
   },
   watch: {
-    value () {
-      this.val = this.currencyFormat(this.item.PreProgValue)
+    value: {
+      handler () {
+        this.val = this.currencyFormat(this.item.PreProgValue)
+      },
+      immediate: true
     }
   }
 }
