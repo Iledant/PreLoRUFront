@@ -62,7 +62,7 @@
       </v-menu>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <v-container fluid>
         <v-layout align-center wrap>
           <v-flex xs12 v-if="loading">
@@ -110,7 +110,7 @@
           </v-dialog>
         </v-layout>
       </v-container>
-    </v-content>
+    </v-main>
 
     <change-pwd-dlg v-model="chgPwdDlg" />
   </v-app>
