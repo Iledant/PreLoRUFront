@@ -144,23 +144,30 @@
               </tr>
             </template>
           </v-data-table>
-          <v-flex xs12>
-            <v-expansion-panels flat hover>
-              <v-expansion-panel>
-                <v-expansion-panel-header expand-icon="info">
-                </v-expansion-panel-header>
-              <v-expansion-panel-content>
-                La préprogrammation permet à un chef de service de proposer à la
-                programmation des opérations en tenant compte d'un premier niveau
-                de contraintes, par exemple le montant du budget pour les dispositifs
-                concernés. Elle permet également de réduire les montants indiqués
-                dans les besoins en tenant compte du caractère souvent trop optimiste
-                des maîtres d'ouvrage.
-              </v-expansion-panel-content>
-              </v-expansion-panel>
-            </v-expansion-panels>
-          </v-flex>
         </v-flex>
+        <v-flex xs1>
+            <v-tooltip right color="primary" v-if="hasHousingPreProgRight" >
+              <template #activator="{ on }">
+                <v-btn @click="info = !info" color="primary" small icon text v-on="on">
+                  <v-icon>info</v-icon>
+                </v-btn>
+              </template>
+              <span>Information sur la préprogrammation</span>
+            </v-tooltip>
+          </v-flex>
+          <v-flex xs11>
+            <div v-show="info" class="text-body-2">
+                La préprogrammation repose sur une analyse des besoins. Elle permet
+                de proposer à la programmation des opérations en tenant compte des
+                contraintes du budget, des priorités ainsi que de l'analyse des
+                prévisions des années précédentes.<p />
+
+                La préprogrammation n'est accessible qu'aux administrateurs
+                ou aux utilisateurs qui ont le droit de préprogrammation du
+                secteur concerné. Les autres utilisateurs peuvent la consulter
+                mais pas la modifier.
+            </div>
+          </v-flex>
       </v-layout>
     </v-container>
     <v-card-actions class="tertiary">
@@ -228,7 +235,8 @@ export default {
       delDlg: false,
       maxID: 0,
       year: new Date().getFullYear(),
-      yearText: String(new Date().getFullYear())
+      yearText: String(new Date().getFullYear()),
+      info: false
     }
   },
   computed: {
