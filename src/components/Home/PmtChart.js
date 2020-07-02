@@ -10,7 +10,8 @@ export default {
       currentPVValues: state => state.home.currentYearPVPayments,
       previousLOValues: state => state.home.previousYearLOPayments,
       previousPVValues: state => state.home.previousYearPVPayments,
-      availableValues: state => new Array(12).fill(state.home.paymentCreditSum)
+      availableValues: state => new Array(12).fill(state.home.paymentCreditSum),
+      averagePayments: state => state.home.averagePayments
     })
   },
   data: () => ({
@@ -59,12 +60,20 @@ export default {
           cubicInterpolationMode: 'monotone'
         },
         {
+          borderColor: '#FFB74D',
+          fill: false,
+          pointBackgroundColor: '#FFB74D',
+          cubicInterpolationMode: 'monotone',
+          borderDash: [10, 5],
+          label: 'Consommation théorique'
+        },
+        {
           backgroundColor: '#F3E5F5',
-          borderColor: '#E1BEE7',
+          borderWidth: 0,
           pointBackgroundColor: '#E1BEE7',
           cubicInterpolationMode: 'monotone',
           pointRadius: 0,
-          label: 'Disponible'
+          label: 'CPI disponibles'
         }
       ]
     },
@@ -96,7 +105,8 @@ export default {
   }),
   watch: {
     previousPVValues () {
-      this.cmtDatas.datasets[4].data = this.availableValues
+      this.cmtDatas.datasets[5].data = this.availableValues
+      this.cmtDatas.datasets[4].data = this.averagePayments.map(p => p.PaymentRate * this.availableValues[11])
       this.cmtDatas.datasets[3].data = this.currentLOValues.map((v, i) => v + this.currentPVValues[i])
       this.cmtDatas.datasets[3].label = 'PV + LO ' + String(currentYear)
       this.cmtDatas.datasets[2].data = this.currentPVValues

@@ -13,7 +13,8 @@ const state = {
   importLogs: [],
   homeMessage: null,
   paymentCreditSum: null,
-  averagePaymentTime: []
+  averagePaymentTime: [],
+  averagePayments: []
 }
 
 const actions = {
@@ -24,6 +25,7 @@ const actions = {
       commit(types.GET_HOME_DATAS, resp.body)
       commit(types.SET_HOME_MESSAGE, resp.body.HomeMessage)
       commit(types.GET_PAYMENTS_DEMANDS_STOCKS, resp.body.PaymentDemandsStock)
+      commit(types.GET_AVERAGE_PAYMENTS, resp.body.AveragePayment)
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)
@@ -128,6 +130,9 @@ const mutations = {
           .replace(/(\*)([^*]+)(\*)/g, '<strong>$2</strong>') +
         '</p>'
     }
+  },
+  [types.GET_AVERAGE_PAYMENTS] (state, list) {
+    state.averagePayments = [...list]
   }
 }
 
