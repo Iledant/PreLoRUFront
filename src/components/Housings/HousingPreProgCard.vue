@@ -2,7 +2,7 @@
   <v-card>
     <v-container grid-list-md fluid>
       <v-layout wrap>
-        <v-flex xs12 md6 offset-md3>
+        <v-flex xs12 md5>
           <v-text-field
             label="Année de préprogrammation"
             v-model="yearText"
@@ -11,15 +11,23 @@
             prepend-icon="calendar_today"
           />
         </v-flex>
-        <v-flex md3 />
-        <v-flex xs12 md6 offset-md3>
+        <v-flex xs11 md6>
           <v-text-field
             label="Recherche dans la préprogrammation"
             v-model="search"
             prepend-icon="search"
           />
         </v-flex>
-        <v-flex md3 />
+        <v-flex xs1 class="text-right">
+          <v-tooltip left color="primary">
+            <template #activator="{ on }">
+              <v-btn @click="info = true" color="primary" small icon text v-on="on">
+                <v-icon>info</v-icon>
+              </v-btn>
+            </template>
+            <span>Information sur la préprogrammation</span>
+          </v-tooltip>
+        </v-flex>
         <v-flex xs12>
           <v-data-table
             :headers="headers"
@@ -30,14 +38,14 @@
             class="elevation-1"
             dense
           >
-            <template #body.prepend="">
+            <template #body.prepend>
               <tr class="grey lighten-4 font-weight-medium">
                 <td colspan="3" class="text-center">Total</td>
                 <td class="text-right text-no-wrap">{{ sumForecast | currency }}</td>
                 <td />
                 <td class="text-right text-no-wrap">{{ sumPreProg | currency }}</td>
                 <td colspan="2">
-                  <v-tooltip left color="primary" v-if="hasHousingPreProgRight" >
+                  <v-tooltip left color="primary" v-if="hasHousingPreProgRight">
                     <template #activator="{ on }">
                       <v-btn color="primary" small icon text @click="preProgAdd" v-on="on">
                         <v-icon>add_circle</v-icon>
@@ -56,7 +64,7 @@
                 <td class="text-right text-no-wrap">
                   <v-tooltip left color="primary">
                     <template #activator="{on}">
-                      <span v-on="on" >{{ item.ForecastValue | currency }}</span>
+                      <span v-on="on">{{ item.ForecastValue | currency }}</span>
                     </template>
                     <span>{{ item.ForecastComment ||'-' }}</span>
                   </v-tooltip>
@@ -83,7 +91,7 @@
                   <v-tooltip left color="primary">
                     <template #activator="{ on }">
                       <span v-on="on">{{ item.PreProgValue | currency }}</span>
-                      </template>
+                    </template>
                     <span>{{ item.PreProgComment || '-' }}</span>
                   </v-tooltip>
                 </td>
@@ -125,14 +133,14 @@
                 </td>
               </tr>
             </template>
-            <template #body.append="">
+            <template #body.append>
               <tr class="grey lighten-4 font-weight-medium">
                 <td colspan="3" class="text-center">Total</td>
                 <td class="text-right text-no-wrap">{{ sumForecast | currency }}</td>
                 <td />
                 <td class="text-right text-no-wrap">{{ sumPreProg | currency }}</td>
                 <td colspan="2">
-                  <v-tooltip left color="primary" v-if="hasHousingPreProgRight" >
+                  <v-tooltip left color="primary" v-if="hasHousingPreProgRight">
                     <template #activator="{ on }">
                       <v-btn color="primary" small icon text @click="preProgAdd" v-on="on">
                         <v-icon>add_circle</v-icon>
@@ -145,34 +153,11 @@
             </template>
           </v-data-table>
         </v-flex>
-        <v-flex xs1>
-            <v-tooltip right color="primary" v-if="hasHousingPreProgRight" >
-              <template #activator="{ on }">
-                <v-btn @click="info = !info" color="primary" small icon text v-on="on">
-                  <v-icon>info</v-icon>
-                </v-btn>
-              </template>
-              <span>Information sur la préprogrammation</span>
-            </v-tooltip>
-          </v-flex>
-          <v-flex xs11>
-            <div v-show="info" class="text-body-2">
-                La préprogrammation repose sur une analyse des besoins. Elle permet
-                de proposer à la programmation des opérations en tenant compte des
-                contraintes du budget, des priorités ainsi que de l'analyse des
-                prévisions des années précédentes.<p />
-
-                La préprogrammation n'est accessible qu'aux administrateurs
-                ou aux utilisateurs qui ont le droit de préprogrammation du
-                secteur concerné. Les autres utilisateurs peuvent la consulter
-                mais pas la modifier.
-            </div>
-          </v-flex>
       </v-layout>
     </v-container>
     <v-card-actions class="tertiary">
       <v-spacer />
-          <v-btn small text color="primary" @click="download">Exporter en Excel</v-btn>
+      <v-btn small text color="primary" @click="download">Exporter en Excel</v-btn>
     </v-card-actions>
     <housing-pre-prog-dlg
       v-model="opDlg"
@@ -185,8 +170,11 @@
     <delete-dialog
       v-model="delDlg"
       sentence="Supprimer la ligne définitivement ?"
-      @confirm="preProgRemoveConfirm"
+      @confirm="preProgRe
+      moveConfirm"
     />
+
+    <pre-prog v-model="info" />
   </v-card>
 </template>
 
@@ -197,10 +185,11 @@ import * as types from '@/store/types.js'
 import { yearRule, preProgMethods } from '@/components/mixins'
 import { excelExport, dateStyle, valStyle } from '@/excel'
 import { mapGetters } from 'vuex'
+import PreProg from '@/components/InfoDialogs/Preprog.vue'
 
 export default {
   name: 'HousingPreProgCard',
-  components: { HousingPreProgDlg, DeleteDialog },
+  components: { HousingPreProgDlg, DeleteDialog, PreProg },
   mixins: [yearRule, preProgMethods],
   data () {
     return {

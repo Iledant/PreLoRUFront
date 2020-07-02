@@ -2,7 +2,7 @@
   <v-card>
     <v-container grid-list-md fluid>
       <v-layout wrap>
-        <v-flex xs12 md6 offset-md3>
+        <v-flex xs12 md5>
           <v-text-field
             label="Année de préprogrammation"
             v-model="yearText"
@@ -11,12 +11,22 @@
             prepend-icon="calendar_today"
           />
         </v-flex>
-        <v-flex xs12 md6 offset-md3>
+        <v-flex xs12 md6>
           <v-text-field
             label="Recherche dans la préprogrammation"
             v-model="search"
             prepend-icon="search"
           />
+        </v-flex>
+        <v-flex xs1 class="text-right">
+          <v-tooltip left color="primary">
+            <template #activator="{ on }">
+              <v-btn @click="info = !info" color="primary" small icon text v-on="on">
+                <v-icon>info</v-icon>
+              </v-btn>
+            </template>
+            <span>Information sur la préprogrammation</span>
+          </v-tooltip>
         </v-flex>
         <v-flex xs12>
           <v-data-table
@@ -28,7 +38,7 @@
             class="elevation-1"
             dense
           >
-            <template #body.prepend="">
+            <template #body.prepend>
               <tr class="font-weight-medium grey-lighten-4">
                 <td colspan="2" class="text-center">Total</td>
                 <td class="text-right text-no-wrap">{{ sumForecast | currency }}</td>
@@ -125,7 +135,7 @@
                 </td>
               </tr>
             </template>
-            <template #body.append="">
+            <template #body.append>
               <tr class="grey lighten-4 font-weight-medium">
                 <td colspan="2" class="text-center">Total</td>
                 <td class="text-right text-no-wrap">{{ sumForecast | currency }}</td>
@@ -171,6 +181,8 @@
       sentence="Supprimer la prévision définitivement ?"
       @confirm="preProgRemoveConfirm"
     />
+
+    <pre-prog v-model="info" />
   </v-card>
 </template>
 
@@ -181,9 +193,11 @@ import * as types from '@/store/types.js'
 import { yearRule, preProgMethods } from '@/components/mixins'
 import { excelExport, dateStyle, valStyle } from '@/excel'
 import { mapGetters } from 'vuex'
+import PreProg from '@/components/InfoDialogs/Preprog.vue'
+
 export default {
   name: 'CoproPreProgCard',
-  components: { CoproPreProgDlg, DeleteDialog },
+  components: { CoproPreProgDlg, DeleteDialog, PreProg },
   mixins: [yearRule, preProgMethods],
   data () {
     return {
@@ -221,7 +235,8 @@ export default {
       delDlg: false,
       maxID: 0,
       year: new Date().getFullYear(),
-      yearText: String(new Date().getFullYear())
+      yearText: String(new Date().getFullYear()),
+      info: false
     }
   },
   computed: {
