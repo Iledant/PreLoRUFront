@@ -7,7 +7,7 @@
         :loading="loading"
       />
     </v-flex>
-    <v-flex xs12 sm6 class="body-2">
+    <v-flex xs12 sm6 class="text-body-2">
       Import d'un fichier Excel (.xlsx) de mettre à jour ou de compléter la base
       de données de PreLoRU sur le taux officiel de logement social des communes
       pour une année donnée. Le fichier doit contenir trois colonnes : le code

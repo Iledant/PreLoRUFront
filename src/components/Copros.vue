@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="white--text primary headline">Copropriétés</v-card-title>
+    <v-card-title class="white--text primary text-h5">Copropriétés</v-card-title>
     <v-tabs v-model="tab" dark background-color="primary" slider-color="tertiary" centered>
       <v-tab>Opérations</v-tab>
       <v-tab-item>

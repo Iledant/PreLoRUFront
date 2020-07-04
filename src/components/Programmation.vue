@@ -154,7 +154,7 @@
             <span>Ajouter une nouvelle ligne</span>
           </v-tooltip>
         </v-flex>
-        <v-flex xs12 class="caption">
+        <v-flex xs12 class="text-caption">
           Nota : pour mettre en regard les besoins, la préprogrammation et la programmation,
           Preloru vérifie que la commission, l'action budgétaire et le montant sont identiques.
           Si ce n'est pas le cas, des lignes distinctes sont créées dans cette synthèse :

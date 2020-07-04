@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="white--text primary headline">
+    <v-card-title class="white--text primary text-h5">
       Situation de {{ beneficiaryName }}
     </v-card-title>
     <v-tabs background-color="primary" slider-color="tertiary" v-model="tab" centered dark>

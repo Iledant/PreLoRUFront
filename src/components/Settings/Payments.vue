@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="white--text primary headline">Paiements</v-card-title>
+    <v-card-title class="white--text primary text-h5">Paiements</v-card-title>
     <v-container fluid grid-list-md>
       <v-layout wrap>
         <v-flex xs12 sm6>

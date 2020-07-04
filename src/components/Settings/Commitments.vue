@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="white--text primary headline">Engagements</v-card-title>
+    <v-card-title class="white--text primary text-h5">Engagements</v-card-title>
     <v-card-text>
       <v-layout wrap>
         <v-flex xs12 sm6 pa-2>

@@ -27,7 +27,7 @@
         :disabled="!date"
       />
     </v-flex>
-    <v-flex xs12 sm6 class="body-2">
+    <v-flex xs12 sm6 class="text-body-2">
       Import d'un fichier Excel (.xlsx) contenant la liste des DVS en cours de
       validation. Une date d'import est obligatoire : celle de génération du
       tableau de bord. Cette date est stockées dans la base de données de

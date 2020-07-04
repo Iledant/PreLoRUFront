@@ -7,7 +7,7 @@
     max-width="500px"
   >
     <v-card>
-      <v-card-title class="primary white--text headline">{{ title }}</v-card-title>
+      <v-card-title class="primary white--text text-h5">{{ title }}</v-card-title>
       <v-container grid-list-md>
         <v-layout wrap>
           <v-flex xs12>
@@ -16,7 +16,7 @@
           <v-flex xs12>
             <v-text-field label="Lien" v-model="item.Link" />
           </v-flex>
-          <v-flex xs12 class="caption">
+          <v-flex xs12 class="text-caption">
             Il faut coller l'adresser directement dans le champ lien.
             Pour des raisons de sécurité, il n'est pas possible dans Chrome
             de récupérer autrement l'adresse d'un fichier.

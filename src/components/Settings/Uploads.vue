@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="white--text primary headline">
+    <v-card-title class="white--text primary text-h5">
       Imports de fichiers
     </v-card-title>
     <v-container grid-list-md fluid>

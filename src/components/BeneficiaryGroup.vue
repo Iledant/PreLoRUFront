@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="white--text primary headline">Groupe de bénéficiaires «{{ name }}»</v-card-title>
+    <v-card-title class="white--text primary text-h5">Groupe de bénéficiaires «{{ name }}»</v-card-title>
     <v-tabs background-color="primary" slider-color="tertiary" v-model="tab" centered dark>
       <v-tab>Liste des bénéficiaires</v-tab>
       <v-tab-item>

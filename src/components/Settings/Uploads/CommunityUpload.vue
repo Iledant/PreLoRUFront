@@ -7,7 +7,7 @@
         :loading="loading"
       />
     </v-flex>
-    <v-flex xs12 sm6 class="body-2">
+    <v-flex xs12 sm6 class="text-body-2">
       Import d'un fichier Excel (.xlsx) comportant une liste d'intercommunalité.
       Le tableau doit contenir deux colonnes : celui du code INSEE (Code) et
       celui du nom de cette intercommunalité ('Name').

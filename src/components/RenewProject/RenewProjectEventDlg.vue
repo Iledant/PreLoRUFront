@@ -7,7 +7,7 @@
     max-width="500px"
   >
     <v-card>
-      <v-card-title class="primary white--text headline">
+      <v-card-title class="primary white--text text-h5">
         {{
         title
         }}

@@ -7,7 +7,7 @@
         :loading="loading"
       />
     </v-flex>
-    <v-flex xs12 sm6 class="body-2">
+    <v-flex xs12 sm6 class="text-body-2">
       Import d'un fichier Excel (.xlsx) permettant de remplir le type de
       logement concerné pour une fiche IRIS pour mettre à jour la base de
       données de PreLoRU. Le tableau doit contenir deux colonnes : celui du code

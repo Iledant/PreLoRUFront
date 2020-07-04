@@ -7,7 +7,7 @@
         :loading="loading"
       />
     </v-flex>
-    <v-flex xs12 sm6 class="body-2">
+    <v-flex xs12 sm6 class="text-body-2">
       Import d'un fichier Excel (.xlsx) comportant la liste de la situation des
       enveloppes de crédits de paiement (votés, mise en réserve, virés). Il est
       généré par une requête de l'infocentre CORIOLIS.

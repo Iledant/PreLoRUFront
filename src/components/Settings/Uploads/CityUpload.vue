@@ -7,7 +7,7 @@
         :loading="loading"
       />
     </v-flex>
-    <v-flex xs12 sm6 class="body-2">
+    <v-flex xs12 sm6 class="text-body-2">
       Import d'un fichier Excel (.xlsx) comportant la liste des projets urbains
       à ajouter à la base de données de PreLoRU. Le tableau doit contenir les
       colonnes "Reference", "Name", "Budget", "PRIN", "CityCode1", "CityCode2",

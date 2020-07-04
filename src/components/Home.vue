@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="white--text primary headline">Accueil</v-card-title>
+    <v-card-title class="white--text primary text-h5">Accueil</v-card-title>
     <v-container grid-list-md fluid>
       <v-layout wrap>
         <v-flex xs12>
@@ -18,7 +18,7 @@
               </v-tooltip>
             </v-card-title>
             <v-card-text>
-              <div class="body-2 pt-3" v-show="homeMsg" v-html="homeMsg ? homeMsg.Html : ''" />
+              <div class="text-body-2 pt-3" v-show="homeMsg" v-html="homeMsg ? homeMsg.Html : ''" />
             </v-card-text>
           </v-card>
         </v-flex>
@@ -26,14 +26,14 @@
           <v-card>
             <v-card-title class="tertiary">Paiements</v-card-title>
             <pmt-chart :height="400" class="pt-1" />
-            <div class="caption text-right">Dernier import : {{ pmtImportDate | date }}</div>
+            <div class="text-caption text-right">Dernier import : {{ pmtImportDate | date }}</div>
           </v-card>
         </v-flex>
         <v-flex xs12 md6>
           <v-card>
             <v-card-title class="tertiary">Engagements</v-card-title>
             <cmt-chart :height="400" class="pt-1" />
-            <div class="caption text-right">Dernier import : {{ cmtImportDate | date }}</div>
+            <div class="text-caption text-right">Dernier import : {{ cmtImportDate | date }}</div>
           </v-card>
         </v-flex>
         <v-flex xs12 md6>

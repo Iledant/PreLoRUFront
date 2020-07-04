@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="secondary white--text headline">
+    <v-card-title class="secondary white--text text-h5">
       Gestion des demandes de paiement
     </v-card-title>
     <v-container grid-list-md fluid>

@@ -7,7 +7,7 @@
         :loading="loading"
       />
     </v-flex>
-    <v-flex xs12 sm6 class="body-2">
+    <v-flex xs12 sm6 class="text-body-2">
       Import d'un fichier Excel (.xlsx) la liste des programmes de logement
       social. Le tableau doit contenir les colonnes "Reference", "Address",
       "PLAI", "PLUS", "PLS", "ANRU".

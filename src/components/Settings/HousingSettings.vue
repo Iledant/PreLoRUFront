@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="white--text primary headline">
+    <v-card-title class="white--text primary text-h5">
       Administration des logements sociaux
     </v-card-title>
     <v-tabs

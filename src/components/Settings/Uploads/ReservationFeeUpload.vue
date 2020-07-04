@@ -12,7 +12,7 @@
         :loading="loading"
       />
     </v-flex>
-    <v-flex xs12 sm6 class="body-2">
+    <v-flex xs12 sm6 class="text-body-2">
       Import d'un fichier Excel (.xlsx) pour mettre à jour ou pour compléter la
       base de données des réservations de la Région dans PreLoRU.<br />
       Pour vérifier que l'ensemble des bénéficiaires et des noms de communes

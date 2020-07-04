@@ -7,7 +7,7 @@
         :loading="loading"
       />
     </v-flex>
-    <v-flex xs12 sm6 class="body-2">
+    <v-flex xs12 sm6 class="text-body-2">
       Import d'un fichier Excel (.xlsx) comportant la liste des données de
       copropriétés à importer. Le fichier doit contenir les champs "Reference",
       "Name", "Address" et "ZipCode". Il correspond au tableau de bord IRIS
