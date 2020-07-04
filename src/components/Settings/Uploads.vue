@@ -44,8 +44,8 @@ export default {
     return {
       selected: null,
       items: [
-        { text: 'Engagements', value: CommitmentUpload },
         { text: 'Paiements', value: PaymentUpload },
+        { text: 'Engagements', value: CommitmentUpload },
         { text: 'Demandes de paiement (DVS)', value: PmtDemandUpload },
         { text: 'Stagiaires', value: PlacementUpload },
         { text: 'Copropriétés', value: CoproUpload },
