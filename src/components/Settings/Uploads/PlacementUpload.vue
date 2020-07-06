@@ -7,7 +7,7 @@
         :loading="loading"
       />
     </v-flex>
-    <v-flex xs12 sm6 class="body-2">
+    <v-flex xs12 sm6 class="text-body-2">
       Import d'un fichier Excel (.xlsx) contenant la liste des engagements de
       stagiaires pour les code IRIS. Il faut utiliser le tableau de bord IRIS
       "PreLoRU - Suivi stage W0008183". Il doit contenir les colonnes "IrisCode",

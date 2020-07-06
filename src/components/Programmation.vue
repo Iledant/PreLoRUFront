@@ -32,14 +32,22 @@
             dense
           >
             <template #body.prepend="">
-              <tr class="font-weight-medium">
+              <tr class="font-weight-medium grey lighten-4">
                 <td colspan="5" class="text-center">Total</td>
                 <td class="text-no-wrap text-right">{{ sumForecast | currency }}</td>
                 <td class="text-no-wrap text-right">{{ sumPreProg | currency }}</td>
                 <td />
                 <td class="text-no-wrap text-right">{{ sumProg | currency }}</td>
-                <td />
-                <td />
+                <td colspan="2">
+                  <v-tooltip left color="primary" v-if="isAdmin">
+                    <template #activator="{ on }">
+                      <v-btn color="primary" text icon small @click="progAdd" v-on="on">
+                        <v-icon>add_circle</v-icon>
+                      </v-btn>
+                    </template>
+                    <span>Ajouter une nouvelle ligne</span>
+                  </v-tooltip>
+                </td>
               </tr>
             </template>
             <template #item="{ item }">
@@ -131,30 +139,27 @@
               </tr>
             </template>
             <template #body.append="">
-              <tr class="font-weight-medium">
+              <tr class="font-weight-medium grey lighten-4">
                 <td colspan="5" class="text-center">Total</td>
                 <td class="text-no-wrap text-right">{{ sumForecast | currency }}</td>
                 <td class="text-no-wrap text-right">{{ sumPreProg | currency }}</td>
                 <td />
                 <td class="text-no-wrap text-right">{{ sumProg | currency }}</td>
-                <td />
-                <td />
+                <td colspan="2">
+                  <v-tooltip left color="primary" v-if="isAdmin">
+                    <template #activator="{ on }">
+                      <v-btn color="primary" text icon small @click="progAdd" v-on="on">
+                        <v-icon>add_circle</v-icon>
+                      </v-btn>
+                    </template>
+                    <span>Ajouter une nouvelle ligne</span>
+                  </v-tooltip>
+                </td>
               </tr>
             </template>
           </v-data-table>
         </v-flex>
-        <v-flex xs12 class="text-right">
-          <v-btn small text @click="download" color="primary">Exporter en Excel</v-btn>
-          <v-tooltip left color="primary" v-if="isAdmin">
-            <template #activator="{ on }">
-              <v-btn color="primary" fab dark x-small @click="progAdd" v-on="on">
-                <v-icon>add</v-icon>
-              </v-btn>
-            </template>
-            <span>Ajouter une nouvelle ligne</span>
-          </v-tooltip>
-        </v-flex>
-        <v-flex xs12 class="caption">
+        <v-flex xs12 class="text-caption">
           Nota : pour mettre en regard les besoins, la préprogrammation et la programmation,
           Preloru vérifie que la commission, l'action budgétaire et le montant sont identiques.
           Si ce n'est pas le cas, des lignes distinctes sont créées dans cette synthèse :
@@ -164,6 +169,10 @@
         </v-flex>
       </v-layout>
     </v-container>
+    <v-card-actions class="tertiary">
+      <v-spacer />
+      <v-btn small text @click="download" color="primary">Exporter en Excel</v-btn>
+    </v-card-actions>
 
     <prog-dlg
       v-model="opDlg"

@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="white--text primary headline">
+    <v-card-title class="white--text primary text-h5">
       [{{ project ? project.Reference : '' }}]
       {{ project ? project.Name : '' }}
     </v-card-title>

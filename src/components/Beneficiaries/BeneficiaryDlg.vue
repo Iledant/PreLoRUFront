@@ -1,7 +1,7 @@
 <template>
   <v-dialog :value="value" persistent :overlay="false" max-width="500px">
     <v-card>
-      <v-card-title class="primary white--text headline">{{ title }}</v-card-title>
+      <v-card-title class="primary white--text text-h5">{{ title }}</v-card-title>
       <v-container grid-list-md>
         <v-layout wrap>
           <v-flex xs12>
@@ -22,7 +22,7 @@
               @keyup.enter="confirm"
             />
           </v-flex>
-          <v-flex xs12 v-if="action === 'modify'" class="body-2 font-italic">
+          <v-flex xs12 v-if="action === 'modify'" class="text-body-2 font-italic">
             La modification du code d'un bénéficiaire importé de CORIOLIS peut
             provoquer des erreurs dans le fonctionnement des requêtes de PreLoRU.
           </v-flex>

@@ -7,7 +7,7 @@
         :loading="loading"
       />
     </v-flex>
-    <v-flex xs12 sm6 class="body-2">
+    <v-flex xs12 sm6 class="text-body-2">
       Import d'un fichier Excel (.xlsx) comportant la liste des engagements
       issus de l'infocentre CORIOLIS. Le format à utiliser est celui généré par
       cette requête.

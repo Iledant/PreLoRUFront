@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="white--text primary headline">Administration des droits de réservation</v-card-title>
+    <v-card-title class="white--text primary text-h5">Administration des droits de réservation</v-card-title>
     <v-tabs v-model="tab" dark background-color="primary" slider-color="tertiary" centered>
       <v-tab>Typologies</v-tab>
       <v-tab-item>

@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="white--text primary headline">Actions budgétaires</v-card-title>
+    <v-card-title class="white--text primary text-h5">Actions budgétaires</v-card-title>
     <v-container fluid grid-list-md>
       <v-layout wrap>
         <v-flex xs12 md6 offset-md3>
@@ -76,7 +76,7 @@
 
     <v-dialog v-model="dialog" persistent :overlay="false" max-width="500px">
       <v-card>
-        <v-card-title class="primary white--text headline">{{ dlgTitle }}</v-card-title>
+        <v-card-title class="primary white--text text-h5">{{ dlgTitle }}</v-card-title>
         <v-card-text>
           <v-container grid-list-md>
             <v-layout wrap>

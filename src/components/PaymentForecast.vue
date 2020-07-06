@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="white--text primary headline">Prévisions de CP</v-card-title>
+    <v-card-title class="white--text primary text-h5">Prévisions de CP</v-card-title>
     <v-tabs v-model="active" slider-color="tertiary" background-color="primary" dark centered>
       <v-tab ripple>Prévisions par ratios</v-tab>
       <v-tab-item>

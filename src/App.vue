@@ -44,7 +44,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>
         PreLoRU
-        <span class="caption">{{ appVersion }}, {{ userName }}</span>
+        <span class="text-caption">{{ appVersion }}, {{ userName }}</span>
       </v-toolbar-title>
       <v-spacer />
       <v-menu bottom left>

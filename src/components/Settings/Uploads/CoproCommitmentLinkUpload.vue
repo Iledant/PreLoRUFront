@@ -7,7 +7,7 @@
         :loading="loading"
       />
     </v-flex>
-    <v-flex xs12 sm6 class="body-2">
+    <v-flex xs12 sm6 class="text-body-2">
       Import d'un fichier Excel (.xlsx) la liste des couples numéros de fiche
       IRIS et référence de copropriétés pour faire le lien entre les engagements
       pris par la commission permanente et les labels. Le fichier doit comporter

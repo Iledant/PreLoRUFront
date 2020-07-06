@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="white--text primary headline">
+    <v-card-title class="white--text primary text-h5">
       Délais de paiement
     </v-card-title>
     <v-container grid-list-md fluid>

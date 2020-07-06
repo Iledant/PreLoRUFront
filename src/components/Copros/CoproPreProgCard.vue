@@ -39,15 +39,23 @@
             dense
           >
             <template #body.prepend>
-              <tr class="font-weight-medium grey-lighten-4">
+              <tr class="grey lighten-4 font-weight-medium">
                 <td colspan="2" class="text-center">Total</td>
                 <td class="text-right text-no-wrap">{{ sumForecast | currency }}</td>
                 <td />
                 <td />
                 <td class="text-right">{{ sumPreProg | currency }}</td>
                 <td />
-                <td />
-                <td />
+                <td colspan="2">
+                  <v-tooltip left color="primary" v-if="hasCoproRight">
+                    <template #activator="{ on }">
+                      <v-btn color="primary" small icon text @click="preProgAdd" v-on="on">
+                        <v-icon>add_circle</v-icon>
+                      </v-btn>
+                      </template>
+                    <span>Ajouter une nouvelle ligne</span>
+                  </v-tooltip>
+                </td>
               </tr>
             </template>
             <template #item="{ item }">
@@ -143,24 +151,21 @@
                 <td />
                 <td class="text-right">{{ sumPreProg | currency }}</td>
                 <td />
-                <td />
-                <td />
+                <td colspan="2">
+                  <v-tooltip left color="primary" v-if="hasCoproRight">
+                    <template #activator="{ on }">
+                      <v-btn color="primary" small icon text @click="preProgAdd" v-on="on">
+                        <v-icon>add_circle</v-icon>
+                      </v-btn>
+                    </template>
+                    <span>Ajouter une nouvelle ligne</span>
+                  </v-tooltip>
+                </td>
               </tr>
             </template>
           </v-data-table>
         </v-flex>
-        <v-flex xs12 class="text-right">
-          <v-btn small text color="primary" @click="download">Exporter en Excel</v-btn>
-          <v-tooltip left color="primary" v-if="hasCoproRight">
-            <template #activator="{ on }">
-              <v-btn color="primary" fab dark x-small @click="preProgAdd" v-on="on">
-                <v-icon>add</v-icon>
-              </v-btn>
-            </template>
-            <span>Ajouter une nouvelle ligne</span>
-          </v-tooltip>
-        </v-flex>
-        <v-flex xs12 class="caption">
+        <v-flex xs12 class="text-caption">
           Nota : pour mettre en regard les besoins et la préprogrammation, Preloru
           vérifie que la commission, l'action budgétaire et le montant sont identiques.
           Si ce n'est pas le cas, deux lignes sont créées dans cette synthèse :
@@ -168,6 +173,10 @@
         </v-flex>
       </v-layout>
     </v-container>
+    <v-card-actions class="tertiary">
+      <v-spacer />
+      <v-btn small text color="primary" @click="download">Exporter en Excel</v-btn>
+    </v-card-actions>
     <copro-pre-prog-dlg
       v-model="opDlg"
       :action="dlgAction"
