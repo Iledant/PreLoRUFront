@@ -5,7 +5,7 @@
       <v-layout wrap>
         <v-flex xs12 sm6 pa-2>
           <v-text-field
-            label="Rechercher (nom, code, bénéficiaire)"
+            label="Rechercher (nom, code, bénéficiaire, IRIS, action bud.)"
             v-debounce:500ms="newSearch"
             prepend-icon="search"
           />
@@ -77,7 +77,8 @@ export default {
         { text: 'Date', value: 'CreationDate', sortable: false },
         { text: 'Budget', value: 'Budget', sortable: false },
         { text: 'Lié', value: 'Linked', sortable: false },
-        { text: 'Code', value: 'FullCode', sortable: false },
+        { text: 'Num egt', value: 'FullCode', sortable: false },
+        { text: 'IRIS', value: 'IrisCode', sortable: false },
         { text: 'Objet', value: 'Name', sortable: false },
         { text: 'Bénéficiaire', value: 'Beneficiary', sortable: false },
         { text: 'Montant', value: 'Value', sortable: false },
@@ -138,6 +139,7 @@ export default {
         FullCode: c.Code + '/' + c.Number + '/' + c.Line,
         CreationDate: c.CreationDate,
         Name: c.Name,
+        IrisCode: c.IrisCode,
         Beneficiary: c.BeneficiaryName,
         Value: c.Value,
         Budget: '[' + c.Sector + '] ' + c.ActionName,
