@@ -4,7 +4,7 @@
       <v-layout wrap>
         <v-flex xs12 sm6 pa-2>
           <v-text-field
-            label="Rechercher (nom, code, bénéficiaire)"
+            label="Rechercher (nom, code, bénéficiaire, IRIS, action bud.)"
             v-debounce:500ms="newSearch"
             prepend-icon="search"
           />
@@ -65,13 +65,14 @@ export default {
       search: '',
       year: 0,
       headers: [
-        { text: 'Date', value: 'CreationDate' },
-        { text: 'Budget', value: 'Budget' },
-        { text: 'Code', value: 'FullCode' },
-        { text: 'Objet', value: 'Name' },
-        { text: 'Bénéficiaire', value: 'Beneficiary' },
-        { text: 'Montant', value: 'Value' },
-        { text: 'Soldé', value: 'SoldOut' }
+        { text: 'Date', value: 'CreationDate', sortable: false },
+        { text: 'Budget', value: 'Budget', sortable: false },
+        { text: 'Num egt', value: 'FullCode', sortable: false },
+        { text: 'IRIS', value: 'IrisCode', sortable: false },
+        { text: 'Objet', value: 'Name', sortable: false },
+        { text: 'Bénéficiaire', value: 'Beneficiary', sortable: false },
+        { text: 'Montant', value: 'Value', sortable: false },
+        { text: 'Soldé', value: 'SoldOut', sortable: false }
       ],
       page: 1,
       selected: []
@@ -129,6 +130,7 @@ export default {
         Year: c.Year,
         FullCode: c.Code + '/' + c.Number + '/' + c.Line,
         CreationDate: c.CreationDate,
+        IrisCode: c.IrisCode,
         Name: c.Name,
         Beneficiary: c.BeneficiaryName,
         Value: c.Value,
