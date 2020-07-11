@@ -80,10 +80,11 @@ export function number (n) {
 
 /**
  * Trim the string to 50 cars adding ellipsis
- * @param {String} s string to trim if too long
+ * @param {String} s string to trim if longer than n, if null return -
+ * @param {Number} n max length of string before trim
  * @return {String} trimmed string
  */
-export const trim50 = s => s ? (s.length > 50 ? s.substring(0, 47) + '...' : s) : '-'
+export const trim = (s, n) => s ? (s.length > n ? s.substring(0, n - 3) + '...' : s) : '-'
 
 const shortDateFormatter = new Intl.DateTimeFormat('fr-FR', {
   month: '2-digit',

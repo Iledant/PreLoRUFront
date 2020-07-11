@@ -24,7 +24,7 @@
                 <td class="text-left">
                   <v-tooltip left color="secondary">
                     <template #activator="{ on }">
-                      <div v-on="on">{{ item.Comment | trim50 }}</div>
+                      <div v-on="on">{{ item.Comment | trim(50) }}</div>
                     </template>
                     <span>{{ item.Comment }}</span>
                   </v-tooltip>

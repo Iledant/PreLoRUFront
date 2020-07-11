@@ -56,7 +56,7 @@
                 <td>{{ item.CommissionName }}</td>
                 <td>{{ item.ActionName }}</td>
                 <td>{{ item.ExplicitKind }}</td>
-                <td>{{ item.KindName | trim50 }}</td>
+                <td>{{ item.KindName | trim(50) }}</td>
                 <td class="text-right text-no-wrap">
                   <v-tooltip left color="primary">
                     <template #activator="{ on }">

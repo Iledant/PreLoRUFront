@@ -16,7 +16,7 @@ import {
   number,
   displayBool,
   float2Euros,
-  trim50,
+  trim,
   shortDate,
   float2MEuros
 } from './filters.js'
@@ -78,7 +78,7 @@ Vue.filter('percentage', percentage)
 Vue.filter('number', number)
 Vue.filter('displayBool', displayBool)
 Vue.filter('float2Euros', float2Euros)
-Vue.filter('trim50', trim50)
+Vue.filter('trim', trim)
 Vue.filter('shortDate', shortDate)
 Vue.filter('float2MEuros', float2MEuros)
 
