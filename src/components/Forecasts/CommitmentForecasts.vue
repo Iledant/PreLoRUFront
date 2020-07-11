@@ -52,14 +52,14 @@ export default {
         { text: 'Y1', value: 'Y1' },
         { text: 'Y2', value: 'Y2' },
         { text: 'Y3', value: 'Y3' },
-        { text: 'Y4', value: 'Y4' }
+        { text: 'Y4', value: 'Y4' },
       ],
       ratioYear: null,
       TY0: 0,
       TY1: 0,
       TY2: 0,
       TY3: 0,
-      TY4: 0
+      TY4: 0,
     }
   },
   computed: {
@@ -68,7 +68,7 @@ export default {
     },
     loading () {
       return this.$store.state.loading.loading !== 0
-    }
+    },
   },
   watch: {
     items (items) {
@@ -86,7 +86,7 @@ export default {
         this.TY3 += item.Y3
         this.TY4 += item.Y4
       }
-    }
+    },
   },
   methods: {
     async excelExport () {
@@ -98,7 +98,7 @@ export default {
         Y1: 0.01 * c.Y1,
         Y2: 0.01 * c.Y2,
         Y3: 0.01 * c.Y3,
-        Y4: 0.01 * c.Y4
+        Y4: 0.01 * c.Y4,
       }))
       const columns = [
         { header: 'Code action', key: 'ActionCode', width: 14 },
@@ -108,39 +108,39 @@ export default {
           key: 'Y0',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: String(thisYear + 1),
           key: 'Y1',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: String(thisYear + 2),
           key: 'Y2',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: String(thisYear + 3),
           key: 'Y3',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: String(thisYear + 4),
           key: 'Y4',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
-        }
+          addTotal: true,
+        },
       ]
       await excelExport(cmtForecasts, columns, 'Prévisions engagement')
-    }
+    },
   },
   created () {
     const now = new Date().getFullYear()
@@ -148,6 +148,6 @@ export default {
       this.headers[i].text = String(now + i - 1)
     }
     this.$store.dispatch(types.GET_CMT_FORECASTS)
-  }
+  },
 }
 </script>

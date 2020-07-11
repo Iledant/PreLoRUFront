@@ -131,13 +131,13 @@ export default {
         { text: 'Code', value: 'Name' },
         { text: 'Nom complet', value: 'FullName' },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       dialog: false,
       delDlg: false,
       item: { Name: '', FullName: null },
       dlgTitle: 'Nouveau secteur budgétaire',
-      dlgBtn: 'Créer'
+      dlgBtn: 'Créer',
     }
   },
   methods: {
@@ -168,7 +168,7 @@ export default {
     },
     async delConfirm () {
       await this.$store.dispatch(types.DEL_SECTOR, this.item.ID)
-    }
+    },
   },
   computed: {
     items () {
@@ -179,10 +179,10 @@ export default {
     },
     disabled () {
       return this.item.Name === ''
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_SECTORS)
-  }
+  },
 }
 </script>

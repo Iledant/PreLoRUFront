@@ -17,8 +17,8 @@ export default {
   components: { CommitmentForecasts },
   data () {
     return {
-      active: null
+      active: null,
     }
-  }
+  },
 }
 </script>

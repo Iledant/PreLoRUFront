@@ -63,37 +63,37 @@ export default {
       cumulated: true,
       headers: [
         { text: 'Moins de', value: 'delay' },
-        { text: 'Nombre', value: 'number' }
-      ]
+        { text: 'Nombre', value: 'number' },
+      ],
     }
   },
   computed: {
     ...mapGetters(['loading']),
     ...mapState({
-      paymentDelays: state => state.paymentDelays.paymentDelays
+      paymentDelays: state => state.paymentDelays.paymentDelays,
     }),
     formattedDate () {
       return date(this.date)
     },
     switchLabel () {
       return this.cumulated ? 'Cumulé' : 'Par tranche'
-    }
+    },
   },
   methods: {
     download () {
       if (this.paymentDelays.length === 0) return
       const columns = [
         { header: 'Moins de (j)', key: 'Delay', width: 10 },
-        { header: 'Nombre cumulé de paiements', key: 'Number', width: 14 }
+        { header: 'Nombre cumulé de paiements', key: 'Number', width: 14 },
       ]
       excelExport(this.paymentDelays, columns, 'Délais de paiement')
-    }
+    },
   },
   watch: {
     date (d) {
       this.$store.dispatch(types.GET_PAYMENT_DELAYS,
         { after: new Date(d).valueOf() })
-    }
-  }
+    },
+  },
 }
 </script>

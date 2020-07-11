@@ -24,7 +24,7 @@ export default {
   mixins: [checkFile],
   data () {
     return {
-      loading: false
+      loading: false,
     }
   },
   methods: {
@@ -44,7 +44,7 @@ export default {
         'Sector',
         'ActionCode',
         'ActionName',
-        'SoldOut'
+        'SoldOut',
       ]
       const parse = d => ({
         Year: Number(d.Year),
@@ -62,7 +62,7 @@ export default {
         Sector: d.Sector,
         ActionCode: d.ActionCode ? Number(d.ActionCode) : null,
         ActionName: d.ActionName,
-        SoldOut: d.SoldOut
+        SoldOut: d.SoldOut,
       })
       const save = o => {
         this.$store.dispatch(types.UPLOAD_COMMITMENTS, { Commitment: o })
@@ -70,7 +70,7 @@ export default {
       this.loading = true
       await excelReadFile(file, expectedHeaders, save, this.fileError, parse)
       this.loading = false
-    }
-  }
+    },
+  },
 }
 </script>

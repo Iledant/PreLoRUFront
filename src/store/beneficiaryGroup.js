@@ -12,7 +12,7 @@ async function exportBeneficiaryGroupDatas (datas) {
     BeneficiaryName: d.BeneficiaryName,
     Value: d.Value * 0.01,
     Available: d.Available * 0.01,
-    Caducity: d.Caducity ? new Date(d.Caducity) : null
+    Caducity: d.Caducity ? new Date(d.Caducity) : null,
   }))
   const columns = [
     { header: 'Date', key: 'Date', ...dateStyle },
@@ -22,7 +22,7 @@ async function exportBeneficiaryGroupDatas (datas) {
     { header: 'Bénéficiaire', key: 'BeneficiaryName', width: 30 },
     { header: 'Montant', key: 'Value', ...valStyle },
     { header: 'RAM', key: 'Available', ...valStyle },
-    { header: 'Caducité', key: 'Caducity', ...dateStyle }
+    { header: 'Caducité', key: 'Caducity', ...dateStyle },
   ]
   await excelExport(formattedDatas, columns, 'Engagements groupe de bénéficiaires')
 }
@@ -32,7 +32,7 @@ const state = {
   beneficiariesGroupItems: [],
   beneficiaryGroupDatas: [],
   beneficiaryGroupItemsCount: 0,
-  beneficiaryGroupPage: 0
+  beneficiaryGroupPage: 0,
 }
 
 const actions = {
@@ -101,7 +101,7 @@ const actions = {
     try {
       commit(types.END_LOADING)
       const resp = await Vue.http.get(`beneficiary_group/${ID}/datas`, {
-        params: { Page, Search, Year }
+        params: { Page, Search, Year },
       })
       commit(types.GET_BENEFICIARY_GROUP_DATAS, resp.body)
     } catch (err) {
@@ -123,13 +123,13 @@ const actions = {
     try {
       commit(types.END_LOADING)
       const resp = await Vue.http.get(`beneficiary_group/${ID}/export`, {
-        params: { Search, Year }
+        params: { Search, Year },
       })
       await exportBeneficiaryGroupDatas(resp.body.BeneficiaryGroupData)
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -154,7 +154,7 @@ const mutations = {
     state.beneficiaryGroupDatas = [...payload.Datas]
     state.beneficiaryGroupPage = payload.Page
     state.beneficiaryGroupItemsCount = payload.ItemsCount
-  }
+  },
 }
 
 export default { state, actions, mutations }

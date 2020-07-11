@@ -132,8 +132,8 @@ export default {
         { text: 'Nom court', value: 'ShortName' },
         { text: 'Nom complet', value: 'LongName' },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
-      ]
+        { text: '', value: '', sortable: false, width: '1%' },
+      ],
     }
   },
   methods: {
@@ -168,13 +168,13 @@ export default {
     },
     notNull (text) {
       return !!text || 'Le nom ne peut pas être vide'
-    }
+    },
   },
   computed: {
     ...mapGetters(['loading']),
     ...mapState({
-      items: state => state.housingTypes.housingTypesList
-    })
-  }
+      items: state => state.housingTypes.housingTypesList,
+    }),
+  },
 }
 </script>

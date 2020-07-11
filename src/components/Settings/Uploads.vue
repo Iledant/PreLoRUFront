@@ -60,9 +60,9 @@ export default {
         { text: 'Situation des crédits de paiement', value: PaymentCreditUpload },
         { text: 'Mouvements des crédits de paiement', value: PaymentCreditJournalUpload },
         { text: 'Liens engagements / copropriétés', value: CoproCommitmentLinkUpload },
-        { text: 'Liens engagements / logement social', value: HousingCommitmentLinkUpload }
-      ]
+        { text: 'Liens engagements / logement social', value: HousingCommitmentLinkUpload },
+      ],
     }
-  }
+  },
 }
 </script>

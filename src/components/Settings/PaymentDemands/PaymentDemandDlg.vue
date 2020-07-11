@@ -38,7 +38,7 @@ export default {
   name: 'PaymentDemandDlg',
   props: {
     paymentDemand: { type: Object, default: b => ({ Excluded: false, ExcludedComment: null }) },
-    value: { type: Boolean, default: false }
+    value: { type: Boolean, default: false },
   },
   methods: {
     onSave () {
@@ -46,7 +46,7 @@ export default {
       normalized.ExcludedComment = this.paymentDemand.ExcludedComment || null
       this.$emit('input', false)
       this.$emit('save', normalized)
-    }
-  }
+    },
+  },
 }
 </script>

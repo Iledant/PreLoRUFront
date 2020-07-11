@@ -33,7 +33,7 @@
 export default {
   name: 'CoproCard',
   props: {
-    project: { type: Object, default: v => {} }
-  }
+    project: { type: Object, default: v => {} },
+  },
 }
 </script>

@@ -13,7 +13,7 @@ export default {
           cubicInterpolationMode: 'monotone',
           label: 'Délai moyen',
           data: [],
-          yAxisID: 'time-axis'
+          yAxisID: 'time-axis',
         },
         {
           borderColor: '#3F51B5',
@@ -23,9 +23,9 @@ export default {
           fill: false,
           cubicInterpolationMode: 'monotone',
           data: [],
-          yAxisID: 'deviation-axis'
-        }
-      ]
+          yAxisID: 'deviation-axis',
+        },
+      ],
     },
     options: {
       responsive: true,
@@ -39,8 +39,8 @@ export default {
             ticks: {
               fontFamily: 'Roboto',
               min: 0,
-              callback: (val, idx, vals) => `${val} j`
-            }
+              callback: (val, idx, vals) => `${val} j`,
+            },
           },
           {
             id: 'deviation-axis',
@@ -50,12 +50,12 @@ export default {
             ticks: {
               fontFamily: 'Roboto',
               min: 0,
-              callback: (val, idx, vals) => `${val} j`
+              callback: (val, idx, vals) => `${val} j`,
             },
-            min: 0
-          }
+            min: 0,
+          },
         ],
-        xAxes: [{ ticks: { fontFamily: 'Roboto' } }]
+        xAxes: [{ ticks: { fontFamily: 'Roboto' } }],
       },
       tooltips: {
         titleFontFamily: 'Roboto',
@@ -63,15 +63,15 @@ export default {
         backgroundColor: '#4A148CCC',
         callbacks: {
           label: (i, d) =>
-            `${d.datasets[i.datasetIndex].label} : ${i.yLabel.toFixed(1)} j`
-        }
-      }
-    }
+            `${d.datasets[i.datasetIndex].label} : ${i.yLabel.toFixed(1)} j`,
+        },
+      },
+    },
   }),
   computed: {
     avgPmtTime () {
       return this.$store.state.home.averagePaymentTime
-    }
+    },
   },
   watch: {
     avgPmtTime (list) {
@@ -80,6 +80,6 @@ export default {
       this.datas.labels = this.avgPmtTime.map(a =>
         new Date(a.Month).toLocaleDateString('fr-FR', { month: '2-digit', year: '2-digit' }))
       this.renderChart(this.datas, this.options)
-    }
-  }
+    },
+  },
 }

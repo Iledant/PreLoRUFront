@@ -5,7 +5,7 @@ export default {
   extends: Bar,
   name: 'PaymentDelayChart',
   props: {
-    cumulated: { type: Boolean, default: false }
+    cumulated: { type: Boolean, default: false },
   },
   data: () => ({
     paymentDatas: {
@@ -15,9 +15,9 @@ export default {
           backgroundColor: '#E1BEE7',
           borderColor: '#673AB7',
           borderWidth: 1,
-          data: []
-        }
-      ]
+          data: [],
+        },
+      ],
     },
     options: {
       responsive: true,
@@ -29,18 +29,18 @@ export default {
             ticks: {
               min: 0,
               fontFamily: 'Roboto',
-              callback: (val, idx, vals) => `${val}`
-            }
-          }
+              callback: (val, idx, vals) => `${val}`,
+            },
+          },
         ],
-        xAxes: [{ ticks: { fontFamily: 'Roboto' } }]
+        xAxes: [{ ticks: { fontFamily: 'Roboto' } }],
       },
       tooltips: {
         titleFontFamily: 'Roboto',
         bodyFontFamily: 'Roboto',
-        backgroundColor: '#673AB7CC'
-      }
-    }
+        backgroundColor: '#673AB7CC',
+      },
+    },
   }),
   methods: {
     render () {
@@ -63,12 +63,12 @@ export default {
         }
       }
       this.renderChart(this.paymentDatas, this.options)
-    }
+    },
   },
   computed: {
     ...mapState({
-      paymentDelays: state => state.paymentDelays.paymentDelays
-    })
+      paymentDelays: state => state.paymentDelays.paymentDelays,
+    }),
   },
   watch: {
     paymentDelays () {
@@ -76,6 +76,6 @@ export default {
     },
     cumulated () {
       this.render()
-    }
-  }
+    },
+  },
 }

@@ -20,12 +20,12 @@ export function setErrorMessage (commit, response) {
 
 const state = {
   loading: 0,
-  errorMsg: ''
+  errorMsg: '',
 }
 
 const getters = {
   loading: state => state.loading !== 0,
-  errorMsg: state => state.errorMsg
+  errorMsg: state => state.errorMsg,
 }
 
 const mutations = {
@@ -37,7 +37,7 @@ const mutations = {
   },
   [types.SET_ERROR_MESSAGE] (state, payload) {
     state.errorMsg = payload
-  }
+  },
 }
 
 export default { state, getters, mutations }

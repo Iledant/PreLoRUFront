@@ -23,8 +23,8 @@ export default {
   components: { ReservationFeesCard, ReservationReportCard },
   data () {
     return {
-      active: null
+      active: null,
     }
-  }
+  },
 }
 </script>

@@ -6,7 +6,7 @@ import Vue from 'vue'
 const state = {
   rplsList: [],
   rplsReport: [],
-  rplsYears: []
+  rplsYears: [],
 }
 
 const actions = {
@@ -90,7 +90,7 @@ const actions = {
           ({
             CreationDate: new Date(CreationDate),
             Value: 0.01 * Value,
-            ...others
+            ...others,
           }))
       const columns = [
         { header: 'Date', key: 'CreationDate', width: 10, style: { numberFormat: 'dd/mm/yy' } },
@@ -100,7 +100,7 @@ const actions = {
           key: 'Value',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         { header: 'Code INSEE', key: 'InseeCode', width: 10 },
         { header: 'Ville', key: 'CityName', width: 30 },
@@ -109,14 +109,14 @@ const actions = {
         { header: 'Adresse', key: 'Address', width: 30 },
         { header: 'PLAI', key: 'PLAI', width: 8 },
         { header: 'PLUS', key: 'PLUS', width: 8 },
-        { header: 'PLS', key: 'PLS', width: 8 }
+        { header: 'PLS', key: 'PLS', width: 8 },
       ]
       await excelExport(formatted, columns, 'RPLS Détaillé')
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -139,7 +139,7 @@ const mutations = {
   },
   [types.GET_RPLS_REPORT] (state, list) {
     state.rplsReport = [...list]
-  }
+  },
 }
 
 export default { state, actions, mutations }

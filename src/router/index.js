@@ -41,7 +41,7 @@ export default new Router({
       path: '/users',
       component: Users,
       name: 'Users',
-      meta: { requiresAdmin: true }
+      meta: { requiresAdmin: true },
     },
     { path: '/housings', component: Housings, name: 'Housings' },
     { path: '/housing/:ID', component: Housing, name: 'Housing' },
@@ -49,7 +49,7 @@ export default new Router({
     {
       path: '/renew_projects',
       component: RenewProjects,
-      name: 'RenewProjects'
+      name: 'RenewProjects',
     },
     { path: '/beneficiaries', component: Beneficiaries, name: 'Beneficiaries' },
     { path: '/beneficiary/:ID', component: Beneficiary, name: 'Beneficiary' },
@@ -57,7 +57,7 @@ export default new Router({
     {
       path: '/payment_forecast',
       component: PaymentForecast,
-      name: 'PaymentForecast'
+      name: 'PaymentForecast',
     },
     { path: '/renew_project/:ID', component: RenewProject, name: 'RenewProject' },
     { path: '/copro/:ID', component: Copro, name: 'Copro' },
@@ -67,19 +67,19 @@ export default new Router({
       path: '/commission',
       component: Commission,
       name: 'Commission',
-      meta: { requiresAdmin: true }
+      meta: { requiresAdmin: true },
     },
     {
       path: '/communities',
       component: Communities,
       name: 'Communities',
-      meta: { requiresAdmin: true }
+      meta: { requiresAdmin: true },
     },
     {
       path: '/cities',
       component: Cities,
       name: 'Cities',
-      meta: { requiresAdmin: true }
+      meta: { requiresAdmin: true },
     },
     { path: '/commitments', component: Commitments, name: 'Commitments' },
     { path: '/payments', component: Payments, name: 'Payments' },
@@ -89,54 +89,54 @@ export default new Router({
       path: '/rpls',
       component: RPLS,
       name: 'RPLS',
-      meta: { requiresAdmin: true }
+      meta: { requiresAdmin: true },
     },
     { path: '/placement', component: Placement, name: 'Placement' },
     {
       path: '/beneficiary_groups',
       component: BeneficiaryGroups,
-      name: 'BeneficiaryGroups'
+      name: 'BeneficiaryGroups',
     },
     {
       path: '/beneficiary_group/:ID',
       component: BeneficiaryGroup,
-      name: 'BeneficiaryGroup'
+      name: 'BeneficiaryGroup',
     },
     {
       path: '/reservation_fees',
       component: ReservationFees,
       name: 'ReservationFees',
-      meta: { requiresReservation: true }
+      meta: { requiresReservation: true },
     },
     {
       path: '/reservation_fee_settings',
       component: ReservationFeeSettings,
       name: 'ReservationFeeSettings',
-      meta: { requiresAdmin: true }
+      meta: { requiresAdmin: true },
     },
     {
       path: '/housing_settings',
       component: HousingSettings,
       name: 'HousingSettings',
-      meta: { requiresAdmin: true }
+      meta: { requiresAdmin: true },
     },
     {
       path: '/payment_demands',
       component: PaymentDemands,
       name: 'PaymentDemands',
-      meta: { requiresAdmin: true }
+      meta: { requiresAdmin: true },
     },
     {
       path: '/uploads',
       component: Uploads,
       name: 'Uploads',
-      meta: { requiresAdmin: true }
+      meta: { requiresAdmin: true },
     },
     {
       path: '/payment_delays',
       component: PaymentDelays,
       name: 'PaymentDelays',
-      meta: { requiresAdmin: true }
-    }
-  ]
+      meta: { requiresAdmin: true },
+    },
+  ],
 })

@@ -123,7 +123,7 @@ export default {
         { text: 'Pop.', value: 'Population' },
         { text: 'Cat.', value: 'CompositeIndex' },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       dialog: false,
       item: {
@@ -139,12 +139,12 @@ export default {
         CompositeIndex: null,
         BudgetCity1: null,
         BudgetCity2: null,
-        BudgetCity3: null
+        BudgetCity3: null,
       },
       dlgTitle: 'Créer un projet de renouvellement',
       dlgBtn: 'Créer',
       delDlg: false,
-      active: null
+      active: null,
     }
   },
   computed: {
@@ -155,7 +155,7 @@ export default {
             CityName1 +
             (CityName2 ? ', ' + CityName2 : '') +
             (CityName3 ? ', ' + CityName3 : ''),
-          ...others
+          ...others,
         })
       )
     },
@@ -164,7 +164,7 @@ export default {
     },
     hasRenewProjectRight () {
       return this.$store.getters.hasRenewProjectRight
-    }
+    },
   },
   methods: {
     add () {
@@ -181,7 +181,7 @@ export default {
         CompositeIndex: null,
         BudgetCity1: null,
         BudgetCity2: null,
-        BudgetCity3: null
+        BudgetCity3: null,
       }
       this.dlgTitle = 'Créer un projet de renouvellement'
       this.dlgBtn = 'Créer'
@@ -200,7 +200,7 @@ export default {
         BudgetCity1: BudgetCity1 / 100,
         BudgetCity2: BudgetCity2 / 100,
         BudgetCity3: BudgetCity3 / 100,
-        ...others
+        ...others,
       }
       this.dlgTitle = 'Modifier un projet de renouvellement'
       this.dlgBtn = 'Modifier'
@@ -225,7 +225,7 @@ export default {
     },
     download () {
       this.$store.dispatch(types.DOWNLOAD_RP_REPORT)
-    }
-  }
+    },
+  },
 }
 </script>

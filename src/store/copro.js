@@ -8,7 +8,7 @@ const state = {
   coproPayments: [],
   coproForecasts: [],
   coproEvents: [],
-  coproDocs: []
+  coproDocs: [],
 }
 
 const actions = {
@@ -30,7 +30,7 @@ const actions = {
     beginLoading(commit)
     try {
       const { body } = await Vue.http.post('copro_forecast', {
-        CoproForecast
+        CoproForecast,
       })
       commit(types.CREATE_COPRO_FORECAST, body.CoproForecast)
       commit(types.END_LOADING)
@@ -119,7 +119,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -176,7 +176,7 @@ const mutations = {
   },
   [types.CREATE_COPRO_DOC] (state, payload) {
     state.coproDocs.push(payload)
-  }
+  },
 }
 
 export default { state, actions, mutations }

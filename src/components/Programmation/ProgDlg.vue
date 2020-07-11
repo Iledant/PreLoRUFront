@@ -76,10 +76,10 @@ export default {
     action: {
       type: String,
       default: 'create',
-      validator: v => ['create', 'modify'].indexOf(v) !== -1
+      validator: v => ['create', 'modify'].indexOf(v) !== -1,
     },
     item: { type: Object, default: v => {} },
-    progYear: { type: Number, default: new Date().getFullYear() }
+    progYear: { type: Number, default: new Date().getFullYear() },
   },
   data () {
     return {
@@ -87,7 +87,7 @@ export default {
       kinds: explicitKind.map((k, i) => ({ Kind: i, Explicit: k })),
       kindDisabled: true,
       items: [],
-      kind: 'Housing'
+      kind: 'Housing',
     }
   },
   computed: {
@@ -117,7 +117,7 @@ export default {
         (this.kind !== 0 && this.item.KindID === null) ||
         this.val === ''
       )
-    }
+    },
   },
   methods: {
     confirm () {
@@ -144,7 +144,7 @@ export default {
         }
         this.$emit('confirm', this.item)
       }
-    }
+    },
   },
   watch: {
     value () {
@@ -167,7 +167,7 @@ export default {
           this.kindDisabled = false
           break
       }
-    }
-  }
+    },
+  },
 }
 </script>

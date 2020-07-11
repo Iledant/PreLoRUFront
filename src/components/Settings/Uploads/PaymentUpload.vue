@@ -24,7 +24,7 @@ export default {
   mixins: [checkFile],
   data () {
     return {
-      loading: false
+      loading: false,
     }
   },
   methods: {
@@ -38,7 +38,7 @@ export default {
         'CreationDate',
         'ModificationDate',
         'Value',
-        'Number'
+        'Number',
       ]
       const parse = d => ({
         CommitmentYear: Number(d.CommitmentYear),
@@ -50,7 +50,7 @@ export default {
         ModificationDate: Number(d.ModificationDate),
         Value: Number(d.Value),
         Number: Number(d.Number),
-        ReceiptDate: d.ReceiptDate ? Number(d.ReceiptDate) : 0
+        ReceiptDate: d.ReceiptDate ? Number(d.ReceiptDate) : 0,
       })
       const save = o => {
         this.$store.dispatch(types.UPLOAD_PAYMENTS, { Payment: o })
@@ -58,7 +58,7 @@ export default {
       this.loading = true
       await excelReadFile(file, expectedHeaders, save, this.fileError, parse)
       this.loading = false
-    }
-  }
+    },
+  },
 }
 </script>

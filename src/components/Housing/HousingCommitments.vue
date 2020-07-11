@@ -46,8 +46,8 @@ export default {
         { text: 'Objet', value: 'Name' },
         { text: 'Bénéficiaire', value: 'Beneficiary' },
         { text: 'Montant', value: 'Value' },
-        { text: 'Soldé', value: 'SoldOut' }
-      ]
+        { text: 'Soldé', value: 'SoldOut' },
+      ],
     }
   },
   computed: {
@@ -68,9 +68,9 @@ export default {
         CoproID: c.CoproID,
         RenewProjectID: c.RenewProjectID,
         HousingID: c.HousingID,
-        SoldOut: c.SoldOut
+        SoldOut: c.SoldOut,
       }))
-    }
+    },
   },
   methods: {
     excelExport () {
@@ -80,13 +80,13 @@ export default {
           header: 'Date création',
           key: 'CreationDate',
           width: 12,
-          style: { numberFormat: 'dd/mm/yyyy' }
+          style: { numberFormat: 'dd/mm/yyyy' },
         },
         {
           header: 'Date modification',
           key: 'ModificationDate',
           width: 12,
-          style: { numberFormat: 'dd/mm/yyyy' }
+          style: { numberFormat: 'dd/mm/yyyy' },
         },
         { header: 'Libellé', key: 'Name', width: 60 },
         { header: 'Bénéficiaire', key: 'Beneficiary', width: 30 },
@@ -97,13 +97,13 @@ export default {
           key: 'Value',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: 'Soldé',
           key: 'SoldOut',
-          width: 8
-        }
+          width: 8,
+        },
       ]
       const formattedItems = this.items.map(
         ({ CreationDate, ModificationDate, SoldOut, Value, ...others }) => ({
@@ -111,11 +111,11 @@ export default {
           ModificationDate: new Date(ModificationDate),
           SoldOut: SoldOut ? 'Oui' : 'Non',
           Value: 0.01 * Value,
-          ...others
+          ...others,
         })
       )
       excelExport(formattedItems, columns, 'Engagements logts')
-    }
-  }
+    },
+  },
 }
 </script>

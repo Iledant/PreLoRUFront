@@ -27,13 +27,13 @@ export default {
   name: 'DeleteDialog',
   props: {
     sentence: { type: String, required: true },
-    value: { type: Boolean, required: true }
+    value: { type: Boolean, required: true },
   },
   methods: {
     confirm () {
       this.$emit('confirm')
       this.$emit('input', false)
-    }
-  }
+    },
+  },
 }
 </script>

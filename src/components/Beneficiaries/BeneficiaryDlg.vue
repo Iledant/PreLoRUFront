@@ -51,9 +51,9 @@ export default {
     action: {
       type: String,
       default: 'create',
-      validator: v => ['create', 'modify'].indexOf(v) !== -1
+      validator: v => ['create', 'modify'].indexOf(v) !== -1,
     },
-    item: { type: Object, default: v => {} }
+    item: { type: Object, default: v => {} },
   },
   computed: {
     disabled () { return !this.item.Name || !this.intCheck(this.item.Code) },
@@ -62,7 +62,7 @@ export default {
         ? 'Ajouter un nouveau bénéficiaire'
         : 'Modifier le bénéficiaire'
     },
-    button () { return this.action === 'create' ? 'Créer' : 'Modifier' }
+    button () { return this.action === 'create' ? 'Créer' : 'Modifier' },
   },
   methods: {
     confirm () {
@@ -70,13 +70,13 @@ export default {
         const item = {
           ID: this.item.ID,
           Name: String(this.item.Name),
-          Code: parseInt(this.item.Code)
+          Code: parseInt(this.item.Code),
         }
         this.$emit('confirm', item)
         this.$emit('input', false)
       }
     },
-    notNull (text) { return !!text || 'Le nom ne peut pas être vide' }
-  }
+    notNull (text) { return !!text || 'Le nom ne peut pas être vide' },
+  },
 }
 </script>

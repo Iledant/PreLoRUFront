@@ -3,7 +3,7 @@ import Vue from 'vue'
 import { beginLoading, setErrorMessage } from './loading.js'
 
 const state = {
-  communitiesList: []
+  communitiesList: [],
 }
 
 const actions = {
@@ -11,7 +11,7 @@ const actions = {
     beginLoading(commit)
     try {
       const resp = await Vue.http.post('community', {
-        Community: { Code, Name }
+        Community: { Code, Name },
       })
       commit(types.END_LOADING)
       commit(types.CREATE_COMMUNITY, resp.body.Community)
@@ -23,7 +23,7 @@ const actions = {
     beginLoading(commit)
     try {
       const resp = await Vue.http.put('community', {
-        Community: { ID, Code, Name }
+        Community: { ID, Code, Name },
       })
       commit(types.END_LOADING)
       commit(types.UPDATE_COMMUNITY, resp.body.Community)
@@ -50,7 +50,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -67,7 +67,7 @@ const mutations = {
   [types.DEL_COMMUNITY] (state, ID) {
     const index = state.communitiesList.findIndex(b => b.ID === ID)
     state.communitiesList.splice(index, 1)
-  }
+  },
 }
 
 export default { state, actions, mutations }

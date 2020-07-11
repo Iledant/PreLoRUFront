@@ -3,7 +3,7 @@ import { beginLoading, setErrorMessage } from './loading'
 import Vue from 'vue'
 
 const state = {
-  placementList: []
+  placementList: [],
 }
 
 const actions = {
@@ -35,7 +35,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -45,7 +45,7 @@ const mutations = {
   [types.UPDATE_PLACEMENT] (state, placement) {
     const index = state.placementList.findIndex(p => p.ID === placement.ID)
     state.placementList.splice(index, 1, placement)
-  }
+  },
 }
 
 export default { state, actions, mutations }

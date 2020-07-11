@@ -72,11 +72,11 @@ export default {
     CoproForecastCard,
     CoproCard,
     CoproEvents,
-    CoproDocs
+    CoproDocs,
   },
   data () {
     return {
-      active: null
+      active: null,
     }
   },
   computed: {
@@ -97,10 +97,10 @@ export default {
     },
     hasCoproRight () {
       return this.$store.getters.hasCoproRight
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_COPRO_DATAS, this.$route.params.ID)
-  }
+  },
 }
 </script>

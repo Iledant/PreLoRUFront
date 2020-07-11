@@ -54,32 +54,32 @@ import * as types from '@/store/types'
 export default {
   name: 'ChangePwdDlg',
   props: {
-    value: { Type: Boolean, default: false }
+    value: { Type: Boolean, default: false },
   },
   data () {
     return {
       oldPwd: '',
       newPwd: '',
       oldPwdShow: false,
-      newPwdShow: false
+      newPwdShow: false,
     }
   },
   computed: {
     disabled () {
       return this.oldPwd === '' || this.newPwd === ''
-    }
+    },
   },
   methods: {
     confirm () {
       this.$store.dispatch(types.CHANGE_PWD, {
         CurrentPassword: this.oldPwd,
-        NewPassword: this.newPwd
+        NewPassword: this.newPwd,
       })
       this.$emit('input', false)
     },
     notEmpty (v) {
       return (v !== null && v !== '') || 'Mot de passe à renseigner'
-    }
-  }
+    },
+  },
 }
 </script>

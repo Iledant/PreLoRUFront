@@ -72,11 +72,11 @@ export default {
     value: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
     title: { type: String, default: 'Créer une nouvelle prévision' },
-    button: { type: String, required: 'Créer' }
+    button: { type: String, required: 'Créer' },
   },
   data () {
     return {
-      val: ''
+      val: '',
     }
   },
   methods: {
@@ -92,7 +92,7 @@ export default {
         this.forecast.Value = this.parseCurrency(this.val)
         this.$emit('confirm', this.forecast)
       }
-    }
+    },
   },
   computed: {
     commissions () {
@@ -107,12 +107,12 @@ export default {
         this.val === '' ||
         this.forecast.ActionID === null
       )
-    }
+    },
   },
   watch: {
     value () {
       this.val = this.currencyFormat(this.forecast.Value)
-    }
-  }
+    },
+  },
 }
 </script>

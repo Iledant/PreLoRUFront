@@ -98,8 +98,8 @@ export default {
         { text: 'Année', value: 'Year' },
         { text: 'Taux', value: 'Ratio', align: 'right' },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
-      ]
+        { text: '', value: '', sortable: false, width: '1%' },
+      ],
     }
   },
   methods: {
@@ -125,7 +125,7 @@ export default {
     confirm () {
       const action = this.button === 'Créer' ? types.CREATE_RPLS : types.UPDATE_RPLS
       this.$store.dispatch(action, this.item)
-    }
+    },
   },
   computed: {
     rpls () {
@@ -133,10 +133,10 @@ export default {
     },
     loading () {
       return this.$store.getters.loading
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_RPLS_DATAS)
-  }
+  },
 }
 </script>

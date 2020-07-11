@@ -3,7 +3,7 @@ import Vue from 'vue'
 import { beginLoading, setErrorMessage } from './loading'
 
 const state = {
-  paymentDelays: []
+  paymentDelays: [],
 }
 
 const actions = {
@@ -16,13 +16,13 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
   [types.GET_PAYMENT_DELAYS] (state, list) {
     state.paymentDelays = [...list]
-  }
+  },
 }
 
 export default { state, actions, mutations }

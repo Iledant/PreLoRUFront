@@ -145,7 +145,7 @@ export default {
     value: { type: Boolean, default: false },
     button: { type: String, default: 'Créer' },
     title: { type: String, default: 'Créer un projet de renouvellement' },
-    item: { type: Object, default: v => {} }
+    item: { type: Object, default: v => {} },
   },
   data () {
     return {
@@ -158,15 +158,15 @@ export default {
         { Name: '1', Value: 1 },
         { Name: '2', Value: 2 },
         { Name: '3', Value: 3 },
-        { Name: '4', Value: 4 }
-      ]
+        { Name: '4', Value: 4 },
+      ],
     }
   },
   computed: {
     cityItems () {
       return [
         { Name: '<Aucun>', InseeCode: null },
-        ...this.$store.state.cities.citiesList
+        ...this.$store.state.cities.citiesList,
       ]
     },
     disabled () {
@@ -179,7 +179,7 @@ export default {
     },
     loading () {
       return this.$store.getters.loading
-    }
+    },
   },
   methods: {
     refRule (x) {
@@ -204,7 +204,7 @@ export default {
         this.$emit('confirm', this.item)
         this.$emit('input', false)
       }
-    }
+    },
   },
   watch: {
     value () {
@@ -212,7 +212,7 @@ export default {
       this.budgetCity1 = this.currencyFormat(this.item.BudgetCity1)
       this.budgetCity2 = this.currencyFormat(this.item.BudgetCity2)
       this.budgetCity3 = this.currencyFormat(this.item.BudgetCity3)
-    }
-  }
+    },
+  },
 }
 </script>

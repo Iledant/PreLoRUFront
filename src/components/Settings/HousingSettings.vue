@@ -25,11 +25,11 @@ export default {
   components: { HousingTypes },
   data () {
     return {
-      tab: null
+      tab: null,
     }
   },
   created () {
     this.$store.dispatch(types.GET_HOUSING_TYPES)
-  }
+  },
 }
 </script>

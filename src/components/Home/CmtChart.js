@@ -7,8 +7,8 @@ export default {
     ...mapState({
       currentValues: state => state.home.currentYearCommitments,
       previousValues: state => state.home.previousYearCommitments,
-      programmation: state => state.home.currentProgrammation
-    })
+      programmation: state => state.home.currentProgrammation,
+    }),
   },
   data: () => ({
     currentYear: new Date().getFullYear(),
@@ -25,7 +25,7 @@ export default {
         'sep',
         'oct',
         'nov',
-        'déc'
+        'déc',
       ],
       datasets: [
         {
@@ -34,7 +34,7 @@ export default {
           fill: false,
           borderWidth: 1,
           cubicInterpolationMode: 'monotone',
-          data: []
+          data: [],
         },
         {
           borderColor: '#4A148C',
@@ -43,16 +43,16 @@ export default {
           borderWidth: 2,
           cubicInterpolationMode: 'monotone',
           borderDash: [6, 2],
-          data: []
+          data: [],
         },
         {
           backgroundColor: '#CE93D8',
           borderColor: '#4A148C',
           pointBackgroundColor: '#4A148C',
           cubicInterpolationMode: 'monotone',
-          data: []
-        }
-      ]
+          data: [],
+        },
+      ],
     },
     options: {
       responsive: true,
@@ -63,11 +63,11 @@ export default {
           {
             ticks: {
               fontFamily: 'Roboto',
-              callback: (val, idx, vals) => `${val} M€`
-            }
-          }
+              callback: (val, idx, vals) => `${val} M€`,
+            },
+          },
         ],
-        xAxes: [{ ticks: { fontFamily: 'Roboto' } }]
+        xAxes: [{ ticks: { fontFamily: 'Roboto' } }],
       },
       tooltips: {
         titleFontFamily: 'Roboto',
@@ -77,10 +77,10 @@ export default {
           label: (item, data) =>
             ` ${data.datasets[item.datasetIndex].label} : ${item.yLabel.toFixed(
               2
-            )} M€`
-        }
-      }
-    }
+            )} M€`,
+        },
+      },
+    },
   }),
   watch: {
     previousValues () {
@@ -91,6 +91,6 @@ export default {
       this.cmtDatas.datasets[0].data = this.previousValues
       this.cmtDatas.datasets[0].label = this.currentYear - 1
       this.renderChart(this.cmtDatas, this.options)
-    }
-  }
+    },
+  },
 }

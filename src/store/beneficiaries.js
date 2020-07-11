@@ -5,7 +5,7 @@ import Vue from 'vue'
 const state = {
   beneficiariesList: [],
   beneficiariesPage: 0,
-  beneficiariesItemsCount: 0
+  beneficiariesItemsCount: 0,
 }
 
 const actions = {
@@ -13,7 +13,7 @@ const actions = {
     try {
       beginLoading(commit)
       const resp = await Vue.http.get('beneficiaries/paginated', {
-        params: { Page, Search }
+        params: { Page, Search },
       })
       commit(types.GET_BENEFICIARIES, resp.body)
       commit(types.END_LOADING)
@@ -57,7 +57,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -68,7 +68,7 @@ const mutations = {
   },
   [types.GET_ALL_BENEFICIARIES] (state, list) {
     state.beneficiariesList = [...list]
-  }
+  },
 }
 
 export default { state, actions, mutations }

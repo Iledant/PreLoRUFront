@@ -4,7 +4,7 @@ import Vue from 'vue'
 
 const state = {
   ratiosList: [],
-  ratiosYears: []
+  ratiosYears: [],
 }
 
 const actions = {
@@ -36,7 +36,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -45,7 +45,7 @@ const mutations = {
   },
   [types.GET_RATIOS_YEARS] (state, list) {
     state.ratiosYears = [...list]
-  }
+  },
 }
 
 export default { state, actions, mutations }

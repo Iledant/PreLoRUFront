@@ -80,12 +80,12 @@ export default {
     item: { type: Object, default: v => {} },
     button: { type: String, default: 'Créer' },
     title: { type: String, default: 'Créer une copropriété' },
-    value: { type: Boolean, default: false }
+    value: { type: Boolean, default: false },
   },
   data () {
     return {
       menu: false,
-      budget: ''
+      budget: '',
     }
   },
   methods: {
@@ -104,7 +104,7 @@ export default {
         }
         this.$emit('confirm', this.item)
       }
-    }
+    },
   },
   computed: {
     disabled () {
@@ -118,12 +118,12 @@ export default {
     },
     formattedDate () {
       return formatNullDate(this.item.LabelDate)
-    }
+    },
   },
   watch: {
     value () {
       this.budget = this.currencyFormat(this.item.Budget)
-    }
-  }
+    },
+  },
 }
 </script>

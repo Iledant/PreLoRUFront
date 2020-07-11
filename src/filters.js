@@ -1,28 +1,28 @@
 const dateFormatter = new Intl.DateTimeFormat('fr-FR', {
   day: '2-digit',
   month: '2-digit',
-  year: 'numeric'
+  year: 'numeric',
 })
 
 const indexFormatter = new Intl.NumberFormat('fr-FR', {
-  maximumFractionDigits: 2
+  maximumFractionDigits: 2,
 })
 
 const currencyFormatter = new Intl.NumberFormat('fr-FR', {
   style: 'currency',
-  currency: 'EUR'
+  currency: 'EUR',
 })
 
 const percentageFormatter = new Intl.NumberFormat('fr-FR', {
   style: 'percent',
   minimumFractionDigits: 2,
-  maximumFractionDigits: 2
+  maximumFractionDigits: 2,
 })
 
 const mEuroFormatter = new Intl.NumberFormat('fr-FR', {
   style: 'decimal',
   minimumFractionDigits: 2,
-  maximumFractionDigits: 2
+  maximumFractionDigits: 2,
 })
 
 const numberFormatter = new Intl.NumberFormat('fr-FR')
@@ -87,7 +87,7 @@ export const trim50 = s => s ? (s.length > 50 ? s.substring(0, 47) + '...' : s) 
 
 const shortDateFormatter = new Intl.DateTimeFormat('fr-FR', {
   month: '2-digit',
-  year: '2-digit'
+  year: '2-digit',
 })
 
 /**

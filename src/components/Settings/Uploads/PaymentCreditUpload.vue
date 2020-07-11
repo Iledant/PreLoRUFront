@@ -24,7 +24,7 @@ export default {
   mixins: [checkFile],
   data () {
     return {
-      loading: false
+      loading: false,
     }
   },
   methods: {
@@ -36,7 +36,7 @@ export default {
         'Reported',
         'Added',
         'Modified',
-        'Movement'
+        'Movement',
       ]
       const parse = o => ({
         Chapter: Number(o.Chapter),
@@ -45,7 +45,7 @@ export default {
         Reported: parseInt(100 * o.Reported),
         Added: parseInt(100 * o.Added),
         Modified: parseInt(100 * o.Modified),
-        Movement: parseInt(100 * o.Movement)
+        Movement: parseInt(100 * o.Movement),
       })
       const save = o => {
         this.$store.dispatch(types.UPLOAD_PAYMENT_CREDITS, { PaymentCredit: o })
@@ -53,7 +53,7 @@ export default {
       this.loading = true
       await excelReadFile(file, expectedHeaders, save, this.fileError, parse)
       this.loading = false
-    }
-  }
+    },
+  },
 }
 </script>

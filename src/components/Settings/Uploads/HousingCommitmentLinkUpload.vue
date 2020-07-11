@@ -24,7 +24,7 @@ export default {
   mixins: [checkFile],
   data () {
     return {
-      loading: false
+      loading: false,
     }
   },
   methods: {
@@ -32,7 +32,7 @@ export default {
       const expectedHeaders = ['Reference', 'IRISCode']
       const parse = d => ({
         Reference: String(d.Reference),
-        IRISCode: String(d.IRISCode)
+        IRISCode: String(d.IRISCode),
       })
 
       const save = o => {
@@ -42,7 +42,7 @@ export default {
       this.loading = true
       await excelReadFile(file, expectedHeaders, save, this.fileError, parse)
       this.loading = false
-    }
-  }
+    },
+  },
 }
 </script>

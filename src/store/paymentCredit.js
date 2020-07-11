@@ -4,7 +4,7 @@ import Vue from 'vue'
 
 const state = {
   paymentCreditJournal: [],
-  paymentCredits: []
+  paymentCredits: [],
 }
 
 const actions = {
@@ -36,7 +36,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -45,7 +45,7 @@ const mutations = {
   },
   [types.GET_PAYMENT_CREDITS] (state, payload) {
     state.paymentCredits = [...payload]
-  }
+  },
 }
 
 export default { state, mutations, actions }

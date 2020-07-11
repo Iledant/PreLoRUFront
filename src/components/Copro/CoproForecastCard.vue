@@ -94,13 +94,13 @@ const nullForecast = {
   CommissionID: null,
   Value: null,
   Comment: null,
-  ActionID: null
+  ActionID: null,
 }
 export default {
   name: 'CoproForecastCard',
   components: { DeleteDialog, CoproForecastDlg },
   props: {
-    project: { type: Object, default: v => {} }
+    project: { type: Object, default: v => {} },
   },
   data () {
     return {
@@ -111,7 +111,7 @@ export default {
         { text: 'Montant', value: 'Value', align: 'right', sortable: false },
         { text: 'Commentaire', value: 'Comment', sortable: false },
         { text: '', value: '', align: 'center', sortable: false, width: '1%' },
-        { text: '', value: '', align: 'center', sortable: false, width: '1%' }
+        { text: '', value: '', align: 'center', sortable: false, width: '1%' },
       ],
       search: '',
       forecast: { ...nullForecast },
@@ -119,7 +119,7 @@ export default {
       dlgTitle: 'Créer une nouvelle prévision',
       dlgBtn: 'Créer',
       delDlg: false,
-      delID: null
+      delID: null,
     }
   },
   computed: {
@@ -131,7 +131,7 @@ export default {
     },
     hasCoproRight () {
       return this.$store.getters.hasCoproRight
-    }
+    },
   },
   methods: {
     edit (item) {
@@ -163,7 +163,7 @@ export default {
       this.dlgTitle = 'Créer une nouvelle prévision'
       this.dlgBtn = 'Créer'
       this.dialog = true
-    }
-  }
+    },
+  },
 }
 </script>

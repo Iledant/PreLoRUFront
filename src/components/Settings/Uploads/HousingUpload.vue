@@ -24,7 +24,7 @@ export default {
   mixins: [checkFile],
   data () {
     return {
-      loading: false
+      loading: false,
     }
   },
   methods: {
@@ -38,7 +38,7 @@ export default {
         PLAI: parseInt(d.PLAI),
         PLUS: parseInt(d.PLUS),
         PLS: parseInt(d.PLS),
-        ANRU: Boolean(d.ANRU)
+        ANRU: Boolean(d.ANRU),
       })
       const save = o => {
         this.$store.dispatch(types.UPLOAD_HOUSINGS, { Housing: o })
@@ -46,7 +46,7 @@ export default {
       this.loading = true
       await excelReadFile(file, expectedHeaders, save, this.fileError, parse)
       this.loading = false
-    }
-  }
+    },
+  },
 }
 </script>

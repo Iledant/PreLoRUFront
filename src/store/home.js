@@ -14,7 +14,7 @@ const state = {
   homeMessage: null,
   paymentCreditSum: null,
   averagePaymentTime: [],
-  averagePayments: []
+  averagePayments: [],
 }
 
 const actions = {
@@ -40,7 +40,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -133,7 +133,7 @@ const mutations = {
   },
   [types.GET_AVERAGE_PAYMENTS] (state, list) {
     state.averagePayments = [...list]
-  }
+  },
 }
 
 export default { state, actions, mutations }

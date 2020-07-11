@@ -4,7 +4,7 @@ import { beginLoading, setErrorMessage } from './loading.js'
 
 const state = {
   renewProjectsList: [],
-  renewProjectReport: []
+  renewProjectReport: [],
 }
 
 const actions = {
@@ -28,7 +28,7 @@ const actions = {
     beginLoading(commit)
     try {
       const response = await Vue.http.post('renew_project', {
-        RenewProject: project
+        RenewProject: project,
       })
       commit(types.CREATE_RENEW_PROJECT, response.body.RenewProject)
       commit(types.END_LOADING)
@@ -40,7 +40,7 @@ const actions = {
     beginLoading(commit)
     try {
       const response = await Vue.http.put('renew_project', {
-        RenewProject: project
+        RenewProject: project,
       })
       commit(types.UPDATE_RENEW_PROJECT, response.body.RenewProject)
       commit(types.END_LOADING)
@@ -66,7 +66,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -86,7 +86,7 @@ const mutations = {
   },
   [types.GET_RENEW_PROJECT_REPORT] (state, list) {
     state.renewProjectReport = [...list]
-  }
+  },
 }
 
 export default { state, actions, mutations }

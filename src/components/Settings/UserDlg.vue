@@ -110,8 +110,8 @@ export default {
     action: {
       type: String,
       default: 'create',
-      validator: v => ['create', 'modify'].indexOf(v) !== -1
-    }
+      validator: v => ['create', 'modify'].indexOf(v) !== -1,
+    },
   },
   data () {
     return {
@@ -126,8 +126,8 @@ export default {
         isObserver: false,
         isHousing: false,
         isPreProg: false,
-        isReservationFee: false
-      }
+        isReservationFee: false,
+      },
     }
   },
   methods: {
@@ -149,7 +149,7 @@ export default {
         (this.usr.isReservationFee ? 256 : 0)
       this.$emit('confirm', this.usr)
       this.$emit('input', false)
-    }
+    },
   },
   computed: {
     title () {
@@ -166,14 +166,14 @@ export default {
         this.usr.Email === '' ||
         this.usr.Password === ''
       )
-    }
+    },
   },
   watch: {
     value (newVal) {
       if (newVal) {
         this.usr = { ...this.user }
       }
-    }
-  }
+    },
+  },
 }
 </script>

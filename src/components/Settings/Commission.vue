@@ -150,14 +150,14 @@ export default {
         { text: 'Nom', value: 'Name' },
         { text: 'Date', value: 'Date' },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       dialog: false,
       delDlg: false,
       item: { ...nullCommission },
       dlgTitle: 'Nouvelle commission',
       dlgBtn: 'Créer',
-      menu: false
+      menu: false,
     }
   },
   methods: {
@@ -185,14 +185,14 @@ export default {
         await this.$store.dispatch(dispatch, {
           ID: this.item.ID,
           Name: this.item.Name,
-          Date: new Date(this.item.Date).toISOString()
+          Date: new Date(this.item.Date).toISOString(),
         })
         this.dialog = false
       }
     },
     async delConfirm () {
       await this.$store.dispatch(types.DEL_COMMISSION, this.item.ID)
-    }
+    },
   },
   computed: {
     items () {
@@ -206,10 +206,10 @@ export default {
     },
     formattedDate () {
       return formatNullDate(this.item.Date)
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_COMMISSIONS)
-  }
+  },
 }
 </script>

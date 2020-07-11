@@ -73,9 +73,9 @@ export default {
         { text: 'Nom egt', value: 'CommitmentName', sortable: false },
         { text: 'Montant egt', value: 'CommitmentValue', sortable: false },
         { text: 'Bénéficiaire', value: 'Beneficiary', sortable: false },
-        { text: 'Budget', value: 'Budget', sortable: false }
+        { text: 'Budget', value: 'Budget', sortable: false },
       ],
-      page: 1
+      page: 1,
     }
   },
   methods: {
@@ -97,7 +97,7 @@ export default {
       await this.$store.dispatch(types.GET_PAYMENTS, {
         Year: this.year,
         Search: this.search,
-        Page: p
+        Page: p,
       })
       if (this.currentPage !== this.page) {
         this.page = this.currentPage
@@ -106,9 +106,9 @@ export default {
     excelExport () {
       this.$store.dispatch(types.EXPORT_PAYMENTS, {
         Year: this.year,
-        Search: this.search
+        Search: this.search,
       })
-    }
+    },
   },
   computed: {
     items () {
@@ -120,7 +120,7 @@ export default {
         CommitmentValue: p.CommitmentValue,
         CommitmentName: p.CommitmentName,
         Beneficiary: p.Beneficiary,
-        Budget: '[' + p.Sector + '] ' + p.ActionName
+        Budget: '[' + p.Sector + '] ' + p.ActionName,
       }))
     },
     loading () {
@@ -131,7 +131,7 @@ export default {
     },
     currentPage () {
       return this.$store.state.payments.paymentsPage
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_PAYMENTS, { Year: 0, Page: 0, Search: '' })
@@ -141,7 +141,7 @@ export default {
       if (p !== this.currentPage) {
         this.getPayments(p)
       }
-    }
-  }
+    },
+  },
 }
 </script>

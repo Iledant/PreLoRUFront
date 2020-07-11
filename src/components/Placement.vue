@@ -117,11 +117,11 @@ export default {
         { text: 'Nombre', value: 'Count', align: 'right' },
         { text: 'Grand compte', value: 'ContractYear', align: 'right' },
         { text: 'Commentaire', value: 'Comment' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       dialog: false,
       delDlg: false,
-      item: {}
+      item: {},
     }
   },
   methods: {
@@ -156,17 +156,17 @@ export default {
         { header: 'Bénéficiaire', key: 'BeneficiaryName', width: 20 },
         { header: 'Nombre', key: 'Count', width: 10, addTotal: true },
         { header: 'Année convention', key: 'ContractYear', width: 14 },
-        { header: 'Commentaire', key: 'Comment', width: 50 }
+        { header: 'Commentaire', key: 'Comment', width: 50 },
       ]
       const formatted = filtered.map(({ CreationDate, CommitmentValue, ...others }) => {
         return {
           CreationDate: new Date(CreationDate),
           CommitmentValue: CommitmentValue ? CommitmentValue * 0.01 : 0,
-          ...others
+          ...others,
         }
       })
       excelExport(formatted, columns, 'Stagiaires ')
-    }
+    },
   },
   computed: {
     isAdmin () {
@@ -177,10 +177,10 @@ export default {
     },
     loading () {
       return this.$store.state.loading.loading !== 0
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_PLACEMENTS)
-  }
+  },
 }
 </script>

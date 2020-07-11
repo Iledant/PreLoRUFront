@@ -220,7 +220,7 @@ export default {
         { text: 'Preprog.', value: 'PreProgValue', align: 'right' },
         { text: 'Projet', value: 'PreProgProject' },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       items: [],
       nullItem: {
@@ -236,7 +236,7 @@ export default {
         ActionCode: null,
         ActionName: '',
         KindID: null,
-        KindName: ''
+        KindName: '',
       },
       item: { ...this.nullItem },
       opDlg: false,
@@ -245,7 +245,7 @@ export default {
       maxID: 0,
       year: new Date().getFullYear(),
       yearText: String(new Date().getFullYear()),
-      info: false
+      info: false,
     }
   },
   computed: {
@@ -264,7 +264,7 @@ export default {
     },
     sumPreProg () {
       return this.items.reduce((a, c) => a + c.PreProgValue, 0)
-    }
+    },
   },
   methods: {
     async preProgSave () {
@@ -277,7 +277,7 @@ export default {
           KindID: i.KindID,
           Project: i.PreProgProject,
           Comment: i.PreProgComment,
-          ActionID: i.ActionID
+          ActionID: i.ActionID,
         }))
       await this.$store.dispatch(types.SET_PRE_PROG,
         { PreProg, Kind: 'copro', Year: this.year })
@@ -296,7 +296,7 @@ export default {
             CommissionDate: new Date(CommissionDate),
             PreProgValue: PreProgValue ? PreProgValue * 0.01 : null,
             ForecastValue: ForecastValue ? ForecastValue * 0.01 : null,
-            ...others
+            ...others,
           }))
       const columns = [
         { header: 'Date com', key: 'CommissionDate', ...dateStyle },
@@ -309,10 +309,10 @@ export default {
         { header: 'Commentaire', key: 'ForecastComment', width: 30 },
         { header: 'Préprog.', key: 'PreProgValue', ...valStyle },
         { header: 'Projet', key: 'PreProgProject', width: 30 },
-        { header: 'Commentaire', key: 'PreProgComment', width: 30 }
+        { header: 'Commentaire', key: 'PreProgComment', width: 30 },
       ]
       excelExport(formattedProg, columns, 'Preprog copro')
-    }
+    },
   },
   watch: {
     coproPreProg: {
@@ -320,8 +320,8 @@ export default {
         this.items = list.map((i, ID) => ({ ID, ...i }))
         this.maxID = this.items.length
       },
-      immediate: true
-    }
-  }
+      immediate: true,
+    },
+  },
 }
 </script>

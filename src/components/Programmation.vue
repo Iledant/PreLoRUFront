@@ -216,7 +216,7 @@ export default {
         { text: '', value: '', sortable: false },
         { text: 'Programmé', value: 'Value', sortable: true, align: 'right' },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       items: [],
       nullItem: {
@@ -233,13 +233,13 @@ export default {
         Comment: null,
         ActionID: null,
         ActionCode: null,
-        ActionName: ''
+        ActionName: '',
       },
       item: { ...this.nullItem },
       opDlg: false,
       dlgAction: 'create',
       delDlg: false,
-      maxI: 0
+      maxI: 0,
     }
   },
   components: { DeleteDialog, ProgDlg },
@@ -256,7 +256,7 @@ export default {
     },
     sumProg () {
       return this.items.reduce((a, c) => a + (c.Value ? c.Value : 0), 0)
-    }
+    },
   },
   methods: {
     progAdd () {
@@ -310,7 +310,7 @@ export default {
           Kind: l.Kind,
           KindID: l.KindID,
           Comment: l.Comment,
-          ActionID: l.ActionID
+          ActionID: l.ActionID,
         }))
       await this.$store.dispatch(types.SET_PROG, { Prog, Year: this.year })
     },
@@ -335,7 +335,7 @@ export default {
             ForecastValue: ForecastValue ? ForecastValue * 0.01 : null,
             PreProgValue: PreProgValue ? PreProgValue * 0.01 : null,
             Value: Value ? Value * 0.01 : null,
-            ...others
+            ...others,
           }))
       const columns = [
         { header: 'Date com', key: 'CommissionDate', ...dateStyle },
@@ -349,10 +349,10 @@ export default {
         { header: 'Préprog.', key: 'PreProgValue', ...valStyle },
         { header: 'Commentaire', key: 'PreProgComment', width: 30 },
         { header: 'Prog.', key: 'Value', ...valStyle },
-        { header: 'Commentaire', key: 'Comment', width: 30 }
+        { header: 'Commentaire', key: 'Comment', width: 30 },
       ]
       excelExport(formattedProg, columns, 'Programmation')
-    }
+    },
   },
   watch: {
     prog: {
@@ -362,11 +362,11 @@ export default {
         )
         this.maxI = this.items.length
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   created () {
     this.$store.dispatch(types.GET_PROG_AND_DATAS, { Year: this.year })
-  }
+  },
 }
 </script>

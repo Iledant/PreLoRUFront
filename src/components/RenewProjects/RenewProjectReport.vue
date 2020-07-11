@@ -90,8 +90,8 @@ export default {
         { text: String(year + 2), value: 'Y2', sortable: true, align: 'right' },
         { text: String(year + 3), value: 'Y3', sortable: true, align: 'right' },
         { text: String(year + 4), value: 'Y4', sortable: true, align: 'right' },
-        { text: String(year + 5), value: 'Y5', sortable: true, align: 'right' }
-      ]
+        { text: String(year + 5), value: 'Y5', sortable: true, align: 'right' },
+      ],
     }
   },
   computed: {
@@ -124,7 +124,7 @@ export default {
     },
     totalY5 () {
       return this.items.reduce((a, c) => a + c.Y5 || 0, 0)
-    }
+    },
   },
   methods: {
     download () {
@@ -142,7 +142,7 @@ export default {
             Y3: Y3 ? Y3 * 0.01 : null,
             Y4: Y4 ? Y4 * 0.01 : null,
             Y5: Y5 ? Y5 * 0.01 : null,
-            ...others
+            ...others,
           }))
       const columns = [
         { header: 'Code INSEE', key: 'InseeCode', width: 10 },
@@ -153,60 +153,60 @@ export default {
           key: 'Budget',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: 'Egt.',
           key: 'Commitment',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: 'Prog.',
           key: 'Prog',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: String(year + 1),
           key: 'Y1',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: String(year + 2),
           key: 'Y2',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: String(year + 3),
           key: 'Y3',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: String(year + 4),
           key: 'Y4',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: String(year + 5),
           key: 'Y5',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
-        }
+          addTotal: true,
+        },
       ]
       excelExport(formattedReport, columns, 'Preprog RU')
-    }
-  }
+    },
+  },
 }
 </script>

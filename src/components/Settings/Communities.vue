@@ -129,14 +129,14 @@ export default {
         { text: 'Code', value: 'Code' },
         { text: 'Nom', value: 'Name' },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       dialog: false,
       delDlg: false,
       item: { Code: null, Name: null },
       dlgTitle: 'Nouvelle intercommunalité',
       dlgBtn: 'Créer',
-      menu: null
+      menu: null,
     }
   },
   methods: {
@@ -173,7 +173,7 @@ export default {
     },
     checkCommunityCode (c) {
       return communityCodeTest(c) || 'Code INSEE attendu'
-    }
+    },
   },
   computed: {
     items () {
@@ -188,10 +188,10 @@ export default {
         this.item.Name === '' ||
         !communityCodeTest(this.item.Code)
       )
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_COMMUNITIES)
-  }
+  },
 }
 </script>

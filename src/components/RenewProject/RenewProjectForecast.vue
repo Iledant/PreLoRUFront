@@ -101,7 +101,7 @@ export default {
         { text: 'Projet', value: 'Project', sortable: true },
         { text: 'Commentaire', value: 'Comment', sortable: true },
         { text: '', value: '', align: 'center', sortable: false, width: '1%' },
-        { text: '', value: '', align: 'center', sortable: false, width: '1%' }
+        { text: '', value: '', align: 'center', sortable: false, width: '1%' },
       ],
       forecast: {
         ID: 0,
@@ -110,14 +110,14 @@ export default {
         Project: null,
         Comment: null,
         RenewProjectID: this.project ? this.project.ID : 0,
-        ActionID: null
+        ActionID: null,
       },
       dialog: false,
       dlgTitle: 'Créer une nouvelle prévision',
       dlgBtn: 'Créer',
       delDlg: false,
       delID: null,
-      search: null
+      search: null,
     }
   },
   computed: {
@@ -132,7 +132,7 @@ export default {
     },
     project () {
       return this.$store.state.renewProject.renewProject
-    }
+    },
   },
   methods: {
     edit (item) {
@@ -161,7 +161,7 @@ export default {
         Project: null,
         Comment: null,
         RenewProjectID: this.project.ID,
-        ActionID: null
+        ActionID: null,
       }
       this.dlgTitle = 'Créer une nouvelle prévision'
       this.dlgBtn = 'Créer'
@@ -169,7 +169,7 @@ export default {
     },
     delConfirm () {
       this.$store.dispatch(types.DELETE_RENEW_PROJECT_FORECAST, this.delID)
-    }
-  }
+    },
+  },
 }
 </script>

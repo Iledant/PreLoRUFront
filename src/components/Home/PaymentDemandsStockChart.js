@@ -12,7 +12,7 @@ export default {
           borderWidth: 2,
           cubicInterpolationMode: 'monotone',
           label: ' DVS sans CSF',
-          data: []
+          data: [],
         },
         {
           borderColor: '#0D47A1',
@@ -21,9 +21,9 @@ export default {
           borderWidth: 2,
           cubicInterpolationMode: 'monotone',
           label: ' DVS non traités DC',
-          data: []
-        }
-      ]
+          data: [],
+        },
+      ],
     },
     options: {
       responsive: true,
@@ -31,7 +31,7 @@ export default {
       legend: { display: false },
       scales: {
         yAxes: [{ ticks: { fontFamily: 'Roboto' } }],
-        xAxes: [{ ticks: { fontFamily: 'Roboto' } }]
+        xAxes: [{ ticks: { fontFamily: 'Roboto' } }],
       },
       tooltips: {
         titleFontFamily: 'Roboto',
@@ -39,15 +39,15 @@ export default {
         backgroundColor: '#3F51B5CC',
         callbacks: {
           label: (i, d) =>
-            `${d.datasets[i.datasetIndex].label} : ${i.yLabel.toFixed(0)}`
-        }
-      }
-    }
+            `${d.datasets[i.datasetIndex].label} : ${i.yLabel.toFixed(0)}`,
+        },
+      },
+    },
   }),
   computed: {
     paymentDemandsStock () {
       return this.$store.state.paymentDemands.paymentDemandsStock
-    }
+    },
   },
   watch: {
     paymentDemandsStock (list) {
@@ -57,6 +57,6 @@ export default {
       this.datas.labels = list.map(a =>
         new Date(a.Day).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' }))
       this.renderChart(this.datas, this.options)
-    }
-  }
+    },
+  },
 }

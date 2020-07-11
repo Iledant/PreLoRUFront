@@ -28,7 +28,7 @@ export default {
   mixins: [checkFile],
   data () {
     return {
-      loading: false
+      loading: false,
     }
   },
   methods: {
@@ -39,7 +39,7 @@ export default {
       this.loading = true
       await summaryReadFile(file, save, this.fileError)
       this.loading = false
-    }
-  }
+    },
+  },
 }
 </script>

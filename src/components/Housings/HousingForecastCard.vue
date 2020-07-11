@@ -107,7 +107,7 @@ export default {
         { text: 'Action budgétaire', value: 'ActionName', sortable: true },
         { text: 'Montant', value: 'Value', sortable: true },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       item: {
         ID: null,
@@ -117,12 +117,12 @@ export default {
         Value: 0,
         Comment: null,
         ActionID: null,
-        ActionName: ''
+        ActionName: '',
       },
       opDlg: false,
       dlgTitle: 'Créer une prévision',
       dlgBtn: 'Créer',
-      delDlg: false
+      delDlg: false,
     }
   },
   computed: {
@@ -140,7 +140,7 @@ export default {
     },
     housingForecasts () {
       return this.$store.state.housings.housingForecastsList
-    }
+    },
   },
   methods: {
     forecastAdd () {
@@ -152,7 +152,7 @@ export default {
         Value: 0,
         Comment: null,
         ActionID: null,
-        ActionName: ''
+        ActionName: '',
       }
       this.dlgTitle = 'Créer une prévision'
       this.dlgBtn = 'Créer'
@@ -179,7 +179,7 @@ export default {
           ? types.CREATE_HOUSING_FORECAST
           : types.UPDATE_HOUSING_FORECAST
       this.$store.dispatch(dispatch, f)
-    }
-  }
+    },
+  },
 }
 </script>

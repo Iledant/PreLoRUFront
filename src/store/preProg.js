@@ -3,7 +3,7 @@ import * as types from './types'
 import { beginLoading, setErrorMessage } from './loading'
 
 const state = {
-  preProgList: []
+  preProgList: [],
 }
 
 const actions = {
@@ -35,13 +35,13 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
   [types.GET_PRE_PROG] (state, list) {
     state.preProgList = [...list]
-  }
+  },
 }
 
 export default { state, actions, mutations }

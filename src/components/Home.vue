@@ -104,26 +104,26 @@ export default {
     CmtChart,
     HomeMessageDlg,
     AvgPmtTimeChart,
-    PaymentDemandsStockChart
+    PaymentDemandsStockChart,
   },
   data () {
     return {
       dlg: false,
       cmtImportDate: '',
-      pmtImportDate: ''
+      pmtImportDate: '',
     }
   },
   computed: {
     ...mapGetters(['isAdmin']),
     ...mapState({
       homeMsg: state => state.home.homeMessage,
-      importLogs: state => state.home.importLogs
-    })
+      importLogs: state => state.home.importLogs,
+    }),
   },
   methods: {
     confirm (msg) {
       this.$store.dispatch(types.SET_HOME_MESSAGE, msg)
-    }
+    },
   },
   watch: {
     importLogs (list) {
@@ -136,10 +136,10 @@ export default {
       const pmt = this.importLogs.filter(i => parseInt(i.Kind) === 2)
       this.cmtImportDate = cmt.length > 0 ? new Date(cmt[0].Date) : ''
       this.pmtImportDate = pmt.length > 0 ? new Date(pmt[0].Date) : ''
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_HOME_DATAS)
-  }
+  },
 }
 </script>

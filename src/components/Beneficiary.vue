@@ -88,8 +88,8 @@ export default {
         { text: 'Fiche IRIS', value: 'IRISCode', sortable: false },
         { text: 'Montant', value: 'Value', align: 'right', sortable: false },
         { text: 'RAM', value: 'Available', align: 'right', sortable: false },
-        { text: 'Caducité', value: 'Caducity', align: 'right', sortable: false }
-      ]
+        { text: 'Caducité', value: 'Caducity', align: 'right', sortable: false },
+      ],
     }
   },
   methods: {
@@ -122,7 +122,7 @@ export default {
         this.$store.dispatch(types.EXPORT_BENEFICIARY_DATAS,
           { ID: this.beneficiaryID, Search: this.search, Year: this.year })
       }
-    }
+    },
   },
   computed: {
     beneficiaryID () { return this.$route.params.ID },
@@ -131,8 +131,8 @@ export default {
     ...mapState({
       itemsCount: state => state.beneficiary.beneficiaryItemsCount,
       items: state => state.beneficiary.beneficiaryDatas,
-      currentPage: state => state.beneficiary.beneficiaryPage
-    })
+      currentPage: state => state.beneficiary.beneficiaryPage,
+    }),
   },
   mounted () { this.getDatas(this.page) },
   watch: {
@@ -140,7 +140,7 @@ export default {
       if (p !== this.currentPage) {
         await this.getDatas(p)
       }
-    }
-  }
+    },
+  },
 }
 </script>

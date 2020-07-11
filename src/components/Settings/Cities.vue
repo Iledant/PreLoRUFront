@@ -156,7 +156,7 @@ export default {
         { text: 'Interco', value: 'Community' },
         { text: 'QPV', value: 'QPV' },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       dialog: false,
       delDlg: false,
@@ -164,7 +164,7 @@ export default {
       dlgTitle: 'Nouvelle commune',
       dlgBtn: 'Créer',
       menu: null,
-      page: 1
+      page: 1,
     }
   },
   methods: {
@@ -199,7 +199,7 @@ export default {
           Name: this.item.Name,
           InseeCode: parseInt(this.item.InseeCode),
           CommunityID: this.item.CommunityID,
-          QPV: this.item.QPV
+          QPV: this.item.QPV,
         })
         this.dialog = false
       }
@@ -210,12 +210,12 @@ export default {
     async getCities (p) {
       await this.$store.dispatch(types.GET_PAGINATED_CITIES, {
         Search: this.search,
-        Page: p
+        Page: p,
       })
       if (this.page !== this.currentPage) {
         this.page = this.currentPage
       }
-    }
+    },
   },
   computed: {
     communities () {
@@ -239,7 +239,7 @@ export default {
         this.item.Name === '' ||
         !/^\d{5}$/.test(this.item.InseeCode)
       )
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_COMMUNITIES)
@@ -250,7 +250,7 @@ export default {
       if (p !== this.currentPage) {
         await this.getCities(p)
       }
-    }
-  }
+    },
+  },
 }
 </script>

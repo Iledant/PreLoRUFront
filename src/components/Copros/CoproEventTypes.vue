@@ -97,8 +97,8 @@ export default {
       headers: [
         { text: 'Nom', value: 'Name' },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
-      ]
+        { text: '', value: '', sortable: false, width: '1%' },
+      ],
     }
   },
   methods: {
@@ -126,7 +126,7 @@ export default {
           ? types.CREATE_COPRO_EVENT_TYPE
           : types.UPDATE_COPRO_EVENT_TYPE
       await this.$store.dispatch(dispatch, r)
-    }
+    },
   },
   computed: {
     items () {
@@ -137,7 +137,7 @@ export default {
     },
     hasCoproRight () {
       return this.$store.getters.hasCoproRight
-    }
-  }
+    },
+  },
 }
 </script>

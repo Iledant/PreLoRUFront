@@ -11,14 +11,14 @@ const state = {
   housingCommentsList: [],
   housingTypologiesList: [],
   housingTransfersList: [],
-  reservationReportList: []
+  reservationReportList: [],
 }
 
 async function exportReservationFees (reservationFees) {
   const items = reservationFees.map(({ TransferDate, ConventionDate, ...others }) => ({
     TransferDate: TransferDate ? new Date(TransferDate) : null,
     ConventionDate: ConventionDate ? new Date(ConventionDate) : null,
-    ...others
+    ...others,
   }))
   const columns = [
     { header: 'Bailleur actuel', key: 'CurrentBeneficiary', width: 20 },
@@ -40,7 +40,7 @@ async function exportReservationFees (reservationFees) {
     { header: 'Réf. ELISE', key: 'EliseRef', width: 10 },
     { header: 'Surface', key: 'Area', ...valStyle },
     { header: 'Loyer', key: 'Loan', ...valStyle },
-    { header: 'Charges', key: 'Charges', ...valStyle }
+    { header: 'Charges', key: 'Charges', ...valStyle },
   ]
   await excelExport(items, columns, 'Paiements')
 }
@@ -337,7 +337,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -415,7 +415,7 @@ const mutations = {
   [types.DELETE_RESERVATION_REPORT] (state, ID) {
     const index = state.reservationReportList.findIndex(r => r.ID === ID)
     state.reservationReportList.splice(index, 1)
-  }
+  },
 }
 
 export default { state, actions, mutations }

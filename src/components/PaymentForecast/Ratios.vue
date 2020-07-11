@@ -48,10 +48,10 @@ export default {
       headers: [
         { text: 'Année n+', value: 'Index', align: 'center' },
         { text: 'Secteur', value: 'SectorName', align: 'center' },
-        { text: 'Taux', value: 'Ratio', align: 'center' }
+        { text: 'Taux', value: 'Ratio', align: 'center' },
       ],
       disabled: true,
-      year: 0
+      year: 0,
     }
   },
   methods: {
@@ -65,15 +65,15 @@ export default {
     save () {
       this.$store.dispatch(types.SAVE_YEAR_RATIOS, {
         Year: this.year,
-        Ratios: this.items
+        Ratios: this.items,
       })
-    }
+    },
   },
   computed: {
     items () {
       return this.$store.state.ratios.ratiosList.map((r, i) => ({
         ...r,
-        ID: i
+        ID: i,
       }))
     },
     loading () {
@@ -81,7 +81,7 @@ export default {
     },
     isAdmin () {
       return this.$store.getters.isAdmin
-    }
-  }
+    },
+  },
 }
 </script>

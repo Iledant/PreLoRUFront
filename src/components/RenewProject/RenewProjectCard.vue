@@ -39,7 +39,7 @@
 export default {
   name: 'RenewProjectCard',
   props: {
-    project: { type: Object, default: v => {} }
+    project: { type: Object, default: v => {} },
   },
   computed: {
     cities () {
@@ -49,7 +49,7 @@ export default {
             (p.CityName2 ? ',' + p.CityName2 : '') +
             (p.CityName3 ? ',' + p.CityName3 : '')
         : ''
-    }
-  }
+    },
+  },
 }
 </script>

@@ -72,7 +72,7 @@ export default {
   name: 'CoproEvents',
   components: { DeleteDialog, CoproEventDlg },
   props: {
-    project: { type: Object, default: v => ({}) }
+    project: { type: Object, default: v => ({}) },
   },
   data () {
     return {
@@ -82,20 +82,20 @@ export default {
         { text: 'Nom', value: 'Name', sortable: true },
         { text: 'Commentaire', value: 'Comment', sortable: true },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       nullItem: {
         ID: 0,
         CoproID: this.project ? this.project.ID : 0,
         CoproEventTypeID: null,
         Date: null,
-        Comment: ''
+        Comment: '',
       },
       item: { ...this.nullItem },
       delDlg: false,
       delID: null,
       dialog: false,
-      action: 'create'
+      action: 'create',
     }
   },
   computed: {
@@ -107,7 +107,7 @@ export default {
     },
     hasCoproRight () {
       return this.$store.getters.hasCoproRight
-    }
+    },
   },
   methods: {
     remove (item) {
@@ -135,7 +135,7 @@ export default {
           ? types.CREATE_COPRO_EVENT
           : types.UPDATE_COPRO_EVENT
       this.$store.dispatch(action, r)
-    }
-  }
+    },
+  },
 }
 </script>

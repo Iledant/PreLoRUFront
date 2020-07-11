@@ -87,23 +87,23 @@ export default {
           text: 'Commentaire',
           value: 'Comment',
           align: 'center',
-          sortable: true
+          sortable: true,
         },
         { text: '', value: '', align: 'center', sortable: false, width: '1%' },
-        { text: '', value: '', align: 'center', sortable: false, width: '1%' }
+        { text: '', value: '', align: 'center', sortable: false, width: '1%' },
       ],
       item: {
         ID: 0,
         RenewProjectID: this.project ? this.project.ID : 0,
         RPEventTypeID: null,
         Date: null,
-        Comment: ''
+        Comment: '',
       },
       delDlg: false,
       delID: null,
       dialog: false,
       dlgTitle: 'Créer un nouvel événement',
-      dlgBtn: 'Créer'
+      dlgBtn: 'Créer',
     }
   },
   computed: {
@@ -118,7 +118,7 @@ export default {
     },
     project () {
       return this.$store.state.renewProject.renewProject
-    }
+    },
   },
   methods: {
     remove (item) {
@@ -134,7 +134,7 @@ export default {
         RenewProjectID: this.project ? this.project.ID : 0,
         RPEventTypeID: null,
         Date: null,
-        Comment: ''
+        Comment: '',
       }
       this.dlgTitle = 'Créer un nouvel événement'
       this.dlgBtn = 'Créer'
@@ -153,7 +153,7 @@ export default {
           ? types.CREATE_RENEW_PROJECT_EVENT
           : types.UPDATE_RENEW_PROJECT_EVENT
       this.$store.dispatch(action, r)
-    }
-  }
+    },
+  },
 }
 </script>

@@ -112,13 +112,13 @@ const nullHousing = {
   PLAI: 0,
   PLUS: 0,
   PLS: 0,
-  ANRU: false
+  ANRU: false,
 }
 export default {
   name: 'HousingsCard',
   mixins: [chkAndUpload],
   props: {
-    loading: { type: Boolean, default: false }
+    loading: { type: Boolean, default: false },
   },
   components: { HousingDlg, DeleteDialog },
   data () {
@@ -134,14 +134,14 @@ export default {
         { text: 'PLS', value: 'PLS', align: 'right', sortable: false },
         { text: 'ANRU', value: 'ANRU', align: 'center', sortable: false },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       page: 1,
       item: { ...nullHousing },
       opDlg: false,
       dlgTitle: 'Créer un logement',
       dlgBtn: 'Créer',
-      delDlg: false
+      delDlg: false,
     }
   },
   computed: {
@@ -168,7 +168,7 @@ export default {
     },
     budgetActions () {
       return this.$store.state.settings.budgetActionsList
-    }
+    },
   },
   methods: {
     newSearch (val) {
@@ -209,14 +209,14 @@ export default {
       if (this.currentPage !== this.page) {
         this.page = this.currentPage
       }
-    }
+    },
   },
   watch: {
     async page (p) {
       if (p !== this.currentPage) {
         await this.getHousings(p)
       }
-    }
-  }
+    },
+  },
 }
 </script>

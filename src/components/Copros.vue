@@ -33,11 +33,11 @@ export default {
   components: { CoprosCard, CoproPreProgCard, CoproEventTypes, CoproReport },
   data () {
     return {
-      tab: null
+      tab: null,
     }
   },
   created () {
     this.$store.dispatch(types.GET_COPROS)
-  }
+  },
 }
 </script>

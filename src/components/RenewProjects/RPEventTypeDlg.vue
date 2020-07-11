@@ -32,12 +32,12 @@ export default {
     value: { type: Boolean, default: false },
     button: { type: String, default: 'Créer' },
     title: { type: String, default: 'Créer un nouveau type d\'événement' },
-    item: { type: Object, default: v => {} }
+    item: { type: Object, default: v => {} },
   },
   computed: {
     disabled () {
       return this.item.Name === ''
-    }
+    },
   },
   methods: {
     notEmpty (x) {
@@ -48,7 +48,7 @@ export default {
         this.$emit('confirm', this.item)
         this.$emit('input', false)
       }
-    }
-  }
+    },
+  },
 }
 </script>

@@ -131,7 +131,7 @@ const nullItem = {
   Area: null,
   EndYear: null,
   Loan: null,
-  Charges: null
+  Charges: null,
 }
 export default {
   name: 'ReservationFeesCard',
@@ -147,13 +147,13 @@ export default {
         { text: 'Convention', value: 'ConventionType', sortable: false },
         { text: '', value: 'modify', sortable: false, width: '1%' },
         { text: '', value: 'remove', sortable: false, width: '1%' },
-        { text: '', value: 'data-table-expand' }
+        { text: '', value: 'data-table-expand' },
       ],
       page: 1,
       item: {},
       dlg: false,
       action: 'create',
-      delDlg: false
+      delDlg: false,
     }
   },
   methods: {
@@ -200,18 +200,18 @@ export default {
       await this.$store.dispatch(types.DELETE_RESERVATION_FEE, this.item.ID)
       this.delDlg = false
       await this.getReservationFees(this.page)
-    }
+    },
   },
   computed: {
     ...mapGetters(['isAdmin', 'loading']),
     ...mapState({
       items: state => state.reservationFees.reservationFeesList,
       itemsCount: state => state.reservationFees.reservationFeesItemsCount,
-      currentPage: state => state.reservationFees.reservationFeesPage
+      currentPage: state => state.reservationFees.reservationFeesPage,
     }),
     delMsg () {
       return `Supprimer la réservation du ${this.item.AddressNumber} ${this.item.AddressStreet} à ${this.item.City}`
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_INITIAL_RESERVATION_FEES, { Page: 0, Search: '' })
@@ -221,7 +221,7 @@ export default {
       if (p !== this.currentPage) {
         this.getReservationFees(p)
       }
-    }
-  }
+    },
+  },
 }
 </script>

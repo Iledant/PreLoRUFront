@@ -100,16 +100,16 @@ export default {
       { text: 'Montant', value: 'DemandValue' },
       { text: 'CSF le', value: 'CsfDate' },
       { text: 'Traité le', value: 'ProcessedDate' },
-      { text: 'Exclus', value: 'Excluded' }
+      { text: 'Exclus', value: 'Excluded' },
     ],
     item: { excluded: false, excluded_comment: null },
-    showDlg: false
+    showDlg: false,
   }),
   computed: {
     ...mapGetters(['loading']),
     ...mapState({
-      paymentDemands: state => state.paymentDemands.paymentDemands
-    })
+      paymentDemands: state => state.paymentDemands.paymentDemands,
+    }),
   },
   methods: {
     edit (item) {
@@ -138,7 +138,7 @@ export default {
           StatusComment: l.StatusComment,
           Excluded: l.Excluded,
           ExcludedComment: l.ExcludedComment,
-          ProcessedDate: l.ProcessedDate ? new Date(l.ProcessedDate) : null
+          ProcessedDate: l.ProcessedDate ? new Date(l.ProcessedDate) : null,
         })
       )
       const columns = [
@@ -157,13 +157,13 @@ export default {
         { header: 'Commentaire', key: 'StatusComment', width: 20 },
         { header: 'Exclus', key: 'Excluded', width: 8 },
         { header: 'Commentaire', key: 'ExcludedComment', width: 20 },
-        { header: 'Traité le', key: 'ProcessedDate', ...dateStyle }
+        { header: 'Traité le', key: 'ProcessedDate', ...dateStyle },
       ]
       excelExport(lines, columns, 'Demandes de paiement')
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_PAYMENT_DEMANDS)
-  }
+  },
 }
 </script>

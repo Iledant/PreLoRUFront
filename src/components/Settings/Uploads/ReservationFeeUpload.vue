@@ -54,7 +54,7 @@ const requiredColumns = [
   'Area',
   'EndYear',
   'Loan',
-  'Charges'
+  'Charges',
 ]
 export default {
   name: 'ReservationFeeUpload',
@@ -62,7 +62,7 @@ export default {
   data () {
     return {
       loading: false,
-      test: null
+      test: null,
     }
   },
   methods: {
@@ -96,7 +96,7 @@ export default {
         Convention: Convention ? String(Convention) : null,
         RPLS: RPLS ? String(RPLS) : null,
         AddressNumber: AddressNumber ? String(AddressNumber) : null,
-        ...others
+        ...others,
       }
     },
     async upload (file) {
@@ -117,10 +117,10 @@ export default {
         this.test = {
           batchSize: body.BatchSize,
           missingCities: [...body.MissingCities],
-          missingBeneficiaries: [...body.MissingBeneficiaries]
+          missingBeneficiaries: [...body.MissingBeneficiaries],
         }
       }
-    }
-  }
+    },
+  },
 }
 </script>

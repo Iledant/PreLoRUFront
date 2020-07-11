@@ -6,7 +6,7 @@ import { excelExport } from '../excel.js'
 const state = {
   paymentsList: [],
   paymentsPage: 0,
-  paymentsItemsCount: 0
+  paymentsItemsCount: 0,
 }
 
 async function exportPayments (payments) {
@@ -16,13 +16,13 @@ async function exportPayments (payments) {
       header: 'Création pmt',
       key: 'CreationDate',
       width: 10,
-      style: { numberFormat: 'dd/mm/yy' }
+      style: { numberFormat: 'dd/mm/yy' },
     },
     {
       header: 'Modification pmt',
       key: 'ModificationDate',
       width: 10,
-      style: { numberFormat: 'dd/mm/yy' }
+      style: { numberFormat: 'dd/mm/yy' },
     },
     { header: 'Numéro pmt', key: 'Number', width: 10 },
     {
@@ -30,7 +30,7 @@ async function exportPayments (payments) {
       key: 'Value',
       width: 14,
       style: { numberFormat: '#,##0.00' },
-      addTotal: true
+      addTotal: true,
     },
     { header: 'Année egt', key: 'CommitmentYear', width: 10 },
     { header: 'Code egt', key: 'CommitmentCode', width: 10 },
@@ -38,19 +38,19 @@ async function exportPayments (payments) {
       header: 'Création pmt',
       key: 'CommitmentCreationDate',
       width: 10,
-      style: { numberFormat: 'dd/mm/yy' }
+      style: { numberFormat: 'dd/mm/yy' },
     },
     {
       header: 'Montant egt',
       key: 'CommitmentValue',
       width: 14,
       style: { numberFormat: '#,##0.00' },
-      addTotal: true
+      addTotal: true,
     },
     { header: 'Libellé egt', key: 'CommitmentName', width: 20 },
     { header: 'Bénéficiaire', key: 'BeneficiaryName', width: 20 },
     { header: 'Secteur', key: 'Sector', width: 6 },
-    { header: 'Action', key: 'ActionName', width: 20 }
+    { header: 'Action', key: 'ActionName', width: 20 },
   ]
   await excelExport(payments, columns, 'Paiements')
 }
@@ -60,7 +60,7 @@ const actions = {
     try {
       beginLoading(commit)
       const resp = await Vue.http.get('payments/paginated', {
-        params: { Year, Page, Search }
+        params: { Year, Page, Search },
       })
       commit(types.GET_PAYMENTS, resp.body)
       commit(types.END_LOADING)
@@ -72,7 +72,7 @@ const actions = {
     try {
       beginLoading(commit)
       const resp = await Vue.http.get('payments/export', {
-        params: { Year, Search }
+        params: { Year, Search },
       })
       exportPayments(resp.body.ExportedPayment)
       commit(types.END_LOADING)
@@ -88,7 +88,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -96,7 +96,7 @@ const mutations = {
     state.paymentsList = [...payload.Payments]
     state.paymentsPage = payload.Page
     state.paymentsItemsCount = payload.ItemsCount
-  }
+  },
 }
 
 export default { state, actions, mutations }

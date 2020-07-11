@@ -49,8 +49,8 @@ export default {
         { text: 'Exercice mandat', value: 'Year' },
         { text: 'Date mandat', value: 'CreationDate' },
         { text: 'Numéro mandat', value: 'Number' },
-        { text: 'Montant', value: 'Value' }
-      ]
+        { text: 'Montant', value: 'Value' },
+      ],
     }
   },
   computed: {
@@ -67,9 +67,9 @@ export default {
           p.CommitmentLine
         }`,
         Value: p.Value,
-        Number: p.Number
+        Number: p.Number,
       }))
-    }
+    },
   },
   methods: {
     excelExport () {
@@ -81,13 +81,13 @@ export default {
           header: 'Date création',
           key: 'CreationDate',
           width: 12,
-          style: { numberFormat: 'dd/mm/yyyy' }
+          style: { numberFormat: 'dd/mm/yyyy' },
         },
         {
           header: 'Date modification',
           key: 'ModificationDate',
           width: 12,
-          style: { numberFormat: 'dd/mm/yyyy' }
+          style: { numberFormat: 'dd/mm/yyyy' },
         },
         { header: 'Numéro mandat', key: 'Number', width: 10 },
         {
@@ -95,19 +95,19 @@ export default {
           key: 'Value',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
-        }
+          addTotal: true,
+        },
       ]
       const formattedItems = this.items.map(
         ({ CreationDate, ModificationDate, Value, ...others }) => ({
           CreationDate: new Date(CreationDate),
           ModificationDate: new Date(ModificationDate),
           Value: Value * 0.01,
-          ...others
+          ...others,
         })
       )
       excelExport(formattedItems, columns, 'Paiement logts')
-    }
-  }
+    },
+  },
 }
 </script>

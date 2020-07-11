@@ -10,7 +10,7 @@ async function exportBeneficiaryDatas (datas) {
     IRISCode: d.IRISCode,
     Value: d.Value * 0.01,
     Available: d.Available * 0.01,
-    Caducity: d.Caducity ? new Date(d.Caducity) : null
+    Caducity: d.Caducity ? new Date(d.Caducity) : null,
   }))
   const columns = [
     { header: 'Date', key: 'Date', ...dateStyle },
@@ -18,7 +18,7 @@ async function exportBeneficiaryDatas (datas) {
     { header: 'Fiche IRIS', key: 'IRISCode', width: 14 },
     { header: 'Montant', key: 'Value', ...valStyle },
     { header: 'RAM', key: 'Available', ...valStyle },
-    { header: 'Caducité', key: 'Caducity', ...dateStyle }
+    { header: 'Caducité', key: 'Caducity', ...dateStyle },
   ]
   await excelExport(formattedDatas, columns, 'Engagement bénéficiaire')
 }
@@ -27,7 +27,7 @@ const state = {
   beneficiaryDatas: [],
   beneficiaryItemsCount: 0,
   beneficiaryPage: 0,
-  beneficiaryPayments: []
+  beneficiaryPayments: [],
 }
 
 const actions = {
@@ -36,7 +36,7 @@ const actions = {
     try {
       commit(types.END_LOADING)
       const resp = await Vue.http.get(`beneficiary/${ID}/datas`, {
-        params: { Page, Search, Year }
+        params: { Page, Search, Year },
       })
       commit(types.GET_BENEFICIARY_DATAS, resp.body)
     } catch (err) {
@@ -48,7 +48,7 @@ const actions = {
     try {
       commit(types.END_LOADING)
       const resp = await Vue.http.get(`beneficiary/${ID}/export`, {
-        params: { Search, Year }
+        params: { Search, Year },
       })
       await exportBeneficiaryDatas(resp.body.BeneficiaryData)
     } catch (err) {
@@ -64,7 +64,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -75,7 +75,7 @@ const mutations = {
   },
   [types.GET_BENEFICIARY_PAYMENTS] (state, list) {
     state.beneficiaryPayments = [...list]
-  }
+  },
 }
 
 export default { state, actions, mutations }

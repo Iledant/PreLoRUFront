@@ -49,8 +49,8 @@ export default {
         { text: 'Bénéficiaire', value: 'BeneficiaryName' },
         { text: 'Nombre', value: 'Count', align: 'right' },
         { text: 'Grand compte', value: 'ContractYear', align: 'right' },
-        { text: 'Commentaire', value: 'Comment' }
-      ]
+        { text: 'Commentaire', value: 'Comment' },
+      ],
     }
   },
   methods: {
@@ -68,22 +68,22 @@ export default {
         { header: 'Bénéficiaire', key: 'BeneficiaryName', width: 20 },
         { header: 'Nombre', key: 'Count', width: 10, addTotal: true },
         { header: 'Année convention', key: 'ContractYear', width: 14 },
-        { header: 'Commentaire', key: 'Comment', width: 50 }
+        { header: 'Commentaire', key: 'Comment', width: 50 },
       ]
       const formatted = this.items.map(
         ({ CreationDate, CommitmentValue, ...others }) =>
           ({
             CreationDate: new Date(CreationDate),
             CommitmentValue: CommitmentValue ? CommitmentValue * 0.01 : 0,
-            ...others
+            ...others,
           })
       )
       excelExport(formatted, columns, 'Stagiaires groupe')
-    }
+    },
   },
   computed: {
     ...mapGetters(['loading']),
-    ...mapState({ items: state => state.placement.placementList })
-  }
+    ...mapState({ items: state => state.placement.placementList }),
+  },
 }
 </script>

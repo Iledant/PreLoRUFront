@@ -4,7 +4,7 @@ import { beginLoading, setErrorMessage } from './loading.js'
 
 const state = {
   coproEventTypeList: [],
-  coproEventType: null
+  coproEventType: null,
 }
 
 const actions = {
@@ -57,7 +57,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -77,7 +77,7 @@ const mutations = {
   },
   [types.CREATE_COPRO_EVENT_TYPE] (state, payload) {
     state.coproEventTypeList.push(payload)
-  }
+  },
 }
 
 export default { state, actions, mutations }

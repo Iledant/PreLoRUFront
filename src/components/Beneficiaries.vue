@@ -96,13 +96,13 @@ export default {
         { text: 'Code', value: 'Code', sortable: false },
         { text: 'Nom', value: 'Name', sortable: false },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       page: 1,
       dlg: false,
       delDlg: false,
       action: 'create',
-      item: { ...nullItem }
+      item: { ...nullItem },
     }
   },
   methods: {
@@ -146,7 +146,7 @@ export default {
       await this.$store.dispatch(types.DELETE_BENEFICIARY, this.item.ID)
       this.delDlg = false
       await this.getBeneficiaries(this.page)
-    }
+    },
   },
   mounted () {
     this.getBeneficiaries(1)
@@ -155,19 +155,19 @@ export default {
     ...mapState({
       items: state => state.beneficiaries.beneficiariesList,
       itemsCount: state => state.beneficiaries.beneficiariesItemsCount,
-      currentPage: state => state.beneficiaries.beneficiariesPage
+      currentPage: state => state.beneficiaries.beneficiariesPage,
     }),
     ...mapGetters(['loading']),
     delSentence () {
       return 'Supprimer le bénéficiaire ' + (this.item ? this.item.Name : '') + ' ?'
-    }
+    },
   },
   watch: {
     async page (p) {
       if (p !== this.currentPage) {
         await this.getBeneficiaries(p)
       }
-    }
-  }
+    },
+  },
 }
 </script>

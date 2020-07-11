@@ -67,11 +67,11 @@ export default {
     button: { type: String, default: 'Créer' },
     item: { type: Object, default: v => {} },
     commissions: { type: Array, default: v => [] },
-    budgetActions: { type: Array, default: v => [] }
+    budgetActions: { type: Array, default: v => [] },
   },
   data () {
     return {
-      val: ''
+      val: '',
     }
   },
   computed: {
@@ -81,7 +81,7 @@ export default {
         this.val === '' ||
         this.item.ActionID === null
       )
-    }
+    },
   },
   methods: {
     comRequired (x) {
@@ -96,12 +96,12 @@ export default {
         this.item.Value = this.parseCurrency(this.val)
         this.$emit('confirm', this.item)
       }
-    }
+    },
   },
   watch: {
     value () {
       this.val = this.currencyFormat(this.item.Value)
-    }
-  }
+    },
+  },
 }
 </script>

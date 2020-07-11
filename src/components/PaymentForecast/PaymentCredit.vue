@@ -131,7 +131,7 @@ export default {
       { text: 'Fonction', value: 'Function' },
       { text: 'Date', value: 'CreationDate' },
       { text: 'Libellé du mouvement', value: 'Name' },
-      { text: 'Montant', value: 'Value', align: 'right' }
+      { text: 'Montant', value: 'Value', align: 'right' },
     ],
     creditsHeaders: [
       { text: 'Chapitre', value: 'Chapter' },
@@ -141,10 +141,10 @@ export default {
       { text: 'Budget suppl.', value: 'Added', align: 'right' },
       { text: 'DM', value: 'Modified', align: 'right' },
       { text: 'Mouvements', value: 'Movement', align: 'right' },
-      { text: 'Total', value: 'Total', align: 'right' }
+      { text: 'Total', value: 'Total', align: 'right' },
     ],
     journalSearch: '',
-    creditsSearch: ''
+    creditsSearch: '',
   }),
   computed: {
     ...mapGetters(['loading', 'isAdmin']),
@@ -165,12 +165,12 @@ export default {
         Added: o.Added,
         Modified: o.Modified,
         Movement: o.Movement,
-        Total: o.Primitive + o.Reported + o.Added + o.Modified + o.Movement
+        Total: o.Primitive + o.Reported + o.Added + o.Modified + o.Movement,
       }))
     },
     creditsTotal () {
       return this.credits.reduce((a, c) => a + c.Total, 0)
-    }
+    },
   },
   methods: {
     fileError () {
@@ -185,7 +185,7 @@ export default {
           CreationDate: new Date(CreationDate),
           ModificationDate: new Date(ModificationDate),
           Value: 0.01 * Value,
-          ...others
+          ...others,
         })
       )
       const columns = [
@@ -194,7 +194,7 @@ export default {
         { header: 'Création', key: 'CreationDate', ...dateStyle },
         { header: 'Modification', key: 'ModificationDate', ...dateStyle },
         { header: 'Libellé', key: 'Name', width: 10 },
-        { header: 'Montant', key: 'Value', ...valStyle }
+        { header: 'Montant', key: 'Value', ...valStyle },
       ]
       excelExport(lines, columns, 'Enveloppes de CP')
     },
@@ -207,7 +207,7 @@ export default {
         Added: l.Added * 0.01,
         Modified: l.Modified * 0.01,
         Movement: l.Movement * 0.01,
-        Total: l.Total * 0.01
+        Total: l.Total * 0.01,
       }))
       const columns = [
         { header: 'Chapitre', key: 'Chapter', width: 10 },
@@ -217,13 +217,13 @@ export default {
         { header: 'Budget supplémentaire', key: 'Added', ...valStyle },
         { header: 'Décision modificative', key: 'Modified', ...valStyle },
         { header: 'Mouvements', key: 'Movement', ...valStyle },
-        { header: 'Total', key: 'Total', ...valStyle }
+        { header: 'Total', key: 'Total', ...valStyle },
       ]
       excelExport(lines, columns, 'Enveloppes de CP')
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_ALL_PAYMENT_CREDITS, actualYear)
-  }
+  },
 }
 </script>

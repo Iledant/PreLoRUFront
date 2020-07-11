@@ -9,7 +9,7 @@ const state = {
   rpPayments: [],
   rpForecasts: [],
   rpEvents: [],
-  rpCmtCityJoins: []
+  rpCmtCityJoins: [],
 }
 
 async function downloadReport (lines) {
@@ -21,32 +21,32 @@ async function downloadReport (lines) {
       key: 'Budget',
       width: 14,
       style: { numberFormat: '#,##0.00' },
-      addTotal: true
+      addTotal: true,
     },
     {
       header: 'Engagements',
       key: 'Commitment',
       width: 14,
       style: { numberFormat: '#,##0.00' },
-      addTotal: true
+      addTotal: true,
     },
     {
       header: 'Paiements',
       key: 'Payment',
       width: 14,
       style: { numberFormat: '#,##0.00' },
-      addTotal: true
+      addTotal: true,
     },
     {
       header: 'Dernier événement',
       key: 'LastEventName',
-      width: 20
+      width: 20,
     },
     {
       header: 'Dernière date',
       key: 'LastEventDate',
       width: 10,
-      style: { numberFormat: 'dd/mm/yyyy' }
+      style: { numberFormat: 'dd/mm/yyyy' },
     },
     { header: 'Ville', key: 'City1Name', width: 12 },
     { header: 'Interco', key: 'City1CommunityName', width: 12 },
@@ -55,14 +55,14 @@ async function downloadReport (lines) {
       key: 'City1Cmt',
       width: 14,
       style: { numberFormat: '#,##0.00' },
-      addTotal: true
+      addTotal: true,
     },
     {
       header: 'Paiements',
       key: 'City1Pmt',
       width: 14,
       style: { numberFormat: '#,##0.00' },
-      addTotal: true
+      addTotal: true,
     },
     { header: 'Ville', key: 'City2Name', width: 12 },
     { header: 'Interco', key: 'City2CommunityName', width: 12 },
@@ -71,14 +71,14 @@ async function downloadReport (lines) {
       key: 'City2Cmt',
       width: 14,
       style: { numberFormat: '#,##0.00' },
-      addTotal: true
+      addTotal: true,
     },
     {
       header: 'Paiements',
       key: 'City2Pmt',
       width: 14,
       style: { numberFormat: '#,##0.00' },
-      addTotal: true
+      addTotal: true,
     },
     { header: 'Ville', key: 'City3Name', width: 12 },
     { header: 'Interco', key: 'City3CommunityName', width: 12 },
@@ -87,15 +87,15 @@ async function downloadReport (lines) {
       key: 'City3Cmt',
       width: 14,
       style: { numberFormat: '#,##0.00' },
-      addTotal: true
+      addTotal: true,
     },
     {
       header: 'Paiements',
       key: 'City3Pmt',
       width: 14,
       style: { numberFormat: '#,##0.00' },
-      addTotal: true
-    }
+      addTotal: true,
+    },
   ]
   const formattedLines = lines.map(l => ({
     Reference: l.Reference,
@@ -116,7 +116,7 @@ async function downloadReport (lines) {
     City3Name: l.City3Name,
     City3CommunityName: l.City3CommunityName,
     City3Cmt: l.City3Cmt ? l.City3Cmt * 0.01 : 0,
-    City3Pmt: l.City3Pmt ? l.City3Pmt * 0.01 : 0
+    City3Pmt: l.City3Pmt ? l.City3Pmt * 0.01 : 0,
   }))
   excelExport(formattedLines, columns, 'Report RU')
 }
@@ -142,7 +142,7 @@ const actions = {
     beginLoading(commit)
     try {
       const { body } = await Vue.http.post('renew_project_forecast', {
-        RenewProjectForecast
+        RenewProjectForecast,
       })
       commit(types.CREATE_RENEW_PROJECT_FORECAST, body.RenewProjectForecast)
       commit(types.END_LOADING)
@@ -239,7 +239,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -292,7 +292,7 @@ const mutations = {
   [types.DEL_CMT_CITY_JOIN] (state, ID) {
     const index = state.rpCmtCityJoins.findIndex(r => r.ID === ID)
     state.rpCmtCityJoins.splice(index, 1)
-  }
+  },
 }
 
 export default { state, actions, mutations }

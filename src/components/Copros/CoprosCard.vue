@@ -90,7 +90,7 @@ const nullCopro = {
   Address: '',
   ZipCode: null,
   LabelDate: null,
-  Budget: null
+  Budget: null,
 }
 export default {
   name: 'CoprosCard',
@@ -106,13 +106,13 @@ export default {
         { text: 'Date label', align: 'right', value: 'LabelDate' },
         { text: 'Budget', align: 'right', value: 'Budget' },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       dialog: false,
       item: { ...nullCopro },
       dlgTitle: 'Créer une copropriété',
       dlgBtn: 'Créer',
-      delDlg: false
+      delDlg: false,
     }
   },
   computed: {
@@ -125,7 +125,7 @@ export default {
         LabelDate: c.LabelDate,
         Name: c.Name,
         Reference: c.Reference,
-        ZipCode: c.ZipCode
+        ZipCode: c.ZipCode,
       }))
     },
     cities () {
@@ -136,7 +136,7 @@ export default {
     },
     hasCoproRight () {
       return this.$store.getters.hasCoproRight
-    }
+    },
   },
   methods: {
     add () {
@@ -154,7 +154,7 @@ export default {
         Address: i.Address,
         ZipCode: i.ZipCode,
         LabelDate: i.LabelDate,
-        Budget: i.Budget ? i.Budget / 100 : null
+        Budget: i.Budget ? i.Budget / 100 : null,
       }
       this.dlgTitle = 'Modifier une copropriété'
       this.dlgBtn = 'Modifier'
@@ -175,7 +175,7 @@ export default {
     },
     goTo (ID) {
       this.$router.push({ name: 'Copro', params: { ID } })
-    }
-  }
+    },
+  },
 }
 </script>

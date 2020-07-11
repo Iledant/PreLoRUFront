@@ -77,7 +77,7 @@ const nullItem = {
   BeneficiaryID: 0,
   BeneficiaryName: '',
   DestIRISCode: null,
-  DestDate: null
+  DestDate: null,
 }
 export default {
   name: 'ReservationReportCard',
@@ -92,13 +92,13 @@ export default {
         { text: 'Utilisé sur', value: 'DestIRISCode' },
         { text: 'Utilisé le', value: 'DestDate' },
         { text: '', name: '', width: '1%', sortable: false },
-        { text: '', name: '', width: '1%', sortable: false }
+        { text: '', name: '', width: '1%', sortable: false },
       ],
       item: { ...nullItem },
       delDlg: false,
       dialog: false,
       dlgTitle: 'Créer un nouveau report',
-      dlgBtn: 'Créer'
+      dlgBtn: 'Créer',
     }
   },
   computed: {
@@ -107,7 +107,7 @@ export default {
     },
     loading () {
       return this.$store.getters.loading
-    }
+    },
   },
   methods: {
     remove (item) {
@@ -135,7 +135,7 @@ export default {
           ? types.CREATE_RESERVATION_REPORT
           : types.UPDATE_RESERVATION_REPORT
       this.$store.dispatch(action, r)
-    }
-  }
+    },
+  },
 }
 </script>

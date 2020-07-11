@@ -5,7 +5,7 @@ import { beginLoading, setErrorMessage } from './loading.js'
 const state = {
   budgetSectorsList: [],
   budgetActionsList: [],
-  commissionsList: []
+  commissionsList: [],
 }
 
 const actions = {
@@ -70,7 +70,7 @@ const actions = {
     beginLoading(commit)
     try {
       const resp = await Vue.http.post('budget_sector', {
-        BudgetSector: { Name, FullName }
+        BudgetSector: { Name, FullName },
       })
       commit(types.END_LOADING)
       commit(types.CREATE_SECTOR, resp.body.BudgetSector)
@@ -82,7 +82,7 @@ const actions = {
     beginLoading(commit)
     try {
       const resp = await Vue.http.put('budget_sector', {
-        BudgetSector: { ID, Name, FullName }
+        BudgetSector: { ID, Name, FullName },
       })
       commit(types.END_LOADING)
       commit(types.UPDATE_SECTOR, resp.body.BudgetSector)
@@ -104,7 +104,7 @@ const actions = {
     beginLoading(commit)
     try {
       const resp = await Vue.http.post('budget_action', {
-        BudgetAction: { Code, Name, SectorID }
+        BudgetAction: { Code, Name, SectorID },
       })
       commit(types.END_LOADING)
       commit(types.CREATE_ACTION, resp.body.BudgetAction)
@@ -116,7 +116,7 @@ const actions = {
     beginLoading(commit)
     try {
       const resp = await Vue.http.put('budget_action', {
-        BudgetAction: { ID, Code, Name, SectorID }
+        BudgetAction: { ID, Code, Name, SectorID },
       })
       commit(types.END_LOADING)
       commit(types.UPDATE_ACTION, resp.body.BudgetAction)
@@ -138,7 +138,7 @@ const actions = {
     beginLoading(commit)
     try {
       const resp = await Vue.http.post('commission', {
-        Commission: { Name, Date }
+        Commission: { Name, Date },
       })
       commit(types.END_LOADING)
       commit(types.CREATE_COMMISSION, resp.body.Commission)
@@ -150,7 +150,7 @@ const actions = {
     beginLoading(commit)
     try {
       const resp = await Vue.http.put('commission', {
-        Commission: { ID, Name, Date }
+        Commission: { ID, Name, Date },
       })
       commit(types.END_LOADING)
       commit(types.UPDATE_COMMISSION, resp.body.Commission)
@@ -167,7 +167,7 @@ const actions = {
     } catch (resp) {
       setErrorMessage(commit, resp)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -212,7 +212,7 @@ const mutations = {
   [types.DEL_COMMISSION] (state, ID) {
     const index = state.commissionsList.find(b => b.ID === ID)
     state.commissionsList.splice(index, 1)
-  }
+  },
 }
 
 export default { state, actions, mutations }

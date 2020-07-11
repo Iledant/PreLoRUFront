@@ -32,11 +32,11 @@ export default {
   name: 'HomeMessageDlg',
   props: {
     value: { type: Boolean, default: false },
-    msg: { type: Object, default: v => {} }
+    msg: { type: Object, default: v => {} },
   },
   data () {
     return {
-      val: { Title: '', Body: '' }
+      val: { Title: '', Body: '' },
     }
   },
   computed: {
@@ -47,7 +47,7 @@ export default {
         this.val.Body === null ||
         this.val.Body === ''
       )
-    }
+    },
   },
   methods: {
     confirm () {
@@ -55,14 +55,14 @@ export default {
         this.$emit('input', false)
         this.$emit('confirm', this.val)
       }
-    }
+    },
   },
   watch: {
     value () {
       if (this.msg) {
         this.val = { ...this.msg }
       }
-    }
-  }
+    },
+  },
 }
 </script>

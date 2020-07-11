@@ -2,24 +2,24 @@ import * as XlsxPopulate from 'xlsx-populate/browser/xlsx-populate-no-encryption
 
 const blueStyle = {
   fill: { type: 'solid', color: '1F497D' },
-  fontColor: 'FFFFFF'
+  fontColor: 'FFFFFF',
 }
 
 export const valStyle = {
   width: 14,
   style: { numberFormat: '#,##0.00' },
-  addTotal: true
+  addTotal: true,
 }
 
 export const percentStyle = {
   width: 8,
   style: { numberFormat: '0.00 %' },
-  addTotal: true
+  addTotal: true,
 }
 
 export const dateStyle = {
   width: 12,
-  style: { numberFormat: 'dd/mm/yyyy' }
+  style: { numberFormat: 'dd/mm/yyyy' },
 }
 
 function parseData (datas, keys) {
@@ -91,7 +91,7 @@ function summaryParseData (datas, year) {
         PLAI: row[7].value() || 0,
         ReferenceCode: String(row[30].value() || row[67].value()),
         IRISCode: String(row[29].value()),
-        ANRU
+        ANRU,
       }
       housings.push(h)
     }

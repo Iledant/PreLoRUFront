@@ -89,13 +89,13 @@ export default {
     return {
       headers: [
         { text: 'Département', value: 'Dpt' },
-        { text: 'Montant', value: 'Value', align: 'right' }
+        { text: 'Montant', value: 'Value', align: 'right' },
       ],
       first: null,
       last: null,
       min: null,
       max: null,
-      rplsYear: null
+      rplsYear: null,
     }
   },
   computed: {
@@ -116,7 +116,7 @@ export default {
     },
     totalValue () {
       return this.items.reduce((a, c) => a + c.Value, 0)
-    }
+    },
   },
   methods: {
     lastRule (l) {
@@ -164,7 +164,7 @@ export default {
           LastYear: this.last,
           RPLSMin: this.min,
           RPLSMax: this.max,
-          RPLSYear: this.rplsYear
+          RPLSYear: this.rplsYear,
         })
       }
     },
@@ -179,8 +179,8 @@ export default {
           key: 'Value',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
-        }
+          addTotal: true,
+        },
       ]
       const formatted = this.items.map(({ Value, ...others }) =>
         ({ Value: Value * 0.01, ...others }))
@@ -193,15 +193,15 @@ export default {
           LastYear: this.last,
           RPLSMin: this.min,
           RPLSMax: this.max,
-          RPLSYear: this.rplsYear
+          RPLSYear: this.rplsYear,
         })
       }
-    }
+    },
   },
   watch: {
     rplsYear () {
       this.getReport()
-    }
-  }
+    },
+  },
 }
 </script>

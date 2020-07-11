@@ -33,11 +33,11 @@ export default {
   components: { HousingTypologies, HousingComments, HousingTransfers, ConventionTypes },
   data () {
     return {
-      tab: null
+      tab: null,
     }
   },
   created () {
     this.$store.dispatch(types.GET_RESERVATION_FEES_SETTINGS)
-  }
+  },
 }
 </script>

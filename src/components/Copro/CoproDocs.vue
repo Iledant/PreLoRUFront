@@ -70,7 +70,7 @@ export default {
   name: 'CoproDocs',
   components: { DeleteDialog, CoproDocDlg },
   props: {
-    project: { type: Object, default: v => ({}) }
+    project: { type: Object, default: v => ({}) },
   },
   data () {
     return {
@@ -78,19 +78,19 @@ export default {
       headers: [
         { text: 'Nom', value: 'Name', sortable: true },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       nullItem: {
         ID: 0,
         CoproID: this.project.ID,
         Name: null,
-        Link: null
+        Link: null,
       },
       item: { ...this.nullItem },
       delDlg: false,
       delID: null,
       dialog: false,
-      action: 'create'
+      action: 'create',
     }
   },
   computed: {
@@ -102,7 +102,7 @@ export default {
     },
     hasCoproRight () {
       return this.$store.getters.hasCoproRight
-    }
+    },
   },
   methods: {
     remove (item) {
@@ -131,7 +131,7 @@ export default {
           ? types.CREATE_COPRO_DOC
           : types.UPDATE_COPRO_DOC
       this.$store.dispatch(action, r)
-    }
-  }
+    },
+  },
 }
 </script>

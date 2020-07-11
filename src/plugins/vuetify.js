@@ -11,15 +11,15 @@ export default new Vuetify({
       light: {
         primary: colors.deepPurple.darken3,
         secondary: colors.deepPurple.lighten1,
-        tertiary: colors.deepPurple.lighten5
-      }
-    }
+        tertiary: colors.deepPurple.lighten5,
+      },
+    },
   },
   icons: {
-    iconfont: 'md'
+    iconfont: 'md',
   },
   lang: {
     locales: { fr },
-    current: 'fr'
-  }
+    current: 'fr',
+  },
 })

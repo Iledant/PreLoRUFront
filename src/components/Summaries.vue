@@ -29,11 +29,11 @@ export default {
   components: { DptReport, CityReport, RplsReport },
   data () {
     return {
-      active: null
+      active: null,
     }
   },
   created () {
     this.$store.dispatch(types.GET_SUMMARIES_DATAS)
-  }
+  },
 }
 </script>

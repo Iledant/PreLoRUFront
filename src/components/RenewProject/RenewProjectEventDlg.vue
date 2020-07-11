@@ -80,11 +80,11 @@ export default {
     value: { type: Boolean, default: false },
     title: { type: String, default: 'Créer un nouvel événement' },
     button: { type: String, default: 'Créer' },
-    item: { type: Object, default: v => {} }
+    item: { type: Object, default: v => {} },
   },
   data () {
     return {
-      menu: null
+      menu: null,
     }
   },
   computed: {
@@ -99,7 +99,7 @@ export default {
     },
     loading () {
       return this.$store.state.loading.loading !== 0
-    }
+    },
   },
   methods: {
     notNull (x) {
@@ -112,7 +112,7 @@ export default {
         this.$emit('confirm', this.item)
         this.$emit('input', false)
       }
-    }
-  }
+    },
+  },
 }
 </script>

@@ -43,12 +43,12 @@ export default {
   props: {
     value: { type: Boolean, default: false },
     item: { type: Object, default: v => {} },
-    cities: { type: Array, default: v => [] }
+    cities: { type: Array, default: v => [] },
   },
   computed: {
     disabled () {
       return this.item.CityCode === null
-    }
+    },
   },
   methods: {
     confirm () {
@@ -56,7 +56,7 @@ export default {
         this.$emit('confirm', this.item)
         this.$emit('input', false)
       }
-    }
-  }
+    },
+  },
 }
 </script>

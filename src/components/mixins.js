@@ -10,8 +10,8 @@ export const yearRule = {
     },
     emptyOrYearRule (y) {
       return y === null || y === '' || y === 0 || this.yearRule(y)
-    }
-  }
+    },
+  },
 }
 
 export const uintRule = {
@@ -21,8 +21,8 @@ export const uintRule = {
     },
     uintRule (i) {
       return this.uintCheck(i) || 'Nombre nul ou positif attendu'
-    }
-  }
+    },
+  },
 }
 
 export const intRule = {
@@ -32,8 +32,8 @@ export const intRule = {
     },
     intRule (i) {
       return this.intCheck(i) || 'Nombre attendu'
-    }
-  }
+    },
+  },
 }
 
 export const nullUintRule = {
@@ -43,8 +43,8 @@ export const nullUintRule = {
     },
     nullUintRule (i) {
       return this.nullUintCheck(i) || 'Champ vide ou nombre positif attendu'
-    }
-  }
+    },
+  },
 }
 
 export const ratioRule = {
@@ -54,8 +54,8 @@ export const ratioRule = {
     },
     ratioRule (r) {
       return this.ratioCheck(r) || 'Pourcentage attendu de type "35,12"'
-    }
-  }
+    },
+  },
 }
 
 export const chkAndUpload = {
@@ -69,8 +69,8 @@ export const chkAndUpload = {
         return
       }
       await callback(file)
-    }
-  }
+    },
+  },
 }
 
 const curFmt = c => new Intl.NumberFormat(
@@ -85,16 +85,16 @@ export const currencyFormat = {
     },
     parseCurrency (c) {
       return c === null || c === '' ? null : this.$parseCurrency(c) * 100
-    }
-  }
+    },
+  },
 }
 
 export const prevRequired = {
   methods: {
     prevRequired (x) {
       return x !== '' || 'Montant de la prévision nécessaire'
-    }
-  }
+    },
+  },
 }
 
 export const preProgMethods = {
@@ -156,6 +156,6 @@ export const preProgMethods = {
     async preProgCancel () {
       await this.getPreProg()
       this.modified = false
-    }
-  }
+    },
+  },
 }

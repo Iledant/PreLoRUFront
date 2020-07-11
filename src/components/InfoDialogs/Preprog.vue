@@ -29,7 +29,7 @@
 export default {
   name: 'PreProg',
   props: {
-    value: { type: Boolean, default: false }
-  }
+    value: { type: Boolean, default: false },
+  },
 }
 </script>

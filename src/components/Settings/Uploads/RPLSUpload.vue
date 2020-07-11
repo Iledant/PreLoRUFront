@@ -26,7 +26,7 @@ export default {
   mixins: [checkFile],
   data () {
     return {
-      loading: false
+      loading: false,
     }
   },
   methods: {
@@ -35,7 +35,7 @@ export default {
       const parse = d => ({
         InseeCode: parseInt(d.InseeCode),
         Year: parseInt(d.Year),
-        Ratio: Number(d.Ratio)
+        Ratio: Number(d.Ratio),
       })
       const save = o => {
         this.$store.dispatch(types.UPLOAD_RPLS, { RPLS: o })
@@ -43,7 +43,7 @@ export default {
       this.loading = true
       await excelReadFile(file, expectedHeaders, save, this.fileError, parse)
       this.loading = false
-    }
-  }
+    },
+  },
 }
 </script>

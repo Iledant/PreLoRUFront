@@ -27,7 +27,7 @@ export default {
   computed: {
     housing () {
       return this.$store.state.housings.housing
-    }
-  }
+    },
+  },
 }
 </script>

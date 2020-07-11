@@ -75,18 +75,18 @@ export default {
     action: {
       type: String,
       default: 'create',
-      validator: v => ['create', 'modify'].indexOf(v) !== -1
+      validator: v => ['create', 'modify'].indexOf(v) !== -1,
     },
-    item: { type: Object, default: v => {} }
+    item: { type: Object, default: v => {} },
   },
   data () {
     return {
-      dateMenu: false
+      dateMenu: false,
     }
   },
   computed: {
     ...mapState({
-      beneficiaries: state => state.beneficiaries.beneficiariesList
+      beneficiaries: state => state.beneficiaries.beneficiariesList,
     }),
     title () {
       return this.action === 'create'
@@ -105,7 +105,7 @@ export default {
     },
     formattedDestDate () {
       return formatNullDate(this.item.DestDate)
-    }
+    },
   },
   methods: {
     confirm () {
@@ -119,7 +119,7 @@ export default {
         SourceIRISCode: this.item.SourceIRISCode,
         Area: parseFloat(String(this.item.Area).replace(',', '.')),
         DestIRISCode: this.item.DestIRISCode,
-        DestDate: this.item.DestDate ? new Date(this.item.DestDate) : null
+        DestDate: this.item.DestDate ? new Date(this.item.DestDate) : null,
       }
       this.$emit('confirm', ReservationReport)
     },
@@ -128,7 +128,7 @@ export default {
     },
     floatRule (item) {
       return /^\d+([,.]\d+)?$/.test(item) || 'Nombre positif attendu'
-    }
-  }
+    },
+  },
 }
 </script>

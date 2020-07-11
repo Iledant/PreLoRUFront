@@ -72,18 +72,18 @@ export default {
         { text: 'Objet', value: 'Name', sortable: false },
         { text: 'Bénéficiaire', value: 'Beneficiary', sortable: false },
         { text: 'Montant', value: 'Value', sortable: false },
-        { text: 'Soldé', value: 'SoldOut', sortable: false }
+        { text: 'Soldé', value: 'SoldOut', sortable: false },
       ],
       page: 1,
-      selected: []
+      selected: [],
     }
   },
   props: {
     destID: { type: Number, required: true },
     allowLink: { type: Boolean, default: false },
     type: {
-      validator: t => ['Copro', 'RenewProject', 'Housing'].indexOf(t) !== -1
-    }
+      validator: t => ['Copro', 'RenewProject', 'Housing'].indexOf(t) !== -1,
+    },
   },
   methods: {
     newSearch (val) {
@@ -108,7 +108,7 @@ export default {
       await this.$store.dispatch(types.GET_UNLINKED_COMMITMENTS, {
         Year: this.year,
         Search: this.search,
-        Page: p
+        Page: p,
       })
       if (this.page !== this.currentPage) {
         this.page = this.currentPage
@@ -121,7 +121,7 @@ export default {
           { DestID: this.destID, Type: this.type, IDs }
         )
       }
-    }
+    },
   },
   computed: {
     items () {
@@ -139,7 +139,7 @@ export default {
         RenewProjectID: c.RenewProjectID,
         HousingID: c.HousingID,
         Linked: c.CoproID || c.RenewProjectID || c.HousingID,
-        SoldOut: c.SoldOut
+        SoldOut: c.SoldOut,
       }))
     },
     loading () {
@@ -150,7 +150,7 @@ export default {
     },
     currentPage () {
       return this.$store.state.commitments.unlinkedCommitmentsPage
-    }
+    },
   },
   mounted () {
     this.getCommitments(this.page)
@@ -160,7 +160,7 @@ export default {
       if (p !== this.currentPage) {
         this.getCommitments(p)
       }
-    }
-  }
+    },
+  },
 }
 </script>

@@ -25,7 +25,7 @@ export default {
   mixins: [checkFile],
   data () {
     return {
-      loading: false
+      loading: false,
     }
   },
   methods: {
@@ -37,7 +37,7 @@ export default {
         Address: d.Address,
         ZipCode: parseInt(d.ZipCode),
         LabelDate: d.LabelDate,
-        Budget: d.Budget ? parseInt(d.Budget) * 100 : null
+        Budget: d.Budget ? parseInt(d.Budget) * 100 : null,
       })
       const save = o => {
         this.$store.dispatch(types.UPLOAD_COPROS, { Copro: o })
@@ -45,7 +45,7 @@ export default {
       this.loading = true
       await excelReadFile(file, expectedHeaders, save, this.fileError, parse)
       this.loading = false
-    }
-  }
+    },
+  },
 }
 </script>

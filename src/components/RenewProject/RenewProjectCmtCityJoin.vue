@@ -65,32 +65,32 @@ export default {
         {
           text: 'Date',
           value: 'CommitmentDate',
-          align: 'center'
+          align: 'center',
         },
         {
           text: 'Libellé',
           value: 'CommitmentName',
-          align: 'center'
+          align: 'center',
         },
         {
           text: 'Code INSEE',
           value: 'CityCode',
-          align: 'center'
+          align: 'center',
         },
         {
           text: 'Nom de ville',
           value: 'CityName',
-          align: 'center'
+          align: 'center',
         },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       dialog: false,
       delDlg: false,
       item: {
         ID: null,
         CityCode: null,
-        CityName: null
-      }
+        CityName: null,
+      },
     }
   },
   computed: {
@@ -126,13 +126,13 @@ export default {
           ...c,
           CityCode: city ? city.Code : null,
           CityName: city ? city.Name : null,
-          JoinID: join ? join.ID : null
+          JoinID: join ? join.ID : null,
         }
       })
     },
     hasRenewProjectRight () {
       return this.$store.getters.hasRenewProjectRight
-    }
+    },
   },
   methods: {
     link (item) {
@@ -146,7 +146,7 @@ export default {
       this.$store.dispatch(action, {
         ID: item.JoinID,
         CommitmentID: item.ID,
-        CityCode: item.CityCode
+        CityCode: item.CityCode,
       })
     },
     remove (item) {
@@ -155,7 +155,7 @@ export default {
     },
     delConfirm () {
       this.$store.dispatch(types.DEL_CMT_CITY_JOIN, this.item.JoinID)
-    }
-  }
+    },
+  },
 }
 </script>

@@ -9,7 +9,7 @@ const state = {
   housingForecastsList: [],
   housing: null,
   housingCommitments: [],
-  housingPayments: []
+  housingPayments: [],
 }
 
 const actions = {
@@ -53,7 +53,7 @@ const actions = {
     beginLoading(commit)
     try {
       const { body } = await Vue.http.get('housings/paginated', {
-        params: { Page, Search }
+        params: { Page, Search },
       })
       commit(types.GET_PAGINATED_HOUSINGS, body)
       commit(types.END_LOADING)
@@ -133,7 +133,7 @@ const actions = {
     beginLoading(commit)
     try {
       const { body } = await Vue.http.post('housing_forecast', {
-        HousingForecast
+        HousingForecast,
       })
       commit(types.CREATE_HOUSING_FORECAST, body.HousingForecast)
       commit(types.END_LOADING)
@@ -160,7 +160,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -212,7 +212,7 @@ const mutations = {
     state.housing = payload.Housing
     state.housingCommitments = [...payload.Commitment]
     state.housingPayments = [...payload.Payment]
-  }
+  },
 }
 
 export default { state, actions, mutations }

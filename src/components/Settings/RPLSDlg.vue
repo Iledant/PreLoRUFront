@@ -40,11 +40,11 @@ export default {
     title: { type: String, default: 'Nouveau RPLS' },
     button: { type: String, default: 'Créer' },
     item: { type: Object, default: v => {} },
-    value: { type: Boolean, default: false }
+    value: { type: Boolean, default: false },
   },
   data () {
     return {
-      ratio: ''
+      ratio: '',
     }
   },
   methods: {
@@ -60,7 +60,7 @@ export default {
       this.item.Ratio = 0.01 * parseFloat(r)
       this.$emit('confirm')
       this.$emit('input', false)
-    }
+    },
   },
   computed: {
     disabled () {
@@ -70,12 +70,12 @@ export default {
     },
     cities () {
       return this.$store.state.cities.citiesList
-    }
+    },
   },
   watch: {
     value () {
       this.ratio = this.item.Ratio ? percentFormat(this.item.Ratio * 100) : ''
-    }
-  }
+    },
+  },
 }
 </script>

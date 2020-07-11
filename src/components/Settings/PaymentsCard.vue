@@ -47,7 +47,7 @@ export default {
   props: {
     payments: { type: Array, default: () => [] },
     loading: { type: Boolean, required: true },
-    fileName: { type: String, required: true }
+    fileName: { type: String, required: true },
   },
   data () {
     return {
@@ -56,14 +56,14 @@ export default {
         { text: 'Date création', value: 'CreationDate', align: 'center' },
         { text: 'Date modif.', value: 'ModificationDate', align: 'center' },
         { text: 'Num mandat', value: 'Number', align: 'center' },
-        { text: 'Montant', value: 'Value', align: 'center' }
-      ]
+        { text: 'Montant', value: 'Value', align: 'center' },
+      ],
     }
   },
   computed: {
     total () {
       return this.payments.reduce((a, c) => a + c.Value, 0)
-    }
+    },
   },
   methods: {
     download () {
@@ -73,13 +73,13 @@ export default {
           header: 'Création',
           key: 'CreationDate',
           width: 10,
-          style: { numberFormat: 'dd/mm/yy' }
+          style: { numberFormat: 'dd/mm/yy' },
         },
         {
           header: 'Modification',
           key: 'ModificationDate',
           width: 10,
-          style: { numberFormat: 'dd/mm/yy' }
+          style: { numberFormat: 'dd/mm/yy' },
         },
         { header: 'Code egt', key: 'CommitmentCode', width: 10 },
         { header: 'Numéro egt', key: 'CommitmentNumber', width: 10 },
@@ -90,8 +90,8 @@ export default {
           key: 'Value',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
-        }
+          addTotal: true,
+        },
       ]
       const formattedPayments = this.payments.map(
         ({ Value, CreationDate, ModificationDate, ...others }) =>
@@ -99,10 +99,10 @@ export default {
             Value: 0.01 * Value,
             CreationDate: new Date(CreationDate),
             ModificationDate: new Date(ModificationDate),
-            ...others
+            ...others,
           }))
       excelExport(formattedPayments, columns, 'Paiements' + this.fileName)
-    }
-  }
+    },
+  },
 }
 </script>

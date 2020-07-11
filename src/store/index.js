@@ -71,6 +71,6 @@ export default new Vuex.Store({
     housingTypes,
     difPmtForecasts,
     paymentDemands,
-    paymentDelays
-  }
+    paymentDelays,
+  },
 })

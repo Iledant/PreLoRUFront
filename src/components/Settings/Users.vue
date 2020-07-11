@@ -117,7 +117,7 @@ const nullUser = {
   isAdmin: false,
   isCopro: false,
   isRenewProject: false,
-  isPreProg: false
+  isPreProg: false,
 }
 export default {
   name: 'Users',
@@ -136,19 +136,19 @@ export default {
         { text: 'Preprog.', value: 'isPreProg', align: 'center' },
         { text: 'Réserv.', value: 'isReservationFee', align: 'center' },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       items: [],
       usrDialog: false,
       delDialog: false,
       modifiedItem: { ...nullUser },
-      action: 'create'
+      action: 'create',
     }
   },
   computed: {
     usersList () {
       return this.$store.state.users.usersList
-    }
+    },
   },
   methods: {
     showModifyDlg (item) {
@@ -173,7 +173,7 @@ export default {
     },
     async delConfirm () {
       await this.$store.dispatch(types.DEL_USER, this.modifiedItem.ID)
-    }
+    },
   },
   watch: {
     usersList (newList) {
@@ -189,13 +189,13 @@ export default {
         isObserver: u.Rights & 32,
         isHousing: u.Rights & 64,
         isPreProg: u.Rights & 1 << 7,
-        isReservationFee: u.Rights & 1 << 8
+        isReservationFee: u.Rights & 1 << 8,
       }))
       this.modified = false
-    }
+    },
   },
   mounted () {
     this.$store.dispatch(types.GET_USERS)
-  }
+  },
 }
 </script>

@@ -4,7 +4,7 @@ import { beginLoading, setErrorMessage } from './loading.js'
 
 const state = {
   coprosList: [],
-  coproReport: []
+  coproReport: [],
 }
 
 const actions = {
@@ -31,7 +31,7 @@ const actions = {
     beginLoading(commit)
     try {
       const response = await Vue.http.post('copro', {
-        Copro: { Reference, Name, Address, ZipCode, LabelDate, Budget }
+        Copro: { Reference, Name, Address, ZipCode, LabelDate, Budget },
       })
       commit(types.CREATE_COPRO, response.body.Copro)
       commit(types.END_LOADING)
@@ -46,7 +46,7 @@ const actions = {
     beginLoading(commit)
     try {
       const response = await Vue.http.put('copro', {
-        Copro: { ID, Reference, Name, Address, ZipCode, LabelDate, Budget }
+        Copro: { ID, Reference, Name, Address, ZipCode, LabelDate, Budget },
       })
       commit(types.UPDATE_COPRO, response.body.Copro)
       commit(types.END_LOADING)
@@ -81,7 +81,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -101,7 +101,7 @@ const mutations = {
   },
   [types.GET_COPRO_REPORT] (state, list) {
     state.coproReport = [...list]
-  }
+  },
 }
 
 export default { state, actions, mutations }

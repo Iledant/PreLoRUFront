@@ -14,7 +14,7 @@ const state = {
       routerLink: { name: 'Home' },
       allowUser: true,
       allowObserver: true,
-      needReservationRight: false
+      needReservationRight: false,
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ const state = {
       routerLink: { name: 'Housings' },
       allowUser: true,
       allowObserver: true,
-      needReservationRight: false
+      needReservationRight: false,
     },
     {
       id: 3,
@@ -32,7 +32,7 @@ const state = {
       routerLink: { name: 'ReservationFees' },
       allowUser: false,
       allowObserver: false,
-      needReservationRight: true
+      needReservationRight: true,
     },
     {
       id: 4,
@@ -41,7 +41,7 @@ const state = {
       routerLink: { name: 'Copros' },
       allowUser: true,
       allowObserver: true,
-      needReservationRight: false
+      needReservationRight: false,
     },
     {
       id: 5,
@@ -50,7 +50,7 @@ const state = {
       routerLink: { name: 'RenewProjects' },
       allowUser: true,
       allowObserver: true,
-      needReservationRight: false
+      needReservationRight: false,
     },
     {
       id: 6,
@@ -59,7 +59,7 @@ const state = {
       routerLink: { name: 'Beneficiaries' },
       allowUser: true,
       allowObserver: true,
-      needReservationRight: false
+      needReservationRight: false,
     },
     {
       id: 7,
@@ -68,7 +68,7 @@ const state = {
       routerLink: { name: 'BeneficiaryGroups' },
       allowUser: true,
       allowObserver: true,
-      needReservationRight: false
+      needReservationRight: false,
     },
     {
       id: 8,
@@ -77,7 +77,7 @@ const state = {
       routerLink: { name: 'Placement' },
       allowUser: true,
       allowObserver: true,
-      needReservationRight: false
+      needReservationRight: false,
     },
     {
       id: 9,
@@ -86,7 +86,7 @@ const state = {
       routerLink: { name: 'Programmation' },
       allowUser: true,
       allowObserver: true,
-      needReservationRight: false
+      needReservationRight: false,
     },
     {
       id: 10,
@@ -95,7 +95,7 @@ const state = {
       routerLink: { name: 'Forecasts' },
       allowUser: true,
       allowObserver: true,
-      needReservationRight: false
+      needReservationRight: false,
     },
     {
       id: 11,
@@ -104,7 +104,7 @@ const state = {
       routerLink: { name: 'PaymentForecast' },
       allowUser: true,
       allowObserver: true,
-      needReservationRight: false
+      needReservationRight: false,
     },
     {
       id: 12,
@@ -113,7 +113,7 @@ const state = {
       routerLink: { name: 'Summaries' },
       allowUser: true,
       allowObserver: true,
-      needReservationRight: false
+      needReservationRight: false,
     },
     {
       id: 13,
@@ -122,89 +122,89 @@ const state = {
       routerLink: { name: 'PaymentDelays' },
       allowUser: true,
       allowObserver: true,
-      needReservationRight: false
-    }
+      needReservationRight: false,
+    },
   ],
   settingsMenuItems: [
     {
       id: 1,
       title: 'Utilisateurs',
       icon: 'people',
-      routerLink: { name: 'Users' }
+      routerLink: { name: 'Users' },
     },
     {
       id: 2,
       title: 'Secteurs budgétaires',
       icon: 'pie_chart',
-      routerLink: { name: 'BudgetSector' }
+      routerLink: { name: 'BudgetSector' },
     },
     {
       id: 3,
       title: 'Actions budgétaires',
       icon: 'bookmarks',
-      routerLink: { name: 'BudgetAction' }
+      routerLink: { name: 'BudgetAction' },
     },
     {
       id: 4,
       title: 'Commissions',
       icon: 'calendar_today',
-      routerLink: { name: 'Commission' }
+      routerLink: { name: 'Commission' },
     },
     {
       id: 5,
       title: 'Intercommunalités',
       icon: 'layers',
-      routerLink: { name: 'Communities' }
+      routerLink: { name: 'Communities' },
     },
     {
       id: 6,
       title: 'Communes',
       icon: 'account_balance',
-      routerLink: { name: 'Cities' }
+      routerLink: { name: 'Cities' },
     },
     {
       id: 7,
       title: 'RPLS',
       icon: 'equalizer',
-      routerLink: { name: 'RPLS' }
+      routerLink: { name: 'RPLS' },
     },
     {
       id: 8,
       title: 'Logement social',
       icon: 'location_city',
-      routerLink: { name: 'HousingSettings' }
+      routerLink: { name: 'HousingSettings' },
     },
     {
       id: 9,
       title: 'Contingent régional',
       icon: 'folder_shared',
-      routerLink: { name: 'ReservationFeeSettings' }
+      routerLink: { name: 'ReservationFeeSettings' },
     },
     {
       id: 10,
       title: 'Engagements',
       icon: 'assignment_turned_in',
-      routerLink: { name: 'Commitments' }
+      routerLink: { name: 'Commitments' },
     },
     {
       id: 11,
       title: 'Paiements',
       icon: 'credit_card',
-      routerLink: { name: 'Payments' }
+      routerLink: { name: 'Payments' },
     },
     {
       id: 12,
       title: 'Demandes de paiement',
       icon: 'receipt',
-      routerLink: { name: 'PaymentDemands' }
+      routerLink: { name: 'PaymentDemands' },
     },
     {
       id: 13,
       title: 'Imports',
       icon: 'cloud_upload',
-      routerLink: { name: 'Uploads' }
-    }
-  ]
+      routerLink: { name: 'Uploads' },
+    },
+  ],
 }
 
 // Rights bits and masks
@@ -271,7 +271,7 @@ const getters = {
         (getters.isObserver && i.allowObserver) ||
         (getters.isUser && i.allowUser) ||
         (getters.hasReservationRight && i.needReservationRight)
-    )
+    ),
 }
 
 const actions = {
@@ -298,7 +298,7 @@ const actions = {
     } catch (response) {
       setErrorMessage(commit, response.body.error)
     }
-  }
+  },
 }
 
 // mutations
@@ -333,7 +333,7 @@ const mutations = {
     state.token = token
     Vue.http.headers.common.Authorization = 'Bearer ' + token
     window.localStorage.setItem('PreloruToken', token)
-  }
+  },
 }
 
 export default { state, mutations, getters, actions }

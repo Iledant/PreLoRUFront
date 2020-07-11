@@ -63,13 +63,13 @@ export default {
     action: {
       type: String,
       default: 'create',
-      validator: v => ['create', 'modify'].indexOf(v) !== -1
+      validator: v => ['create', 'modify'].indexOf(v) !== -1,
     },
-    item: { type: Object, default: v => {} }
+    item: { type: Object, default: v => {} },
   },
   data () {
     return {
-      val: '0'
+      val: '0',
     }
   },
   computed: {
@@ -92,7 +92,7 @@ export default {
         this.item.ActionID === null ||
         this.val === ''
       )
-    }
+    },
   },
   methods: {
     confirm () {
@@ -108,15 +108,15 @@ export default {
       this.item.CommissionName = com.Name
       this.$emit('input', false)
       this.$emit('confirm', this.item)
-    }
+    },
   },
   watch: {
     value: {
       handler () {
         this.val = this.currencyFormat(this.item.PreProgValue)
       },
-      immediate: true
-    }
-  }
+      immediate: true,
+    },
+  },
 }
 </script>

@@ -3,7 +3,7 @@ import * as types from './types'
 import { beginLoading, setErrorMessage } from './loading'
 
 const state = {
-  pmtForecastsList: []
+  pmtForecastsList: [],
 }
 
 const actions = {
@@ -16,13 +16,13 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
   [types.GET_PMT_FORECASTS] (state, list) {
     state.pmtForecastsList = [...list]
-  }
+  },
 }
 
 export default { state, actions, mutations }

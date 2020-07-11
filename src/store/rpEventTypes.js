@@ -4,7 +4,7 @@ import { beginLoading, setErrorMessage } from './loading.js'
 
 const state = {
   eventTypeList: [],
-  eventType: null
+  eventType: null,
 }
 
 const actions = {
@@ -57,7 +57,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -77,7 +77,7 @@ const mutations = {
   },
   [types.CREATE_RP_EVENT_TYPE] (state, payload) {
     state.eventTypeList.push(payload)
-  }
+  },
 }
 
 export default { state, actions, mutations }

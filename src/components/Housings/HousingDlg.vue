@@ -78,7 +78,7 @@ export default {
     title: { type: String, default: 'Créer un logement' },
     button: { type: String, default: 'Créer' },
     item: { type: Object, default: v => {} },
-    cities: { type: Array, default: v => [] }
+    cities: { type: Array, default: v => [] },
   },
   computed: {
     disabled () {
@@ -92,9 +92,9 @@ export default {
     ...mapState({
       housingTypes: state => [
         { ID: null, LongName: '<Non connu>' },
-        ...state.housingTypes.housingTypesList
-      ]
-    })
+        ...state.housingTypes.housingTypesList,
+      ],
+    }),
   },
   methods: {
     confirm () {
@@ -109,11 +109,11 @@ export default {
           Address: this.item.Address,
           Reference: this.item.Reference,
           HousingTypeID: this.item.HousingTypeID,
-          ID: this.item.ID
+          ID: this.item.ID,
         }
         this.$emit('confirm', item)
       }
-    }
-  }
+    },
+  },
 }
 </script>

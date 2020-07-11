@@ -140,13 +140,13 @@ export default {
         { text: 'Nom complet', value: 'FullName' },
         { text: 'Secteur', value: 'Sector' },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       dialog: false,
       delDlg: false,
       item: { Code: '', Name: null, SectorID: null },
       dlgTitle: 'Nouvelle action budgétaire',
-      dlgBtn: 'Créer'
+      dlgBtn: 'Créer',
     }
   },
   methods: {
@@ -177,14 +177,14 @@ export default {
           ID: this.item.ID,
           Code: parseInt(this.item.Code),
           Name: this.item.Name,
-          SectorID: this.item.SectorID
+          SectorID: this.item.SectorID,
         })
         this.dialog = false
       }
     },
     async delConfirm () {
       await this.$store.dispatch(types.DEL_ACTION, this.item.ID)
-    }
+    },
   },
   computed: {
     items () {
@@ -195,7 +195,7 @@ export default {
           Code: i.Code,
           Name: i.Name,
           Sector: sector.Name + ' (' + nullable(sector.FullName) + ')',
-          SectorID: i.SectorID
+          SectorID: i.SectorID,
         }
       })
     },
@@ -212,10 +212,10 @@ export default {
         !/^\d+$/.test(this.item.Code) ||
         this.item.SectorID === null
       )
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_ACTIONS)
-  }
+  },
 }
 </script>

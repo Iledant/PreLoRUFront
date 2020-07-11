@@ -191,14 +191,14 @@ export default {
     action: {
       type: String,
       default: 'create',
-      validator: v => ['create', 'modify'].indexOf(v) !== -1
+      validator: v => ['create', 'modify'].indexOf(v) !== -1,
     },
-    item: { type: Object, default: v => {} }
+    item: { type: Object, default: v => {} },
   },
   data () {
     return {
       transferMenu: null,
-      conventionMenu: null
+      conventionMenu: null,
     }
   },
   computed: {
@@ -208,7 +208,7 @@ export default {
       beneficiaries: state => state.beneficiaries.beneficiariesList,
       comments: state => state.reservationFees.housingCommentsList,
       transfers: state => state.reservationFees.housingTransfersList,
-      conventionTypes: state => state.reservationFees.conventionTypesList
+      conventionTypes: state => state.reservationFees.conventionTypesList,
     }),
     title () {
       return this.action === 'create'
@@ -238,7 +238,7 @@ export default {
     },
     formattedConventionDate () {
       return formatNullDate(this.item.ConventionDate)
-    }
+    },
   },
   methods: {
     confirm () {
@@ -265,7 +265,7 @@ export default {
           EndYear: this.item.EndYear ? parseInt(this.item.EndYear) : null,
           Loan: this.item.Loan ? parseFloat(String(this.item.Loan).replace(',', '.')) : null,
           Charges: this.item.Charges ? parseFloat(String(this.item.Charges).replace(',', '.')) : null,
-          TypologyID: this.item.TypologyID
+          TypologyID: this.item.TypologyID,
         }
         this.$emit('confirm', ReservationFee)
       }
@@ -275,7 +275,7 @@ export default {
     },
     nullOrFloat (item) {
       return item === null || /^\d+([,.]\d+)?$/.test(item) || 'Vide ou nombre positif'
-    }
-  }
+    },
+  },
 }
 </script>

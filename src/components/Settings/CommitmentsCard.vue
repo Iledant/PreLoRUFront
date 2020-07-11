@@ -57,7 +57,7 @@ export default {
   props: {
     commitments: { type: Array, default: () => [] },
     loading: { type: Boolean, required: true },
-    fileName: { type: String, required: true }
+    fileName: { type: String, required: true },
   },
   data () {
     return {
@@ -68,15 +68,15 @@ export default {
         { text: 'Objet', value: 'Name', align: 'center' },
         { text: 'IRIS', value: 'IrisCode', align: 'center' },
         { text: 'Montant', value: 'Value', align: 'center' },
-        { text: 'Soldé', value: 'SoldOut', align: 'center' }
+        { text: 'Soldé', value: 'SoldOut', align: 'center' },
       ],
-      search: ''
+      search: '',
     }
   },
   computed: {
     total () {
       return this.commitments.reduce((a, c) => a + c.Value, 0)
-    }
+    },
   },
   methods: {
     download () {
@@ -86,19 +86,19 @@ export default {
           header: 'Création',
           key: 'CreationDate',
           width: 10,
-          style: { numberFormat: 'dd/mm/yy' }
+          style: { numberFormat: 'dd/mm/yy' },
         },
         {
           header: 'Modification',
           key: 'ModificationDate',
           width: 10,
-          style: { numberFormat: 'dd/mm/yy' }
+          style: { numberFormat: 'dd/mm/yy' },
         },
         {
           header: 'Caducité',
           key: 'CaducityDate',
           width: 10,
-          style: { numberFormat: 'dd/mm/yy' }
+          style: { numberFormat: 'dd/mm/yy' },
         },
         { header: 'Code', key: 'Code', width: 10 },
         { header: 'Numéro', key: 'Number', width: 10 },
@@ -109,21 +109,21 @@ export default {
           key: 'Value',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         { header: 'Bénéficiaire', key: 'BeneficiaryName', width: 20 },
         { header: 'Code IRIS', key: 'IrisCode', width: 10 },
-        { header: 'Soldé', key: 'SoldOut', width: 6 }
+        { header: 'Soldé', key: 'SoldOut', width: 6 },
       ]
       const formattedCommitments = this.commitments.map(
         ({ Value, SoldOut, ...others }) => ({
           Value: 0.01 * Value,
           SoldOut: SoldOut ? 'Oui' : 'Non',
-          ...others
+          ...others,
         })
       )
       excelExport(formattedCommitments, columns, 'Engagements' + this.fileName)
-    }
-  }
+    },
+  },
 }
 </script>

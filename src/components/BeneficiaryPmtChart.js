@@ -18,12 +18,12 @@ export default {
         'sep',
         'oct',
         'nov',
-        'déc'
-      ]
-    }
+        'déc',
+      ],
+    },
   }),
   props: {
-    beneficiaryId: { type: Number, default: null }
+    beneficiaryId: { type: Number, default: null },
   },
   methods: {
     normalizeChronicles (list) {
@@ -45,7 +45,7 @@ export default {
             fill: false,
             data: currentValues,
             cubicInterpolationMode: 'monotone',
-            label: currentYear
+            label: currentYear,
           })
           currentValues = []
           month = 1
@@ -66,22 +66,22 @@ export default {
         fill: false,
         data: currentValues,
         cubicInterpolationMode: 'monotone',
-        label: currentYear
+        label: currentYear,
       })
       return dataset
-    }
+    },
   },
   computed: {
     chronicles () {
       return this.$store.state.beneficiary.beneficiaryPayments
-    }
+    },
   },
   watch: {
     beneficiaryId: {
       handler: function (newID) {
         return this.$store.dispatch(types.GET_BENEFICIARY_PAYMENTS, newID)
       },
-      immediate: true
+      immediate: true,
     },
     chronicles (list) {
       this.pmtDatas.datasets = this.normalizeChronicles(list)
@@ -93,10 +93,10 @@ export default {
           yAxes: [{
             ticks: {
               fontFamily: 'Roboto',
-              callback: (val, idx, vals) => `${val} M€`
-            }
+              callback: (val, idx, vals) => `${val} M€`,
+            },
           }],
-          xAxes: [{ ticks: { fontFamily: 'Roboto' } }]
+          xAxes: [{ ticks: { fontFamily: 'Roboto' } }],
         },
         tooltips: {
           titleFontFamily: 'Roboto',
@@ -107,10 +107,10 @@ export default {
               return (
                 ` ${d.datasets[t.datasetIndex].label} : ${t.yLabel.toFixed(2)} M€`
               )
-            }
-          }
-        }
+            },
+          },
+        },
       })
-    }
-  }
+    },
+  },
 }

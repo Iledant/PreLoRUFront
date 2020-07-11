@@ -202,7 +202,7 @@ export default {
         { text: '', value: '', sortable: false, width: '1%' },
         { text: 'Préprog.', value: 'PreProgValue' },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       items: [],
       nullItem: {
@@ -216,7 +216,7 @@ export default {
         PreProgComment: null,
         ActionID: null,
         ActionCode: null,
-        ActionName: ''
+        ActionName: '',
       },
       item: { ...this.nullItem },
       opDlg: false,
@@ -225,7 +225,7 @@ export default {
       maxID: 0,
       year: new Date().getFullYear(),
       yearText: String(new Date().getFullYear()),
-      info: false
+      info: false,
     }
   },
   computed: {
@@ -238,7 +238,7 @@ export default {
     },
     sumPreProg () {
       return this.items.reduce((a, c) => a + c.PreProgValue, 0)
-    }
+    },
   },
   methods: {
     async preProgSave () {
@@ -251,7 +251,7 @@ export default {
             Value: i.PreProgValue,
             KindID: null,
             Comment: i.PreProgComment,
-            ActionID: i.ActionID
+            ActionID: i.ActionID,
           }))
       await this.$store.dispatch(types.SET_PRE_PROG,
         { PreProg, Kind: 'housing', Year: this.year })
@@ -270,7 +270,7 @@ export default {
             CommissionDate: new Date(CommissionDate),
             PreProgValue: PreProgValue ? PreProgValue * 0.01 : null,
             ForecastValue: ForecastValue ? ForecastValue * 0.01 : null,
-            ...others
+            ...others,
           })
       )
       const columns = [
@@ -281,10 +281,10 @@ export default {
         { header: 'Besoin', key: 'ForecastValue', ...valStyle },
         { header: 'Commentaire', key: 'ForecastComment', width: 30 },
         { header: 'Préprog.', key: 'PreProgValue', ...valStyle },
-        { header: 'Commentaire', key: 'Comment', width: 30 }
+        { header: 'Commentaire', key: 'Comment', width: 30 },
       ]
       excelExport(formattedProg, columns, 'PreProg LLS')
-    }
+    },
   },
   watch: {
     housingPreProg: {
@@ -292,8 +292,8 @@ export default {
         this.items = list.map((i, ID) => ({ ID, ...i }))
         this.maxID = this.items.length
       },
-      immediate: true
-    }
-  }
+      immediate: true,
+    },
+  },
 }
 </script>

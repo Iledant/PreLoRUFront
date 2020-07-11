@@ -66,11 +66,11 @@ export default {
     PaymentsCard,
     RenewProjectEvents,
     RenewProjectCmtCityJoin,
-    RenewProjectCard
+    RenewProjectCard,
   },
   data () {
     return {
-      active: null
+      active: null,
     }
   },
   computed: {
@@ -88,10 +88,10 @@ export default {
     },
     hasRenewProjectRight () {
       return this.$store.getters.hasRenewProjectRight
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_RENEW_PROJECT_DATAS, this.$route.params.ID)
-  }
+  },
 }
 </script>

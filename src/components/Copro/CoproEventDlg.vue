@@ -77,13 +77,13 @@ export default {
     action: {
       type: String,
       default: 'create',
-      validator: v => ['create', 'modify'].indexOf(v) !== -1
+      validator: v => ['create', 'modify'].indexOf(v) !== -1,
     },
-    item: { type: Object, default: v => {} }
+    item: { type: Object, default: v => {} },
   },
   data () {
     return {
-      menu: null
+      menu: null,
     }
   },
   computed: {
@@ -104,7 +104,7 @@ export default {
     },
     loading () {
       return this.$store.state.loading.loading !== 0
-    }
+    },
   },
   methods: {
     notNull (x) {
@@ -117,7 +117,7 @@ export default {
         this.$emit('confirm', this.item)
         this.$emit('input', false)
       }
-    }
-  }
+    },
+  },
 }
 </script>

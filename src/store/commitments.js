@@ -9,7 +9,7 @@ const state = {
   commitmentsItemsCount: 0,
   unlinkedCommitmentsList: [],
   unlinkedCommitmentsPage: 0,
-  unlinkedCommitmentsItemsCount: 0
+  unlinkedCommitmentsItemsCount: 0,
 }
 
 async function exportCommitments (commitments) {
@@ -28,7 +28,7 @@ async function exportCommitments (commitments) {
     { header: 'Code IRIS', key: 'IrisCode', width: 10 },
     { header: 'Logement', key: 'HousingName', width: 14 },
     { header: 'Copro', key: 'CoproName', width: 14 },
-    { header: 'Projet RU', key: 'RenewProjectName', width: 14 }
+    { header: 'Projet RU', key: 'RenewProjectName', width: 14 },
   ]
   await excelExport(commitments, columns, 'Engagements')
 }
@@ -48,7 +48,7 @@ async function exportSoldCommitments (commitments) {
     { header: 'Montant', key: 'Value', ...valStyle },
     { header: 'Soldé', key: 'SoldOut', ...valStyle },
     { header: 'Bénéficiaire', key: 'Beneficiary', width: 30 },
-    { header: 'Code IRIS', key: 'IrisCode', width: 10 }
+    { header: 'Code IRIS', key: 'IrisCode', width: 10 },
   ]
   await excelExport(commitments, columns, 'Engagements')
 }
@@ -58,7 +58,7 @@ const actions = {
     try {
       beginLoading(commit)
       const resp = await Vue.http.get('commitments/paginated', {
-        params: { Year, Page, Search }
+        params: { Year, Page, Search },
       })
       commit(types.GET_COMMITMENTS, resp.body)
       commit(types.END_LOADING)
@@ -70,7 +70,7 @@ const actions = {
     try {
       beginLoading(commit)
       const { body } = await Vue.http.get('commitments/unlinked', {
-        params: { Year, Page, Search }
+        params: { Year, Page, Search },
       })
       commit(types.GET_UNLINKED_COMMITMENTS, body)
       commit(types.END_LOADING)
@@ -82,7 +82,7 @@ const actions = {
     try {
       beginLoading(commit)
       const resp = await Vue.http.get('commitments/export', {
-        params: { Year, Search }
+        params: { Year, Search },
       })
       exportCommitments(resp.body.ExportedCommitment)
       commit(types.END_LOADING)
@@ -140,7 +140,7 @@ const actions = {
           CreationDate: new Date(CreationDate),
           ModificationDate: new Date(ModificationDate),
           Value: 0.01 * Value,
-          ...others
+          ...others,
         }))
       exportSoldCommitments(parsed)
       commit(types.END_LOADING)
@@ -157,14 +157,14 @@ const actions = {
           CreationDate: new Date(CreationDate),
           ModificationDate: new Date(ModificationDate),
           Value: 0.01 * Value,
-          ...others
+          ...others,
         }))
       exportSoldCommitments(parsed)
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -177,7 +177,7 @@ const mutations = {
     state.unlinkedCommitmentsList = [...payload.Commitment]
     state.unlinkedCommitmentsPage = payload.Page
     state.unlinkedCommitmentsItemsCount = payload.ItemsCount
-  }
+  },
 }
 
 export default { state, actions, mutations }

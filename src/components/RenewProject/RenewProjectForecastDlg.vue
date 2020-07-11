@@ -74,11 +74,11 @@ export default {
     value: { type: Boolean, default: false },
     title: { type: String, default: 'Créer une prévision' },
     button: { type: String, default: 'Créer' },
-    forecast: { type: Object, default: v => {} }
+    forecast: { type: Object, default: v => {} },
   },
   data () {
     return {
-      val: ''
+      val: '',
     }
   },
   computed: {
@@ -97,7 +97,7 @@ export default {
     },
     budgetActions () {
       return this.$store.state.settings.budgetActionsList
-    }
+    },
   },
   methods: {
     confirm () {
@@ -112,12 +112,12 @@ export default {
     },
     valueRequired (x) {
       return x !== '' || 'Montant de la prévision nécessaire'
-    }
+    },
   },
   watch: {
     value () {
       this.val = this.currencyFormat(this.forecast.Value)
-    }
-  }
+    },
+  },
 }
 </script>

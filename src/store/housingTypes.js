@@ -3,7 +3,7 @@ import { beginLoading, setErrorMessage } from './loading'
 import Vue from 'vue'
 
 const state = {
-  housingTypesList: []
+  housingTypesList: [],
 }
 
 const actions = {
@@ -55,7 +55,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -72,7 +72,7 @@ const mutations = {
   [types.DELETE_HOUSING_TYPE] (state, ID) {
     const index = state.housingTypesList.findIndex(h => h.ID === ID)
     state.housingTypesList.splice(index, 1)
-  }
+  },
 }
 
 export default { state, actions, mutations }

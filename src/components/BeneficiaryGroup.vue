@@ -109,7 +109,7 @@ export default {
   components: {
     DeleteDialog,
     BeneficiaryGroupPlacements,
-    BeneficiaryGroupCommitments
+    BeneficiaryGroupCommitments,
   },
   data () {
     return {
@@ -118,11 +118,11 @@ export default {
       headers: [
         { text: 'Code', value: 'Code', sortable: false },
         { text: 'Nom', value: 'Name', sortable: false },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       item: {},
       delDlg: false,
-      beneficiaryID: null
+      beneficiaryID: null,
     }
   },
   methods: {
@@ -139,7 +139,7 @@ export default {
       const BeneficiaryIDs = [...this.items.map(p => p.ID), this.beneficiaryID]
       await this.$store.dispatch(types.SET_BENEFICIARY_GROUP_ITEMS,
         { ID: this.ID, BeneficiaryIDs })
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_BENEFICIARY_GROUP_ITEMS, this.ID)
@@ -150,10 +150,10 @@ export default {
     ...mapGetters(['isAdmin', 'loading']),
     ...mapState({
       items: state => state.beneficiaryGroup.beneficiariesGroupItems,
-      beneficiaries: state => state.beneficiaries.beneficiariesList
+      beneficiaries: state => state.beneficiaries.beneficiariesList,
     }),
     ID () { return this.$route.params.ID },
-    name () { return this.$route.params.Name }
-  }
+    name () { return this.$route.params.Name },
+  },
 }
 </script>

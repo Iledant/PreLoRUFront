@@ -25,7 +25,7 @@ import vueDebounce from 'vue-debounce'
 Vue.use(VueResource)
 Vue.use(vueDebounce)
 Vue.use(VueCurrencyInput, {
-  globalOptions: { locale: 'fr-FR', distractionFree: false, min: 0 }
+  globalOptions: { locale: 'fr-FR', distractionFree: false, min: 0 },
 })
 
 // API route is defined in .env
@@ -88,5 +88,5 @@ new Vue({
   router,
   store,
   vuetify,
-  render: h => h(App)
+  render: h => h(App),
 }).$mount('#app')

@@ -114,8 +114,8 @@ export default {
       headers: [
         { text: 'Nom', value: 'Name' },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
-      ]
+        { text: '', value: '', sortable: false, width: '1%' },
+      ],
     }
   },
   methods: {
@@ -149,7 +149,7 @@ export default {
     },
     notNull (text) {
       return text !== null || text !== '' || 'Le nom ne peut pas être vide'
-    }
+    },
   },
   computed: {
     items () {
@@ -157,7 +157,7 @@ export default {
     },
     loading () {
       return this.$store.state.loading.loading !== 0
-    }
-  }
+    },
+  },
 }
 </script>

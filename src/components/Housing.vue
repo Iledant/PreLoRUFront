@@ -37,11 +37,11 @@ export default {
     HousingCommitments,
     HousingPayments,
     HousingDescription,
-    UnlinkedCommitments
+    UnlinkedCommitments,
   },
   data () {
     return {
-      active: null
+      active: null,
     }
   },
   created () {
@@ -53,7 +53,7 @@ export default {
     },
     hasHousingRight () {
       return this.$store.getters.hasHousingRight
-    }
-  }
+    },
+  },
 }
 </script>

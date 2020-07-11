@@ -3,7 +3,7 @@ import { beginLoading, setErrorMessage } from './loading'
 import Vue from 'vue'
 
 const state = {
-  difPmtForecastsList: []
+  difPmtForecastsList: [],
 }
 
 const actions = {
@@ -16,13 +16,13 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
   [types.GET_DIF_PAYMENT_PREVISIONS] ({ commit }, list) {
     state.difPmtForecastsList = [...list]
-  }
+  },
 }
 
 export default { state, actions, mutations }

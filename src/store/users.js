@@ -3,7 +3,7 @@ import Vue from 'vue'
 import { beginLoading, setErrorMessage } from './loading.js'
 
 const state = {
-  usersList: []
+  usersList: [],
 }
 
 const actions = {
@@ -24,7 +24,7 @@ const actions = {
         Name,
         Email,
         Password,
-        Rights
+        Rights,
       })
       commit(types.UPDATE_USER, resp.body.User)
       commit(types.END_LOADING)
@@ -49,7 +49,7 @@ const actions = {
         Name,
         Email,
         Password,
-        Rights
+        Rights,
       })
       commit(types.CREATE_USER, response.body.User)
       commit(types.END_LOADING)
@@ -65,7 +65,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -82,7 +82,7 @@ const mutations = {
   },
   [types.CREATE_USER] (state, user) {
     state.usersList.push(user)
-  }
+  },
 }
 
 export default { state, actions, mutations }

@@ -122,13 +122,13 @@ export default {
       headers: [
         { text: 'Nom', value: 'Name', sortable: false },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
+        { text: '', value: '', sortable: false, width: '1%' },
       ],
       item: {},
       dialog: false,
       delDlg: false,
       dlgTitle: 'Nouveau groupe de bénéficiaire',
-      dlgBtn: 'Créer'
+      dlgBtn: 'Créer',
     }
   },
   methods: {
@@ -162,7 +162,7 @@ export default {
     },
     details ({ Name, ID }) {
       this.$router.push({ name: 'BeneficiaryGroup', params: { ID, Name } })
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_BENEFICIARY_GROUPS)
@@ -179,7 +179,7 @@ export default {
     },
     disabled () {
       return this.item.Name === null || this.item.Name === ''
-    }
-  }
+    },
+  },
 }
 </script>

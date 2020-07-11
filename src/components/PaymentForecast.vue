@@ -32,8 +32,8 @@ export default {
   components: { PaymentForecasts, PaymentCredit, Ratios, DifPaymentForecasts },
   data () {
     return {
-      active: null
+      active: null,
     }
-  }
+  },
 }
 </script>

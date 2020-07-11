@@ -25,7 +25,7 @@ export default {
   mixins: [checkFile],
   data () {
     return {
-      loading: false
+      loading: false,
     }
   },
   methods: {
@@ -39,7 +39,7 @@ export default {
             ? String(d.CommunityCode)
             : null
           : null,
-        QPV: d.QPV
+        QPV: d.QPV,
       })
       const save = o => {
         this.$store.dispatch(types.UPLOAD_CITIES, { City: o })
@@ -47,7 +47,7 @@ export default {
       this.loading = true
       await excelReadFile(file, expectedHeaders, save, this.fileError, parse)
       this.loading = false
-    }
-  }
+    },
+  },
 }
 </script>

@@ -4,7 +4,7 @@ import { beginLoading, setErrorMessage } from './loading.js'
 
 const state = {
   dptReport: [],
-  cityReport: []
+  cityReport: [],
 }
 
 const actions = {
@@ -12,7 +12,7 @@ const actions = {
     beginLoading(commit)
     try {
       const { body } = await Vue.http.get('department_report', {
-        params: { firstYear, lastYear }
+        params: { firstYear, lastYear },
       })
       commit(types.GET_DPT_REPORT, body.DptReport)
       commit(types.END_LOADING)
@@ -27,7 +27,7 @@ const actions = {
     beginLoading(commit)
     try {
       const { body } = await Vue.http.get('city_report', {
-        params: { firstYear, lastYear, inseeCode }
+        params: { firstYear, lastYear, inseeCode },
       })
       commit(types.GET_CITY_REPORT, body.CityReport)
       commit(types.END_LOADING)
@@ -45,7 +45,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -54,7 +54,7 @@ const mutations = {
   },
   [types.GET_CITY_REPORT] (state, payload) {
     state.cityReport = [...payload]
-  }
+  },
 }
 
 export default { state, actions, mutations }

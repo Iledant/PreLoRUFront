@@ -131,14 +131,14 @@ export default {
     dialog: true,
     pwdShow: false,
     chgPwdDlg: false,
-    appVersion: process.env.VUE_APP_VERSION
+    appVersion: process.env.VUE_APP_VERSION,
   }),
   computed: {
     ...mapGetters(['loading', 'menuItems', 'isAdmin']),
     ...mapState({
       user: state => state.token.user,
       settingsItems: state => state.token.settingsMenuItems,
-      errorMsg: state => state.loading.errorMsg
+      errorMsg: state => state.loading.errorMsg,
     }),
     userName () {
       const prepend = this.isAdmin ? ' [adm]' : ''
@@ -146,7 +146,7 @@ export default {
     },
     disabled () {
       return !this.email || !this.password
-    }
+    },
   },
   created () {
     this.$store.commit(types.RETRIEVE_TOKEN)
@@ -167,13 +167,13 @@ export default {
     },
     notEmpty (text) {
       return !!text || 'À remplir'
-    }
+    },
   },
   watch: {
     errorMsg (msg) {
       if (msg) this.showErrorMsg = true
-    }
-  }
+    },
+  },
 }
 </script>
 

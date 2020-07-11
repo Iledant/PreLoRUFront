@@ -29,11 +29,11 @@ export default {
   components: { HousingsCard, HousingForecastCard, HousingPreProgCard },
   data () {
     return {
-      active: null
+      active: null,
     }
   },
   created () {
     this.$store.dispatch(types.GET_HOUSINGS_DATAS)
-  }
+  },
 }
 </script>

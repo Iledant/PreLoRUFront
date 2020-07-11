@@ -58,20 +58,20 @@ export default {
         { text: 'Y1', value: 'Y1', align: 'right' },
         { text: 'Y2', value: 'Y2', align: 'right' },
         { text: 'Y3', value: 'Y3', align: 'right' },
-        { text: 'Y4', value: 'Y4', align: 'right' }
-      ]
+        { text: 'Y4', value: 'Y4', align: 'right' },
+      ],
     }
   },
   computed: {
     ...mapGetters(['loading']),
     ...mapState({
-      items: state => state.difPmtForecasts.difPmtForecastsList
+      items: state => state.difPmtForecasts.difPmtForecastsList,
     }),
     TY0 () { return this.items.reduce((a, c) => a + c.Y0, 0) },
     TY1 () { return this.items.reduce((a, c) => a + c.Y1, 0) },
     TY2 () { return this.items.reduce((a, c) => a + c.Y2, 0) },
     TY3 () { return this.items.reduce((a, c) => a + c.Y3, 0) },
-    TY4 () { return this.items.reduce((a, c) => a + c.Y4, 0) }
+    TY4 () { return this.items.reduce((a, c) => a + c.Y4, 0) },
   },
   methods: {
     download () {
@@ -84,10 +84,10 @@ export default {
         { header: String(now + 1), key: 'Y1', ...valStyle },
         { header: String(now + 2), key: 'Y2', ...valStyle },
         { header: String(now + 3), key: 'Y3', ...valStyle },
-        { header: String(now + 4), key: 'Y4', ...valStyle }
+        { header: String(now + 4), key: 'Y4', ...valStyle },
       ]
       excelExport(this.items, columns, 'Prévisions RAM CP')
-    }
+    },
   },
   created () {
     const now = new Date().getFullYear()
@@ -95,6 +95,6 @@ export default {
       this.headers[i].text = String(now + i - 1)
     }
     this.$store.dispatch(types.GET_DIF_PAYMENT_PREVISIONS)
-  }
+  },
 }
 </script>

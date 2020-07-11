@@ -49,7 +49,7 @@ export default {
     return {
       loading: false,
       menu: false,
-      date: null
+      date: null,
     }
   },
   methods: {
@@ -66,7 +66,7 @@ export default {
         'csf_date',
         'csf_comment',
         'demand_status',
-        'status_comment'
+        'status_comment',
       ]
       const parse = o => ({
         IrisCode: String(o.iris_code),
@@ -80,7 +80,7 @@ export default {
         CsfDate: o.csf_date,
         CsfComment: o.csf_comment || null,
         DemandStatus: o.demand_status,
-        StatusComment: o.status_comment || null
+        StatusComment: o.status_comment || null,
       })
       const save = o => {
         this.$store.dispatch(types.UPLOAD_PAYMENT_DEMANDS,
@@ -89,7 +89,7 @@ export default {
       this.loading = true
       await excelReadFile(file, expectedHeaders, save, this.fileError, parse)
       this.loading = false
-    }
+    },
   },
   computed: {
     formattedDate () {
@@ -98,7 +98,7 @@ export default {
       }
       return new Date(this.date).toLocaleDateString('fr-FR',
         { day: '2-digit', month: '2-digit', year: 'numeric' })
-    }
-  }
+    },
+  },
 }
 </script>

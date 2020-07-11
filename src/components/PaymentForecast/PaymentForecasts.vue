@@ -58,14 +58,14 @@ export default {
         { text: 'Y1', value: 'Y1', align: 'center' },
         { text: 'Y2', value: 'Y2', align: 'center' },
         { text: 'Y3', value: 'Y3', align: 'center' },
-        { text: 'Y4', value: 'Y4', align: 'center' }
+        { text: 'Y4', value: 'Y4', align: 'center' },
       ],
       ratioYear: null,
       TY0: 0,
       TY1: 0,
       TY2: 0,
       TY3: 0,
-      TY4: 0
+      TY4: 0,
     }
   },
   computed: {
@@ -77,7 +77,7 @@ export default {
     },
     loading () {
       return this.$store.state.loading.loading !== 0
-    }
+    },
   },
   methods: {
     download () {
@@ -90,39 +90,39 @@ export default {
           key: 'Y0',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: String(now + 1),
           key: 'Y1',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: String(now + 2),
           key: 'Y2',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: String(now + 3),
           key: 'Y3',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: String(now + 4),
           key: 'Y4',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
-        }
+          addTotal: true,
+        },
       ]
       excelExport(this.items, columns, 'Prévisions CP')
-    }
+    },
   },
   created () {
     const now = new Date().getFullYear()
@@ -150,7 +150,7 @@ export default {
           this.TY4 += item.Y4
         }
       }
-    }
-  }
+    },
+  },
 }
 </script>

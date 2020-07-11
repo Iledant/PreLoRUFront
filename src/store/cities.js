@@ -5,7 +5,7 @@ import { beginLoading, setErrorMessage } from './loading.js'
 const state = {
   citiesList: [],
   citiesPage: 0,
-  citiesItemsCount: 0
+  citiesItemsCount: 0,
 }
 
 const actions = {
@@ -23,7 +23,7 @@ const actions = {
     beginLoading(commit)
     try {
       const resp = await Vue.http.post('city', {
-        City: { InseeCode, Name, CommunityID, QPV }
+        City: { InseeCode, Name, CommunityID, QPV },
       })
       commit(types.END_LOADING)
       commit(types.CREATE_CITY, resp.body.City)
@@ -35,7 +35,7 @@ const actions = {
     beginLoading(commit)
     try {
       const resp = await Vue.http.put('city', {
-        City: { InseeCode, Name, CommunityID, QPV }
+        City: { InseeCode, Name, CommunityID, QPV },
       })
       commit(types.END_LOADING)
       commit(types.UPDATE_CITY, resp.body.City)
@@ -47,7 +47,7 @@ const actions = {
     try {
       beginLoading(commit)
       const resp = await Vue.http.get('cities/paginated', {
-        params: { Page, Search }
+        params: { Page, Search },
       })
       commit(types.GET_PAGINATED_CITIES, resp.body)
       commit(types.END_LOADING)
@@ -74,7 +74,7 @@ const actions = {
     } catch (err) {
       setErrorMessage(commit, err)
     }
-  }
+  },
 }
 
 const mutations = {
@@ -96,7 +96,7 @@ const mutations = {
   [types.DEL_CITY] (state, InseeCode) {
     const index = state.citiesList.findIndex(b => b.InseeCode === InseeCode)
     state.citiesList.splice(index, 1)
-  }
+  },
 }
 
 export default { state, actions, mutations }

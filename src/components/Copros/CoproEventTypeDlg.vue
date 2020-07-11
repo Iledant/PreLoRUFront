@@ -38,9 +38,9 @@ export default {
     action: {
       type: String,
       default: 'create',
-      validator: v => ['create', 'modify'].indexOf(v) !== -1
+      validator: v => ['create', 'modify'].indexOf(v) !== -1,
     },
-    item: { type: Object, default: v => {} }
+    item: { type: Object, default: v => {} },
   },
   computed: {
     title () {
@@ -51,7 +51,7 @@ export default {
     },
     disabled () {
       return this.item.Name === ''
-    }
+    },
   },
   methods: {
     notEmpty (x) {
@@ -62,7 +62,7 @@ export default {
         this.$emit('confirm', this.item)
         this.$emit('input', false)
       }
-    }
-  }
+    },
+  },
 }
 </script>

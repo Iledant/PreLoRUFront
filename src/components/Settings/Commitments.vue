@@ -82,10 +82,10 @@ export default {
         { text: 'Objet', value: 'Name', sortable: false },
         { text: 'Bénéficiaire', value: 'Beneficiary', sortable: false },
         { text: 'Montant', value: 'Value', sortable: false },
-        { text: 'Soldé', value: 'SoldOut', sortable: false }
+        { text: 'Soldé', value: 'SoldOut', sortable: false },
       ],
       page: 1,
-      selected: []
+      selected: [],
     }
   },
   methods: {
@@ -107,7 +107,7 @@ export default {
       await this.$store.dispatch(types.GET_COMMITMENTS, {
         Year: this.year,
         Search: this.search,
-        Page: p
+        Page: p,
       })
       if (this.page !== this.currentPage) {
         this.page = this.currentPage
@@ -116,7 +116,7 @@ export default {
     excelExport () {
       this.$store.dispatch(types.EXPORT_COMMITMENTS, {
         Year: this.year,
-        Search: this.search
+        Search: this.search,
       })
     },
     async unpaidExport () {
@@ -129,7 +129,7 @@ export default {
       const IDs = this.selected.map(i => i.ID)
       await this.$store.dispatch(types.UNLINK_COMMITMENTS, IDs)
       this.selected = []
-    }
+    },
   },
   computed: {
     items () {
@@ -147,7 +147,7 @@ export default {
         RenewProjectID: c.RenewProjectID,
         HousingID: c.HousingID,
         Linked: c.CoproID ? 'C' : (c.RenewProjectID ? 'R' : (c.HousingID ? 'L' : '-')),
-        SoldOut: c.SoldOut
+        SoldOut: c.SoldOut,
       }))
     },
     hasLinked () {
@@ -161,7 +161,7 @@ export default {
     },
     currentPage () {
       return this.$store.state.commitments.commitmentsPage
-    }
+    },
   },
   created () {
     this.$store.dispatch(types.GET_COMMITMENTS, { Year: 0, Page: 1, Search: '' })
@@ -171,7 +171,7 @@ export default {
       if (p !== this.currentPage) {
         this.getCommitments(p)
       }
-    }
-  }
+    },
+  },
 }
 </script>

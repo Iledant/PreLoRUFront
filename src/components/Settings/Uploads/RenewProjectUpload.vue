@@ -25,7 +25,7 @@ export default {
   mixins: [checkFile],
   data () {
     return {
-      loading: false
+      loading: false,
     }
   },
   methods: {
@@ -39,7 +39,7 @@ export default {
         'CityCode2',
         'CityCode3',
         'Population',
-        'CompositeIndex'
+        'CompositeIndex',
       ]
       const parse = d => ({
         Reference: d.Reference,
@@ -50,7 +50,7 @@ export default {
         CityCode3: parseInt(d.CityCode3),
         Budget: parseInt(100 * d.Budget),
         Population: d.Population ? parseInt(d.Population) : null,
-        CompositeIndex: d.CompositeIndex ? parseInt(d.CompositeIndex) : null
+        CompositeIndex: d.CompositeIndex ? parseInt(d.CompositeIndex) : null,
       })
       const save = o => {
         this.$store.dispatch(types.UPLOAD_RENEW_PROJECTS, { RenewProject: o })
@@ -58,7 +58,7 @@ export default {
       this.loading = true
       await excelReadFile(file, expectedHeaders, save, this.fileError, parse)
       this.loading = false
-    }
-  }
+    },
+  },
 }
 </script>

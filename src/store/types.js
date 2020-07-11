@@ -12,7 +12,7 @@ export const TOKEN_ERROR_MESSAGES = [
   'Token invalide',
   'token manquant',
   'token expire',
-  'Token expiré'
+  'Token expiré',
 ]
 
 // User

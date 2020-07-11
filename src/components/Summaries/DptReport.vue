@@ -54,16 +54,16 @@ export default {
         { text: 'Nom', value: 'Name', align: 'center' },
         { text: 'Année', value: 'Year', align: 'center' },
         { text: 'Engagements', value: 'Commitment', align: 'center' },
-        { text: 'Paiements', value: 'Payment', align: 'center' }
+        { text: 'Paiements', value: 'Payment', align: 'center' },
       ],
       first: null,
-      last: null
+      last: null,
     }
   },
   computed: {
     items () {
       return this.$store.state.summaries.dptReport
-    }
+    },
   },
   methods: {
     firstYear (y) {
@@ -85,7 +85,7 @@ export default {
     getReport () {
       this.$store.dispatch(types.GET_DPT_REPORT, {
         firstYear: this.first,
-        lastYear: this.last
+        lastYear: this.last,
       })
     },
     download () {
@@ -101,25 +101,25 @@ export default {
           key: 'Commitment',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
+          addTotal: true,
         },
         {
           header: 'Paiements',
           key: 'Payment',
           width: 14,
           style: { numberFormat: '#,##0.00' },
-          addTotal: true
-        }
+          addTotal: true,
+        },
       ]
       const formatted = this.items.map(({ Commitment, Payment, ...others }) => {
         return {
           Commitment: Commitment * 0.01,
           Payment: Payment * 0.01,
-          ...others
+          ...others,
         }
       })
       excelExport(formatted, columns, 'Rapport dpt')
-    }
-  }
+    },
+  },
 }
 </script>

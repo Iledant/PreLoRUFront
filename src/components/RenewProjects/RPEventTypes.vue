@@ -104,8 +104,8 @@ export default {
       headers: [
         { text: 'Nom', value: 'Name' },
         { text: '', value: '', sortable: false, width: '1%' },
-        { text: '', value: '', sortable: false, width: '1%' }
-      ]
+        { text: '', value: '', sortable: false, width: '1%' },
+      ],
     }
   },
   methods: {
@@ -135,7 +135,7 @@ export default {
           ? types.CREATE_RP_EVENT_TYPE
           : types.UPDATE_RP_EVENT_TYPE
       await this.$store.dispatch(dispatch, r)
-    }
+    },
   },
   computed: {
     items () {
@@ -146,7 +146,7 @@ export default {
     },
     hasRenewProjectRight () {
       return this.$store.getters.hasRenewProjectRight
-    }
-  }
+    },
+  },
 }
 </script>
