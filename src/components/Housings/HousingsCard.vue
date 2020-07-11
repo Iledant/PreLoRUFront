@@ -4,7 +4,7 @@
       <v-layout wrap>
         <v-flex xs12 md6 offset-md3>
           <v-text-field
-            label="Rechercher (référence, adresse, code INSEE)"
+            label="Rechercher (référence, adresse, ville, code INSEE)"
             v-model="search"
             v-debounce:500ms="newSearch"
             prepend-icon="search"
@@ -14,7 +14,7 @@
         <v-flex xs12>
           <v-data-table
             :headers="headers"
-            :items="items"
+            :items="housings"
             item-key="ID"
             :loading="loading"
             :server-items-length="itemsCount"
@@ -104,6 +104,7 @@ import HousingDlg from './HousingDlg.vue'
 import DeleteDialog from '@/components/DeleteDialog.vue'
 import { chkAndUpload } from '@/components/mixins'
 import * as types from '@/store/types.js'
+import { mapGetters, mapState } from 'vuex'
 const nullHousing = {
   ID: null,
   Reference: '',
@@ -117,9 +118,6 @@ const nullHousing = {
 export default {
   name: 'HousingsCard',
   mixins: [chkAndUpload],
-  props: {
-    loading: { type: Boolean, default: false },
-  },
   components: { HousingDlg, DeleteDialog },
   data () {
     return {
@@ -145,30 +143,15 @@ export default {
     }
   },
   computed: {
-    housings () {
-      return this.$store.state.housings.housingsList
-    },
-    itemsCount () {
-      return this.$store.state.housings.housingsItemsCount
-    },
-    currentPage () {
-      return this.$store.state.housings.housingsPage
-    },
-    items () {
-      return this.housings
-    },
-    cities () {
-      return this.$store.state.cities.citiesList
-    },
-    hasHousingRight () {
-      return this.$store.getters.hasHousingRight
-    },
-    commissions () {
-      return this.$store.state.settings.commissionsList
-    },
-    budgetActions () {
-      return this.$store.state.settings.budgetActionsList
-    },
+    ...mapGetters(['hasHousingRight', 'loading']),
+    ...mapState({
+      housings: state => state.housings.housingsList,
+      itemsCount: state => state.housings.housingsItemsCount,
+      currentPage: state => state.housings.housingsPage,
+      cities: state => state.cities.citiesList,
+      commissions: state => state.settings.commissionsList,
+      budgetActions: state => state.settings.budgetActionsList,
+    }),
   },
   methods: {
     newSearch (val) {
