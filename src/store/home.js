@@ -15,6 +15,9 @@ const state = {
   paymentCreditSum: null,
   averagePaymentTime: [],
   averagePayments: [],
+  csfWeekTrend: {},
+  flowStockDelays: {},
+  paymentRate: {},
 }
 
 const actions = {
@@ -24,10 +27,13 @@ const actions = {
       const resp = await Vue.http.get('home')
       commit(types.GET_HOME_DATAS, resp.body)
       commit(types.SET_HOME_MESSAGE, resp.body.HomeMessage)
-      commit(types.GET_PAYMENTS_DEMANDS_STOCKS, resp.body.PaymentDemandsStock)
       commit(types.GET_AVERAGE_PAYMENTS, resp.body.AveragePayment)
+      commit(types.GET_CSF_WEEK_TREND, resp.body.CsfWeekTrend)
+      commit(types.GET_FLOW_STOCK_DELAY, resp.body.FlowStockDelays)
+      commit(types.GET_PAYMENT_RATE, resp.body.PaymentRate)
       commit(types.END_LOADING)
     } catch (err) {
+      console.log(err)
       setErrorMessage(commit, err)
     }
   },
@@ -118,7 +124,6 @@ const mutations = {
     }
     state.importLogs = [...payload.ImportLog]
     state.paymentCreditSum = payload.PaymentCreditSum * 0.000001
-    state.averagePaymentTime = [...payload.AveragePaymentTime]
   },
   [types.SET_HOME_MESSAGE] (state, payload) {
     state.homeMessage = { ...payload }
@@ -133,6 +138,15 @@ const mutations = {
   },
   [types.GET_AVERAGE_PAYMENTS] (state, list) {
     state.averagePayments = [...list]
+  },
+  [types.GET_CSF_WEEK_TREND] (state, payload) {
+    state.csfWeekTrend = { ...payload }
+  },
+  [types.GET_FLOW_STOCK_DELAY] (state, payload) {
+    state.flowStockDelays = { ...payload }
+  },
+  [types.GET_PAYMENT_RATE] (state, payload) {
+    state.paymentRate = { ...payload }
   },
 }
 

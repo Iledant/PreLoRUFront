@@ -36,7 +36,7 @@
             <div class="text-caption text-right">Dernier import : {{ cmtImportDate | date }}</div>
           </v-card>
         </v-flex>
-        <v-flex xs12 md6>
+        <!-- <v-flex xs12 md6>
           <v-card>
             <v-card-title class="tertiary align-start">
               Délai moyen de mandatement
@@ -81,7 +81,37 @@
             </v-card-title>
             <payment-demands-stock-chart :height="400" class="pt-1" />
           </v-card>
-        </v-flex>
+        </v-flex> -->
+              <v-flex xs4>
+        <trend-card
+          :figure="csfFigure"
+          icon="receipt"
+          :trend="csfTrend"
+          caption="Stock de  CSF"
+          :inverse="true"
+        />
+      </v-flex>
+      <v-flex xs4>
+        <trend-card
+          :figure="delayFigure"
+          :trend="delayTrend"
+          icon="update"
+          caption="Délai moyen de mandatement"
+          :inverse="true"
+          :digits="1"
+          unit=" j"
+        />
+      </v-flex>
+      <v-flex xs4>
+        <trend-card
+          :figure="paymentRateFigure"
+          :trend="paymentRateTrend"
+          icon="show_chart"
+          caption="Taux d'exécution des CP disponibles"
+          unit=" %"
+        />
+      </v-flex>
+
       </v-layout>
     </v-container>
     <home-message-dlg v-model="dlg" :msg="homeMsg" @confirm="confirm" />
@@ -93,9 +123,9 @@ import * as types from '@/store/types.js'
 import PmtChart from './Home/PmtChart'
 import CmtChart from './Home/CmtChart'
 import HomeMessageDlg from './Home/HomeMessageDlg.vue'
-import AvgPmtTimeChart from './Home/AvgPmtTimeChart'
-import PaymentDemandsStockChart from './Home/PaymentDemandsStockChart'
+import TrendCard from './Home/TrendCard.vue'
 import { mapGetters, mapState } from 'vuex'
+const formatter = s => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(s)
 
 export default {
   name: 'Home',
@@ -103,8 +133,7 @@ export default {
     PmtChart,
     CmtChart,
     HomeMessageDlg,
-    AvgPmtTimeChart,
-    PaymentDemandsStockChart,
+    TrendCard,
   },
   data () {
     return {
@@ -118,7 +147,43 @@ export default {
     ...mapState({
       homeMsg: state => state.home.homeMessage,
       importLogs: state => state.home.importLogs,
+      csfWeekTrend: state => state.home.csfWeekTrend,
+      flowStockDelays: state => state.home.flowStockDelays,
+      paymentRate: state => state.home.paymentRate,
     }),
+    csfFigure () {
+      return this.csfWeekTrend ? this.csfWeekTrend.ThisWeekCount : 0
+    },
+    csfTrend () {
+      return this.csfWeekTrend ? this.csfWeekTrend.ThisWeekCount - this.csfWeekTrend.LastWeekCount : 0
+    },
+    delayFigure () {
+      if (!this.flowStockDelays) {
+        return 0
+      }
+      const fsd = this.flowStockDelays
+      const delay = (fsd.ActualStockCount * fsd.ActualStockAverageDelay +
+        fsd.ActualFlowCount * fsd.ActualFlowAverageDelay) / (fsd.ActualStockCount + fsd.ActualFlowCount)
+      return delay
+    },
+    paymentRateFigure () {
+      return this.paymentRate ? this.paymentRate.ActualRate * 100 : 0
+    },
+    paymentRateTrend () {
+      return this.paymentRate ? (this.paymentRate.ActualRate - this.paymentRate.PastRate) * 100 : 0
+    },
+    delayTrend () {
+      if (!this.flowStockDelays) {
+        return 0
+      }
+      const fsd = this.flowStockDelays
+      const formerDelay = (fsd.FormerStockCount * fsd.FormerStockAverageDelay +
+        fsd.FormerFlowCount * fsd.FormerFlowAverageDelay) / (fsd.FormerStockCount + fsd.FormerFlowCount)
+      return this.delayFigure - formerDelay
+    },
+    formattedDelayTrend () {
+      return this.delayTrend ? formatter(this.delayTrend) : '-'
+    },
   },
   methods: {
     confirm (msg) {
