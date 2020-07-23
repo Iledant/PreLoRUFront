@@ -13,7 +13,6 @@ const state = {
   importLogs: [],
   homeMessage: null,
   paymentCreditSum: null,
-  averagePaymentTime: [],
   averagePayments: [],
   csfWeekTrend: {},
   flowStockDelays: {},

@@ -38,6 +38,16 @@ const actions = {
       setErrorMessage(commit, err)
     }
   },
+  async [types.GET_PAYMENT_DEMANDS_STOCK] ({ commit }) {
+    beginLoading(commit)
+    try {
+      const { body } = await Vue.http.get('payment_demand_stocks')
+      commit(types.GET_PAYMENT_DEMANDS_STOCK, body.PaymentDemandsStock)
+      commit(types.END_LOADING)
+    } catch (err) {
+      setErrorMessage(commit, err)
+    }
+  },
 }
 
 const mutations = {
@@ -53,7 +63,7 @@ const mutations = {
   [types.GET_PAYMENT_DEMAND_COUNTS] (state, list) {
     state.paymentDemandCount = [...list]
   },
-  [types.GET_PAYMENTS_DEMANDS_STOCKS] (state, list) {
+  [types.GET_PAYMENT_DEMANDS_STOCK] (state, list) {
     state.paymentDemandsStock = [...list]
   },
 }

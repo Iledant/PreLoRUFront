@@ -70,7 +70,7 @@ export default {
   }),
   computed: {
     avgPmtTime () {
-      return this.$store.state.home.averagePaymentTime
+      return this.$store.state.paymentDelays.averagePaymentTime
     },
   },
   watch: {
