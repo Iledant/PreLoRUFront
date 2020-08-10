@@ -31,6 +31,7 @@ import HousingSettings from '@/components/Settings/HousingSettings.vue'
 import PaymentDemands from '@/components/Settings/PaymentDemands.vue'
 import Uploads from '@/components/Settings/Uploads.vue'
 import PaymentDelays from '@/components/PaymentDelays.vue'
+const Help = () => import('@/components/Help.vue')
 
 Vue.use(Router)
 
@@ -137,6 +138,11 @@ export default new Router({
       component: PaymentDelays,
       name: 'PaymentDelays',
       meta: { requiresAdmin: true },
+    },
+    {
+      path: '/help',
+      component: Help,
+      name: 'Help',
     },
   ],
 })

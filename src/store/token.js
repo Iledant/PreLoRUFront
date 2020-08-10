@@ -124,6 +124,15 @@ const state = {
       allowObserver: true,
       needReservationRight: false,
     },
+    {
+      id: 14,
+      title: 'Aide',
+      icon: 'help_outline',
+      routerLink: { name: 'Help' },
+      allowUser: true,
+      allowObserver: true,
+      needReservationRight: false,
+    },
   ],
   settingsMenuItems: [
     {
