@@ -1,5 +1,4 @@
-<span class="text-h4" id="intro">Introduction</span>
-
+# <div class="text-h4 pb-3" id="intro">Introduction</div>
 PreLoRU a été conçu pour fournir un outil de prévisions pluriannuelles
 pour le secteur du logement et du renouvellement urbain mis en oeuvre par la
 Région Île-de-France. Il est complémentaire des outils financiers (IRIS et
