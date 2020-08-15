@@ -14,6 +14,14 @@
         <v-sheet max-width="800" class="overflow-y-auto text-justify">
         <intro />
         <principles />
+        <housing />
+        <copro />
+        <renew-project />
+        <beneficiary />
+        <beneficiary-group />
+        <reservation-fee />
+        <programmation />
+        <prevision />
         </v-sheet>
       </v-col>
     </v-row>
@@ -23,9 +31,28 @@
 <script>
 import Intro from './Help/Intro.md'
 import Principles from './Help/Principles.md'
+import Housing from './Help/Housing.md'
+import Copro from './Help/Copro.md'
+import RenewProject from './Help/RenewProject.md'
+import Beneficiary from './Help/Beneficiary.md'
+import BeneficiaryGroup from './Help/BeneficiaryGroup.md'
+import ReservationFee from './Help/ReservationFee.md'
+import Programmation from './Help/Programmation.md'
+import Prevision from './Help/Prevision.md'
 export default {
   name: 'Help',
-  components: { Intro, Principles },
+  components: {
+    Intro,
+    Principles,
+    Housing,
+    Copro,
+    RenewProject,
+    Beneficiary,
+    BeneficiaryGroup,
+    ReservationFee,
+    Programmation,
+    Prevision,
+  },
   data () {
     return {
       tableOfContents: [
