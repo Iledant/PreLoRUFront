@@ -66,6 +66,7 @@ export default {
         { title: 'Renouvellement urbain', link: 'renew_project' },
         { title: 'Bénéficiaires', link: 'beneficiary' },
         { title: 'Groupes de bénéficiaires', link: 'beneficiary_group' },
+        { title: 'Stagiaires', link: 'placement' },
         { title: 'Droits de réservation', link: 'reservation_fee' },
         { title: 'Programmation', link: 'programmation' },
         { title: 'Prévisions', link: 'prevision' },
