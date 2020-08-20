@@ -1,3 +1,7 @@
 # <div class="text-h4 pb-3" id="reservation_fee">Droits de réservation</div>
 
-*Sera complété ultérieurement*
+L'entrée de menu *Contingent régional* <a href="/reservation_fees/"><i class="material-icons">open_in_new</i></a> regroupe les fonctions de gestion des droits de réservation de la Région issues des subventions qu'elle a donné aux programmes de construction ou de rénovation thermique des logements sociaux.
+
+Elle regroupe deux entrées :
+* *Réservations* qui comporte la base complète des droits de réservation. La fonction de recherche permet de filtrer dans la base les lignes dont la commune, le bailleur ou l'adresse comporte le texte du champ de recherche. Sur chaque ligne, l'icône <i class="material-icons">edit</i> permet de modifier le contenu du droit de réservation et l'icône <i class="material-icons">delete</i> de le supprimer définitivement. L'icône <i class="material-icons">keyboard_arrow_down</i> permet de dérouler la ligne pour faire apparaître certaines informations du droit de réservation. L'icône <i class="material-icons">add_circle</i> permet de créer un nouveau droit de réservation. Enfin, le bouton *Export Excel* situé sous le tableau permet de générer le fichier Excel des informations filtrées à l'écran
+* *Report* permet de gérer les reports de droits de réservation d'une subvention sur une autre lorsque les quotités ne permettent pas sur une opération donnée de réserver un logement entier. Sur chaque ligne, l'icône <i class="material-icons">edit</i> permet de modifier le contenu du report et l'icône <i class="material-icons">delete</i> de le supprimer définitivement. L'icône <i class="material-icons">add_circle</i> permet de créer un nouveau report. 
