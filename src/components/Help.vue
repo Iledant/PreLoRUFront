@@ -19,6 +19,7 @@
         <renew-project />
         <beneficiary />
         <beneficiary-group />
+        <placement />
         <reservation-fee />
         <programmation />
         <prevision />
@@ -39,6 +40,7 @@ import BeneficiaryGroup from './Help/BeneficiaryGroup.md'
 import ReservationFee from './Help/ReservationFee.md'
 import Programmation from './Help/Programmation.md'
 import Prevision from './Help/Prevision.md'
+import Placement from './Help/Placement.md'
 export default {
   name: 'Help',
   components: {
@@ -52,6 +54,7 @@ export default {
     ReservationFee,
     Programmation,
     Prevision,
+    Placement,
   },
   data () {
     return {
