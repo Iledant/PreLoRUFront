@@ -27,6 +27,7 @@
           <programmation />
           <prevision />
           <summaries />
+          <payment-delays />
         </v-sheet>
       </v-col>
     </v-row>
@@ -46,6 +47,7 @@ import Programmation from './Help/Programmation.md'
 import Prevision from './Help/Prevision.md'
 import Placement from './Help/Placement.md'
 import Summaries from './Help/Summaries.md'
+import PaymentDelays from './Help/PaymentDelays.md'
 export default {
   name: 'Help',
   components: {
@@ -61,6 +63,7 @@ export default {
     Prevision,
     Placement,
     Summaries,
+    PaymentDelays,
   },
   data () {
     return {
@@ -77,6 +80,7 @@ export default {
         { title: 'Programmation', link: 'programmation' },
         { title: 'Prévisions', link: 'prevision' },
         { title: 'Synthèses territoriales', link: 'summaries' },
+        { title: 'Délais de paiement', link: 'payment_delays' },
       ],
     }
   },
