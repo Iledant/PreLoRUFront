@@ -4,25 +4,29 @@
       <v-col cols="auto">
         <v-list dense>
           <v-list-item-group>
-          <v-list-item dense v-for="(item, i) in tableOfContents" :key=i :href="'#' + item.link">
-              {{item.title}}
-          </v-list-item>
+            <v-list-item
+              dense
+              v-for="(item, i) in tableOfContents"
+              :key="i"
+              :href="'#' + item.link"
+            >{{item.title}}</v-list-item>
           </v-list-item-group>
         </v-list>
       </v-col>
       <v-col>
         <v-sheet max-width="800" class="overflow-y-auto text-justify">
-        <intro />
-        <principles />
-        <housing />
-        <copro />
-        <renew-project />
-        <beneficiary />
-        <beneficiary-group />
-        <placement />
-        <reservation-fee />
-        <programmation />
-        <prevision />
+          <intro />
+          <principles />
+          <housing />
+          <copro />
+          <renew-project />
+          <beneficiary />
+          <beneficiary-group />
+          <placement />
+          <reservation-fee />
+          <programmation />
+          <prevision />
+          <summaries />
         </v-sheet>
       </v-col>
     </v-row>
@@ -41,6 +45,7 @@ import ReservationFee from './Help/ReservationFee.md'
 import Programmation from './Help/Programmation.md'
 import Prevision from './Help/Prevision.md'
 import Placement from './Help/Placement.md'
+import Summaries from './Help/Summaries.md'
 export default {
   name: 'Help',
   components: {
@@ -55,6 +60,7 @@ export default {
     Programmation,
     Prevision,
     Placement,
+    Summaries,
   },
   data () {
     return {
@@ -70,6 +76,7 @@ export default {
         { title: 'Droits de réservation', link: 'reservation_fee' },
         { title: 'Programmation', link: 'programmation' },
         { title: 'Prévisions', link: 'prevision' },
+        { title: 'Synthèses territoriales', link: 'summaries' },
       ],
     }
   },
@@ -78,6 +85,6 @@ export default {
 
 <style scoped>
 .v-sheet {
-  height: calc(100vh - 136px)
+  height: calc(100vh - 136px);
 }
 </style>
