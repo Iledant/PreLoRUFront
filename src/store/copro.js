@@ -21,6 +21,7 @@ const actions = {
       commit(types.GET_ACTIONS, body.BudgetAction)
       commit(types.GET_COPRO_EVENT_TYPES, body.CoproEventType)
       commit(types.GET_COPRO_EVENTS, body.FullCoproEvent)
+      commit(types.GET_COPRO_DOCS, body.CoproDoc)
       commit(types.END_LOADING)
     } catch (err) {
       setErrorMessage(commit, err)

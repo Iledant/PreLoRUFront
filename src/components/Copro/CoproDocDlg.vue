@@ -58,8 +58,8 @@ export default {
     },
     title () {
       return this.action === 'create'
-        ? 'Ajouter un nouvel événement'
-        : 'Modifier l\'événement'
+        ? 'Ajouter un nouveau document'
+        : 'Modifier le document'
     },
     button () {
       return this.action === 'create' ? 'Créer' : 'Modifier'
