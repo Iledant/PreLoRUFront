@@ -1,4 +1,5 @@
 import { SET_ERROR_MESSAGE } from '@/store/types'
+import { parse } from 'vue-currency-input'
 
 export const yearRule = {
   methods: {
@@ -84,7 +85,7 @@ export const currencyFormat = {
       return c ? curFmt(c) : ''
     },
     parseCurrency (c) {
-      return c === null || c === '' ? null : this.$parseCurrency(c) * 100
+      return c === null || c === '' ? null : parse(c) * 100
     },
   },
 }
