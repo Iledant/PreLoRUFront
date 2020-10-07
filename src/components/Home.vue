@@ -6,11 +6,18 @@
         <v-flex xs12>
           <v-card>
             <v-card-title class="tertiary">
-              {{ homeMsg ? homeMsg.Title : ''}}
+              {{ homeMsg ? homeMsg.Title : "" }}
               <v-spacer v-if="isAdmin" />
               <v-tooltip v-if="isAdmin" left color="primary">
                 <template #activator="{ on }">
-                  <v-btn color="primary" icon small text @click="dlg = true" v-on="on">
+                  <v-btn
+                    color="primary"
+                    icon
+                    small
+                    text
+                    @click="dlg = true"
+                    v-on="on"
+                  >
                     <v-icon v-on="on">create</v-icon>
                   </v-btn>
                 </template>
@@ -18,7 +25,11 @@
               </v-tooltip>
             </v-card-title>
             <v-card-text>
-              <div class="text-body-2 pt-3" v-show="homeMsg" v-html="homeMsg ? homeMsg.Html : ''" />
+              <div
+                class="text-body-2 pt-3"
+                v-show="homeMsg"
+                v-html="homeMsg ? homeMsg.Html : ''"
+              />
             </v-card-text>
           </v-card>
         </v-flex>
@@ -26,14 +37,18 @@
           <v-card>
             <v-card-title class="tertiary">Paiements</v-card-title>
             <pmt-chart :height="400" class="pt-1" />
-            <div class="text-caption text-right">Dernier import : {{ pmtImportDate | date }}</div>
+            <div class="text-caption text-right">
+              Dernier import : {{ pmtImportDate | date }}
+            </div>
           </v-card>
         </v-flex>
         <v-flex xs12 md6>
           <v-card>
             <v-card-title class="tertiary">Engagements</v-card-title>
             <cmt-chart :height="400" class="pt-1" />
-            <div class="text-caption text-right">Dernier import : {{ cmtImportDate | date }}</div>
+            <div class="text-caption text-right">
+              Dernier import : {{ cmtImportDate | date }}
+            </div>
           </v-card>
         </v-flex>
         <!-- <v-flex xs12 md6>
@@ -82,36 +97,42 @@
             <payment-demands-stock-chart :height="400" class="pt-1" />
           </v-card>
         </v-flex> -->
-              <v-flex xs4>
-        <trend-card
-          :figure="csfFigure"
-          icon="receipt"
-          :trend="csfTrend"
-          caption="Stock de  CSF"
-          :inverse="true"
-        />
-      </v-flex>
-      <v-flex xs4>
-        <trend-card
-          :figure="delayFigure"
-          :trend="delayTrend"
-          icon="update"
-          caption="Délai moyen de mandatement"
-          :inverse="true"
-          :digits="1"
-          unit=" j"
-        />
-      </v-flex>
-      <v-flex xs4>
-        <trend-card
-          :figure="paymentRateFigure"
-          :trend="paymentRateTrend"
-          icon="show_chart"
-          caption="Taux d'exécution des CP disponibles"
-          unit=" %"
-        />
-      </v-flex>
-
+        <v-flex xs4>
+          <trend-card
+            :figure="csfFigure"
+            icon="receipt"
+            :trend="csfTrend"
+            caption="Stock de  CSF"
+            :inverse="true"
+          />
+        </v-flex>
+        <v-flex xs4>
+          <trend-card
+            :figure="delayFigure"
+            :trend="delayTrend"
+            icon="update"
+            caption="Délai moyen de mandatement"
+            :inverse="true"
+            :digits="1"
+            unit=" j"
+            :onClick="isAdmin"
+            @click="flowStockExport()"
+          />
+        </v-flex>
+        <v-flex xs4>
+          <trend-card
+            :figure="paymentRateFigure"
+            :trend="paymentRateTrend"
+            icon="show_chart"
+            caption="Taux d'exécution des CP disponibles"
+            unit=" %"
+          />
+        </v-flex>
+        <!-- <v-flex xs12 class="text-right" v-if="isAdmin">
+          <v-btn @click="flowStockExport()" color="primary" text
+            >Export délais</v-btn
+          >
+        </v-flex> -->
       </v-layout>
     </v-container>
     <home-message-dlg v-model="dlg" :msg="homeMsg" @confirm="confirm" />
@@ -125,6 +146,8 @@ import CmtChart from './Home/CmtChart'
 import HomeMessageDlg from './Home/HomeMessageDlg.vue'
 import TrendCard from './Home/TrendCard.vue'
 import { mapGetters, mapState } from 'vuex'
+import { excelExport } from '../excel'
+
 const formatter = s => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(s)
 
 export default {
@@ -188,6 +211,22 @@ export default {
   methods: {
     confirm (msg) {
       this.$store.dispatch(types.SET_HOME_MESSAGE, msg)
+    },
+    flowStockExport () {
+      const fsd = this.flowStockDelays
+      const lines = [{
+        flowAverageDelay: fsd.ActualFlowAverageDelay,
+        flowCount: fsd.ActualFlowCount,
+        stockAverageDelay: fsd.ActualStockAverageDelay,
+        stockCount: fsd.ActualStockCount,
+      }]
+      const columns = [
+        { header: 'Flux durée (j)', key: 'flowAverageDelay', width: 20 },
+        { header: 'Flux nombre', key: 'flowCount', width: 20 },
+        { header: 'Stock durée (j)', key: 'stockAverageDelay', width: 20 },
+        { header: 'Stock nombre', key: 'stockCount', width: 20 },
+      ]
+      excelExport(lines, columns, 'Flux Stock')
     },
   },
   watch: {

@@ -1,20 +1,31 @@
 <template>
   <v-card :color="colors[colorIndex]">
-      <v-container>
-        <v-layout>
-          <v-col cols="auto" v-show="icon !== ''">
-            <v-icon x-large>{{ icon }}</v-icon>
-          </v-col>
-          <v-col>
-            <div class="caption">{{ caption }}</div>
-            <div class="text-right text-h4">{{ format(figure) }}</div>
-            <div class="caption text-right">
-              <v-icon small>{{icons[iconIndex]}}</v-icon>
-              {{ format(trend) }}
-            </div>
-          </v-col>
-        </v-layout>
-      </v-container>
+    <v-container>
+      <v-layout>
+        <v-col cols="auto" v-show="icon !== ''">
+          <v-icon x-large>{{ icon }}</v-icon>
+        </v-col>
+        <v-col>
+          <div class="caption">{{ caption }}</div>
+          <div class="text-right text-h4">{{ format(figure) }}</div>
+          <div class="caption text-right">
+            <v-icon small>{{ icons[iconIndex] }}</v-icon>
+            {{ format(trend) }}
+          </div>
+        </v-col>
+      </v-layout>
+    </v-container>
+    <v-btn
+      small
+      fab
+      absolute
+      bottom
+      left
+      color="secondary"
+      v-if="onClick"
+      @click="$emit('click')"
+      ><v-icon>cloud_download</v-icon>
+    </v-btn>
   </v-card>
 </template>
 
@@ -29,6 +40,7 @@ export default {
     digits: { type: Number, default: 0 },
     inverse: { type: Boolean, default: false },
     icon: { type: String, default: '' },
+    onClick: { type: Boolean, default: false },
   },
   data () {
     return {
